@@ -67,8 +67,8 @@ model Action {
   index          Int
   type           String
   size           Int?
-  historyRange   Range  @relation(name: "History", fields: [historyRangeId], references: [id])
-  historyRangeId Int
-  optionsRange   Range  @relation(name: "Options", fields: [optionsRangeId], references: [id])
-  optionsRangeId Int
+  historyRange   Range? @relation(name: "History", fields: [historyRangeId], references: [id])
+  historyRangeId Int?
+  optionsRange   Range? @relation(name: "Options", fields: [optionsRangeId], references: [id])
+  optionsRangeId Int?
 }
