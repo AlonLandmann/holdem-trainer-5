@@ -12,10 +12,12 @@
     "@prisma/client": "^5.18.0",
     "next": "14.2.6",
     "react": "^18",
-    "react-dom": "^18",
-    "sass": "^1.77.8"
+    "react-dom": "^18"
   },
   "devDependencies": {
-    "prisma": "^5.18.0"
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.41",
+    "prisma": "^5.18.0",
+    "tailwindcss": "^3.4.10"
   }
 }
