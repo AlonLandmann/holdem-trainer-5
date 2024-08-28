@@ -1,9 +1,10 @@
+import { LoadingQueueProvider } from '@/hooks/useLoadingQueue'
 import '@/styles/globals.css'
 import { Toaster } from 'react-hot-toast'
 
 export default function App({ Component, pageProps }) {
   return (
-    <>
+    <LoadingQueueProvider>
       <Component {...pageProps} />
       <Toaster
         toastOptions={{
@@ -15,6 +16,6 @@ export default function App({ Component, pageProps }) {
           }
         }}
       />
-    </>
+    </LoadingQueueProvider>
   )
 }

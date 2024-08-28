@@ -38,6 +38,7 @@ export default function LoginRoot() {
             utilClasses='w-full rounded-sm'
             text='Log In'
             type='submit'
+            useQueue
           />
         </div>
         <div className='flex items-center self-stretch gap-2 px-2'>
@@ -51,6 +52,7 @@ export default function LoginRoot() {
           <Button
             utilClasses='w-full rounded-sm'
             text='Google'
+            useQueue
           />
         </div>
         <p className='text-sm text-neutral-500 px-2'>

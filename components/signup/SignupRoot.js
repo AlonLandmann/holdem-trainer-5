@@ -8,13 +8,15 @@ export default function SignupRoot() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  async function handleEmailSignup(e) {
-    e.preventDefault()
+  async function handleEmailSignup(event) {
+    event.preventDefault()
     
     if (password.length < 8 || !/[a-z]/.test(password) || !/[A-Z]/.test(password) || !/[0-9]/.test(password)) {
       return toast.error('Password must contain at least 8 characters, one lowercase letter, one upper case letter, and one number.')
     }
 
+    console.log((new Date()).getMilliseconds())
+    
     try {
       const res = await fetch('/api/auth/signup', {
         method: 'POST',
@@ -33,6 +35,9 @@ export default function SignupRoot() {
       console.log(error)
       toast.error('An unexpected error occurred.')
     }
+
+
+    console.log((new Date()).getMilliseconds())
   }
 
   return (
@@ -69,6 +74,7 @@ export default function SignupRoot() {
             utilClasses='w-full rounded-sm'
             text='Sign Up'
             type='submit'
+            useQueue
           />
         </div>
         <div className='flex items-center self-stretch gap-2 px-2'>
@@ -82,6 +88,7 @@ export default function SignupRoot() {
           <Button
             utilClasses='w-full rounded-sm'
             text='Google'
+            useQueue
           />
         </div>
         <p className='text-sm text-neutral-500 px-2'>

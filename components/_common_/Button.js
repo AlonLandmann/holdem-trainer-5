@@ -1,3 +1,6 @@
+import { useLoadingQueue } from '@/hooks/useLoadingQueue'
+import { useState } from 'react';
+
 const themes = {
   primary: {
     container: 'bg-neutral-700 text-neutral-300 hover:bg-neutral-600',
@@ -22,9 +25,21 @@ export default function Button({
   icon,
   text,
   type = 'button',
-  onClick = () => { },
+  onClick = async () => { },
   disabled = false,
+  useQueue = false,
 }) {
+  const [loadingQueue, setLoadingQueue] = useLoadingQueue()
+  const [loading, setLoading] = useState(false)
+
+  async function handleQueuedExecution(event) {
+    setLoading(true)
+    setLoadingQueue(true)
+    await onClick(event)
+    setLoading(false)
+    setLoadingQueue(false)
+  }
+
   return (
     <button
       className={`
@@ -33,15 +48,28 @@ export default function Button({
         ${utilClasses}
       `}
       type={type}
-      onClick={onClick}
-      disabled={disabled}
+      onClick={useQueue ? handleQueuedExecution : onClick}
+      disabled={disabled || (useQueue && loadingQueue)}
     >
-      {icon &&
+      {loading &&
+        <div className='inline-block'>
+          <span className='inline-block animate-pulse'>
+            ·
+          </span>
+          <span className='inline-block animate-pulse [animation-delay:0.2s]'>
+            ·
+          </span>
+          <span className='inline-block animate-pulse [animation-delay:1s]'>
+            ·
+          </span>
+        </div>
+      }
+      {!loading && icon &&
         <span className={themes[theme].icon}>
           <i className={`bi bi-${icon}`}></i>
         </span>
       }
-      {text &&
+      {!loading && text &&
         <span className={themes[theme].text}>
           {text}
         </span>
