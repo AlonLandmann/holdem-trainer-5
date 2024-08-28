@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { useState } from 'react'
+import Button from '../_common_/Button'
 import Input from '../_common_/Input'
 
 export default function SignupRoot() {
@@ -16,13 +17,10 @@ export default function SignupRoot() {
         <h3 className='font-medium text-2xl mb-4'>
           Hello
         </h3>
-        <p className='text-neutral-500'>
-          Sign up using google or via email
+        <p className='text-neutral-500 mb-5'>
+          Sign up using your email
         </p>
-        <button type='button'>
-          Google
-        </button>
-        <div className='flex flex-col gap-3 w-full'>
+        <div className='flex flex-col gap-3 w-full pb-5 border-b border-b-neutral-700'>
           <Input
             name='email'
             type='email'
@@ -44,10 +42,18 @@ export default function SignupRoot() {
             value={password}
             onChange={e => setPassword(e.target.value)}
           />
+          <Button
+              utilClasses='w-full'
+              text='Sign Up'
+              type='submit'
+            />
         </div>
-        <button type='submit'>
-          sign up
-        </button>
+        <div className='pt-5 pb-7 self-stretch'>
+          <Button
+            utilClasses='w-full'
+            text='Google'
+          />
+        </div>
         <p className='text-sm text-neutral-500'>
           Already have an account? <Link href='/login'>Log in</Link> instead.
         </p>
