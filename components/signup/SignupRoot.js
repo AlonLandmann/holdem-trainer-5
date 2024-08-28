@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { useState } from 'react'
+import Input from '../_common_/Input'
 
 export default function SignupRoot() {
   const [email, setEmail] = useState('')
@@ -21,24 +22,29 @@ export default function SignupRoot() {
         <button type='button'>
           Google
         </button>
-        <input
-          name='email'
-          type='email'
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-        />
-        <input
-          name='username'
-          type='text'
-          value={username}
-          onChange={e => setUsername(e.target.value)}
-        />
-        <input
-          name='password'
-          type='password'
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-        />
+        <div className='flex flex-col gap-3 w-full'>
+          <Input
+            name='email'
+            type='email'
+            placeholder='Email'
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+          />
+          <Input
+            name='username'
+            type='text'
+            placeholder='Username'
+            value={username}
+            onChange={e => setUsername(e.target.value)}
+          />
+          <Input
+            name='password'
+            type='password'
+            placeholder='Password'
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+          />
+        </div>
         <button type='submit'>
           sign up
         </button>
