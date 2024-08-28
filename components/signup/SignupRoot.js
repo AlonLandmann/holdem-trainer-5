@@ -18,7 +18,7 @@ export default function SignupRoot() {
           Hello
         </h3>
         <p className='text-neutral-500 mb-4'>
-          Sign up using your email
+          Sign up with your email
         </p>
         <div className='flex flex-col gap-3 w-full pb-5'>
           <Input

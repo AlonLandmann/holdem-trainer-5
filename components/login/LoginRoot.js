@@ -17,7 +17,7 @@ export default function LoginRoot() {
           Welcome Back
         </h3>
         <p className='text-neutral-500 mb-4'>
-          Log in using your email
+          Log in with your email
         </p>
         <div className='flex flex-col gap-3 w-full pb-5'>
           <Input
