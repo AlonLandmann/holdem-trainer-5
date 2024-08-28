@@ -5,7 +5,6 @@ import Anchor from '../_common_/Anchor'
 
 export default function SignupRoot() {
   const [email, setEmail] = useState('')
-  const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
   return (
@@ -27,13 +26,6 @@ export default function SignupRoot() {
             placeholder='Email'
             value={email}
             onChange={e => setEmail(e.target.value)}
-          />
-          <Input
-            name='username'
-            type='text'
-            placeholder='Username'
-            value={username}
-            onChange={e => setUsername(e.target.value)}
           />
           <Input
             name='password'
