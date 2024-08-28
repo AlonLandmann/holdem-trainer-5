@@ -61,7 +61,7 @@ export default function SignupRoot() {
             text='Google'
           />
         </div>
-        <p className='text-sm text-neutral-500'>
+        <p className='text-sm text-neutral-500 px-2'>
           Already have an account? <Anchor href='/login' text='Log in' /> instead.
         </p>
       </form>
