@@ -1,4 +1,5 @@
 import { setSessionCookie } from '@/lib/cookies'
+import { sendVerificationLink } from '@/lib/email'
 import prisma from '@/prisma/client'
 import sha256 from 'sha256'
 
@@ -25,13 +26,11 @@ export default async function handler(req, res) {
         })
 
         setSessionCookie(res, newUser.session.token)
-
-        // SEND EMAIL HERE
+        sendVerificationLink(newUser.email, newUser.verificationToken)
 
         return res.status(200).json({ success: true })
 
       default:
-        console.log('invalid method')
         res.status(400).json({ success: false, message: 'Invalid request.' })
     }
   } catch (error) {

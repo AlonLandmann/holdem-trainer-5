@@ -25,16 +25,15 @@ export default function SignupRoot() {
       const json = await res.json()
   
       if (json.success) {
-        toast.success('Success') // REROUTE TO RANGES
+        window.location = '/ranges'
       } else {
-        toast.error(json.message || 'An unexpected error occurred') // RETURN ERROR MESSAGE
+        toast.error(json.message || 'An unexpected error occurred')
       }
     } catch (error) {
       console.log(error)
       toast.error('An unexpected error occurred.')
     }
   }
-
 
   return (
     <div className='min-h-screen p-3 flex justify-center items-center'>
