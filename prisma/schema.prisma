@@ -15,13 +15,14 @@ model User {
   username   String
   hash       String?
   googleId   String?   @unique
-  verified   Boolean   @default(false)
+  isVerified Boolean   @default(false)
   token      String?
   role       String    @default("user")
   membership String    @default("free")
   session    Session?
   settings   Settings?
   folders    Folder[]
+  articles   Article[]
 }
 
 model Session {
@@ -72,4 +73,21 @@ model Action {
   historyRangeId Int?
   optionsRange   Range? @relation(name: "Options", fields: [optionsRangeId], references: [id])
   optionsRangeId Int?
+}
+
+model Article {
+  id          Int      @id @default(autoincrement())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  author      User     @relation(fields: [authorId], references: [id])
+  authorId    Int
+  isPublished Boolean  @default(false)
+  imageUrl    String
+  readTime    Int
+  level       Int
+  category    String
+  title       String
+  slug        String
+  abstract    String
+  content     String
 }
