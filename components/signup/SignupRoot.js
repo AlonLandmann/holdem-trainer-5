@@ -1,7 +1,7 @@
-import Link from 'next/link'
 import { useState } from 'react'
 import Button from '../_common_/Button'
 import Input from '../_common_/Input'
+import Anchor from '../_common_/Anchor'
 
 export default function SignupRoot() {
   const [email, setEmail] = useState('')
@@ -43,7 +43,7 @@ export default function SignupRoot() {
             onChange={e => setPassword(e.target.value)}
           />
           <Button
-            utilClasses='w-full'
+            utilClasses='w-full rounded-sm'
             text='Sign Up'
             type='submit'
           />
@@ -55,12 +55,12 @@ export default function SignupRoot() {
         </div>
         <div className='pt-5 pb-7 self-stretch'>
           <Button
-            utilClasses='w-full'
+            utilClasses='w-full rounded-sm'
             text='Google'
           />
         </div>
         <p className='text-sm text-neutral-500'>
-          Already have an account? <Link href='/login'>Log in</Link> instead.
+          Already have an account? <Anchor href='/login' text='Log in' /> instead.
         </p>
       </form>
     </div>
