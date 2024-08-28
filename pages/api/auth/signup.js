@@ -23,8 +23,8 @@ export default async function handler(req, res) {
             settings: { create: {} },
           },
           include: {
-            session: true,
-          },
+            session: true
+          }
         })
 
         setSessionCookie(res, newUser.session.token)

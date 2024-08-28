@@ -3,6 +3,7 @@ import Button from '../_common_/Button'
 import Input from '../_common_/Input'
 import Anchor from '../_common_/Anchor'
 import toast from 'react-hot-toast'
+import googleAuthUrl from '@/lib/googleAuthUrl'
 
 export default function SignupRoot() {
   const [email, setEmail] = useState('')
@@ -85,7 +86,7 @@ export default function SignupRoot() {
           <Button
             utilClasses='w-full rounded-sm'
             text='Google'
-            useQueue
+            onClick={() => { window.location = googleAuthUrl }}
           />
         </div>
         <p className='text-sm text-neutral-500 px-2'>
