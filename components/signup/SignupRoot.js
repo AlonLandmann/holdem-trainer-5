@@ -15,8 +15,6 @@ export default function SignupRoot() {
       return toast.error('Password must contain at least 8 characters, one lowercase letter, one upper case letter, and one number.')
     }
 
-    console.log((new Date()).getMilliseconds())
-    
     try {
       const res = await fetch('/api/auth/signup', {
         method: 'POST',
@@ -35,17 +33,11 @@ export default function SignupRoot() {
       console.log(error)
       toast.error('An unexpected error occurred.')
     }
-
-
-    console.log((new Date()).getMilliseconds())
   }
 
   return (
     <div className='min-h-screen p-3 flex justify-center items-center'>
-      <form
-        className='max-w-96 pt-12 pb-7 px-11 bg-neutral-900 rounded flex flex-col items-center'
-        onSubmit={handleEmailSignup}
-      >
+      <form className='max-w-96 pt-12 pb-7 px-11 bg-neutral-900 rounded flex flex-col items-center'>
         <h1 className='font-decorative text-5xl text-neutral-700 mb-9'>
           HT
         </h1>
@@ -74,6 +66,7 @@ export default function SignupRoot() {
             utilClasses='w-full rounded-sm'
             text='Sign Up'
             type='submit'
+            onClick={handleEmailSignup}
             useQueue
           />
         </div>
