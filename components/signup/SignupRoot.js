@@ -2,14 +2,46 @@ import { useState } from 'react'
 import Button from '../_common_/Button'
 import Input from '../_common_/Input'
 import Anchor from '../_common_/Anchor'
+import toast from 'react-hot-toast'
 
 export default function SignupRoot() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
+  async function handleEmailSignup(e) {
+    e.preventDefault()
+    
+    if (password.length < 8 || !/[a-z]/.test(password) || !/[A-Z]/.test(password) || !/[0-9]/.test(password)) {
+      return toast.error('Password must contain at least 8 characters, one lowercase letter, one upper case letter, and one number.')
+    }
+
+    try {
+      const res = await fetch('/api/auth/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+      })
+  
+      const json = await res.json()
+  
+      if (json.success) {
+        toast.success('Success') // REROUTE TO RANGES
+      } else {
+        toast.error(json.message || 'An unexpected error occurred') // RETURN ERROR MESSAGE
+      }
+    } catch (error) {
+      console.log(error)
+      toast.error('An unexpected error occurred.')
+    }
+  }
+
+
   return (
     <div className='min-h-screen p-3 flex justify-center items-center'>
-      <form className='max-w-96 pt-12 pb-7 px-11 bg-neutral-900 rounded flex flex-col items-center'>
+      <form
+        className='max-w-96 pt-12 pb-7 px-11 bg-neutral-900 rounded flex flex-col items-center'
+        onSubmit={handleEmailSignup}
+      >
         <h1 className='font-decorative text-5xl text-neutral-700 mb-9'>
           HT
         </h1>
