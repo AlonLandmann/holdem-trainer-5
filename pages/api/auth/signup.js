@@ -9,6 +9,8 @@ export default async function handler(req, res) {
       case 'POST':
         const { email, password } = req.body
 
+        console.log(email)
+
         if (await prisma.user.findUnique({ where: { email } })) {
           return res.status(200).json({ success: false, message: 'User already exists.' })
         }
