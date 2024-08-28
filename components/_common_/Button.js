@@ -1,5 +1,5 @@
 import { useLoadingQueue } from '@/hooks/useLoadingQueue'
-import { useState } from 'react';
+import { useState } from 'react'
 
 const themes = {
   primary: {
