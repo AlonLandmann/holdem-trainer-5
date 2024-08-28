@@ -20,7 +20,7 @@ export default function SignupRoot() {
         <p className='text-neutral-500 mb-5'>
           Sign up using your email
         </p>
-        <div className='flex flex-col gap-3 w-full pb-5 border-b border-b-neutral-700'>
+        <div className='flex flex-col gap-3 w-full pb-5'>
           <Input
             name='email'
             type='email'
@@ -43,10 +43,15 @@ export default function SignupRoot() {
             onChange={e => setPassword(e.target.value)}
           />
           <Button
-              utilClasses='w-full'
-              text='Sign Up'
-              type='submit'
-            />
+            utilClasses='w-full'
+            text='Sign Up'
+            type='submit'
+          />
+        </div>
+        <div className='flex items-center self-stretch gap-2 px-2'>
+          <div className='flex-grow bg-neutral-600 h-[1px]'></div>
+          <div className='text-xs text-neutral-400 tracking-wider'>OR</div>
+          <div className='flex-grow bg-neutral-600 h-[1px]'></div>
         </div>
         <div className='pt-5 pb-7 self-stretch'>
           <Button
