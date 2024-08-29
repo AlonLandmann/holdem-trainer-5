@@ -13,7 +13,7 @@ export default function SideNavItem({ icon, extendedView, text, href }) {
         px-3 py-2 rounded text-neutral-400
         transition hover:bg-neutral-800
         hover:text-white cursor-pointer
-        ${isSelected ? 'bg-neutral-800 text-white' : ''}
+        ${isSelected ? 'bg-neutral-800' : ''}
       `}
       onClick={() => {
         if (href) {
@@ -23,7 +23,7 @@ export default function SideNavItem({ icon, extendedView, text, href }) {
     >
       <Button
         theme='tertiary'
-        utilClasses='text-inherit'
+        utilClasses={isSelected ? 'text-white' : ''}
         icon={icon}
         text={extendedView ? text : null}
       />
