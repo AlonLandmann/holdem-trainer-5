@@ -29,7 +29,7 @@ export default function SideNav() {
           href='/app/dashboard'
         />
       </div>
-      <div className='h-[1px] w-7 bg-neutral-800 self-center'></div>
+      <div className={`h-[1px] ${extendedView ? 'w-32' : 'w-7'} bg-neutral-800 self-center`}></div>
       <div className='flex flex-col gap-3 px-2 py-5 mb-auto'>
         <SideNavItem
           icon='ui-checks'
@@ -50,7 +50,7 @@ export default function SideNav() {
           href='/app/trainer'
         />
       </div>
-      <div className='h-[1px] w-7 bg-neutral-800 self-center'></div>
+      <div className={`h-[1px] ${extendedView ? 'w-32' : 'w-7'} bg-neutral-800 self-center`}></div>
       <div className='flex flex-col gap-3 px-2 py-5'>
         <SideNavItem
           icon='gear'
