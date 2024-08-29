@@ -3,7 +3,7 @@ import { useState } from 'react'
 
 const themes = {
   primary: {
-    container: 'py-3 px-5 rounded text-sm bg-neutral-700 text-neutral-300 hover:bg-neutral-600 disabled:hover:bg-neutral-700',
+    container: 'py-3 px-5 rounded text-sm bg-neutral-700 text-neutral-300 transition hover:bg-neutral-600 disabled:hover:bg-neutral-700',
     icon: '',
     text: '',
   },
@@ -13,7 +13,7 @@ const themes = {
     text: '',
   },
   tertiary: {
-    container: 'text-neutral-400 hover:text-white',
+    container: 'text-neutral-400 transition hover:text-white',
     icon: '',
     text: '',
   },
@@ -43,7 +43,6 @@ export default function Button({
   return (
     <button
       className={`
-        transition
         ${themes[theme].container}
         ${utilClasses}
       `}
