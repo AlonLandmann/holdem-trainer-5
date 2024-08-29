@@ -90,7 +90,7 @@ export default function SignupRoot() {
           />
         </div>
         <p className='text-sm text-neutral-500 px-2'>
-          Already have an account? <Anchor href='/login' text='Log in' /> instead.
+          Already have an account? <Anchor href='/auth/login' text='Log in' /> instead.
         </p>
       </form>
     </div>

@@ -41,7 +41,7 @@ export default async function handler(req, res) {
           })
 
           if (foundByEmailUser) {
-            return res.redirect('/login?googleAuth=fail')
+            return res.redirect('/auth/login?googleAuth=fail')
           }
 
           const newUser = await prisma.user.create({
@@ -64,10 +64,10 @@ export default async function handler(req, res) {
         return res.redirect('/')
 
       default:
-        res.redirect('/login?googleAuth=fail')
+        res.redirect('/auth/login?googleAuth=fail')
     }
   } catch (error) {
     console.log(error)
-    res.redirect('/login?googleAuth=fail')
+    res.redirect('/auth/login?googleAuth=fail')
   }
 }

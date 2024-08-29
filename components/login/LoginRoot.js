@@ -90,7 +90,7 @@ export default function LoginRoot() {
           />
         </div>
         <p className='text-sm text-neutral-500 px-2'>
-          New to Hold'em Trainer? <Anchor href='/signup' text='Sign up' /> instead.
+          New to Hold'em Trainer? <Anchor href='/auth/signup' text='Sign up' /> instead.
         </p>
       </form>
     </div>
