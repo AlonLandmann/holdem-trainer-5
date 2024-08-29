@@ -50,8 +50,6 @@ export default async function handler(req, res) {
           data: {
             name: 'New Range',
             matrix: Buffer.from([1, 2, 3, 4]), // CORRECT BUFFER
-            // ADD HISTORY
-            // ADD OPTIONS
             folder: {
               connect: { id: folder.id },
             },

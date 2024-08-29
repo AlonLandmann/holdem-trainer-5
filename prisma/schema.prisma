@@ -58,24 +58,13 @@ model Range {
   name          String   @default("New Range")
   stacks        Float[]  @default([100, 100, 100, 100, 100, 100])
   matrix        Bytes
+  history       String[] @default([])
+  options       String[] @default(["fold", "call"])
   folder        Folder   @relation(fields: [folderId], references: [id])
   folderId      Int
-  history       Action[] @relation("History")
-  options       Action[] @relation("Options")
   successors    Range[]  @relation("Pred-Succ")
   predecessor   Range?   @relation("Pred-Succ", fields: [predecessorId], references: [id])
   predecessorId Int?
-}
-
-model Action {
-  id             Int    @id @default(autoincrement())
-  index          Int
-  type           String
-  size           Float?
-  historyRange   Range? @relation(name: "History", fields: [historyRangeId], references: [id])
-  historyRangeId Int?
-  optionsRange   Range? @relation(name: "Options", fields: [optionsRangeId], references: [id])
-  optionsRangeId Int?
 }
 
 model Article {
