@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@prisma/client": "^5.18.0",
+    "cookie": "^0.6.0",
     "googleapis": "^143.0.0",
     "next": "14.2.6",
     "nodemailer": "^6.9.14",

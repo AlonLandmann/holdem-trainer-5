@@ -1,11 +1,29 @@
 import { useUser } from '@/hooks/useUser'
 import Button from './Button'
+import toast from 'react-hot-toast'
 
 export default function RangePlaceholder() {
   const user = useUser()
-  
-  async function handleAddRange() {
 
+  async function handleAddRange() {
+    try {
+      const res = await fetch('/api/ranges/add', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+      })
+
+      const json = await res.json()
+
+      if (json.success) {
+        toast.success('success')
+      } else {
+        return toast.error(json.message || 'An unexpected error occurred.')
+      }
+    } catch (error) {
+      console.log(error)
+      toast.error('An unexpected error occurred.')
+    }
   }
 
   return (

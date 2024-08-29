@@ -15,16 +15,14 @@ export default async function handler(req, res) {
             }
           },
           include: {
+            settings: true,
             folders: {
               include: {
                 ranges: true
               }
-            },
-            settings: true,
+            }
           }
         })
-
-        console.log(user)
 
         if (!user) {
           return res.status(200).json({ success: false })
