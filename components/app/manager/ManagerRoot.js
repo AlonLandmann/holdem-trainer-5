@@ -1,10 +1,11 @@
+import RangePlaceholder from '@/components/_common_/RangePlaceholder'
 import SideNav from '@/components/_common_/SideNav'
 
 export default function ManagerRoot() {
   return (
     <div className='flex'>
       <SideNav />
-      <div>Manager</div>
+      <RangePlaceholder />
     </div>
   )
 }

@@ -3,12 +3,12 @@ import { useState } from 'react'
 
 const themes = {
   primary: {
-    container: 'py-3 px-5 rounded text-sm bg-neutral-700 text-neutral-300 transition hover:bg-neutral-600 disabled:hover:bg-neutral-700',
+    container: 'py-3 px-4 rounded text-sm bg-neutral-700 text-neutral-300 transition hover:bg-neutral-600 disabled:hover:bg-neutral-700',
     icon: '',
     text: '',
   },
   secondary: {
-    container: '',
+    container: 'py-3 px-4 border text-sm text-neutral-400 rounded transition hover:text-neutral-200',
     icon: '',
     text: '',
   },
