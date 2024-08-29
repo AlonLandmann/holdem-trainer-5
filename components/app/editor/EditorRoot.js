@@ -1,7 +1,10 @@
+import SideNav from '@/components/_common_/SideNav'
+
 export default function EditorRoot() {
   return (
     <div>
-      Editor
+      <SideNav />
+      <div>Editor</div>
     </div>
   )
 }

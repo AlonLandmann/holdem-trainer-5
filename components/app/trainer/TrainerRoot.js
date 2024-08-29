@@ -1,7 +1,10 @@
+import SideNav from '@/components/_common_/SideNav'
+
 export default function TrainerRoot() {
   return (
     <div>
-      Trainer
+      <SideNav />
+      <div>Trainer</div>
     </div>
   )
 }

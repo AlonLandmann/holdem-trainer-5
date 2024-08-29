@@ -1,7 +1,10 @@
+import SideNav from '@/components/_common_/SideNav'
+
 export default function SettingsRoot() {
   return (
     <div>
-      Settings
+      <SideNav />
+      <div>Settings</div>
     </div>
   )
 }
