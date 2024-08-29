@@ -1,4 +1,6 @@
 import prisma from '@/lib/server/prisma'
+import { toClientFormat } from '@/lib/server/ranges'
+import { produce } from 'immer'
 
 export default async function handler(req, res) {
   try {
@@ -27,6 +29,10 @@ export default async function handler(req, res) {
         if (!user) {
           return res.status(200).json({ success: false })
         }
+
+        user.folders = user.folders.map(produce(folderDraft => {
+          folderDraft.ranges = folderDraft.ranges.map(r => toClientFormat(r))
+        }))
 
         return res.status(200).json({ success: true, user })
 

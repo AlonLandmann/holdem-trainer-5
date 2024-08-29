@@ -12,6 +12,8 @@
     "@prisma/client": "^5.18.0",
     "cookie": "^0.6.0",
     "googleapis": "^143.0.0",
+    "immer": "^10.1.1",
+    "lodash": "^4.17.21",
     "next": "14.2.6",
     "nodemailer": "^6.9.14",
     "react": "^18",

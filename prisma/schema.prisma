@@ -57,9 +57,9 @@ model Range {
   updatedAt     DateTime @updatedAt
   name          String   @default("New Range")
   stacks        Float[]  @default([100, 100, 100, 100, 100, 100])
-  matrix        Bytes
   history       String[] @default([])
   options       String[] @default(["fold", "call"])
+  matrix        Bytes
   folder        Folder   @relation(fields: [folderId], references: [id])
   folderId      Int
   successors    Range[]  @relation("Pred-Succ")

@@ -1,4 +1,5 @@
 import prisma from '@/lib/server/prisma'
+import { defaultMatrixBuffer } from '@/lib/server/ranges'
 
 export default async function handler(req, res) {
   try {
@@ -49,14 +50,14 @@ export default async function handler(req, res) {
         const newRange = await prisma.range.create({
           data: {
             name: 'New Range',
-            matrix: Buffer.from([1, 2, 3, 4]), // CORRECT BUFFER
+            matrix: defaultMatrixBuffer,
             folder: {
               connect: { id: folder.id },
             },
           },
         })
 
-        return res.status(200).json({ success: true, range: newRange })
+        return res.status(200).json({ success: true })
 
       default:
         res.status(400).json({ success: false })
