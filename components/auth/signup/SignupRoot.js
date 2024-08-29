@@ -1,38 +1,38 @@
-import { useEffect, useState } from 'react'
-import Button from '../_common_/Button'
-import Input from '../_common_/Input'
-import Anchor from '../_common_/Anchor'
-import { useRouter } from 'next/router'
+import { useState } from 'react'
+import Button from '@/components/_common_/Button'
+import Input from '@/components/_common_/Input'
+import Anchor from '@/components/_common_/Anchor'
 import toast from 'react-hot-toast'
 import googleAuthUrl from '@/lib/googleAuthUrl'
 
-export default function LoginRoot() {
-  const router = useRouter()
+export default function SignupRoot() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  useEffect(() => {
-    if (router.query.googleAuth === 'fail') {
-      toast.error('Google authentication failed.')
-    }
-  }, [router.query])
-
-  async function handleEmailLogin(event) {
+  async function handleEmailSignup(event) {
     event.preventDefault()
+    
+    if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
+      return toast.error('Make sure to provide a valid email address.')
+    }
+
+    if (password.length < 8 || !/[a-z]/.test(password) || !/[A-Z]/.test(password) || !/[0-9]/.test(password)) {
+      return toast.error('Password must contain at least 8 characters, one lowercase letter, one upper case letter, and one number.')
+    }
 
     try {
-      const res = await fetch('/api/auth/login', {
+      const res = await fetch('/api/auth/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password })
       })
-
+  
       const json = await res.json()
-
+  
       if (json.success) {
         window.location = '/ranges'
       } else {
-        return toast.error(json.message || 'An unexpected error occurred.')
+        toast.error(json.message || 'An unexpected error occurred.')
       }
     } catch (error) {
       console.log(error)
@@ -47,10 +47,10 @@ export default function LoginRoot() {
           HT
         </h1>
         <h3 className='font-medium text-2xl mb-7'>
-          Welcome Back
+          Hello
         </h3>
         <p className='text-neutral-500 mb-4'>
-          Log in with your email
+          Sign up with your email
         </p>
         <div className='flex flex-col gap-3 w-full pb-5'>
           <Input
@@ -69,9 +69,9 @@ export default function LoginRoot() {
           />
           <Button
             utilClasses='w-full rounded-sm'
-            text='Log In'
+            text='Sign Up'
             type='submit'
-            onClick={handleEmailLogin}
+            onClick={handleEmailSignup}
             useQueue
           />
         </div>
@@ -90,7 +90,7 @@ export default function LoginRoot() {
           />
         </div>
         <p className='text-sm text-neutral-500 px-2'>
-          New to Hold'em Trainer? <Anchor href='/auth/signup' text='Sign up' /> instead.
+          Already have an account? <Anchor href='/auth/login' text='Log in' /> instead.
         </p>
       </form>
     </div>

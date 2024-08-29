@@ -1,5 +1,5 @@
 import Page from '@/components/_common_/Page'
-import EditorRoot from '@/components/editor/EditorRoot'
+import EditorRoot from '@/components/app/editor/EditorRoot'
 
 export default function EditorPage() {
   return (

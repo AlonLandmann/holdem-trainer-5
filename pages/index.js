@@ -1,5 +1,5 @@
 import Page from '@/components/_common_/Page'
-import HomeRoot from '@/components/home/HomeRoot'
+import HomeRoot from '@/components/info/home/HomeRoot'
 
 export default function HomePage() {
   return (

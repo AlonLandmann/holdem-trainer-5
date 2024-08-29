@@ -1,4 +1,4 @@
-export default function Pricing() {
+export default function PricingRoot() {
   return (
     <div>
       Pricing

@@ -1,5 +1,5 @@
 import Page from '@/components/_common_/Page'
-import TrainerRoot from '@/components/trainer/TrainerRoot'
+import TrainerRoot from '@/components/app/trainer/TrainerRoot'
 
 export default function TrainerPage() {
   return (

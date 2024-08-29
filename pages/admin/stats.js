@@ -1,5 +1,5 @@
 import Page from '@/components/_common_/Page'
-import StatsRoot from '@/components/stats/StatsRoot'
+import StatsRoot from '@/components/admin/stats/StatsRoot'
 
 export default function StatsPage() {
   return (
