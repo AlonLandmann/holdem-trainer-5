@@ -1,4 +1,4 @@
-export default function PremiumRoot() {
+export default function SettingsRoot() {
   return (
     <div>
       

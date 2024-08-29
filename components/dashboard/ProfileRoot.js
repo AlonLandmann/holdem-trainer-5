@@ -1,4 +1,4 @@
-export default function ArticlesRoot() {
+export default function DashboardRoot() {
   return (
     <div>
       

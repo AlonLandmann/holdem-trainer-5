@@ -1,4 +1,4 @@
-export default function ArticleRoot() {
+export default function EditorRoot() {
   return (
     <div>
       

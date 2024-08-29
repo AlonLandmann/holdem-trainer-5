@@ -1,4 +1,4 @@
-export default function AdminRoot() {
+export default function StatsRoot() {
   return (
     <div>
       

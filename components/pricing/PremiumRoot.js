@@ -1,4 +1,4 @@
-export default function ProfileRoot() {
+export default function Pricing() {
   return (
     <div>
       
