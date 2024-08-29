@@ -15,10 +15,10 @@ export default function SideNav() {
       onMouseEnter={() => { setExtendedView(true) }}
       onMouseLeave={() => { setExtendedView(false) }}
     >
-      <div className='flex flex-col gap-3 px-3 py-5'>
+      <div className='flex flex-col gap-3 px-2 py-5'>
         <Button
           theme='tertiary'
-          utilClasses='px-3 py-2 text-base self-start font-decorative text-neutral-600 hover:text-neutral-400'
+          utilClasses={`px-3 py-2 text-base ${extendedView ? 'self-start' : ''} font-decorative text-neutral-600 hover:text-neutral-400`}
           text='HT'
           onClick={() => { router.push('/') }}
         />
@@ -30,7 +30,7 @@ export default function SideNav() {
         />
       </div>
       <div className='h-[1px] w-7 bg-neutral-800 self-center'></div>
-      <div className='flex flex-col gap-3 px-3 py-5 mb-auto'>
+      <div className='flex flex-col gap-3 px-2 py-5 mb-auto'>
         <SideNavItem
           icon='ui-checks'
           extendedView={extendedView}
@@ -51,7 +51,7 @@ export default function SideNav() {
         />
       </div>
       <div className='h-[1px] w-7 bg-neutral-800 self-center'></div>
-      <div className='flex flex-col gap-3 px-3 py-5'>
+      <div className='flex flex-col gap-3 px-2 py-5'>
         <SideNavItem
           icon='gear'
           extendedView={extendedView}
