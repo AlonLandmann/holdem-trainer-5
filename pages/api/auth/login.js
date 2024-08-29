@@ -1,5 +1,5 @@
 import { setSessionCookie } from '@/lib/cookies'
-import prisma from '@/prisma/client'
+import prisma from '@/lib/dbClient'
 import sha256 from 'sha256'
 
 export default async function handler(req, res) {

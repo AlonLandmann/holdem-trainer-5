@@ -1,6 +1,6 @@
 import { setSessionCookie } from '@/lib/cookies'
 import { getGoogleUserInfo } from '@/lib/google'
-import prisma from '@/prisma/client'
+import prisma from '@/lib/dbClient'
 
 export default async function handler(req, res) {
   try {
