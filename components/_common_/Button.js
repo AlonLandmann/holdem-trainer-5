@@ -15,7 +15,7 @@ const themes = {
   tertiary: {
     container: 'text-neutral-400 transition hover:text-white',
     icon: '',
-    text: '',
+    text: 'text-sm',
   },
 }
 
@@ -43,6 +43,7 @@ export default function Button({
   return (
     <button
       className={`
+        ${(icon && text) ? 'flex items-center gap-3' : ''}
         ${themes[theme].container}
         ${utilClasses}
       `}
