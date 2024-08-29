@@ -1,6 +1,13 @@
+import { useUser } from '@/hooks/useUser'
 import Button from './Button'
 
 export default function RangePlaceholder() {
+  const user = useUser()
+  
+  async function handleAddRange() {
+
+  }
+
   return (
     <div className='grow bg-neutral-900 p-4 flex flex-col justify-center items-center'>
       <div className='text-neutral-700 text-7xl mb-3'>
@@ -16,6 +23,8 @@ export default function RangePlaceholder() {
         theme='secondary'
         icon='plus-lg'
         text='Add Range'
+        onClick={handleAddRange}
+        useQueue
       />
     </div>
   )
