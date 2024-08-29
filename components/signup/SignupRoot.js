@@ -32,7 +32,7 @@ export default function SignupRoot() {
       if (json.success) {
         window.location = '/ranges'
       } else {
-        toast.error(json.message || 'An unexpected error occurred')
+        toast.error(json.message || 'An unexpected error occurred.')
       }
     } catch (error) {
       console.log(error)

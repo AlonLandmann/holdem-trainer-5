@@ -20,22 +20,20 @@ export default async function handler(req, res) {
             }
           })
 
-          const updatedUser = await prisma.user.update({
-            where: {
-              id: foundByIdUser.id
-            },
+          const newSession = await prisma.session.create({
             data: {
-              session: {
-                create: {}
+              user: {
+                connect: { 
+                  id: foundByIdUser.id 
+                }
               }
-            },
-            include: {
-              session: true
             }
           })
 
-          setSessionCookie(res, updatedUser.session.token)
-        } else {
+          setSessionCookie(res, newSession.token)
+        }
+
+        if (!foundByIdUser) {
           const foundByEmailUser = await prisma.user.findUnique({
             where: {
               email
@@ -51,9 +49,9 @@ export default async function handler(req, res) {
               email,
               username: name,
               googleId: id,
+              isVerified: true,
               session: { create: {} },
               settings: { create: {} },
-              isVerified: true,
             },
             include: {
               session: true
