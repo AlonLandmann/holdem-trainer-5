@@ -43,6 +43,7 @@ export default function Button({
   return (
     <button
       className={`
+        relative
         ${(icon && text) ? 'flex items-center gap-3' : ''}
         ${themes[theme].container}
         ${utilClasses}
@@ -52,7 +53,7 @@ export default function Button({
       disabled={disabled || (useQueue && loadingQueue)}
     >
       {loading &&
-        <div className='inline-block'>
+        <div className='absolute w-full left-0 flex justify-center'>
           <span className='inline-block animate-pulse'>
             ·
           </span>
@@ -64,13 +65,13 @@ export default function Button({
           </span>
         </div>
       }
-      {!loading && icon &&
-        <span className={themes[theme].icon}>
+      {icon &&
+        <span className={`${loading ? 'opacity-0' : ''} ${themes[theme].icon}`}>
           <i className={`bi bi-${icon}`}></i>
         </span>
       }
-      {!loading && text &&
-        <span className={themes[theme].text}>
+      {text &&
+        <span className={`${loading ? 'opacity-0' : ''} ${themes[theme].text}`}>
           {text}
         </span>
       }

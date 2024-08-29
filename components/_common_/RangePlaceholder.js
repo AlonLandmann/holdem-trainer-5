@@ -1,10 +1,7 @@
-import { useUser } from '@/hooks/useUser'
 import Button from './Button'
 import toast from 'react-hot-toast'
 
 export default function RangePlaceholder() {
-  const user = useUser()
-
   async function handleAddRange() {
     try {
       const res = await fetch('/api/ranges/add', {
