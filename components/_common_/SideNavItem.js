@@ -13,9 +13,13 @@ export default function SideNavItem({ icon, extendedView, text, href }) {
         px-3 py-2 rounded text-neutral-400
         transition hover:bg-neutral-800
         hover:text-white cursor-pointer
-        ${isSelected ? 'bg-neutral-800' : ''}
+        ${isSelected ? 'bg-neutral-800 text-white' : ''}
       `}
-      onClick={() => { if (href) router.push(href) }}
+      onClick={() => {
+        if (href) {
+          router.push(`${href}?extended=true`)
+        }
+      }}
     >
       <Button
         theme='tertiary'

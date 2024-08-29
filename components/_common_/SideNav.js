@@ -5,7 +5,9 @@ import SideNavItem from './SideNavItem'
 
 export default function SideNav() {
   const router = useRouter()
-  const [extendedView, setExtendedView] = useState(false)
+  const [extendedView, setExtendedView] = useState(() => {
+    return router && router.query && router.query.extended
+  })
 
   return (
     <div
