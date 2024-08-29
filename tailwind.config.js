@@ -10,6 +10,9 @@ module.exports = {
         sans: ['Red Hat Display', 'sans-serif'],
         decorative: ['Amita', 'cursive'],
       },
+      borderColor: {
+        DEFAULT: 'rgb(38, 38, 38)', // Set your default border color here
+      },
     },
   },
   plugins: [],

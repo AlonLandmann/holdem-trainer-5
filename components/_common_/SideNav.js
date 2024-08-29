@@ -5,7 +5,7 @@ export default function SideNav() {
   const router = useRouter()
 
   return (
-    <div className='h-screen w-14 flex flex-col bg-neutral-900'>
+    <div className='h-screen w-14 flex flex-col bg-neutral-900 border-r'>
       <div className='flex flex-col items-center gap-3 py-5'>
         <Button
           theme='tertiary'
@@ -20,7 +20,7 @@ export default function SideNav() {
           onClick={() => { router.push('/app/dashboard') }}
         />
       </div>
-      <div className='h-[1px] w-7 bg-neutral-600 self-center'></div>
+      <div className='h-[1px] w-7 bg-neutral-800 self-center'></div>
       <div className='flex flex-col items-center gap-3 py-5 mb-auto'>
         <Button
           theme='tertiary'
@@ -41,7 +41,7 @@ export default function SideNav() {
           onClick={() => { router.push('/app/trainer') }}
         />
       </div>
-      <div className='h-[1px] w-7 bg-neutral-600 self-center'></div>
+      <div className='h-[1px] w-7 bg-neutral-800 self-center'></div>
       <div className='flex flex-col items-center gap-3 py-5'>
         <Button
           theme='tertiary'
