@@ -4,7 +4,7 @@ import Input from '@/components/_common_/Input'
 import Anchor from '@/components/_common_/Anchor'
 import { useRouter } from 'next/router'
 import toast from 'react-hot-toast'
-import googleAuthUrl from '@/lib/googleAuthUrl'
+import googleAuthUrl from '@/lib/client/googleAuthUrl'
 
 export default function LoginRoot() {
   const router = useRouter()
@@ -30,7 +30,7 @@ export default function LoginRoot() {
       const json = await res.json()
 
       if (json.success) {
-        window.location = '/ranges'
+        window.location = '/app/dashboard'
       } else {
         return toast.error(json.message || 'An unexpected error occurred.')
       }
