@@ -23,7 +23,7 @@ export default function SideNav() {
           onClick={() => { router.push('/') }}
         />
         <SideNavItem
-          icon='house-fill'
+          icon='graph-up-arrow'
           extendedView={extendedView}
           text='Dashboard'
           href='/app/dashboard'
