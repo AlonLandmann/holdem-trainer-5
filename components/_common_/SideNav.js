@@ -9,13 +9,16 @@ export default function SideNav() {
     return router && router.query && router.query.extended
   })
 
+  const groupStyle = 'flex flex-col gap-2 px-2 py-2'
+  const separatorStyle = `h-[1px] ${extendedView ? 'w-32' : 'w-7'} bg-neutral-800 self-center my-2`
+
   return (
     <div
       className={`h-screen ${extendedView ? 'w-40' : ''} flex flex-col bg-neutral-900 border-r`}
       onMouseEnter={() => { setExtendedView(true) }}
       onMouseLeave={() => { setExtendedView(false) }}
     >
-      <div className='flex flex-col gap-3 px-2 py-5'>
+      <div className={groupStyle}>
         <Button
           theme='tertiary'
           utilClasses={`px-3 py-2 text-base ${extendedView ? 'self-start' : ''} font-decorative text-neutral-600 hover:text-neutral-400`}
@@ -29,8 +32,8 @@ export default function SideNav() {
           href='/app/dashboard'
         />
       </div>
-      <div className={`h-[1px] ${extendedView ? 'w-32' : 'w-7'} bg-neutral-800 self-center`}></div>
-      <div className='flex flex-col gap-3 px-2 py-5 mb-auto'>
+      <div className={separatorStyle}></div>
+      <div className={groupStyle + ' mb-auto'}>
         <SideNavItem
           icon='ui-checks'
           extendedView={extendedView}
@@ -50,8 +53,8 @@ export default function SideNav() {
           href='/app/trainer'
         />
       </div>
-      <div className={`h-[1px] ${extendedView ? 'w-32' : 'w-7'} bg-neutral-800 self-center`}></div>
-      <div className='flex flex-col gap-3 px-2 py-5'>
+      <div className={separatorStyle}></div>
+      <div className={groupStyle}>
         <SideNavItem
           icon='gear'
           extendedView={extendedView}
