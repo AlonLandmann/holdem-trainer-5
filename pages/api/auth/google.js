@@ -61,7 +61,7 @@ export default async function handler(req, res) {
           setSessionCookie(res, newUser.session.token)
         }
 
-        return res.redirect('/')
+        return res.redirect('/app/dashboard')
 
       default:
         res.redirect('/auth/login?googleAuth=fail')
