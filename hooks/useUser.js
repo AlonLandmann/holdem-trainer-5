@@ -21,6 +21,10 @@ export function UserProvider({ children }) {
           acc || curr.ranges.length
         ), false)
 
+        user.nrRanges = user.folders.reduce((acc, curr) => (
+          acc + curr.ranges.length
+        ), 0)
+
         setUser(user || null)
       } catch (error) {
         console.log(error)

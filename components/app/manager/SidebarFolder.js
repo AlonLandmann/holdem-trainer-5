@@ -10,7 +10,7 @@ export default function SidebarFolder({ folder }) {
         {folder.name}
       </span>
       <span>
-        {folder.ranges.length}
+        # {folder.ranges.length}
       </span>
     </div>
   )
