@@ -14,7 +14,12 @@ export function UserProvider({ children }) {
       try {
         const res = await fetch('/api/auth/check')
         const json = await res.json()
-        setUser(json.user || null)
+        const user = json.user
+        user.hasRanges = user.folders.reduce((acc, curr) => (
+          acc || curr.ranges.length
+        ), false)
+
+        setUser(user || null)
       } catch (error) {
         console.log(error)
       }
