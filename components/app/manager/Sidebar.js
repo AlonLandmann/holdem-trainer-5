@@ -3,26 +3,25 @@ import SidebarFolder from './SidebarFolder'
 
 export default function Sidebar({ user }) {
   return (
-    <div
-      className={`
-        bg-neutral-900 max-h-screen overflow-y-auto
-        border-r flex flex-col w-56
-      `}
-    >
-
-      <div className='border-b p-3 flex'>
+    <div className='bg-neutral-900 border-r w-56'>
+      <div className='border-b p-3 flex justify-between items-center'>
+        <h1 className='text-neutral-600'>
+          Manager
+        </h1>
         <Button
           theme='tertiary'
-          utilClasses='text-sm'
-          icon='folder-plus'
+          utilClasses='text-neutral-500 hover:text-neutral-300'
+          icon='plus-lg'
         />
       </div>
-      {user.folders.map(folder => (
-        <SidebarFolder
-          key={'folder' + folder.id}
-          folder={folder}
-        />
-      ))}
+      <div className='flex flex-col'>
+        {user.folders.map(folder => (
+          <SidebarFolder
+            key={'folder' + folder.id}
+            folder={folder}
+          />
+        ))}
+      </div>
     </div>
   )
 }

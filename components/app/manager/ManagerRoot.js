@@ -1,7 +1,7 @@
 import RangePlaceholder from '@/components/_common_/RangePlaceholder'
 import SideNav from '@/components/_common_/SideNav'
 import { useUser } from '@/hooks/useUser'
-import Sidebar from './Sidebar'
+import ManagerMain from './ManagerMain'
 
 export default function ManagerRoot() {
   const user = useUser()
@@ -13,10 +13,7 @@ export default function ManagerRoot() {
         <RangePlaceholder />
       }
       {user && user.hasRanges &&
-        <>
-          <Sidebar user={user} />
-          <div className='grow bg-neutral-900'></div>
-        </>
+        <ManagerMain user={user} />
       }
     </div>
   )

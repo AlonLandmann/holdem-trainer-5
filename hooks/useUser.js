@@ -15,6 +15,8 @@ export function UserProvider({ children }) {
         const res = await fetch('/api/auth/check')
         const json = await res.json()
         const user = json.user
+
+        // hydrate
         user.hasRanges = user.folders.reduce((acc, curr) => (
           acc || curr.ranges.length
         ), false)
