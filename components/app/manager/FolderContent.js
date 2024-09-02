@@ -2,6 +2,7 @@ import Button from '@/components/_common_/Button'
 import Input from '@/components/_common_/Input'
 import handleManagerRequest from '@/lib/client/managerRequests'
 import { useEffect, useState } from 'react'
+import FolderPlaceholder from './FolderPlaceholder'
 
 export default function FolderContent({ selectedFolder }) {
   const [renameInView, setRenameInView] = useState(false)
@@ -75,13 +76,20 @@ export default function FolderContent({ selectedFolder }) {
           useQueue
         />
       </div>
-      <div className='py-2 px-3'>
-        {selectedFolder.ranges.map(range => (
-          <div key={range.id}>
-            {range.name}
-          </div>
-        ))}
-      </div>
+      {selectedFolder.ranges.length === 0 &&
+        <FolderPlaceholder
+          selectedFolder={selectedFolder}
+        />
+      }
+      {selectedFolder.ranges.length > 0 &&
+        <div className='py-2 px-3'>
+          {selectedFolder.ranges.map(range => (
+            <div key={range.id}>
+              {range.name}
+            </div>
+          ))}
+        </div>
+      }
     </div>
   )
 }
