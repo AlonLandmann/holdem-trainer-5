@@ -1,12 +1,10 @@
 import Button from '@/components/_common_/Button'
 import SidebarFolder from './SidebarFolder'
+import handleManagerRequest from '@/lib/client/managerRequests'
 
 export default function Sidebar({ user }) {
-  async function handleAddFolder() {
-    const res = fetch('/api/folders/add', {
-      method: 'POST',
-      'Content-Type': 'application/json'
-    })
+  function handleAddFolder() {
+    handleManagerRequest('/api/folders/add', 'POST')
   }
   
   return (

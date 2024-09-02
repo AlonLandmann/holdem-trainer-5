@@ -1,26 +1,9 @@
+import handleManagerRequest from '@/lib/client/managerRequests'
 import Button from './Button'
-import toast from 'react-hot-toast'
 
 export default function RangePlaceholder() {
-  async function handleAddRange() {
-    try {
-      const res = await fetch('/api/ranges/add', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        credentials: 'include',
-      })
-
-      const json = await res.json()
-
-      if (json.success) {
-        toast.success('success')
-      } else {
-        return toast.error(json.message || 'An unexpected error occurred.')
-      }
-    } catch (error) {
-      console.log(error)
-      toast.error('An unexpected error occurred.')
-    }
+  function handleAddRange() {
+    handleManagerRequest('/api/ranges/add', 'POST')
   }
 
   return (
