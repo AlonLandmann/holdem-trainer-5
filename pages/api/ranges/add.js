@@ -1,69 +1,38 @@
-import prisma from '@/lib/server/prisma'
+import handleUserRequest from '@/lib/server/routes'
 import { defaultMatrixBuffer } from '@/lib/server/ranges'
 
 export default async function handler(req, res) {
-  try {
-    switch (req.method) {
-      case 'POST':
-        const { sessionId } = req.cookies
+  return handleUserRequest(req, res, 'POST', async (prisma, user) => {
+    const { folderId } = req.query
+    const searchFilter = folderId
+      ? { id: folderId }
+      : { name: 'New Folder', userId: user.id }
 
-        const session = await prisma.session.findUnique({
-          where: {
-            token: sessionId,
-          },
-          include: {
-            user: {
-              include: {
-                folders: true,
-              },
-            },
-          },
-        })
+    let folder = await prisma.folder.findFirst({
+      where: searchFilter,
+      include: { ranges: true }
+    })
 
-        if (!session) {
-          return res.status(200).json({ success: false, message: 'User not found.' })
+    if (!folder) {
+      folder = await prisma.folder.create({
+        data: {
+          index: user.folders.length,
+          user: { connect: { id: user.id } }
+        },
+        include: {
+          ranges: true
         }
-
-        const user = session.user
-
-        let folder = await prisma.folder.findFirst({
-          where: {
-            name: 'New Folder',
-            userId: user.id,
-          },
-        })
-
-        if (!folder) {
-          const folderIndex = user.folders.length
-
-          folder = await prisma.folder.create({
-            data: {
-              name: 'New Folder',
-              index: folderIndex,
-              user: {
-                connect: { id: user.id },
-              },
-            },
-          })
-        }
-
-        const newRange = await prisma.range.create({
-          data: {
-            name: 'New Range',
-            matrix: defaultMatrixBuffer,
-            folder: {
-              connect: { id: folder.id },
-            },
-          },
-        })
-
-        return res.status(200).json({ success: true })
-
-      default:
-        res.status(400).json({ success: false })
+      })
     }
-  } catch (error) {
-    console.log(error)
-    res.status(500).json({ success: false })
-  }
+
+    await prisma.range.create({
+      data: {
+        index: folder.ranges.length,
+        matrix: defaultMatrixBuffer,
+        folder: { connect: { id: folder.id } }
+      }
+    })
+
+    return res.status(200).json({ success: true })
+  })
 }

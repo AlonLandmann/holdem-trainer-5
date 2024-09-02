@@ -1,13 +1,11 @@
-import handlePost from '@/lib/server/routes'
+import handleUserRequest from '@/lib/server/routes'
 
 export default async function handler(req, res) {
-  return handlePost(req, res, async (prisma, user) => {
+  return handleUserRequest(req, res, 'POST', async (prisma, user) => {
     await prisma.folder.create({
       data: {
         index: user.folders.length,
-        user: {
-          connect: { id: user.id }
-        }
+        user: { connect: { id: user.id } }
       }
     })
 
