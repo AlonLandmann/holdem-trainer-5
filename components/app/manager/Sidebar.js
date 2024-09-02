@@ -3,8 +3,8 @@ import SidebarFolder from './SidebarFolder'
 import handleManagerRequest from '@/lib/client/managerRequests'
 
 export default function Sidebar({ user }) {
-  function handleAddFolder() {
-    handleManagerRequest('/api/folders/add', 'POST')
+  async function handleAddFolder() {
+    await handleManagerRequest('/api/folders/add', 'POST')
   }
   
   return (
@@ -18,6 +18,7 @@ export default function Sidebar({ user }) {
           utilClasses='text-neutral-500 hover:text-neutral-300'
           icon='plus-lg'
           onClick={handleAddFolder}
+          useQueue
         />
       </div>
       <div className='flex flex-col'>

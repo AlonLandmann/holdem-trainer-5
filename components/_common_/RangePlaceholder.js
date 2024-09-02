@@ -2,8 +2,8 @@ import handleManagerRequest from '@/lib/client/managerRequests'
 import Button from './Button'
 
 export default function RangePlaceholder() {
-  function handleAddRange() {
-    handleManagerRequest('/api/ranges/add', 'POST')
+  async function handleAddRange() {
+    await handleManagerRequest('/api/ranges/add', 'POST')
   }
 
   return (
