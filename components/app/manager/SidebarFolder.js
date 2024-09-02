@@ -15,8 +15,8 @@ export default function SidebarFolder({
       <span className={`${isSelected ? 'text-neutral-200' : ''}`}>
         {folder.name}
       </span>
-      <span>
-        # {folder.ranges.length}
+      <span className='font-mono'>
+        {folder.ranges.length}
       </span>
     </div>
   )
