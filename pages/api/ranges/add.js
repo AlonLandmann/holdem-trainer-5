@@ -4,6 +4,7 @@ import { defaultMatrixBuffer } from '@/lib/server/ranges'
 export default async function handler(req, res) {
   return handleUserRequest(req, res, 'POST', async (prisma, user) => {
     const { folderId } = req.query
+    
     const searchFilter = folderId
       ? { id: folderId }
       : { name: 'New Folder', userId: user.id }
