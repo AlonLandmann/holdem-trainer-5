@@ -37,8 +37,9 @@ export default function Sidebar({ user, selectedFolder, setSelectedFolder }) {
         <SidebarGap
           index={0}
           target={target}
+          setTarget={setTarget}
         />
-        {user.folders.map((folder, index) => (
+        {user.folders.map((folder, i) => (
           <div key={'folder' + folder.id}>
             <SidebarFolder
               folder={folder}
@@ -49,8 +50,9 @@ export default function Sidebar({ user, selectedFolder, setSelectedFolder }) {
             />
             <SidebarGap
               key={'gap' + folder.id}
-              index={index + 1}
+              index={i + 1}
               target={target}
+              setTarget={setTarget}
             />
           </div>
         ))}

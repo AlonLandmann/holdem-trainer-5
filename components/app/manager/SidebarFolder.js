@@ -8,7 +8,8 @@ export default function SidebarFolder({
   function handleDragStart(event) {
     event.dataTransfer.setData('text/plain', JSON.stringify({
       type: 'folder',
-      origin: folder.index
+      origin: folder.index,
+      originId: folder.id,
     }))
   }
 
