@@ -47,12 +47,11 @@ model Folder {
   user   User    @relation(fields: [userId], references: [id])
   userId Int
   ranges Range[]
-
-  @@unique([name, userId])
 }
 
 model Range {
   id            Int      @id @default(autoincrement())
+  index         Int
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
   name          String   @default("New Range")

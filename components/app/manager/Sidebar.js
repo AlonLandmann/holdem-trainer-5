@@ -2,6 +2,13 @@ import Button from '@/components/_common_/Button'
 import SidebarFolder from './SidebarFolder'
 
 export default function Sidebar({ user }) {
+  async function handleAddFolder() {
+    const res = fetch('/api/folders/add', {
+      method: 'POST',
+      'Content-Type': 'application/json'
+    })
+  }
+  
   return (
     <div className='bg-neutral-900 border-r w-56 flex flex-col'>
       <div className='border-b p-3 flex justify-between items-center'>
@@ -12,6 +19,7 @@ export default function Sidebar({ user }) {
           theme='tertiary'
           utilClasses='text-neutral-500 hover:text-neutral-300'
           icon='plus-lg'
+          onClick={handleAddFolder}
         />
       </div>
       <div className='flex flex-col'>
