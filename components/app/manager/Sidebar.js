@@ -2,7 +2,11 @@ import Button from '@/components/_common_/Button'
 import SidebarFolder from './SidebarFolder'
 import handleManagerRequest from '@/lib/client/managerRequests'
 
-export default function Sidebar({ user }) {
+export default function Sidebar({
+  user,
+  selectedFolder,
+  setSelectedFolder,
+}) {
   async function handleAddFolder() {
     await handleManagerRequest('/api/folders/add', 'POST')
   }
@@ -26,6 +30,8 @@ export default function Sidebar({ user }) {
           <SidebarFolder
             key={'folder' + folder.id}
             folder={folder}
+            isSelected={selectedFolder.id === folder.id}
+            setSelectedFolder={setSelectedFolder}
           />
         ))}
       </div>

@@ -9,8 +9,14 @@ export default function ManagerMain({ user }) {
 
   return !selectedFolder ? null : (
     <>
-      <Sidebar user={user} />
-      <FolderContent selectedFolder={selectedFolder} />
+      <Sidebar
+        user={user}
+        selectedFolder={selectedFolder}
+        setSelectedFolder={setSelectedFolder}
+      />
+      <FolderContent
+        selectedFolder={selectedFolder}
+      />
     </>
   )
 }
