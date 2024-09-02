@@ -4,7 +4,7 @@ export default async function handler(req, res) {
   return handleUserRequest(req, res, 'PATCH', async (prisma, user) => {
     const { origin, target } = req.body
 
-    if (origin === target || origin === target + 1) {
+    if (target === origin || target === origin + 1) {
       return res.status(200).json({ success: true })
     }
 
