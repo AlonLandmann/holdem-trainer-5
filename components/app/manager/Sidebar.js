@@ -1,16 +1,24 @@
 import Button from '@/components/_common_/Button'
 import SidebarFolder from './SidebarFolder'
 import handleManagerRequest from '@/lib/client/managerRequests'
+import SidebarGap from './SidebarGap'
+import { useState } from 'react'
 
-export default function Sidebar({
-  user,
-  selectedFolder,
-  setSelectedFolder,
-}) {
+export default function Sidebar({ user, selectedFolder, setSelectedFolder }) {
+  const [target, setTarget] = useState(null)
+
   async function handleAddFolder() {
     await handleManagerRequest('/api/folders/add', 'POST')
   }
+
+  function handleDragLeave(event) {
+    const isLeavingParent = !event.currentTarget.contains(event.relatedTarget)
   
+    if (isLeavingParent) {
+      setTarget(null)
+    }
+  }
+
   return (
     <div className='bg-neutral-900 border-r w-56 flex flex-col'>
       <div className='border-b p-3 flex justify-between items-center'>
@@ -25,14 +33,26 @@ export default function Sidebar({
           useQueue
         />
       </div>
-      <div className='flex flex-col'>
-        {user.folders.map(folder => (
-          <SidebarFolder
-            key={'folder' + folder.id}
-            folder={folder}
-            isSelected={selectedFolder.id === folder.id}
-            setSelectedFolder={setSelectedFolder}
-          />
+      <div onDragLeave={handleDragLeave}>
+        <SidebarGap
+          index={0}
+          target={target}
+        />
+        {user.folders.map((folder, index) => (
+          <div key={'folder' + folder.id}>
+            <SidebarFolder
+              folder={folder}
+              isSelected={selectedFolder.id === folder.id}
+              setSelectedFolder={setSelectedFolder}
+              target={target}
+              setTarget={setTarget}
+            />
+            <SidebarGap
+              key={'gap' + folder.id}
+              index={index + 1}
+              target={target}
+            />
+          </div>
         ))}
       </div>
       <div className='border-t mt-auto p-3 flex justify-between items-center'>

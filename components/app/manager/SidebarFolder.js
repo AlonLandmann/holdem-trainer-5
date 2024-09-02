@@ -1,16 +1,35 @@
 export default function SidebarFolder({
   folder,
   isSelected,
-  setSelectedFolder
+  setSelectedFolder,
+  target,
+  setTarget,
 }) {
+  function handleDragStart(event) {
+    event.dataTransfer.setData('text/plain', JSON.stringify({
+      type: 'folder',
+      origin: folder.index
+    }))
+  }
+
+  function handleDragOver(event, index) {
+    const data = JSON.parse(event.dataTransfer.getData('text/plain'))
+
+    if (data.type === 'folder' && target !== index) {
+      setTarget(index)
+    }
+  }
+
   return (
     <div
       className={`
-        p-3 pr-4 border-b text-neutral-500 text-sm overflow-ellipsis
+        relative p-3 pr-4 border-b text-neutral-500 text-sm overflow-ellipsis
         flex justify-between gap-3 transition-colors cursor-pointer
         ${isSelected ? 'bg-neutral-800' : 'hover:text-neutral-300'}
       `}
       onClick={() => setSelectedFolder(folder)}
+      draggable
+      onDragStart={handleDragStart}
     >
       <span className={`${isSelected ? 'text-neutral-200' : ''}`}>
         {folder.name}
@@ -18,6 +37,17 @@ export default function SidebarFolder({
       <span className='font-mono'>
         {folder.ranges.length}
       </span>
+      <div
+        className='absolute left-0 top-0 z-10 h-1/3 w-full'
+        onDragOver={(e) => { handleDragOver(e, folder.index) }}
+      >
+
+      </div>
+      <div
+        className='absolute left-0 bottom-0 z-10 h-1/3 w-full'
+        onDragOver={(e) => { handleDragOver(e, folder.index + 1) }}
+      >
+      </div>
     </div>
   )
 }
