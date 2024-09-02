@@ -1,4 +1,16 @@
+const themes = {
+  default: `
+    bg-neutral-800 py-3 px-4 rounded-sm outline-none text-sm
+    border border-transparent focus:border-neutral-700
+    placeholder-neutral-600
+  `,
+  rename: `
+    bg-transparent outline-none
+  `
+}
+
 export default function Input({
+  theme = 'default',
   utilClasses = '',
   name = '',
   type = 'text',
@@ -9,9 +21,7 @@ export default function Input({
   return (
     <input
       className={`
-        bg-neutral-800 py-3 px-4 rounded-sm outline-none text-sm
-        border border-transparent focus:border-neutral-700
-        placeholder-neutral-600
+        ${themes[theme]}
         ${utilClasses}
       `}
       name={name}

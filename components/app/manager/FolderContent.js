@@ -20,7 +20,7 @@ export default function FolderContent({ selectedFolder }) {
 
   return (
     <div className='grow bg-neutral-900'>
-      <div className='flex justify-between border-b p-3'>
+      <div className='flex justify-between gap-3 border-b p-3'>
         <div
           className='grow flex items-center gap-3'
           onMouseEnter={() => setRenameInView(true)}
@@ -42,6 +42,7 @@ export default function FolderContent({ selectedFolder }) {
           {renaming &&
             <>
               <Input
+                theme='rename'
                 value={renameValue}
                 onChange={e => setRenameValue(e.target.value)}
               />
@@ -49,7 +50,8 @@ export default function FolderContent({ selectedFolder }) {
                 theme='tertiary'
                 utilClasses='text-sm'
                 icon='x-lg'
-                onClick={() => { setRenaming(false); setRenameValue(selectedFolder.name) }}
+                onClick={async () => { setRenaming(false); setRenameValue(selectedFolder.name) }}
+                useQueue
               />
               <Button
                 theme='tertiary'
