@@ -1,7 +1,7 @@
 import Button from '@/components/_common_/Button'
 import Input from '@/components/_common_/Input'
 import handleManagerRequest from '@/lib/client/managerRequests'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function FolderContent({ selectedFolder }) {
   const [renameInView, setRenameInView] = useState(false)
@@ -17,6 +17,11 @@ export default function FolderContent({ selectedFolder }) {
       name: renameValue
     })
   }
+
+  useEffect(() => {
+    setRenaming(false)
+    setRenameValue(selectedFolder.name)
+  }, [selectedFolder])
 
   return (
     <div className='grow bg-neutral-900'>
