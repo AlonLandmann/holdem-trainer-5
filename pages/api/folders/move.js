@@ -28,7 +28,7 @@ export default async function handler(req, res) {
           }
         },
         data: {
-          index: target > origin ? { decrement: 1 } : { incremend: 1 }
+          index: target > origin ? { decrement: 1 } : { increment: 1 }
         }
       })
     ])
