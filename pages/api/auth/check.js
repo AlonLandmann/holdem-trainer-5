@@ -1,6 +1,7 @@
 import prisma from '@/lib/server/prisma'
 import { toClientFormat } from '@/lib/server/ranges'
 import { produce } from 'immer'
+import { orderBy } from 'lodash'
 
 export default async function handler(req, res) {
   try {
@@ -20,7 +21,14 @@ export default async function handler(req, res) {
             settings: true,
             folders: {
               include: {
-                ranges: true
+                ranges: {
+                  orderBy: {
+                    index: 'asc'
+                  }
+                }
+              },
+              orderBy: {
+                index: 'asc'
               }
             }
           }
