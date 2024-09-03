@@ -37,6 +37,7 @@ export default function SidebarGap({ index, target, setTarget }) {
 
           setLoading(false)
           setLoadingQueue(false)
+          setTarget(null)
         }
       }
     }
