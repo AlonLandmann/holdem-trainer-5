@@ -34,6 +34,6 @@ export default async function handler(req, res) {
       }
     })
 
-    return true
+    return { success: true, message: 'Range added.' }
   })
 }

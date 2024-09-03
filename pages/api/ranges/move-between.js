@@ -11,7 +11,7 @@ export default async function handler(req, res) {
     } = req.body
 
     if (folderOriginId === folderTargetId) {
-      return true
+      return { success: true }
     }
 
     await prisma.$transaction([
@@ -38,6 +38,6 @@ export default async function handler(req, res) {
       })
     ])
 
-    return true
+    return { success: true, message: 'Range moved.' }
   })
 }
