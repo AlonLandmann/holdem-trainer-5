@@ -11,6 +11,10 @@ export default function RangeBanner({ range }) {
     }
   }
 
+  async function handleDuplicate() {
+    await handleManagerRequest('/api/ranges/duplicate', 'POST', setUser, range)
+  }
+
   return (
     <div className='flex p-4 gap-6 rounded bg-neutral-900 max-w-[1000px]'>
       <div className='min-w-36 h-36 bg-neutral-800 rounded mr-4'></div>
@@ -56,6 +60,8 @@ export default function RangeBanner({ range }) {
         <Button
           theme='tertiary'
           icon='copy'
+          onClick={handleDuplicate}
+          useQueue
         />
         <Button
           theme='tertiary'

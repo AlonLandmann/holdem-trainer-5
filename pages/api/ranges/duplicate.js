@@ -3,7 +3,7 @@ import handleUserRequest from '@/lib/server/routes'
 
 export default async function handler(req, res) {
   return handleUserRequest(req, res, 'POST', async (prisma, user) => {
-    const range = toStorageFormat(req.body.range)
+    const range = toStorageFormat(req.body)
 
     await prisma.range.create({
       data: {
@@ -13,10 +13,10 @@ export default async function handler(req, res) {
         history: range.history,
         options: range.options,
         matrix: range.matrix,
-        folder: { connect: { id: folder.id } },
+        folder: { connect: { id: range.folderId } },
         predecessor: range.predecessorId
           ? { connect: { id: range.predecessorId } }
-          : null
+          : undefined
       }
     })
 
