@@ -4,6 +4,7 @@ import handleManagerRequest from '@/lib/client/managerRequests'
 import { useEffect, useState } from 'react'
 import FolderPlaceholder from './FolderPlaceholder'
 import { useUser } from '@/hooks/useUser'
+import RangeBanner from './RangeBanner'
 
 export default function FolderContent({ selectedFolder }) {
   const [user, setUser] = useUser()
@@ -84,11 +85,12 @@ export default function FolderContent({ selectedFolder }) {
         />
       }
       {selectedFolder.ranges.length > 0 &&
-        <div className='py-2 px-3'>
+        <div className='p-3 flex flex-col gap-3 bg-neutral-950 h-full'>
           {selectedFolder.ranges.map(range => (
-            <div key={range.id}>
-              {range.name}
-            </div>
+            <RangeBanner
+              key={range.id}
+              range={range}
+            />
           ))}
         </div>
       }

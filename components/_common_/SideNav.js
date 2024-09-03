@@ -20,8 +20,8 @@ export default function SideNav() {
       <div className={`${extendedView ? 'w-[58px]' : 'hidden'}`}></div>
       <div
         className={`
-        h-screen ${extendedView ? 'w-40 absolute z-20' : 'w-[58px]'}
-        flex flex-col bg-neutral-900 border-r
+          h-screen ${extendedView ? 'w-40 absolute z-20' : 'w-[58px]'}
+          flex flex-col bg-neutral-900 border-r
         `}
         onMouseEnter={() => { setExtendedView(true) }}
         onMouseLeave={() => { setExtendedView(false) }}
