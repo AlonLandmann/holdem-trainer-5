@@ -35,4 +35,4 @@ yarn-error.log*
 next-env.d.ts
 
 # custom scripts
-create-component.js
+prisma/seed.js
