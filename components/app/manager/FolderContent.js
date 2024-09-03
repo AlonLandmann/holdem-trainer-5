@@ -5,12 +5,16 @@ import { useEffect, useState } from 'react'
 import FolderPlaceholder from './FolderPlaceholder'
 import { useUser } from '@/hooks/useUser'
 import RangeBanner from './RangeBanner'
+import RangeGap from './RangeGap'
+import { useLoadingQueue } from '@/hooks/useLoadingQueue'
 
 export default function FolderContent({ selectedFolder }) {
   const [user, setUser] = useUser()
+  const [loadingQueue, setLoadingQueue] = useLoadingQueue()
   const [renameInView, setRenameInView] = useState(false)
   const [renaming, setRenaming] = useState(false)
   const [renameValue, setRenameValue] = useState(selectedFolder.name)
+  const [target, setTarget] = useState(null)
 
   useEffect(() => {
     setRenaming(false)
@@ -25,6 +29,16 @@ export default function FolderContent({ selectedFolder }) {
     await handleManagerRequest(`/api/folders/rename?folderId=${selectedFolder.id}`, 'PATCH', setUser, {
       name: renameValue
     })
+  }
+
+  function handleDragLeave(event) {
+    if (!loadingQueue) {
+      const isLeavingParent = !event.currentTarget.contains(event.relatedTarget)
+
+      if (isLeavingParent) {
+        setTarget(null)
+      }
+    }
   }
 
   return (
@@ -87,12 +101,28 @@ export default function FolderContent({ selectedFolder }) {
         />
       }
       {selectedFolder.ranges.length > 0 &&
-        <div className='p-3 flex flex-col gap-3 bg-neutral-950 h-full'>
-          {selectedFolder.ranges.map(range => (
-            <RangeBanner
-              key={range.id}
-              range={range}
-            />
+        <div
+          className='p-3 flex flex-col gap-3 bg-neutral-950 h-full'
+          onDragLeave={handleDragLeave}
+        >
+          <RangeGap
+            index={0}
+            target={target}
+            setTarget={setTarget}
+          />
+          {selectedFolder.ranges.map((range, i) => (
+            <div key={'range' + range.id}>
+              <RangeBanner
+                range={range}
+                target={target}
+                setTarget={setTarget}
+              />
+              <RangeGap
+                index={i + 1}
+                target={target}
+                setTarget={setTarget}
+              />
+            </div>
           ))}
         </div>
       }

@@ -56,6 +56,7 @@ export default function SidebarFolder({
         className='absolute left-0 bottom-0 z-10 h-1/3 w-full'
         onDragOver={(e) => { handleDragOver(e, folder.index + 1) }}
       >
+
       </div>
     </div>
   )

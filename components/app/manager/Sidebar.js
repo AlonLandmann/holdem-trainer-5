@@ -55,7 +55,6 @@ export default function Sidebar({ selectedFolder, setSelectedFolder }) {
               setTarget={setTarget}
             />
             <SidebarGap
-              key={'gap' + folder.id}
               index={i + 1}
               target={target}
               setTarget={setTarget}

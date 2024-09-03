@@ -2,24 +2,14 @@ import handleUserRequest from '@/lib/server/routes'
 
 export default async function handler(req, res) {
   return handleUserRequest(req, res, 'PATCH', async (prisma, user) => {
-    const { origin, target } = req.body
+    const { origin, originId, target } = req.body
 
     if (target === origin || target === origin + 1) {
       return { success: true }
     }
 
     await prisma.$transaction([
-      prisma.range.update({
-        where: {
-          folder: { is: { userId: user.id }},
-          index: origin
-        },
-        data: {
-          index: target > origin ? target - 1 : target
-        }
-      }),
-
-      prisma.range.update({
+      prisma.range.updateMany({
         where: {
           folder: { is: { userId: user.id }},
           index: {
@@ -30,9 +20,18 @@ export default async function handler(req, res) {
         data: {
           index: target > origin ? { decrement: 1 } : { increment: 1 }
         }
+      }),
+
+      prisma.range.update({
+        where: {
+          id: originId
+        },
+        data: {
+          index: target > origin ? target - 1 : target
+        }
       })
     ])
-
+    
     return { success: true, message: 'Range moved.' }
   })
 }

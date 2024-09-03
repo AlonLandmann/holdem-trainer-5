@@ -1,11 +1,13 @@
 import Button from '@/components/_common_/Button'
 import Input from '@/components/_common_/Input'
+import { useLoadingQueue } from '@/hooks/useLoadingQueue'
 import { useUser } from '@/hooks/useUser'
 import handleManagerRequest from '@/lib/client/managerRequests'
 import { useEffect, useState } from 'react'
 
-export default function RangeBanner({ range }) {
+export default function RangeBanner({ range, target, setTarget }) {
   const [user, setUser] = useUser()
+  const [loadingQueue, setLoadingQueue] = useLoadingQueue()
   const [renameInView, setRenameInView] = useState(false)
   const [renaming, setRenaming] = useState(false)
   const [renameValue, setRenameValue] = useState(range.name)
@@ -31,8 +33,32 @@ export default function RangeBanner({ range }) {
     await handleManagerRequest('/api/ranges/duplicate', 'POST', setUser, range)
   }
 
+  function handleDragStart(event) {
+    if (!loadingQueue) {
+      event.dataTransfer.setData('text/plain', JSON.stringify({
+        type: 'range',
+        origin: range.index,
+        originId: range.id,
+      }))
+    }
+  }
+
+  function handleDragOver(event, index) {
+    if (!loadingQueue) {
+      const data = JSON.parse(event.dataTransfer.getData('text/plain'))
+
+      if (data.type === 'range' && target !== index) {
+        setTarget(index)
+      }
+    }
+  }
+
   return (
-    <div className='flex p-4 gap-6 rounded bg-neutral-900 max-w-[1000px]'>
+    <div
+      className='relative flex p-4 gap-6 rounded bg-neutral-900 max-w-[1000px]'
+      draggable
+      onDragStart={handleDragStart}
+    >
       <div className='min-w-36 h-36 bg-neutral-800 rounded mr-4'></div>
       <div className='grow grid grid-cols-1 lg:grid-cols-2 gap-2'>
         <div className='flex flex-col'>
@@ -129,6 +155,18 @@ export default function RangeBanner({ range }) {
           icon='crosshair'
           onClick={() => { window.open(`/app/trainer?ids=${JSON.stringify([range.id])}`, '_blank') }}
         />
+      </div>
+      <div
+        className='absolute left-0 top-0 z-10 h-1/5 w-full'
+        onDragOver={(e) => { handleDragOver(e, range.index) }}
+      >
+
+      </div>
+      <div
+        className='absolute left-0 bottom-0 z-10 h-1/5 w-full'
+        onDragOver={(e) => { handleDragOver(e, range.index + 1) }}
+      >
+
       </div>
     </div>
   )
