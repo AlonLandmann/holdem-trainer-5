@@ -14,6 +14,6 @@ export default async function handler(req, res) {
       }
     })
 
-    return { success: true }
+    return { success: true, message: 'Range renamed.' }
   })
 }

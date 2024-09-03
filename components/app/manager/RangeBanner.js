@@ -1,9 +1,25 @@
 import Button from '@/components/_common_/Button'
+import Input from '@/components/_common_/Input'
 import { useUser } from '@/hooks/useUser'
 import handleManagerRequest from '@/lib/client/managerRequests'
+import { useEffect, useState } from 'react'
 
 export default function RangeBanner({ range }) {
   const [user, setUser] = useUser()
+  const [renameInView, setRenameInView] = useState(false)
+  const [renaming, setRenaming] = useState(false)
+  const [renameValue, setRenameValue] = useState(range.name)
+
+  useEffect(() => {
+    setRenaming(false)
+    setRenameValue(range.name)
+  }, [range])
+
+  async function handleRename() {
+    await handleManagerRequest(`/api/ranges/rename?rangeId=${range.id}`, 'PATCH', setUser, {
+      name: renameValue
+    })
+  }
 
   async function handleDelete() {
     if (confirm(`Are you sure you want to delete the range '${range.name}'? This action cannot be undone.`)) {
@@ -20,8 +36,48 @@ export default function RangeBanner({ range }) {
       <div className='min-w-36 h-36 bg-neutral-800 rounded mr-4'></div>
       <div className='grow grid grid-cols-1 lg:grid-cols-2 gap-2'>
         <div className='flex flex-col'>
-          <div className='text-lg mb-1'>
-            {range.name}
+          <div
+            className='flex items-center gap-3'
+            onMouseEnter={() => setRenameInView(true)}
+            onMouseLeave={() => setRenameInView(false)}
+          >
+            {!renaming &&
+              <>
+                <h1 className='text-lg'>
+                  {range.name}
+                </h1>
+                <Button
+                  theme='tertiary'
+                  utilClasses={`transition ${renameInView ? 'opacity-100' : 'opacity-0'}`}
+                  icon='input-cursor'
+                  onClick={async () => setRenaming(true)}
+                  useQueue
+                />
+              </>
+            }
+            {renaming &&
+              <>
+                <Input
+                  theme='rename'
+                  utilClasses='text-lg'
+                  value={renameValue}
+                  onChange={e => setRenameValue(e.target.value)}
+                />
+                <Button
+                  theme='tertiary'
+                  utilClasses='text-sm'
+                  icon='x-lg'
+                  onClick={async () => { setRenaming(false); setRenameValue(range.name) }}
+                  useQueue
+                />
+                <Button
+                  theme='tertiary'
+                  icon='check2'
+                  onClick={handleRename}
+                  useQueue
+                />
+              </>
+            }
           </div>
           <div className='text-neutral-600 mb-auto'>
             {range.history.map((action, i) => (
@@ -55,7 +111,7 @@ export default function RangeBanner({ range }) {
         <Button
           theme='tertiary'
           icon='pen'
-          onClick={() => { window.open(`/app/editor/${range.id}`, '_blank')}}
+          onClick={() => { window.open(`/app/editor/${range.id}`, '_blank') }}
         />
         <Button
           theme='tertiary'

@@ -12,6 +12,11 @@ export default function FolderContent({ selectedFolder }) {
   const [renaming, setRenaming] = useState(false)
   const [renameValue, setRenameValue] = useState(selectedFolder.name)
 
+  useEffect(() => {
+    setRenaming(false)
+    setRenameValue(selectedFolder.name)
+  }, [selectedFolder])
+
   async function handleAddRange() {
     await handleManagerRequest(`/api/ranges/add?folderId=${selectedFolder.id}`, 'POST', setUser)
   }
@@ -21,11 +26,6 @@ export default function FolderContent({ selectedFolder }) {
       name: renameValue
     })
   }
-
-  useEffect(() => {
-    setRenaming(false)
-    setRenameValue(selectedFolder.name)
-  }, [selectedFolder])
 
   return (
     <div className='grow bg-neutral-900 flex flex-col'>
@@ -44,7 +44,8 @@ export default function FolderContent({ selectedFolder }) {
                 theme='tertiary'
                 utilClasses={`transition ${renameInView ? 'opacity-100' : 'opacity-0'}`}
                 icon='input-cursor'
-                onClick={() => setRenaming(true)}
+                onClick={async () => setRenaming(true)}
+                useQueue
               />
             </>
           }
