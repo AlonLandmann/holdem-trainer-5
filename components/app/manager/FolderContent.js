@@ -15,6 +15,7 @@ export default function FolderContent({ selectedFolder }) {
   const [renaming, setRenaming] = useState(false)
   const [renameValue, setRenameValue] = useState(selectedFolder.name)
   const [target, setTarget] = useState(null)
+  const [selectedRanges, setSelectedRanges] = useState([])
 
   useEffect(() => {
     setRenaming(false)
@@ -116,6 +117,8 @@ export default function FolderContent({ selectedFolder }) {
                 range={range}
                 target={target}
                 setTarget={setTarget}
+                selectedRanges={selectedRanges}
+                setSelectedRanges={setSelectedRanges}
               />
               <RangeGap
                 index={i + 1}

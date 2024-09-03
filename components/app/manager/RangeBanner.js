@@ -5,7 +5,7 @@ import { useUser } from '@/hooks/useUser'
 import handleManagerRequest from '@/lib/client/managerRequests'
 import { useEffect, useState } from 'react'
 
-export default function RangeBanner({ range, target, setTarget }) {
+export default function RangeBanner({ range, target, setTarget, selectedRanges, setSelectedRanges }) {
   const [user, setUser] = useUser()
   const [loadingQueue, setLoadingQueue] = useLoadingQueue()
   const [renameInView, setRenameInView] = useState(false)
@@ -31,6 +31,16 @@ export default function RangeBanner({ range, target, setTarget }) {
 
   async function handleDuplicate() {
     await handleManagerRequest('/api/ranges/duplicate', 'POST', setUser, range)
+  }
+
+  async function handleSelect() {
+    setSelectedRanges(prev => {
+      if (prev.includes(range.id)) {
+        return prev.filter(id => id !== range.id)
+      } else {
+        return prev.concat([range.id])
+      }
+    })
   }
 
   function handleDragStart(event) {
@@ -149,7 +159,9 @@ export default function RangeBanner({ range, target, setTarget }) {
         <Button
           theme='tertiary'
           utilClasses='mt-auto text-xs'
-          icon='square'
+          icon={selectedRanges.includes(range.id) ? 'check-square' : 'square'}
+          onClick={handleSelect}
+          useQueue
         />
         <Button
           theme='tertiary'
