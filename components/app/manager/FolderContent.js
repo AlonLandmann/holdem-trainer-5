@@ -25,7 +25,7 @@ export default function FolderContent({ selectedFolder }) {
   }, [selectedFolder])
 
   return (
-    <div className='grow bg-neutral-900'>
+    <div className='grow bg-neutral-900 flex flex-col'>
       <div className='flex justify-between gap-3 border-b p-3'>
         <div
           className='grow flex items-center gap-3'

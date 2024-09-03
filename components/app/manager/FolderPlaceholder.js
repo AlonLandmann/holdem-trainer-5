@@ -11,7 +11,7 @@ export default function FolderPlaceholder({ selectedFolder }) {
   }
 
   return (
-    <div className='p-4 flex flex-col justify-center items-center h-full'>
+    <div className='grow p-4 flex flex-col justify-center items-center'>
       <div className='text-neutral-700 text-7xl mb-3'>
         <i className='bi bi-inbox-fill'></i>
       </div>
