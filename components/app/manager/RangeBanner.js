@@ -1,6 +1,16 @@
 import Button from '@/components/_common_/Button'
+import { useUser } from '@/hooks/useUser'
+import handleManagerRequest from '@/lib/client/managerRequests'
 
 export default function RangeBanner({ range }) {
+  const [user, setUser] = useUser()
+
+  async function handleDelete() {
+    if (confirm(`Are you sure you want to delete the range '${range.name}'? This action cannot be undone.`)) {
+      await handleManagerRequest(`/api/ranges/delete?rangeId=${range.id}`, 'DELETE', setUser)
+    }
+  }
+
   return (
     <div className='flex p-4 gap-6 rounded bg-neutral-900 max-w-[1000px]'>
       <div className='min-w-36 h-36 bg-neutral-800 rounded mr-4'></div>
@@ -34,7 +44,9 @@ export default function RangeBanner({ range }) {
       <div className='flex flex-col gap-1 pr-1 text-sm'>
         <Button
           theme='tertiary'
-          icon='copy'
+          icon='trash3'
+          onClick={handleDelete}
+          useQueue
         />
         <Button
           theme='tertiary'
@@ -42,7 +54,7 @@ export default function RangeBanner({ range }) {
         />
         <Button
           theme='tertiary'
-          icon='trash3'
+          icon='copy'
         />
         <Button
           theme='tertiary'
