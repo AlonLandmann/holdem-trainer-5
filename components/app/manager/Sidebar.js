@@ -3,8 +3,10 @@ import SidebarFolder from './SidebarFolder'
 import handleManagerRequest from '@/lib/client/managerRequests'
 import SidebarGap from './SidebarGap'
 import { useState } from 'react'
+import { useLoadingQueue } from '@/hooks/useLoadingQueue'
 
 export default function Sidebar({ user, selectedFolder, setSelectedFolder }) {
+  const [loadingQueue, setLoadingQueue] = useLoadingQueue()
   const [target, setTarget] = useState(null)
 
   async function handleAddFolder() {
@@ -12,10 +14,12 @@ export default function Sidebar({ user, selectedFolder, setSelectedFolder }) {
   }
 
   function handleDragLeave(event) {
-    const isLeavingParent = !event.currentTarget.contains(event.relatedTarget)
-  
-    if (isLeavingParent) {
-      setTarget(null)
+    if (!loadingQueue) {
+      const isLeavingParent = !event.currentTarget.contains(event.relatedTarget)
+
+      if (isLeavingParent) {
+        setTarget(null)
+      }
     }
   }
 
