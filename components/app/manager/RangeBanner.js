@@ -2,17 +2,28 @@ import Button from '@/components/_common_/Button'
 
 export default function RangeBanner({ range }) {
   return (
-    <div className='flex p-2 bg-neutral-900 max-w-[1000px]'>
-      <div className='min-w-36 h-36 bg-neutral-800 mr-3'></div>
-      <div className='grow grid grid-cols-2 gap-2'>
-        <div className=''>
-          <div>
+    <div className='flex p-4 gap-6 rounded bg-neutral-900 max-w-[1000px]'>
+      <div className='min-w-36 h-36 bg-neutral-800 rounded mr-4'></div>
+      <div className='grow grid grid-cols-1 lg:grid-cols-2 gap-2'>
+        <div className='flex flex-col'>
+          <div className='text-lg mb-1'>
             {range.name}
           </div>
-          <div>
-            {JSON.stringify(range.history)}
+          <div className='text-neutral-600 mb-auto'>
+            {range.history.map((action, i) => (
+              <div key={'action' + i}>
+                {action.cards
+                  ? <div>{action.cards.join(' ')}</div>
+                  : action.size
+                    ? action.size
+                    : action.type[0].toUpperCase()}
+              </div>
+            ))}
+            <div>
+              -
+            </div>
           </div>
-          <div>
+          <div className='text-neutral-600'>
             {JSON.stringify(range.options)}
           </div>
         </div>
@@ -20,7 +31,7 @@ export default function RangeBanner({ range }) {
           <i className='bi bi-graph-up-arrow'></i>
         </div>
       </div>
-      <div className='flex flex-col gap-1 ml-5 pr-1 text-sm'>
+      <div className='flex flex-col gap-1 pr-1 text-sm'>
         <Button
           theme='tertiary'
           icon='copy'

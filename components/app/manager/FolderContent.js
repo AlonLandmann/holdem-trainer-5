@@ -37,7 +37,7 @@ export default function FolderContent({ selectedFolder }) {
         >
           {!renaming &&
             <>
-              <h1>
+              <h1 className='text-neutral-500'>
                 {selectedFolder.name}
               </h1>
               <Button
@@ -52,6 +52,7 @@ export default function FolderContent({ selectedFolder }) {
             <>
               <Input
                 theme='rename'
+                utilClasses='text-neutral-500'
                 value={renameValue}
                 onChange={e => setRenameValue(e.target.value)}
               />
