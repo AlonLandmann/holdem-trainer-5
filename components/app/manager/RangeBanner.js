@@ -51,6 +51,7 @@ export default function RangeBanner({ range }) {
         <Button
           theme='tertiary'
           icon='pen'
+          onClick={() => { window.open(`/app/editor/${range.id}`, '_blank')}}
         />
         <Button
           theme='tertiary'
