@@ -4,13 +4,15 @@ import handleManagerRequest from '@/lib/client/managerRequests'
 import SidebarGap from './SidebarGap'
 import { useState } from 'react'
 import { useLoadingQueue } from '@/hooks/useLoadingQueue'
+import { useUser } from '@/hooks/useUser'
 
-export default function Sidebar({ user, selectedFolder, setSelectedFolder }) {
+export default function Sidebar({ selectedFolder, setSelectedFolder }) {
+  const [user, setUser] = useUser()
   const [loadingQueue, setLoadingQueue] = useLoadingQueue()
   const [target, setTarget] = useState(null)
 
   async function handleAddFolder() {
-    await handleManagerRequest('/api/folders/add', 'POST')
+    await handleManagerRequest('/api/folders/add', 'POST', setUser)
   }
 
   function handleDragLeave(event) {
@@ -23,7 +25,7 @@ export default function Sidebar({ user, selectedFolder, setSelectedFolder }) {
     }
   }
 
-  return (
+  return !user ? null : (
     <div className='bg-neutral-900 border-r w-56 flex flex-col'>
       <div className='border-b p-3 flex justify-between items-center'>
         <h1 className='text-neutral-600'>

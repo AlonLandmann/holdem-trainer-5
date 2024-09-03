@@ -1,8 +1,10 @@
 import { useLoadingQueue } from '@/hooks/useLoadingQueue'
+import { useUser } from '@/hooks/useUser'
 import handleManagerRequest from '@/lib/client/managerRequests'
 import { useState } from 'react'
 
 export default function SidebarGap({ index, target, setTarget }) {
+  const [user, setUser] = useUser()
   const [loadingQueue, setLoadingQueue] = useLoadingQueue()
   const [loading, setLoading] = useState(false)
 
@@ -27,7 +29,7 @@ export default function SidebarGap({ index, target, setTarget }) {
           setLoading(true)
           setLoadingQueue(true)
 
-          await handleManagerRequest('/api/folders/move', 'PATCH', {
+          await handleManagerRequest('/api/folders/move', 'PATCH', setUser, {
             origin: data.origin,
             originId: data.originId,
             target

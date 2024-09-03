@@ -5,7 +5,7 @@ export default async function handler(req, res) {
     const { origin, target } = req.body
 
     if (target === origin || target === origin + 1) {
-      return res.status(200).json({ success: true })
+      return true
     }
 
     await prisma.$transaction([
@@ -33,6 +33,6 @@ export default async function handler(req, res) {
       })
     ])
 
-    return res.status(200).json({ success: true })
+    return true
   })
 }

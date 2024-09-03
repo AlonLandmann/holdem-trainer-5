@@ -1,13 +1,16 @@
 import Button from '@/components/_common_/Button'
+import { useUser } from '@/hooks/useUser'
 import handleManagerRequest from '@/lib/client/managerRequests'
 
 export default function FolderPlaceholder({ selectedFolder }) {
+  const [user, setUser] = useUser()
+
   async function handleAddRange() {
-    await handleManagerRequest(`/api/ranges/add?folderId=${selectedFolder.id}`, 'POST')
+    await handleManagerRequest(`/api/ranges/add?folderId=${selectedFolder.id}`, 'POST', setUser)
   }
 
   async function handleDeleteFolder() {
-    await handleManagerRequest(`/api/folders/delete?folderId=${selectedFolder.id}`, 'DELETE')
+    await handleManagerRequest(`/api/folders/delete?folderId=${selectedFolder.id}`, 'DELETE', setUser)
   }
 
   return (

@@ -11,7 +11,7 @@ export default async function handler(req, res) {
     } = req.body
 
     if (folderOriginId === folderTargetId) {
-      return res.status(200).json({ sucess: true })
+      return true
     }
 
     await prisma.$transaction([
@@ -38,6 +38,6 @@ export default async function handler(req, res) {
       })
     ])
 
-    return res.status(200).json({ success: true })
+    return true
   })
 }

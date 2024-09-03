@@ -3,18 +3,20 @@ import Input from '@/components/_common_/Input'
 import handleManagerRequest from '@/lib/client/managerRequests'
 import { useEffect, useState } from 'react'
 import FolderPlaceholder from './FolderPlaceholder'
+import { useUser } from '@/hooks/useUser'
 
 export default function FolderContent({ selectedFolder }) {
+  const [user, setUser] = useUser()
   const [renameInView, setRenameInView] = useState(false)
   const [renaming, setRenaming] = useState(false)
   const [renameValue, setRenameValue] = useState(selectedFolder.name)
 
   async function handleAddRange() {
-    await handleManagerRequest(`/api/ranges/add?folderId=${selectedFolder.id}`, 'POST')
+    await handleManagerRequest(`/api/ranges/add?folderId=${selectedFolder.id}`, 'POST', setUser)
   }
 
   async function handleRenameFolder() {
-    await handleManagerRequest(`/api/folders/rename?folderId=${selectedFolder.id}`, 'PATCH', {
+    await handleManagerRequest(`/api/folders/rename?folderId=${selectedFolder.id}`, 'PATCH', setUser, {
       name: renameValue
     })
   }

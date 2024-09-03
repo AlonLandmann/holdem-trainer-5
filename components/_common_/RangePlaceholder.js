@@ -1,9 +1,12 @@
 import handleManagerRequest from '@/lib/client/managerRequests'
 import Button from './Button'
+import { useUser } from '@/hooks/useUser'
 
 export default function RangePlaceholder() {
+  const [user, setUser] = useUser()
+
   async function handleAddRange() {
-    await handleManagerRequest('/api/ranges/add', 'POST')
+    await handleManagerRequest('/api/ranges/add', 'POST', setUser)
   }
 
   return (

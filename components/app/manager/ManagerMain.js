@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import FolderContent from './FolderContent'
 import Sidebar from './Sidebar'
 
@@ -7,10 +7,21 @@ export default function ManagerMain({ user }) {
     user.folders.length ? user.folders[0] : null
   )
 
+  useEffect(() => {
+    setSelectedFolder(prev => {
+      const sameFolder = user.folders.find(f => f.id === prev.id)
+
+      if (sameFolder) {
+        return sameFolder
+      } else {
+        return user.folders.length ? user.folders[0] : null
+      }
+    })
+  }, [user])
+
   return !selectedFolder ? null : (
     <>
       <Sidebar
-        user={user}
         selectedFolder={selectedFolder}
         setSelectedFolder={setSelectedFolder}
       />

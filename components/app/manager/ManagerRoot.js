@@ -4,7 +4,7 @@ import { useUser } from '@/hooks/useUser'
 import ManagerMain from './ManagerMain'
 
 export default function ManagerRoot() {
-  const user = useUser()
+  const [user, setUser] = useUser()
 
   return (
     <div className='relative flex h-screen'>
