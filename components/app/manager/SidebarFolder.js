@@ -78,19 +78,33 @@ export default function SidebarFolder({
     <div
       className={`
         relative p-3 pr-4 border-b text-neutral-500 text-sm overflow-ellipsis
-        flex justify-between gap-3 cursor-pointer
+        flex justify-between gap-3
+        ${!loading ? 'cursor-pointer' : ''}
         ${isSelected ? 'bg-neutral-800' : 'hover:text-neutral-300'}
-        ${isDropCandidate ? 'bg-neutral-800' : ''}
+        ${(isDropCandidate && !loading) ? 'bg-neutral-800' : ''}
       `}
-      onClick={() => setSelectedFolder(folder)}
+      onClick={!loading ? () => setSelectedFolder(folder) : () => {}}
       draggable
       onDragStart={handleDragStart}
       onDragLeave={handleDragLeave}
     >
-      <span className={`${isSelected ? 'text-neutral-200' : ''}`}>
+      {loading &&
+        <div className='absolute w-full left-0 flex justify-center'>
+          <span className='inline-block animate-pulse'>
+            ·
+          </span>
+          <span className='inline-block animate-pulse [animation-delay:0.2s]'>
+            ·
+          </span>
+          <span className='inline-block animate-pulse [animation-delay:1s]'>
+            ·
+          </span>
+        </div>
+      }
+      <span className={`${isSelected ? 'text-neutral-200' : ''} ${loading ? 'opacity-0' : ''}`}>
         {folder.name}
       </span>
-      <span className='font-mono'>
+      <span className={`font-mono ${loading ? 'opacity-0' : ''}`}>
         {folder.ranges.length}
       </span>
       <div
