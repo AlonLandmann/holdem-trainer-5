@@ -5,12 +5,12 @@ export default async function handler(req, res) {
     const {
       rangeId,
       rangeIndex,
-      folderOriginId,
-      folderTargetId,
-      folderTargetLength
+      originFolderId,
+      targetFolderId,
+      targetFolderLength
     } = req.body
 
-    if (folderOriginId === folderTargetId) {
+    if (originFolderId === targetFolderId) {
       return { success: true }
     }
 
@@ -20,16 +20,16 @@ export default async function handler(req, res) {
           id: rangeId
         },
         data: {
-          index: folderTargetLength,
+          index: targetFolderLength,
           folder: {
-            connect: { id: folderTargetId }
+            connect: { id: targetFolderId }
           }
         }
       }),
 
-      prisma.range.update({
+      prisma.range.updateMany({
         where: {
-          folderId: folderOriginId,
+          folderId: originFolderId,
           index: { gt: rangeIndex }
         },
         data: {

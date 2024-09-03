@@ -25,7 +25,7 @@ export default function RangeBanner({ range, target, setTarget }) {
 
   async function handleDelete() {
     if (confirm(`Are you sure you want to delete the range '${range.name}'? This action cannot be undone.`)) {
-      await handleManagerRequest(`/api/ranges/delete?rangeId=${range.id}`, 'DELETE', setUser)
+      await handleManagerRequest(`/api/ranges/delete?rangeId=${range.id}&rangeIndex=${range.index}&folderId=${range.folderId}`, 'DELETE', setUser)
     }
   }
 
@@ -39,6 +39,7 @@ export default function RangeBanner({ range, target, setTarget }) {
         type: 'range',
         origin: range.index,
         originId: range.id,
+        originFolderId: range.folderId,
       }))
     }
   }
@@ -127,7 +128,7 @@ export default function RangeBanner({ range, target, setTarget }) {
           <i className='bi bi-graph-up-arrow'></i>
         </div>
       </div>
-      <div className='flex flex-col gap-1 pr-1 text-sm'>
+      <div className='flex flex-col gap-1 pr-1 text-sm z-40'>
         <Button
           theme='tertiary'
           icon='trash3'

@@ -10,7 +10,7 @@ export default function FolderPlaceholder({ selectedFolder }) {
   }
 
   async function handleDeleteFolder() {
-    await handleManagerRequest(`/api/folders/delete?folderId=${selectedFolder.id}`, 'DELETE', setUser)
+    await handleManagerRequest(`/api/folders/delete?folderId=${selectedFolder.id}&folderIndex=${selectedFolder.index}`, 'DELETE', setUser)
   }
 
   return (
