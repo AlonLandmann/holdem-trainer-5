@@ -127,6 +127,7 @@ export default function RangeBanner({ range }) {
         <Button
           theme='tertiary'
           icon='crosshair'
+          onClick={() => { window.open(`/app/trainer?ids=${JSON.stringify([range.id])}`, '_blank') }}
         />
       </div>
     </div>
