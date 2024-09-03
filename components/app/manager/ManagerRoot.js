@@ -7,7 +7,7 @@ export default function ManagerRoot() {
   const user = useUser()
 
   return (
-    <div className='flex'>
+    <div className='relative flex h-screen'>
       <SideNav />
       {user && !user.hasRanges &&
         <RangePlaceholder />
