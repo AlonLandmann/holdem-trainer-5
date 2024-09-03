@@ -45,7 +45,7 @@ export default function RangeGap({ index, target, setTarget }) {
 
   return (
     <div
-      className={`relative ${target === index ? 'h-4 border-b' : ''}`}
+      className={`relative ${target === index ? 'h-8' : 'h-4'}`}
       onDragOver={handleDragOver}
       onDrop={handleDrop}
     >
