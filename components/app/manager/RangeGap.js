@@ -45,7 +45,7 @@ export default function RangeGap({ index, target, setTarget }) {
 
   return (
     <div
-      className={`relative max-w-[1000px] ${target === index ? 'h-8' : 'h-4'}`}
+      className={`relative max-w-[1000px] ${target === index ? 'h-6' : 'h-3'}`}
       onDragOver={handleDragOver}
       onDrop={handleDrop}
     >
