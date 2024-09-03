@@ -64,7 +64,7 @@ export default function RangeBanner({ range, target, setTarget }) {
       <div className='grow grid grid-cols-1 lg:grid-cols-2 gap-2'>
         <div className='flex flex-col'>
           <div
-            className='flex items-center gap-3'
+            className='flex items-center gap-3 z-40'
             onMouseEnter={() => setRenameInView(true)}
             onMouseLeave={() => setRenameInView(false)}
           >
@@ -106,7 +106,7 @@ export default function RangeBanner({ range, target, setTarget }) {
               </>
             }
           </div>
-          <div className='text-neutral-600 mb-auto'>
+          <div className='text-neutral-600 mb-auto z-40'>
             {range.history.map((action, i) => (
               <div key={'action' + i}>
                 {action.cards
@@ -120,7 +120,7 @@ export default function RangeBanner({ range, target, setTarget }) {
               -
             </div>
           </div>
-          <div className='text-neutral-600'>
+          <div className='text-neutral-600 z-40'>
             {JSON.stringify(range.options)}
           </div>
         </div>
