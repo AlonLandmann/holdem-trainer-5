@@ -1,7 +1,13 @@
 import { frequencyColor, strategyColor } from '@/lib/client/colors'
-import { numFromSuit, numFromValue, suits, values } from '@/lib/shared/cards'
+import { combos, numFromSuit, numFromValue, sameValue, suits, values } from '@/lib/shared/cards'
 
-export default function Matrix({ range, hovered = [], selected = [] }) {
+export default function Matrix({
+  range,
+  selected,
+  setSelected,
+  hovered,
+  setHovered
+}) {
   const cellWidth = 15
   const blockWidth = 4 * cellWidth
   const matrixWidth = 13 * blockWidth + 14
@@ -29,15 +35,48 @@ export default function Matrix({ range, hovered = [], selected = [] }) {
       return {
         background: strategyColor(range, strategy),
         opacity: isHovered ? 1 : 0.05,
-        borderTop: isSelected ? `${cellWidth * 0.4}px solid #ff000044` :'none'
+        borderTop: isSelected ? `${cellWidth * 0.4}px solid #ff000044` : 'none'
       }
     } else {
       return {
         background: frequencyColor(frequency),
         opacity: isHovered ? 1 : 0.05,
-        borderTop: isSelected ? `${cellWidth}px solid #ff000044` :'none'
+        borderTop: isSelected ? `${cellWidth}px solid #ff000044` : 'none'
       }
     }
+  }
+
+  function handleClick(event, v1, v2, s1, s2) {
+    if (!range.spot.options) return null
+
+    const c1 = v1 + s1
+    const c2 = v2 + s2
+
+    if (c1 == c2) return null
+    if (range.spot.board.includes(c1)) return null
+    if (range.spot.board.includes(c2)) return null
+
+    const isTopRight = numFromValue(v1) > numFromValue(v2) || (numFromValue(v1) === numFromValue(v2) && numFromSuit(s1) > numFromSuit(s2))
+    const combo = isTopRight ? c1 + c2 : c2 + c1
+    const ctrl = event.ctrlKey || event.metaKey
+    const shift = event.shiftKey
+    const alt = event.altKey
+    const isSelected = selected.includes(combo)
+
+    setSelected(prev => {
+      const withSuited = prev.concat(combos.filter(c => sameValue(c, combo) && c[1] === c[3]))
+      const withoutSuited = prev.filter(c => !sameValue(c, combo) || c[1] !== c[3])
+      const withValue = prev.concat(combos.filter(c => sameValue(c, combo)))
+      const withoutValue = prev.filter(c => !sameValue(c, combo))
+      const withCombo = prev.concat([combo])
+      const withoutCombo = prev.filter(c => c !== combo)
+
+      if (ctrl && shift) return withoutValue
+      if (shift) return withValue
+      if (ctrl && alt) return withoutSuited
+      if (alt) return withSuited
+      return isSelected ? withoutCombo : withCombo
+    })
   }
 
   return (
@@ -64,7 +103,8 @@ export default function Matrix({ range, hovered = [], selected = [] }) {
             {suits.map(s1 => (
               suits.map(s2 => (
                 <div
-                  key={'cell' + v1 + s1 + v2 + s2}
+                  key={'cell' + v1 + v2 + s1 + s2}
+                  onClick={e => handleClick(e, v1, v2, s1, s2)}
                   style={{
                     width: `${cellWidth}px`,
                     height: `${cellWidth}px`,

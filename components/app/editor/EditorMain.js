@@ -10,6 +10,8 @@ export default function EditorMain({ user }) {
   const allRanges = user.folders.reduce((acc, curr) => acc.concat(curr.ranges), [])
   const selectedRange = allRanges.find(r => r.id === Number(router.query['range-id']))
   const [range, setRange] = useState(selectedRange)
+  const [selected, setSelected] = useState([])
+  const [hovered, setHovered] = useState([])
 
   return !range ? null : (
     <>
@@ -23,7 +25,13 @@ export default function EditorMain({ user }) {
       <div className='bg-neutral-900 grow'>
         <Toolbar range={range} />
         <div className='p-3'>
-          <Matrix range={range} />
+          <Matrix
+            range={range}
+            selected={selected}
+            setSelected={setSelected}
+            hovered={hovered}
+            setHovered={setHovered}
+          />
         </div>
       </div>
     </>
