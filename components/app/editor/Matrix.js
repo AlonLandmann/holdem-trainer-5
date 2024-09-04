@@ -1,16 +1,12 @@
 import { frequencyColor, strategyColor } from '@/lib/client/colors'
 import { combos, numFromSuit, numFromValue, sameValue, suits, values } from '@/lib/shared/cards'
 
-export default function Matrix({
-  range,
-  selected,
-  setSelected,
-  hovered,
-  setHovered
-}) {
+export default function Matrix({ range, selected, setSelected, hovered, setHovered }) {
   const cellWidth = 15
   const blockWidth = 4 * cellWidth
-  const matrixWidth = 13 * blockWidth + 14
+  const matrixWidth = 13 * blockWidth + 12 + 1
+  const headlineWidth = 38 + 2
+  const suitArrayWidth = 14
 
   function cellStyle(v1, v2, s1, s2) {
     if (!range.spot.options) return { background: '#181818' }
@@ -46,7 +42,7 @@ export default function Matrix({
     }
   }
 
-  function handleClick(event, v1, v2, s1, s2) {
+  function handleCellClick(event, v1, v2, s1, s2) {
     if (!range.spot.options) return null
 
     const c1 = v1 + s1
@@ -71,9 +67,9 @@ export default function Matrix({
       const withCombo = prev.concat([combo])
       const withoutCombo = prev.filter(c => c !== combo)
 
-      if (ctrl && shift) return withoutValue
-      if (shift) return withValue
-      if (ctrl && alt) return withoutSuited
+      if (shift && ctrl) return withoutValue
+      if (ctrl) return withValue
+      if (shift && alt) return withoutSuited
       if (alt) return withSuited
       return isSelected ? withoutCombo : withCombo
     })
@@ -82,42 +78,128 @@ export default function Matrix({
   return (
     <div
       style={{
+        width: `${matrixWidth + headlineWidth}px`,
+        height: `${matrixWidth + headlineWidth}px`,
         display: 'grid',
-        width: `${matrixWidth}px`,
-        border: '1px solid rgb(38, 38, 38)',
-        gridTemplateColumns: `repeat(13, ${blockWidth}px)`,
-        gap: '1px',
+        gridTemplateColumns: `${headlineWidth}px 1fr`,
+        gridTemplateRows: `${headlineWidth}px 1fr`,
       }}
     >
-      {values.map(v1 => (
-        values.map(v2 => (
+      <div style={{ border: '1px solid rgb(38, 38, 38)' }}></div>
+      <div className='flex'>
+        {values.map(value => (
           <div
-            key={'block' + v1 + v2}
+            key={'top-value' + value}
+            className='flex flex-col'
             style={{
-              width: `${blockWidth}px`,
-              height: `${blockWidth}px`,
-              display: 'grid',
-              gridTemplateColumns: `repeat(4, ${cellWidth}px)`,
+              width: `${blockWidth + 1}px`,
+              height: `${headlineWidth}px`,
+              borderTop: '1px solid rgb(38, 38, 38)',
+              borderRight: '1px solid rgb(38, 38, 38)',
+              borderBottom: '1px solid rgb(38, 38, 38)',
             }}
           >
-            {suits.map(s1 => (
-              suits.map(s2 => (
-                <div
-                  key={'cell' + v1 + v2 + s1 + s2}
-                  onClick={e => handleClick(e, v1, v2, s1, s2)}
-                  style={{
-                    width: `${cellWidth}px`,
-                    height: `${cellWidth}px`,
-                    ...cellStyle(v1, v2, s1, s2),
-                  }}
-                >
-
-                </div>
-              ))
-            ))}
+            <div className='grow flex justify-center items-center text-sm text-neutral-400'>
+              {value}
+            </div>
+            <div
+              className='grid grid-cols-4 justify-items-center items-center text-neutral-800 leading-none'
+              style={{ height: `${suitArrayWidth}px` }}
+            >
+              <div className='text-[10px]'>
+                <i className='bi bi-suit-spade-fill'></i>
+              </div>
+              <div className='text-[9px]'>
+                <i className='bi bi-suit-heart-fill'></i>
+              </div>
+              <div className='text-[10px]'>
+                <i className='bi bi-suit-diamond-fill'></i>
+              </div>
+              <div className='text-[10px]'>
+                <i className='bi bi-suit-club-fill'></i>
+              </div>
+            </div>
           </div>
-        ))
-      ))}
+        ))}
+      </div>
+      <div className='flex flex-col'>
+        {values.map(value => (
+          <div
+            key={'top-value' + value}
+            className='flex'
+            style={{
+              width: `${headlineWidth}px`,
+              height: `${blockWidth + 1}px`,
+              borderRight: '1px solid rgb(38, 38, 38)',
+              borderBottom: '1px solid rgb(38, 38, 38)',
+              borderLeft: '1px solid rgb(38, 38, 38)',
+            }}
+          >
+
+            <div className='grow flex justify-center items-center text-sm text-neutral-400'>
+              {value}
+            </div>
+            <div
+              className='grid grid-rows-4 justify-items-center items-center text-neutral-800 leading-none'
+              style={{ width: `${suitArrayWidth}px` }}
+            >
+              <div className='text-[10px]'>
+                <i className='bi bi-suit-spade-fill'></i>
+              </div>
+              <div className='text-[9px]'>
+                <i className='bi bi-suit-heart-fill'></i>
+              </div>
+              <div className='text-[10px]'>
+                <i className='bi bi-suit-diamond-fill'></i>
+              </div>
+              <div className='text-[10px]'>
+                <i className='bi bi-suit-club-fill'></i>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div
+        style={{
+          width: `${matrixWidth}px`,
+          height: `${matrixWidth}px`,
+          borderBottom: '1px solid rgb(38, 38, 38)',
+          borderRight: '1px solid rgb(38, 38, 38)',
+          display: 'grid',
+          gridTemplateColumns: `repeat(13, ${blockWidth}px)`,
+          gap: '1px',
+        }}
+      >
+        {values.map(v1 => (
+          values.map(v2 => (
+            <div
+              key={'block' + v1 + v2}
+              style={{
+                width: `${blockWidth}px`,
+                height: `${blockWidth}px`,
+                display: 'grid',
+                gridTemplateColumns: `repeat(4, ${cellWidth}px)`,
+              }}
+            >
+              {suits.map(s1 => (
+                suits.map(s2 => (
+                  <div
+                    key={'cell' + v1 + v2 + s1 + s2}
+                    style={{
+                      width: `${cellWidth}px`,
+                      height: `${cellWidth}px`,
+                      ...cellStyle(v1, v2, s1, s2),
+                    }}
+                    onClick={e => handleCellClick(e, v1, v2, s1, s2)}
+                  >
+
+                  </div>
+                ))
+              ))}
+            </div>
+          ))
+        ))}
+      </div>
     </div>
   )
 }
