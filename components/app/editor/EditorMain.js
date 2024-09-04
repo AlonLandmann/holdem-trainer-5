@@ -22,7 +22,9 @@ export default function EditorMain({ user }) {
       </div>
       <div className='bg-neutral-900 grow'>
         <Toolbar range={range} />
-        <Matrix range={range} />
+        <div className='p-3'>
+          <Matrix range={range} />
+        </div>
       </div>
     </>
   )
