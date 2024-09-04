@@ -32,6 +32,10 @@ export default function FolderContent({ selectedFolder }) {
     })
   }
 
+  async function handleTrainSelected() {
+    window.location = `/app/trainer?ids=${JSON.stringify(selectedRanges)}`
+  }
+
   function handleDragLeave(event) {
     if (!loadingQueue) {
       const isLeavingParent = !event.currentTarget.contains(event.relatedTarget)
@@ -43,7 +47,7 @@ export default function FolderContent({ selectedFolder }) {
   }
 
   return (
-    <div className='grow bg-neutral-900 flex flex-col'>
+    <div className='grow bg-neutral-900 flex flex-col max-h-screen'>
       <div className='flex justify-between gap-3 border-b p-3'>
         <div
           className='grow flex items-center gap-3'
@@ -103,7 +107,7 @@ export default function FolderContent({ selectedFolder }) {
       }
       {selectedFolder.ranges.length > 0 &&
         <div
-          className='px-3 bg-neutral-950 h-full'
+          className='px-3 bg-neutral-950 h-full overflow-auto'
           onDragLeave={handleDragLeave}
         >
           <RangeGap
@@ -129,6 +133,18 @@ export default function FolderContent({ selectedFolder }) {
           ))}
         </div>
       }
+      <div className='border-t p-3 text-neutral-600 flex justify-between gap-3'>
+        <div>
+          {selectedRanges.length ? ('# ' + selectedRanges.length) : 'No'} {selectedRanges.length > 1 ? 'ranges' : 'range'} selected for training
+        </div>
+        <Button
+          theme='tertiary'
+          utilClasses='text-neutral-500 hover:text-neutral-300'
+          icon='crosshair'
+          onClick={handleTrainSelected}
+          useQueue
+        />
+      </div>
     </div>
   )
 }
