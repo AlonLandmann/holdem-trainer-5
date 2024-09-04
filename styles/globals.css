@@ -5,3 +5,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+input.spinner-less[type=number]::-webkit-inner-spin-button,
+input.spinner-less[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input.spinner-less[type=number] {
+  -moz-appearance: textfield;
+}

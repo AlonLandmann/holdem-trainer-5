@@ -6,6 +6,11 @@ const themes = {
   `,
   rename: `
     bg-transparent outline-none
+  `,
+  editor: `
+    bg-inherit py-3 px-4 rounded outline-none text-sm
+    border focus:border-neutral-700 text-neutral-400
+    placeholder-neutral-600
   `
 }
 
