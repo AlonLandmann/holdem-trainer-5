@@ -8,8 +8,8 @@ const themes = {
     bg-transparent outline-none
   `,
   editor: `
-    bg-inherit py-3 px-4 rounded outline-none text-sm
-    border focus:border-neutral-700 text-neutral-400
+    bg-inherit py-3 px-4 outline-none text-sm
+    border-b focus:border-neutral-700 text-neutral-400
     placeholder-neutral-600
   `
 }

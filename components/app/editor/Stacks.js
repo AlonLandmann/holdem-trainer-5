@@ -10,21 +10,26 @@ export default function Stacks({ range, setRange }) {
   }
 
   return (
-    <div className='flex gap-1'>
-      {positions.map((position, i) => (
-        <div key={'position' + position}>
-          <div className='text-neutral-500 text-xs text-center px-[3px] py-[5px]'>
-            {position}
+    <div className='p-3'>
+      <h1 className='text-sm text-neutral-400 mb-2'>
+        Stacks
+      </h1>
+      <div className='flex gap-1'>
+        {positions.map((position, i) => (
+          <div key={'position' + position}>
+            <div className='text-neutral-500 text-xs text-center px-[3px] py-[5px]'>
+              {position}
+            </div>
+            <Input
+              theme='editor'
+              utilClasses='spinner-less w-10 px-[3px] py-[5px] text-center'
+              type='number'
+              value={range.stacks[i]}
+              onChange={e => handleChange(e, i)}
+            />
           </div>
-          <Input
-            theme='editor'
-            utilClasses='spinner-less w-10 px-[3px] py-[5px] text-center'
-            type='number'
-            value={range.stacks[i]}
-            onChange={e => handleChange(e, i)}
-          />
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   )
 }
