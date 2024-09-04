@@ -1,5 +1,5 @@
 import { frequencyColor, strategyColor } from '@/lib/client/colors'
-import { combos, numFromSuit, numFromValue, sameValue, suits, values } from '@/lib/shared/cards'
+import { combos, includingValue, numFromSuit, numFromValue, sameValue, suits, values } from '@/lib/shared/cards'
 
 export default function Matrix({ range, selected, setSelected, hovered, setHovered }) {
   const cellWidth = 15
@@ -98,6 +98,8 @@ export default function Matrix({ range, selected, setSelected, hovered, setHover
               borderRight: '1px solid rgb(38, 38, 38)',
               borderBottom: '1px solid rgb(38, 38, 38)',
             }}
+            onMouseLeave={() => { setHovered([]) }}
+            onMouseEnter={() => { setHovered(includingValue(value)) }}
           >
             <div className='grow flex justify-center items-center text-sm text-neutral-400'>
               {value}
@@ -134,9 +136,13 @@ export default function Matrix({ range, selected, setSelected, hovered, setHover
               borderBottom: '1px solid rgb(38, 38, 38)',
               borderLeft: '1px solid rgb(38, 38, 38)',
             }}
+            onMouseLeave={() => { setHovered([]) }}
+            onMouseEnter={() => { setHovered(includingValue(value)) }}
           >
 
-            <div className='grow flex justify-center items-center text-sm text-neutral-400'>
+            <div
+              className='grow flex justify-center items-center text-sm text-neutral-400'
+            >
               {value}
             </div>
             <div
