@@ -148,7 +148,7 @@ export default function RangeBanner({ range, target, setTarget, selectedRanges, 
         <Button
           theme='tertiary'
           icon='pen'
-          onClick={() => { window.open(`/app/editor/${range.id}`, '_blank') }}
+          onClick={() => { window.location = `/app/editor/${range.id}` }}
         />
         <Button
           theme='tertiary'
