@@ -1,7 +1,9 @@
-import Button from '@/components/_common_/Button'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import Matrix from './Matrix'
+import Sidebar from './Sidebar'
+import Toolbar from './Toolbar'
+import Title from './Title'
 
 export default function EditorMain({ user }) {
   const router = useRouter()
@@ -11,42 +13,16 @@ export default function EditorMain({ user }) {
 
   return !range ? null : (
     <>
-      <div className='bg-neutral-900 border-r w-72'>
-        <div className='border-b p-3'>
-          <h1 className='text-neutral-600'>
-            Editor
-          </h1>
-        </div>
-        <div className='overflow-auto'>
-
-        </div>
+      <div className='bg-neutral-900 border-r w-72 max-h-screen'>
+        <Title />
+        <Sidebar
+          range={range}
+          setRange={setRange}
+        />
       </div>
       <div className='bg-neutral-900 grow'>
-        <div className='border-b p-3 flex gap-3'>
-          <h1 className='text-neutral-500 mr-auto'>
-            {range.name}
-          </h1>
-          <Button
-            theme='tertiary'
-            utilClasses='text-neutral-500 hover:text-neutral-300'
-            icon='arrow-counterclockwise'
-          />
-          <Button
-            theme='tertiary'
-            utilClasses='text-neutral-500 hover:text-neutral-300'
-            icon='arrow-clockwise'
-          />
-          <Button
-            theme='tertiary'
-            utilClasses='text-neutral-500 hover:text-neutral-300'
-            icon='floppy'
-          />
-        </div>
-        <div>
-          <Matrix
-            range={range}
-          />
-        </div>
+        <Toolbar range={range} />
+        <Matrix range={range} />
       </div>
     </>
   )

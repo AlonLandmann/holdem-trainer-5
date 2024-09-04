@@ -107,7 +107,7 @@ export default function FolderContent({ selectedFolder }) {
       }
       {selectedFolder.ranges.length > 0 &&
         <div
-          className='px-3 bg-neutral-950 h-full overflow-auto'
+          className='px-3 bg-neutral-950 h-full overflow-y-auto'
           onDragLeave={handleDragLeave}
         >
           <RangeGap
