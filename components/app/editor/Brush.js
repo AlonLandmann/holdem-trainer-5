@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import BrushOption from './BrushOption'
 import { evenSplit } from '@/lib/shared/rounding'
 import { produce } from 'immer'
@@ -17,6 +17,10 @@ export default function Brush({ range, setRange, selected, setSelected }) {
   const [frequencies, setFrequencies] = useState(evenSplit(n))
   const [size, setSize] = useState('')
   const [anyErrors, setAnyErrors] = useState(false)
+
+  useEffect(() => {
+    setFrequencies(evenSplit(n))
+  }, [n])
 
   function addOption(index, option) {
     setRange(produce(draft => {
