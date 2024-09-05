@@ -86,7 +86,7 @@ export default function BrushOption({
       <Input
         theme='editor'
         type='number'
-        utilClasses={error ? 'border-b-red-300 focus:border-b-red-400' : ''}
+        utilClasses={error ? 'border-[#855] focus:border-[#855]' : ''}
         min={0}
         max={100}
         step={0.1}
