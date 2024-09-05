@@ -74,7 +74,7 @@ export default function BrushOption({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <div style={{ background: enabled ? optionColor(option, range.spot) : '#666' }}></div>
+      <div className='w-[15px] h-[15px] rounded-sm' style={{ background: enabled ? optionColor(option, range.spot) : '#666' }}></div>
       <div className='flex justify-between items-center gap-2 text-nowrap text-clip'>
         <div>
           {display}
