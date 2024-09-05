@@ -2,6 +2,8 @@ import { positions, spotInfo, streets } from '@/lib/shared/spots'
 import HistoryAction from './HistoryAction'
 import HistoryAddAction from './HistoryAddAction'
 import HistoryAddStreet from './HistoryAddStreet'
+import Button from '@/components/_common_/Button'
+import { produce } from 'immer'
 
 export default function History({ range, setRange }) {
   function adjustDraftToNewHistory(draft) {
@@ -26,11 +28,30 @@ export default function History({ range, setRange }) {
     }
   }
 
+  function handleUndo() {
+    setRange(produce(draft => {
+      draft.history.pop()
+      adjustDraftToNewHistory(draft)
+    }))
+  }
+
   return (
     <div className='p-3'>
-      <h1 className='text-sm text-neutral-400 mb-2'>
-        History
-      </h1>
+      <div>
+        <h1 className='text-sm text-neutral-400 mb-2'>
+          History
+        </h1>
+        <div>
+          <i className='bi bi-database'></i>
+          <span>{range.spot.pot}</span>
+        </div>
+        <Button
+          theme='tertiary'
+          icon='arrow-left'
+          onClick={handleUndo}
+          disabled={!range.history.length}
+        />
+      </div>
       <div>
         {range.spot.blinds.map(action => (
           <HistoryAction
