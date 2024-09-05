@@ -4,7 +4,7 @@ import { numFromSuit, numFromValue, suits, values } from '@/lib/shared/cards'
 export default function MatrixDisplay({ range }) {
   const cellWidth = 4
   const blockWidth = 4 * cellWidth
-  const matrixWidth = 13 * blockWidth
+  const matrixWidth = 13 * blockWidth + 2
 
   const maxFrequency = Math.max(...range.matrix.map(c => c.frequency))
 
@@ -37,11 +37,13 @@ export default function MatrixDisplay({ range }) {
 
   return (
     <div
+      className='border'
       style={{
         width: `${matrixWidth}px`,
         height: `${matrixWidth}px`,
         display: 'grid',
         gridTemplateColumns: `repeat(13, ${blockWidth}px)`,
+        background: '#222',
       }}
     >
       {values.map(v1 => (

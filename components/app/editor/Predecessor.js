@@ -45,7 +45,7 @@ export default function Predecessor({ range, setRange }) {
   }, [loading])
 
   function handleChange(event) {
-    const id = event.target.value
+    const id = Number(event.target.value)
     setPredecessorId(id)
 
     if (id === '') {

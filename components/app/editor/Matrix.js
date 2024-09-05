@@ -179,6 +179,7 @@ export default function Matrix({ range, selected, setSelected, hovered, setHover
           display: 'grid',
           gridTemplateColumns: `repeat(13, ${blockWidth}px)`,
           gap: '1px',
+          background: '#222',
         }}
       >
         {values.map(v1 => (

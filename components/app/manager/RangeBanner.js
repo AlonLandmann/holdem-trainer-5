@@ -121,7 +121,7 @@ export default function RangeBanner({ range, target, setTarget, selectedRanges, 
               </>
             }
           </div>
-          <div className='text-neutral-600 mb-auto z-40'>
+          <div className='text-neutral-600 mb-auto flex gap-2 z-40'>
             {range.history.map((action, i) => (
               <div key={'action' + i}>
                 {action.cards
