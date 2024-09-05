@@ -1,6 +1,7 @@
 import Brush from './Brush'
 import Categories from './Categories'
 import History from './History'
+import Legend from './Legend'
 import Predecessor from './Predecessor'
 import Stacks from './Stacks'
 
@@ -36,6 +37,11 @@ export default function Sidebar({
         selected={selected}
         setSelected={setSelected}
         setOptionHover={setOptionHover}
+      />
+      <Legend
+        range={range}
+        setSelected={setSelected}
+        setHovered={setHovered}
       />
       <Categories
         range={range}
