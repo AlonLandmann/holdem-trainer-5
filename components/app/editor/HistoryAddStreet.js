@@ -29,7 +29,7 @@ export default function HistoryAddStreet({ spot, setRange, adjustDraftToNewHisto
           className='w-14 appearance-none'
           name={String(i)}
           value={cards[i]}
-          onChange={() => { handleChangeCard(i) }}
+          onChange={e => handleChangeCard(e, i)}
         >
           {deck.map((card => (
             <option
