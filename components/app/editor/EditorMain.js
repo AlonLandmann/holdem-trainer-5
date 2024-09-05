@@ -17,13 +17,19 @@ export default function EditorMain({ user }) {
   const [future, setFuture] = useState([])
   const [error, setError] = useState(false)
 
+  function setRangeWithUndo(newRange) {
+    setPast((prev) => [...prev, range].slice(-50)) 
+    setRange(newRange)
+    setFuture([])
+  }
+
   return !range ? null : (
     <>
       <div className='bg-neutral-900 border-r max-h-screen overflow-y-auto'>
         <Title />
         <Sidebar
           range={range}
-          setRange={setRange}
+          setRange={setRangeWithUndo}
           selected={selected}
           setSelected={setSelected}
           setHovered={setHovered}
