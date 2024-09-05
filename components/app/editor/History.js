@@ -1,6 +1,31 @@
+import { positions, spotInfo, streets } from '@/lib/shared/spots'
 import HistoryAction from './HistoryAction'
+import HistoryAddAction from './HistoryAddAction'
+import HistoryAddStreet from './HistoryAddStreet'
 
 export default function History({ range, setRange }) {
+  function adjustDraftToNewHistory(draft) {
+    draft.spot = spotInfo(draft.stacks, draft.history)
+
+    if (['fold / call', 'fold / call / raise'].includes(draft.spot.state)) {
+      draft.options = [{ type: 'fold' }, { type: 'call' }]
+
+      for (let i = 0; i < draft.matrix.length; i++) {
+        draft.matrix[i].frequency = 1
+        draft.matrix[i].strategy = [1, 0]
+      }
+    }
+
+    if (draft.spot.state === 'check / bet') {
+      draft.options = [{ type: 'check' }]
+
+      for (let i = 0; i < draft.matrix.length; i++) {
+        draft.matrix[i].frequency = 1
+        draft.matrix[i].strategy = [1]
+      }
+    }
+  }
+
   return (
     <div className='p-3'>
       <h1 className='text-sm text-neutral-400 mb-2'>
@@ -23,6 +48,30 @@ export default function History({ range, setRange }) {
           />
         ))}
       </div>
+      {range.spot.options &&
+        <HistoryAddAction
+          spot={range.spot}
+          setRange={setRange}
+          adjustDraftToNewHistory={adjustDraftToNewHistory}
+        />
+      }
+      {streets.includes(range.spot.state) &&
+        <HistoryAddStreet
+          spot={range.spot}
+          setRange={setRange}
+          adjustDraftToNewHistory={adjustDraftToNewHistory}
+        />
+      }
+      {range.spot.state == 'showdown' &&
+        <div>
+          showdown
+        </div>
+      }
+      {range.spot.state == 'takedown' &&
+        <div>
+          {positions[range.spot.hasFolded.findIndex(f => !f)]} wins
+        </div>
+      }
     </div>
   )
 }

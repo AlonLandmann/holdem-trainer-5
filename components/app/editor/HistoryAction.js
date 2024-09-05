@@ -1,4 +1,4 @@
-import { positions, spotInfo } from '@/lib/server/spots'
+import { positions, spotInfo } from '@/lib/shared/spots'
 
 export default function HistoryAction({ range, action, i = 0 }) {
   const isStreet = Boolean(action.cards)

@@ -20,6 +20,8 @@ export default function Input({
   name = '',
   type = 'text',
   placeholder = '',
+  min = undefined,
+  max = undefined,
   value,
   onChange,
 }) {
@@ -31,6 +33,8 @@ export default function Input({
       `}
       name={name}
       type={type}
+      min={min}
+      max={max}
       placeholder={placeholder}
       value={value}
       onChange={onChange}

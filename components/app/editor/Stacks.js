@@ -1,5 +1,5 @@
 import Input from '@/components/_common_/Input'
-import { positions } from '@/lib/server/spots'
+import { positions } from '@/lib/shared/spots'
 import { produce } from 'immer'
 
 export default function Stacks({ range, setRange }) {
