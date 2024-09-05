@@ -5,10 +5,6 @@ export default async function handler(req, res) {
   try {
     switch (req.method) {
       case 'GET':
-        if (req.query.action === 'undefined') {
-          return res.status(200).json({ success: false })
-        }
-
         const userId = Number(req.query.userId)
         const historyToMatch = JSON.parse(req.query.history)
         const optionToMatch = JSON.parse(req.query.option)
@@ -26,8 +22,6 @@ export default async function handler(req, res) {
             }
           }
         })
-
-        console.log(candidateRanges)
 
         const clientRanges = candidateRanges.map(r => toClientFormat(r))
         return res.status(200).json({ success: true, ranges: clientRanges })
