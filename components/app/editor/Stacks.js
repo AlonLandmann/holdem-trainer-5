@@ -73,20 +73,24 @@ export default function Stacks({ range, setRange, setError }) {
           <i className='bi bi-lock text-sm text-neutral-600'></i>
         }
       </div>
-      <div className='flex gap-1'>
-        {positions.map((position, i) => (
-          <div key={'position' + position}>
-            <div className='text-neutral-500 text-xs text-center px-[3px] py-[5px]'>
-              {position}
-            </div>
-            <Input
-              theme='editor'
-              utilClasses='spinner-less w-10 px-[3px] py-[5px] text-center'
-              type='number'
-              value={stacks[i]}
-              onChange={e => handleChange(e, i)}
-            />
+      <div className='grid grid-cols-6 justify-items-center items-center gap-[2px]'>
+        {positions.map(position => (
+          <div
+            key={'position' + position}
+            className='text-neutral-500 w-12 text-xs text-center px-[3px] py-[5px]'
+          >
+            {position}
           </div>
+        ))}
+        {positions.map((position, i) => (
+          <Input
+            key={'input' + position}
+            theme='editor'
+            utilClasses='spinner-less w-12 px-[3px] py-[5px] text-center'
+            type='number'
+            value={stacks[i]}
+            onChange={e => handleChange(e, i)}
+          />
         ))}
       </div>
     </div>
