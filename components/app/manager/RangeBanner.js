@@ -4,6 +4,7 @@ import { useLoadingQueue } from '@/hooks/useLoadingQueue'
 import { useUser } from '@/hooks/useUser'
 import handleManagerRequest from '@/lib/client/managerRequests'
 import { useEffect, useState } from 'react'
+import MatrixDisplay from './MatrixDisplay'
 
 export default function RangeBanner({ range, target, setTarget, selectedRanges, setSelectedRanges }) {
   const [user, setUser] = useUser()
@@ -64,13 +65,17 @@ export default function RangeBanner({ range, target, setTarget, selectedRanges, 
     }
   }
 
+  // <div className='min-w-36 h-36 bg-neutral-800 rounded mr-4'></div>
+
   return (
     <div
       className='relative flex p-4 gap-6 rounded bg-neutral-900 max-w-[1000px]'
       draggable
       onDragStart={handleDragStart}
     >
-      <div className='min-w-36 h-36 bg-neutral-800 rounded mr-4'></div>
+      <div>
+        <MatrixDisplay range={range} />
+      </div>
       <div className='grow grid grid-cols-1 lg:grid-cols-2 gap-2'>
         <div className='flex flex-col'>
           <div
