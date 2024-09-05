@@ -22,6 +22,7 @@ export default function EditorMain({ user }) {
           setRange={setRange}
           selected={selected}
           setSelected={setSelected}
+          setHovered={setHovered}
         />
       </div>
       <div className='bg-neutral-900 grow'>
