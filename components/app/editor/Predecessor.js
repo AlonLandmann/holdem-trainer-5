@@ -75,25 +75,35 @@ export default function Predecessor({ range, setRange }) {
   }
 
   return (!range.spot.options || typeof index !== 'number' || !user) ? null : (
-    <div>
-      <div>
+    <div className='border rounded-[3px] py-3 px-4 flex flex-col bg-neutral-[#202020] opacity-80'>
+      <h1 className='pb-3 text-neutral-400'>
         Link
+      </h1>
+      <div className='relative min-h-8'>
+        {!loading &&
+          <select  className='appearance-none w-full' value={predecessorId} onChange={handleChange}>
+            <option value=''>-- select a range --</option>
+            {candidates.map(candidate => (
+              <option key={candidate.id} value={candidate.id}>
+                {candidate.name}
+              </option>
+            ))}
+          </select>
+        }
+        {loading &&
+          <div className='absolute w-full left-0 flex justify-center min-h-4'>
+            <span className='inline-block animate-pulse'>
+              ·
+            </span>
+            <span className='inline-block animate-pulse [animation-delay:0.2s]'>
+              ·
+            </span>
+            <span className='inline-block animate-pulse [animation-delay:1s]'>
+              ·
+            </span>
+          </div>
+        }
       </div>
-      {!loading &&
-        <select value={predecessorId} onChange={handleChange}>
-          <option value=''>-- select a range --</option>
-          {candidates.map(candidate => (
-            <option key={candidate.id} value={candidate.id}>
-              {candidate.name}
-            </option>
-          ))}
-        </select>
-      }
-      {loading &&
-        <div>
-          loading...
-        </div>
-      }
     </div>
   )
 }
