@@ -9,7 +9,6 @@ export default function App({ Component, pageProps }) {
       <UserProvider>
         <Component {...pageProps} />
         <Toaster
-          position='top-right'
           toastOptions={{
             style: {
               border: '1px solid rgb(38, 38, 38)',

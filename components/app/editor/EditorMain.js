@@ -20,6 +20,8 @@ export default function EditorMain({ user }) {
         <Sidebar
           range={range}
           setRange={setRange}
+          selected={selected}
+          setSelected={setSelected}
         />
       </div>
       <div className='bg-neutral-900 grow'>

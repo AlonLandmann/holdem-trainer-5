@@ -2,7 +2,7 @@ import { useUser } from '@/hooks/useUser'
 import { produce } from 'immer'
 import { useEffect, useState } from 'react'
 
-export default function Predecessor({ range }) {
+export default function Predecessor({ range, setRange }) {
   const [user, setUser] = useUser()
   const [candidates, setCandidates] = useState([])
   const [predecessorId, setPredecessorId] = useState(range.predecessorId || '')
