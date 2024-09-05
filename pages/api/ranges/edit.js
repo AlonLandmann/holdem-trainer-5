@@ -16,10 +16,10 @@ export default async function handler(req, res) {
         matrix: updatedRange.matrix,
         predecessor: updatedRange.predecessorId
           ? { connect: { id: updatedRange.predecessorId } }
-          : null
+          : { disconnect: true }
       }
     })
 
-    return { success: true }
+    return { success: true, message: 'Changes saved.' }
   })
 }
