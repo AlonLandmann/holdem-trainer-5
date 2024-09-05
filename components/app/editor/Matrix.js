@@ -1,12 +1,17 @@
 import { frequencyColor, strategyColor } from '@/lib/client/colors'
 import { combos, includingValue, numFromSuit, numFromValue, sameValue, suits, values } from '@/lib/shared/cards'
+import { isNull } from 'lodash'
 
-export default function Matrix({ range, selected, setSelected, hovered, setHovered }) {
+export default function Matrix({ range, selected, setSelected, hovered, setHovered, optionHover }) {
   const cellWidth = 15
   const blockWidth = 4 * cellWidth
   const matrixWidth = 13 * blockWidth + 12 + 1
   const headlineWidth = 38 + 2
   const suitArrayWidth = 14
+
+  const maxFrequency = Math.max(...range.matrix.map(c => (
+    isNull(optionHover) ? c.frequency : c.frequency * c.strategy[optionHover])
+  ))
 
   function cellStyle(v1, v2, s1, s2) {
     if (!range.spot.options) return { background: '#181818' }
@@ -35,7 +40,7 @@ export default function Matrix({ range, selected, setSelected, hovered, setHover
       }
     } else {
       return {
-        background: frequencyColor(frequency),
+        background: frequencyColor((isNull(optionHover) ? frequency : frequency * strategy[optionHover]) / maxFrequency),
         opacity: isHovered ? 1 : 0.05,
         borderTop: isSelected ? `${cellWidth}px solid #ff000044` : 'none'
       }

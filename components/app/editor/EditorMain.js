@@ -12,10 +12,11 @@ export default function EditorMain({ user }) {
   const [range, setRange] = useState(selectedRange)
   const [selected, setSelected] = useState([])
   const [hovered, setHovered] = useState([])
+  const [optionHover, setOptionHover] = useState(null)
 
   return !range ? null : (
     <>
-      <div className='bg-neutral-900 border-r max-h-screen'>
+      <div className='bg-neutral-900 border-r max-h-screen overflow-y-auto'>
         <Title />
         <Sidebar
           range={range}
@@ -23,6 +24,7 @@ export default function EditorMain({ user }) {
           selected={selected}
           setSelected={setSelected}
           setHovered={setHovered}
+          setOptionHover={setOptionHover}
         />
       </div>
       <div className='bg-neutral-900 grow'>
@@ -34,6 +36,7 @@ export default function EditorMain({ user }) {
             setSelected={setSelected}
             hovered={hovered}
             setHovered={setHovered}
+            optionHover={optionHover}
           />
         </div>
       </div>

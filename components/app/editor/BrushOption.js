@@ -14,6 +14,7 @@ export default function BrushOption({
   handleChange,
   handleClick,
   setAnyErrors,
+  setOptionHover,
 }) {
   const [value, setValue] = useState(frequency)
   const [error, setError] = useState(false)
@@ -58,17 +59,34 @@ export default function BrushOption({
     handleChange({ target: { value: freq } })
   }
 
+  function handleMouseEnter() {
+    setOptionHover(range.options.findIndex(o => isEqual(o, option)))
+  }
+
+  function handleMouseLeave() {
+    setOptionHover(null)
+  }
+
   return (
-    <div className='flex'>
+    <div
+      className='grid items-center gap-2'
+      style={{ gridTemplateColumns: '15px 110px 90px auto' }}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
       <div style={{ background: enabled ? optionColor(option, range.spot) : '#666' }}></div>
-      <div>
-        {display}
-      </div>
-      <div>
-        {percentage}
+      <div className='flex justify-between items-center gap-2 text-nowrap text-clip'>
+        <div>
+          {display}
+        </div>
+        <div className='text-neutral-500'>
+          {percentage}
+        </div>
       </div>
       <Input
-        theme='editor' type='number'
+        theme='editor'
+        type='number'
+        utilClasses={error ? 'border-b-red-300 focus:border-b-red-400' : ''}
         min={0}
         max={100}
         step={0.1}
@@ -78,6 +96,7 @@ export default function BrushOption({
       />
       <Button
         theme='secondary'
+        utilClasses='self-stretch px-3 py-0'
         icon={option.size ? 'trash3' : (enabled ? 'ban' : 'check2')}
         onClick={handleClick}
       />

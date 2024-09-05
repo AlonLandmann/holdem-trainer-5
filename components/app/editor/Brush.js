@@ -8,7 +8,7 @@ import Button from '@/components/_common_/Button'
 import { isValid } from '@/lib/shared/cards'
 import BrushSlider from './BrushSlider'
 
-export default function Brush({ range, setRange, selected, setSelected }) {
+export default function Brush({ range, setRange, selected, setSelected, setOptionHover }) {
   const foldEnabled = Boolean(range.options.find(o => o.type === 'fold'))
   const callEnabled = Boolean(range.options.find(o => o.type === 'call'))
   const checkEnabled = Boolean(range.options.find(o => o.type === 'check'))
@@ -151,11 +151,11 @@ export default function Brush({ range, setRange, selected, setSelected }) {
   }
 
   return (!range.spot.options) ? null : (
-    <div>
-      <h1>
+    <div className='border rounded py-3 px-4 flex flex-col bg-neutral-[#181818] opacity-80'>
+      <h1 className='pb-1 text-neutral-400'>
         Brush
       </h1>
-      <div>
+      <div className='pl-1 flex flex-col gap-[6px]'>
         {['fold / call', 'fold / call / raise'].includes(range.spot.state) &&
           <>
             <BrushOption
@@ -167,6 +167,7 @@ export default function Brush({ range, setRange, selected, setSelected }) {
               handleChange={e => handleFrequencyChange(e, 0)}
               handleClick={() => handleToggle('fold')}
               setAnyErrors={setAnyErrors}
+              setOptionHover={setOptionHover}
             />
             <BrushOption
               range={range}
@@ -177,6 +178,7 @@ export default function Brush({ range, setRange, selected, setSelected }) {
               handleChange={e => handleFrequencyChange(e, foldEnabled ? 1 : 0)}
               handleClick={() => handleToggle('call')}
               setAnyErrors={setAnyErrors}
+              setOptionHover={setOptionHover}
             />
           </>
         }
@@ -190,6 +192,7 @@ export default function Brush({ range, setRange, selected, setSelected }) {
             handleChange={e => handleFrequencyChange(e, 0)}
             handleClick={() => handleToggle('check')}
             setAnyErrors={setAnyErrors}
+            setOptionHover={setOptionHover}
           />
         }
         {range.options.filter(o => o.size).map((option, i) => (
@@ -203,11 +206,15 @@ export default function Brush({ range, setRange, selected, setSelected }) {
             handleChange={e => handleFrequencyChange(e, offset + i)}
             handleClick={() => handleRemoveOption(offset + i)}
             setAnyErrors={setAnyErrors}
+            setOptionHover={setOptionHover}
           />
         ))}
       </div>
       {['fold / call / raise', 'check / bet'].includes(range.spot.state) && range.options.length < 10 &&
-        <div>
+        <div
+          className='pt-8 grid items-center gap-2'
+          style={{ gridTemplateColumns: '235px auto' }}
+        >
           <Input
             theme='editor'
             type='number'
@@ -219,6 +226,7 @@ export default function Brush({ range, setRange, selected, setSelected }) {
           />
           <Button
             theme='secondary'
+            utilClasses='self-stretch py-0 px-[12px]'
             text='add size'
             onClick={handleAddSize}
           />
@@ -231,6 +239,7 @@ export default function Brush({ range, setRange, selected, setSelected }) {
       />
       <Button
         theme='secondary'
+        utilClasses='w-full py-[11px] px-3 justify-center'
         text='apply brush'
         icon='brush'
         disabled={anyErrors}

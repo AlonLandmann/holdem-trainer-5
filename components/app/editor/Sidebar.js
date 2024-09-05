@@ -4,7 +4,7 @@ import History from './History'
 import Predecessor from './Predecessor'
 import Stacks from './Stacks'
 
-export default function Sidebar({ range, setRange, selected, setSelected, setHovered }) {
+export default function Sidebar({ range, setRange, selected, setSelected, setHovered, setOptionHover }) {
   return (
     <div className='overflow-y-auto'>
       <Stacks
@@ -24,6 +24,7 @@ export default function Sidebar({ range, setRange, selected, setSelected, setHov
         setRange={setRange}
         selected={selected}
         setSelected={setSelected}
+        setOptionHover={setOptionHover}
       />
       <Categories
         range={range}
