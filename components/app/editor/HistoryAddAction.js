@@ -36,13 +36,14 @@ export default function HistoryAddAction({ spot, setRange, adjustDraftToNewHisto
   }
 
   return (
-    <div className='flex items-center gap-2 mt-2'>
-      <div className='mr-auto'>
+    <div className='flex justify-center gap-1'>
+      <div className='self-center px-3 text-sm text-neutral-400 lowercase'>
         {positions[spot.p]}
       </div>
       {spot.options.includes('fold') &&
         <Button
           theme='secondary'
+          utilClasses='px-3 py-0'
           text='fold'
           onClick={() => { handleAddAction('fold') }}
         />
@@ -50,6 +51,7 @@ export default function HistoryAddAction({ spot, setRange, adjustDraftToNewHisto
       {spot.options.includes('call') &&
         <Button
           theme='secondary'
+          utilClasses='px-3 py-0'
           text='call'
           onClick={() => { handleAddAction('call') }}
         />
@@ -57,6 +59,7 @@ export default function HistoryAddAction({ spot, setRange, adjustDraftToNewHisto
       {spot.options.includes('check') &&
         <Button
           theme='secondary'
+          utilClasses='px-3 py-0'
           text='check'
           onClick={() => { handleAddAction('check') }}
         />
@@ -65,7 +68,7 @@ export default function HistoryAddAction({ spot, setRange, adjustDraftToNewHisto
         <>
           <Input
             theme='editor'
-            utilClasses='spinner-less'
+            utilClasses='spinner-less min-w-20'
             type='number'
             min={spot.min}
             max={spot.max}
@@ -75,6 +78,7 @@ export default function HistoryAddAction({ spot, setRange, adjustDraftToNewHisto
           />
           <Button
             theme='secondary'
+            utilClasses='px-3 py-0'
             text='bet'
             onClick={() => { handleAddAction('bet') }}
           />
@@ -84,6 +88,7 @@ export default function HistoryAddAction({ spot, setRange, adjustDraftToNewHisto
         <>
           <Input
             theme='editor'
+            utilClasses='spinner-less min-w-20'
             type='number'
             min={spot.min}
             max={spot.max}
@@ -93,6 +98,7 @@ export default function HistoryAddAction({ spot, setRange, adjustDraftToNewHisto
           />
           <Button
             theme='secondary'
+            utilClasses='px-3 py-0'
             text='raise'
             onClick={() => { handleAddAction('raise') }}
           />

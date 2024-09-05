@@ -19,3 +19,25 @@ input.spinner-less[type=number]::-webkit-outer-spin-button {
 input.spinner-less[type=number] {
   -moz-appearance: textfield;
 }
+
+select {
+  padding: 10px 15px;
+  border: 1px solid #333;
+  border-radius: 3px;
+  outline: none;
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: 14px;
+  background: #222;
+
+  &::placeholder {
+    color: #ccc;
+  }
+
+  &:focus {
+    border: 1px solid #555;
+
+    &::placeholder {
+      color: #fff;
+    }
+  }
+}

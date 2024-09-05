@@ -22,10 +22,11 @@ export default function HistoryAddStreet({ spot, setRange, adjustDraftToNewHisto
   }
 
   return (
-    <div>
+    <div className='flex justify-center gap-1'>
       {cards.map((_, i) => (
         <select
           key={'card' + i}
+          className='w-14 appearance-none'
           name={String(i)}
           value={cards[i]}
           onChange={() => { handleChangeCard(i) }}
@@ -43,6 +44,7 @@ export default function HistoryAddStreet({ spot, setRange, adjustDraftToNewHisto
       ))}
       <Button
         theme='secondary'
+        utilClasses='px-3 py-0'
         text={`set ${street}`}
         onClick={handleAddStreet}
       />

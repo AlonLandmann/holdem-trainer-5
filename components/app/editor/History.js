@@ -4,8 +4,11 @@ import HistoryAddAction from './HistoryAddAction'
 import HistoryAddStreet from './HistoryAddStreet'
 import Button from '@/components/_common_/Button'
 import { produce } from 'immer'
+import { useState } from 'react'
 
 export default function History({ range, setRange, error }) {
+  const [mouseOver, setMouseOver] = useState(false)
+
   function adjustDraftToNewHistory(draft) {
     draft.spot = spotInfo(draft.stacks, draft.history)
 
@@ -36,7 +39,20 @@ export default function History({ range, setRange, error }) {
   }
 
   return (
-    <div className='p-3'>
+    <div
+      className='relative border rounded-[3px] py-3 px-4 flex flex-col bg-neutral-[#181818] opacity-80'
+      onMouseEnter={() => { setMouseOver(true) }}
+      onMouseLeave={() => { setMouseOver(false) }}
+    >
+      {(error && mouseOver) &&
+        <div
+          className='absolute top-[1px] left-[1px] rounded-sm flex justify-center items-center gap-2 bg-[#111111ee] z-10'
+          style={{ height: 'calc(100% - 1px)', width: 'calc(100% - 1px)' }}
+        >
+          <i className='bi bi-lock'></i>
+          <div>To edit history, enter valid stacks.</div>
+        </div>
+      }
       <div>
         <h1 className='text-sm text-neutral-400 mb-2'>
           History

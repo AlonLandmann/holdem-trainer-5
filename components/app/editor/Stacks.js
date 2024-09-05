@@ -1,5 +1,5 @@
 import Input from '@/components/_common_/Input'
-import { positions } from '@/lib/shared/spots'
+import { positions, spotInfo } from '@/lib/shared/spots'
 import { produce } from 'immer'
 import { useEffect, useState, useTransition } from 'react'
 
@@ -58,7 +58,7 @@ export default function Stacks({ range, setRange, setError }) {
     >
       {(locked && mouseOver) &&
         <div
-          className='absolute top-[1px] left-[1px] rounded-sm flex justify-center items-center gap-2 bg-[#111111ee]'
+          className='absolute top-[1px] left-[1px] rounded-sm flex justify-center items-center gap-2 bg-[#111111ee] z-10'
           style={{ height: 'calc(100% - 1px)', width: 'calc(100% - 1px)' }}
         >
           <i className='bi bi-lock'></i>
@@ -85,11 +85,12 @@ export default function Stacks({ range, setRange, setError }) {
         {positions.map((position, i) => (
           <Input
             key={'input' + position}
+            name={String(i)}
             theme='editor'
             utilClasses='spinner-less w-12 px-[3px] py-[5px] text-center'
             type='number'
             value={stacks[i]}
-            onChange={e => handleChange(e, i)}
+            onChange={handleChange}
           />
         ))}
       </div>
