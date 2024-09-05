@@ -53,22 +53,23 @@ export default function History({ range, setRange, error }) {
           <div>To edit history, enter valid stacks.</div>
         </div>
       }
-      <div>
-        <h1 className='text-sm text-neutral-400 mb-2'>
+      <div className='mb-3 flex items-center gap-4  text-neutral-400'>
+        <h1 className='mr-auto'>
           History
         </h1>
-        <div>
+        <div className='flex gap-[6px] text-sm'>
           <i className='bi bi-database'></i>
           <span>{range.spot.pot}</span>
         </div>
         <Button
           theme='tertiary'
+          utilClasses='py-[6px] px-[9px]'
           icon='arrow-left'
           onClick={handleUndo}
           disabled={!range.history.length}
         />
       </div>
-      <div>
+      <div className='mb-3 flex flex-col gap-[2px]'>
         {range.spot.blinds.map(action => (
           <HistoryAction
             key={'blind' + action.p}
@@ -99,13 +100,13 @@ export default function History({ range, setRange, error }) {
           adjustDraftToNewHistory={adjustDraftToNewHistory}
         />
       }
-      {range.spot.state == 'showdown' &&
-        <div>
+      {range.spot.state === 'showdown' &&
+        <div className='px-2 py-1 text-center text-neutral-400'>
           showdown
         </div>
       }
-      {range.spot.state == 'takedown' &&
-        <div>
+      {range.spot.state === 'takedown' &&
+        <div className='px-2 py-1 text-center text-neutral-400'>
           {positions[range.spot.hasFolded.findIndex(f => !f)]} wins
         </div>
       }
