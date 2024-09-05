@@ -53,7 +53,7 @@ export default function History({ range, setRange, error }) {
           <div>To edit history, enter valid stacks.</div>
         </div>
       }
-      <div className='mb-3 flex items-center gap-4  text-neutral-400'>
+      <div className='mb-3 flex items-center text-neutral-400'>
         <h1 className='mr-auto'>
           History
         </h1>
@@ -61,13 +61,15 @@ export default function History({ range, setRange, error }) {
           <i className='bi bi-database'></i>
           <span>{range.spot.pot}</span>
         </div>
-        <Button
-          theme='tertiary'
-          utilClasses='py-[6px] px-[9px]'
-          icon='arrow-left'
-          onClick={handleUndo}
-          disabled={!range.history.length}
-        />
+        <div className='w-14 flex justify-end'>
+          <Button
+            theme='tertiary'
+            utilClasses='py-[6px] px-[2px]'
+            icon='arrow-left'
+            onClick={handleUndo}
+            disabled={!range.history.length}
+          />
+        </div>
       </div>
       <div className='mb-3 flex flex-col gap-[2px]'>
         {range.spot.blinds.map(action => (
