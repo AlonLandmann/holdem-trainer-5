@@ -13,6 +13,9 @@ export default function EditorMain({ user }) {
   const [selected, setSelected] = useState([])
   const [hovered, setHovered] = useState([])
   const [optionHover, setOptionHover] = useState(null)
+  const [past, setPast] = useState([])
+  const [future, setFuture] = useState([])
+  const [error, setError] = useState(false)
 
   return !range ? null : (
     <>
@@ -25,10 +28,20 @@ export default function EditorMain({ user }) {
           setSelected={setSelected}
           setHovered={setHovered}
           setOptionHover={setOptionHover}
+          error={error}
+          setError={setError}
         />
       </div>
       <div className='bg-neutral-900 grow'>
-        <Toolbar range={range} />
+        <Toolbar
+          range={range}
+          setRange={setRange}
+          past={past}
+          setPast={setPast}
+          future={future}
+          setFuture={setFuture}
+          error={error}
+        />
         <div className='p-3'>
           <Matrix
             range={range}

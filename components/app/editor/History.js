@@ -5,7 +5,7 @@ import HistoryAddStreet from './HistoryAddStreet'
 import Button from '@/components/_common_/Button'
 import { produce } from 'immer'
 
-export default function History({ range, setRange }) {
+export default function History({ range, setRange, error }) {
   function adjustDraftToNewHistory(draft) {
     draft.spot = spotInfo(draft.stacks, draft.history)
 
