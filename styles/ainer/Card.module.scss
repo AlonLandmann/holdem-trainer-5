@@ -37,21 +37,17 @@
 //   background: #3a6e48;
 // }
 
-$stripeColor1: #888;
-$stripeColor2: #555;
-$stripeSize: 5%;
-
-.back {
-  height: 50px;
-  width: 33px;
-  // border: 1px solid $stripeColor2;
-  border-radius: 3px;
-  background: repeating-linear-gradient(-45deg,
-    $stripeColor1,
-    $stripeColor1 $stripeSize,
-    $stripeColor2 $stripeSize,
-    $stripeColor2 calc(2 * $stripeSize));
-}
+// .back {
+//   height: 50px;
+//   width: 33px;
+//   // border: 1px solid $#555;;
+//   border-radius: 3px;
+//   background: repeating-linear-gradient(-45deg,
+//     #888,
+//     #888 6px,
+//     #555 6px,
+//     #555 12px);
+// }
 
 // .icon {
 //   position: absolute;
