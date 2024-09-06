@@ -13,7 +13,7 @@ export default function TrainerRoot() {
         <RangePlaceholder />
       }
       {user && user.hasRanges &&
-        <TrainerMain />
+        <TrainerMain user={user} />
       }
     </div>
   )
