@@ -5,6 +5,7 @@ import { sample } from 'lodash'
 import { rng } from '@/lib/shared/rounding'
 import { sampleHoleCards } from '@/lib/shared/cards'
 import History from './History'
+import Table from './Table'
 
 export default function TrainerMain({ user }) {
   const [sidebarInView, setSidebarInView] = useState(true)
@@ -15,6 +16,7 @@ export default function TrainerMain({ user }) {
   const [spot, setSpot] = useState(null)
   const [holeCards, setHoleCards] = useState(null)
   const [randomNumber, setRandomNumber] = useState(null)
+  const [flash, setFlash] = useState(null)
 
   useEffect(() => {
     const ids = router.query.ids ? JSON.parse(router.query.ids) : []
@@ -52,6 +54,12 @@ export default function TrainerMain({ user }) {
             range={range}
             spot={spot}
             setSpot={setSpot}
+          />
+          <Table
+            spot={spot}
+            holeCards={holeCards}
+            heroPosition={range.spot.p}
+            flash={flash}
           />
         </div>
       }

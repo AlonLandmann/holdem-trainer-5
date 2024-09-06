@@ -2,17 +2,17 @@
 .h,
 .d,
 .c {
-  position: relative;
-  height: 50px; // altered with js
-  width: 33px;  // altered with js
-  border-radius: 3px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  // font-family: 'Rubik', sans-serif;
-  color: #ddd;
-  font-size: 20px;  // altered with js
-  overflow: hidden;
+  // position: relative;
+  // height: 50px; // altered with js
+  // width: 33px;  // altered with js
+  // border-radius: 3px;
+  // display: flex;
+  // justify-content: center;
+  // align-items: center;
+  // // font-family: 'Rubik', sans-serif;
+  // color: #ddd;
+  // font-size: 20px;  // altered with js
+  // overflow: hidden;
 
   &.small {
     height: 35px;
@@ -21,21 +21,21 @@
   }
 }
 
-.s {
-  background: #151515;
-}
+// .s {
+//   background: #151515;
+// }
 
-.h {
-  background: #6c3b3b;
-}
+// .h {
+//   background: #6c3b3b;
+// }
 
-.d {
-  background: #2e6067;
-}
+// .d {
+//   background: #2e6067;
+// }
 
-.c {
-  background: #3a6e48;
-}
+// .c {
+//   background: #3a6e48;
+// }
 
 $stripeColor1: #888;
 $stripeColor2: #555;
@@ -53,10 +53,10 @@ $stripeSize: 5%;
     $stripeColor2 calc(2 * $stripeSize));
 }
 
-.icon {
-  position: absolute;
-  top: 15px; // altered with js
-  left: 5px; // altered with js
-  font-size: 200%;
-  opacity: 0.05;
-}
+// .icon {
+//   position: absolute;
+//   top: 15px; // altered with js
+//   left: 5px; // altered with js
+//   font-size: 200%;
+//   opacity: 0.05;
+// }
