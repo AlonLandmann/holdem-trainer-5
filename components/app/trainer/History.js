@@ -1,4 +1,5 @@
 import Button from '@/components/_common_/Button'
+import { actionInTrainerHistory } from '@/lib/client/display'
 import { spotInfo } from '@/lib/shared/spots'
 
 export default function History({ range, spot, setSpot }) {
@@ -13,14 +14,32 @@ export default function History({ range, spot, setSpot }) {
     setSpot(prev => spotInfo(range.stacks, range.history.slice(0, prev.history.length + 1)))
   }
 
+  function handleDirectChoice(j) {
+    setSpot(spotInfo(range.stacks, range.history.slice(0, j)))
+  }
+
   return (
-    <div>
+    <div className='flex gap-5'>
       <Button
         theme='tertiary'
         icon='chevron-left'
         disabled={i === 0}
         onClick={handleBack}
       />
+      <div>
+        <div className='flex gap-3'>
+          {[{ cards: true }].concat(range.history).map((action, j) => (
+            <div
+              key={'action' + j}
+              className={`${j === i ? 'text-neutral-200' : `text-neutral-600 transition
+                cursor-pointer hover:text-neutral-400`}`}
+              onClick={() => {handleDirectChoice(j)}}
+            >
+              {actionInTrainerHistory(action)}
+            </div>
+          ))}
+        </div>
+      </div>
       <Button
         theme='tertiary'
         icon='chevron-right'
