@@ -1,0 +1,60 @@
+.container {
+  flex-grow: 1;
+  min-height: 600px; // temporary
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  button {
+    padding: 15px 22px;
+    gap: 12px;
+    font-size: 16px;
+  }
+}
+
+.icon {
+  margin-bottom: 20px;
+  font-size: 80px;
+  color: #555;
+}
+
+.heading {
+  margin-bottom: 5px;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.body {
+  margin-bottom: 25px;
+  color: #888;
+}
+
+.loaderContainer {
+  flex-grow: 1;
+  align-self: stretch;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.loaderText {
+  font-size: 24px;
+}
+
+.loader {
+  width: 24px;
+  height: 24px;
+  border: 3px solid #bbb;
+  border-top: 3px solid #333;
+  border-radius: 50%;
+  animation: spin 1.5s linear infinite;
+
+  @keyframes spin {
+    0% { transform: rotate(-360deg); }
+    100% { transform: rotate(0deg); }
+  }
+}

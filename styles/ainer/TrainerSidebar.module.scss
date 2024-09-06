@@ -1,0 +1,28 @@
+.container {
+  position: sticky;
+  top: 60px;
+  z-index: 2;
+  min-width: 280px;
+  max-height: calc(100vh - 80px);
+  overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  background-color: #181818bb;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.folders {
+  margin-bottom: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.total {
+  padding: 20px 20px 40px;
+  text-align: center;
+  color: #777;
+}

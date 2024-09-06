@@ -1,11 +1,20 @@
 import RangePlaceholder from '@/components/_common_/RangePlaceholder'
 import SideNav from '@/components/_common_/SideNav'
+import { useUser } from '@/hooks/useUser'
+import TrainerMain from './TrainerMain'
 
 export default function TrainerRoot() {
+  const [user, setUser] = useUser()
+
   return (
-    <div className='flex h-screen'>
+    <div className='relative flex h-screen'>
       <SideNav />
-      <RangePlaceholder />
+      {user && !user.hasRanges &&
+        <RangePlaceholder />
+      }
+      {user && user.hasRanges &&
+        <TrainerMain />
+      }
     </div>
   )
 }

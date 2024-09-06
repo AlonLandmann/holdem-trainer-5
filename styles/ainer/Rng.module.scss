@@ -1,0 +1,26 @@
+.container {
+  position: relative;
+  width: 100px;
+  border: 1px solid #333;
+  border-radius: 3px;
+  height: 42px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background: #202020;
+  opacity: 0.8;
+}
+
+.number {
+  color: #bbb;
+}
+
+.bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: #282828;
+  z-index: -1;
+}
