@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import { sample } from 'lodash'
 import { rng } from '@/lib/shared/rounding'
 import { sampleHoleCards } from '@/lib/shared/cards'
+import History from './History'
 
 export default function TrainerMain({ user }) {
   const [sidebarInView, setSidebarInView] = useState(true)
@@ -47,9 +48,11 @@ export default function TrainerMain({ user }) {
           <h1 className='text-xl'>
             {range.name}
           </h1>
-          <div>
-
-          </div>
+          <History
+            range={range}
+            spot={spot}
+            setSpot={setSpot}
+          />
         </div>
       }
     </div>
