@@ -2,13 +2,18 @@ import { useEffect, useState } from 'react'
 import Toolbar from './Toolbar'
 import { useRouter } from 'next/router'
 import { sample } from 'lodash'
+import { rng } from '@/lib/shared/rounding'
+import { sampleHoleCards } from '@/lib/shared/cards'
 
 export default function TrainerMain({ user }) {
   const [sidebarInView, setSidebarInView] = useState(true)
   const [statsInView, setStatsInView] = useState(true)
   const router = useRouter()
-  const [ranges, setRanges] = useState([])
-  const [range, setRange] = useState(sample())
+  const [ranges, setRanges] = useState(null)
+  const [range, setRange] = useState(null)
+  const [spot, setSpot] = useState(null)
+  const [holeCards, setHoleCards] = useState(null)
+  const [randomNumber, setRandomNumber] = useState(null)
 
   useEffect(() => {
     const ids = router.query.ids ? JSON.parse(router.query.ids) : []
@@ -22,8 +27,13 @@ export default function TrainerMain({ user }) {
       })
     })
 
+    const loadedRange = sample(loadedRanges)
+
     setRanges(loadedRanges)
-    setRange(sample(loadedRanges))
+    setRange(loadedRange)
+    setSpot(loadedRange.spot)
+    setHoleCards(sampleHoleCards(loadedRange))
+    setRandomNumber(rng())
   }, [router.isReady])
 
   return (
@@ -33,10 +43,13 @@ export default function TrainerMain({ user }) {
         setStatsInView={setStatsInView}
       />
       {range &&
-        <div>
-          <h1>
+        <div className='p-5 flex flex-col items-center gap-5'>
+          <h1 className='text-xl'>
             {range.name}
           </h1>
+          <div>
+
+          </div>
         </div>
       }
     </div>
