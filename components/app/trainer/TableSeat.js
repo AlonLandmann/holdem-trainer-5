@@ -1,14 +1,14 @@
 import { positions } from '@/lib/shared/spots'
 import Card from './Card'
 
-export default function TableSeat({ spot, seat, combo, heroPosition }) {
+export default function TableSeat({ spot, seat, heroPosition, combo }) {
   const p = (heroPosition + seat) % 6
 
   const layout = [
-    { left: '50%', transform: `translateX(-50%)`, bottom: '15px' },
+    { left: '50%', transform: 'translateX(-50%)', bottom: '15px' },
     { left: '45px', bottom: '60px' },
     { left: '45px', top: '60px' },
-    { left: '50%', transform: `translateX(-50%)`, top: '15px' },
+    { left: '50%', transform: 'translateX(-50%)', top: '15px' },
     { right: '45px', top: '60px' },
     { right: '45px', bottom: '60px' }
   ]

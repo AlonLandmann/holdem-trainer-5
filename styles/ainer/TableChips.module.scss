@@ -1,51 +1,50 @@
-.committed0,
-.committed1,
-.committed2,
-.committed3,
-.committed4,
-.committed5 {
-  position: absolute;
-  height: 30px;
-  width: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  color: #888;
-}
+// .committed0,
+// .committed1,
+// .committed2,
+// .committed3,
+// .committed4,
+// .committed5 {
+//   position: absolute;
+//   height: 30px;
+//   width: 30px;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   gap: 8px;
+//   color: #888;
+// }
 
-$h: 10%;
-$v: 14%;
+// $h: 10%;
+// $v: 14%;
 
-.committed0 {
-  bottom: 3%;
-  left: 50%;
-  transform: translateX(-50%);
-}
+// .committed0 {
+//   bottom: 3%;
+//   left: 50%;
+//   transform: translateX(-50%);
+// }
 
-.committed1 {
-  bottom: $v;
-  left: $h;
-}
+// .committed1 {
+//   bottom: $v;
+//   left: $h;
+// }
 
-.committed2 {
-  top: $v;
-  left: $h;
-}
+// .committed2 {
+//   top: $v;
+//   left: $h;
+// }
 
-.committed3 {
-  top: 3%;
-  left: 50%;
-  transform: translateX(-50%);
-}
+// .committed3 {
+//   top: 3%;
+//   left: 50%;
+//   transform: translateX(-50%);
+// }
 
-.committed4 {
-  top: $v;
-  right: $h;
-}
+// .committed4 {
+//   top: $v;
+//   right: $h;
+// }
 
-.committed5 {
-  bottom: $v;
-  right: $h;
-}
-
+// .committed5 {
+//   bottom: $v;
+//   right: $h;
+// }
