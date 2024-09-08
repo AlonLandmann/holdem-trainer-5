@@ -2,6 +2,7 @@ import { positions } from '@/lib/shared/spots'
 import TableSeat from './TableSeat'
 import TableBoard from './TableBoard'
 import TableChips from './TableChips'
+import TableDealerButton from './TableDealerButton'
 
 export default function Table({ spot, holeCards, heroPosition, flash }) {
   return (
@@ -37,6 +38,9 @@ export default function Table({ spot, holeCards, heroPosition, flash }) {
               seat={i}
             />
           ))}
+          <TableDealerButton
+            heroPosition={heroPosition}
+          />
         </div>
       </div>
     </div>
