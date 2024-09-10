@@ -40,7 +40,7 @@ export default function Toolbar({ range, setRange, past, setPast, future, setFut
   /// ALLOW SWAPPING OF RANGES
 
   return (
-    <div className='border-b p-3 flex gap-4'>
+    <div className='border-b p-3 flex gap-4 h-[49px]'>
       <h1 className='text-neutral-500 mr-auto'>
         {range.name}
       </h1>

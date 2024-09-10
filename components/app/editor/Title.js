@@ -1,6 +1,6 @@
 export default function Title() {
   return (
-    <div className='border-b p-3'>
+    <div className='border-b p-3 h-[49px]'>
       <h1 className='text-neutral-600'>
         Editor
       </h1>

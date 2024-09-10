@@ -16,7 +16,10 @@ export default function Sidebar({
   setError,
 }) {
   return (
-    <div className='overflow-y-auto'>
+    <div
+      className='overflow-y-auto no-scrollbar'
+      style={{ maxHeight: 'calc(100vh - 49px)' }}
+    >
       <Stacks
         range={range}
         setRange={setRange}

@@ -25,7 +25,7 @@ export default function EditorMain({ user }) {
 
   return !range ? null : (
     <>
-      <div className='bg-neutral-900 border-r max-h-screen overflow-y-auto'>
+      <div className='bg-neutral-900 border-r'>
         <Title />
         <Sidebar
           range={range}
