@@ -7,6 +7,7 @@ import { sampleHoleCards } from '@/lib/shared/cards'
 import History from './History'
 import Table from './Table'
 import RandomNumber from './RandomNumber'
+import AnswerButtons from './AnswerButtons'
 
 export default function TrainerMain({ user }) {
   const [sidebarInView, setSidebarInView] = useState(true)
@@ -64,6 +65,9 @@ export default function TrainerMain({ user }) {
           />
           <RandomNumber
             randomNumber={randomNumber}
+          />
+          <AnswerButtons
+            range={range}
           />
         </div>
       }

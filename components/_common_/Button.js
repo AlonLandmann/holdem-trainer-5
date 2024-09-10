@@ -17,12 +17,21 @@ const themes = {
     icon: '',
     text: 'text-sm',
   },
+  answer: {
+    container: `
+      h-[50px] w-[120px] py-1 px-5 flex items-center gap-2 border rounded transition
+      text-neutral-400 hover:text-neutral-50 hover:bg-neutral-800 hover:border-neutral-800
+    `,
+    hotkey: ' text-neutral-600',
+    text: 'grow text-center',
+  }
 }
 
 export default function Button({
   theme = 'primary',
   utilClasses = '',
   icon,
+  hotkey,
   text,
   type = 'button',
   onClick = async () => { },
@@ -64,6 +73,11 @@ export default function Button({
             ·
           </span>
         </div>
+      }
+      {hotkey &&
+        <span className={`${loading ? 'opacity-0' : ''} ${themes[theme].hotkey}`}>
+          {hotkey}
+        </span>
       }
       {icon &&
         <span className={`${loading ? 'opacity-0' : ''} ${themes[theme].icon}`}>
