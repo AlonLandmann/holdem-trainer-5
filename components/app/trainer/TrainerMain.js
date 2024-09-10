@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import Toolbar from './Toolbar'
 import { useRouter } from 'next/router'
-import { sample } from 'lodash'
+import { isEqual, sample } from 'lodash'
 import { rng } from '@/lib/shared/rounding'
 import { sampleHoleCards } from '@/lib/shared/cards'
 import History from './History'
@@ -19,7 +19,9 @@ export default function TrainerMain({ user }) {
   const [holeCards, setHoleCards] = useState(null)
   const [randomNumber, setRandomNumber] = useState(null)
   const [flash, setFlash] = useState(null)
+  const [timer, setTimer] = useState(null)
 
+  // initial range load
   useEffect(() => {
     const ids = router.query.ids ? JSON.parse(router.query.ids) : []
     const loadedRanges = []
@@ -40,6 +42,47 @@ export default function TrainerMain({ user }) {
     setHoleCards(sampleHoleCards(loadedRange))
     setRandomNumber(rng())
   }, [router.isReady])
+
+  // border flash feedback
+  useEffect(() => {
+    return () => {
+      if (timer) { clearTimeout(timer) }
+    }
+  }, [timer])
+
+  function activateFlash(result) {
+    setFlash(result)
+    if (timer) { clearTimeout(timer) }
+    const newTimer = setTimeout(() => { setFlash(null) }, 850)
+    setTimer(newTimer)
+  }
+
+  // check answer function
+  function isCorrect(option) {
+    const { strategy } = range.matrix.find(c => c.combo === holeCards)
+
+    for (let i = 0, sum = 0; i < strategy.length; i++) {
+      sum += strategy[i]
+
+      if (randomNumber / 100 < sum) {
+        return isEqual(option, range.options[i])
+      }
+    }
+  }
+
+  function handleCheckAnswer(option) {
+    if (isCorrect(option)) {
+      activateFlash('correct')
+      const newRange = sample(ranges)
+      setRange(newRange)
+      setSpot(newRange.spot)
+      setHoleCards(sampleHoleCards(newRange))
+      setRandomNumber(rng())
+    } else {
+      activateFlash('incorrect')
+    }
+  }
+
 
   return (
     <div className='grow bg-neutral-900'>
@@ -68,6 +111,7 @@ export default function TrainerMain({ user }) {
           />
           <AnswerButtons
             range={range}
+            handleCheckAnswer={handleCheckAnswer}
           />
         </div>
       }
