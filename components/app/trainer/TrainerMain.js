@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import Toolbar from './Toolbar'
 import { useRouter } from 'next/router'
-import { isEqual, sample } from 'lodash'
+import { isEqual, random, sample } from 'lodash'
 import { rng } from '@/lib/shared/rounding'
 import { sampleHoleCards } from '@/lib/shared/cards'
 import History from './History'
@@ -42,6 +42,25 @@ export default function TrainerMain({ user }) {
     setHoleCards(sampleHoleCards(loadedRange))
     setRandomNumber(rng())
   }, [router.isReady])
+
+  // hotkeys
+  useEffect(() => {
+    function handleKeyPress(event) {
+      const n = range.options.length
+      const listenFor = [...Array(n + 1).keys()].slice(1).map(i => String(i))
+
+      if (listenFor.includes(event.key)) {
+        handleCheckAnswer(range.options[Number(event.key) - 1])
+      }
+    }
+
+    document.removeEventListener('keydown', handleKeyPress)
+    document.addEventListener('keydown', handleKeyPress)
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyPress)
+    }
+  }, [range, holeCards, randomNumber])
 
   // border flash feedback
   useEffect(() => {
