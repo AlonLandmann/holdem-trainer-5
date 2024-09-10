@@ -6,6 +6,7 @@ import { rng } from '@/lib/shared/rounding'
 import { sampleHoleCards } from '@/lib/shared/cards'
 import History from './History'
 import Table from './Table'
+import Rng from './Rng'
 
 export default function TrainerMain({ user }) {
   const [sidebarInView, setSidebarInView] = useState(true)
@@ -46,7 +47,7 @@ export default function TrainerMain({ user }) {
         setStatsInView={setStatsInView}
       />
       {range &&
-        <div className='p-5 flex flex-col items-center gap-5'>
+        <div className='p-5 flex flex-col items-center gap-7'>
           <h1 className='text-xl'>
             {range.name}
           </h1>
@@ -60,6 +61,9 @@ export default function TrainerMain({ user }) {
             holeCards={holeCards}
             heroPosition={range.spot.p}
             flash={flash}
+          />
+          <Rng
+            randomNumber={randomNumber}
           />
         </div>
       }
