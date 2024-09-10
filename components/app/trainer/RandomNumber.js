@@ -1,4 +1,4 @@
-export default function Rng({ randomNumber }) {
+export default function RandomNumber({ randomNumber }) {
   return (
     <div className='flex items-baseline gap-2'>
       <div className='text-neutral-500'>

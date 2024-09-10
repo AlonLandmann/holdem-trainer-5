@@ -6,7 +6,7 @@ import { rng } from '@/lib/shared/rounding'
 import { sampleHoleCards } from '@/lib/shared/cards'
 import History from './History'
 import Table from './Table'
-import Rng from './Rng'
+import RandomNumber from './RandomNumber'
 
 export default function TrainerMain({ user }) {
   const [sidebarInView, setSidebarInView] = useState(true)
@@ -62,7 +62,7 @@ export default function TrainerMain({ user }) {
             heroPosition={range.spot.p}
             flash={flash}
           />
-          <Rng
+          <RandomNumber
             randomNumber={randomNumber}
           />
         </div>
