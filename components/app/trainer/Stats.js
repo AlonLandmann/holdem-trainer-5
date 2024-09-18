@@ -28,7 +28,7 @@ export default function Stats({ stats }) {
             key={'stat' + i}
             className={`
               border rounded-[3px] p-[5px] flex items-center gap-3 bg-[#202020]
-              cursor-pointer transition hover:bg-[#242424]
+              opactiy-80 cursor-pointer transition hover:bg-[#242424]
             `}
             onClick={() => { handleLinkToRange(stat.rangeId) }}
           >
