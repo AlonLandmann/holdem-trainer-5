@@ -1,11 +1,12 @@
 import { suitIcon } from '@/lib/shared/cards'
 
-export default function Card({ card }) {
+export default function Card({ card, small = false }) {
   return (
     <div
       className={`
-        relative h-[50px] w-[33px] rounded-[3px] flex justify-center
-        items-center text-neutral-400 text-lg overflow-hidden
+        relative  flex justify-center items-center
+        ${small ? 'h-[35px] w-[23px] text-sm rounded-sm' : 'h-[50px] w-[33px] text-lg rounded-[3px]'}
+        text-neutral-400 overflow-hidden
         ${(card && card[1] === 's') ? 'bg-[#151515]' : ''}
         ${(card && card[1] === 'h') ? 'bg-[#6c3b3b]' : ''}
         ${(card && card[1] === 'd') ? 'bg-[#2e6067]' : ''}
@@ -15,7 +16,12 @@ export default function Card({ card }) {
     >
       {card ? card[0] : ''}
       {card &&
-        <div className={`absolute top-4 left-1 text-5xl ${card[1] === 's' ? 'opacity-5' : 'opacity-15'}`}>
+        <div
+          className={`
+            absolute top-4 ${small ? 'left-0' : 'left-1'} text-5xl
+            ${card[1] === 's' ? 'opacity-10' : 'opacity-15'}
+          `}
+        >
           <i className={suitIcon(card[1])}></i>
         </div>
       }

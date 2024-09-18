@@ -8,6 +8,7 @@ import History from './History'
 import Table from './Table'
 import RandomNumber from './RandomNumber'
 import AnswerButtons from './AnswerButtons'
+import Stats from './Stats'
 
 export default function TrainerMain({ user }) {
   const [sidebarInView, setSidebarInView] = useState(true)
@@ -20,6 +21,7 @@ export default function TrainerMain({ user }) {
   const [randomNumber, setRandomNumber] = useState(null)
   const [flash, setFlash] = useState(null)
   const [timer, setTimer] = useState(null)
+  const [stats, setStats] = useState([])
 
   // initial range load
   useEffect(() => {
@@ -89,9 +91,19 @@ export default function TrainerMain({ user }) {
     }
   }
 
+  function addStat(correct) {
+    setStats(prev => prev.concat([{
+      holeCards,
+      rangeId: range.id,
+      rangeName: range.name,
+      correct
+    }]))
+  }
+
   function handleCheckAnswer(option) {
     if (isCorrect(option)) {
       activateFlash('correct')
+      addStat(true)
       const newRange = sample(ranges)
       setRange(newRange)
       setSpot(newRange.spot)
@@ -99,9 +111,9 @@ export default function TrainerMain({ user }) {
       setRandomNumber(rng())
     } else {
       activateFlash('incorrect')
+      addStat(false)
     }
   }
-
 
   return (
     <div className='grow bg-neutral-900'>
@@ -109,31 +121,35 @@ export default function TrainerMain({ user }) {
         setSidebarInView={setSidebarInView}
         setStatsInView={setStatsInView}
       />
-      {range &&
-        <div className='p-5 flex flex-col items-center gap-7'>
-          <h1 className='text-xl'>
-            {range.name}
-          </h1>
-          <History
-            range={range}
-            spot={spot}
-            setSpot={setSpot}
-          />
-          <Table
-            spot={spot}
-            holeCards={holeCards}
-            heroPosition={range.spot.p}
-            flash={flash}
-          />
-          <RandomNumber
-            randomNumber={randomNumber}
-          />
-          <AnswerButtons
-            range={range}
-            handleCheckAnswer={handleCheckAnswer}
-          />
-        </div>
-      }
+      <div className='flex'>
+        <div className='w-72'></div>
+        {range &&
+          <div className='grow p-5 flex flex-col items-center gap-7'>
+            <h1 className='text-xl'>
+              {range.name}
+            </h1>
+            <History
+              range={range}
+              spot={spot}
+              setSpot={setSpot}
+            />
+            <Table
+              spot={spot}
+              holeCards={holeCards}
+              heroPosition={range.spot.p}
+              flash={flash}
+            />
+            <RandomNumber
+              randomNumber={randomNumber}
+            />
+            <AnswerButtons
+              range={range}
+              handleCheckAnswer={handleCheckAnswer}
+            />
+          </div>
+        }
+        <Stats stats={stats} />
+      </div>
     </div>
   )
 }
