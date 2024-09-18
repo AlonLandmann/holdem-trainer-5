@@ -22,6 +22,7 @@ export default function TrainerMain({ user }) {
   const [flash, setFlash] = useState(null)
   const [timer, setTimer] = useState(null)
   const [stats, setStats] = useState([])
+  const [wasWrong, setWasWrong] = useState(false)
 
   // initial range load
   useEffect(() => {
@@ -62,7 +63,7 @@ export default function TrainerMain({ user }) {
     return () => {
       document.removeEventListener('keydown', handleKeyPress)
     }
-  }, [range, holeCards, randomNumber])
+  }, [range, holeCards, randomNumber, wasWrong])
 
   // border flash feedback
   useEffect(() => {
@@ -103,7 +104,8 @@ export default function TrainerMain({ user }) {
   function handleCheckAnswer(option) {
     if (isCorrect(option)) {
       activateFlash('correct')
-      addStat(true)
+      if (!wasWrong) { addStat(true) }
+      setWasWrong(false)
       const newRange = sample(ranges)
       setRange(newRange)
       setSpot(newRange.spot)
@@ -111,7 +113,8 @@ export default function TrainerMain({ user }) {
       setRandomNumber(rng())
     } else {
       activateFlash('incorrect')
-      addStat(false)
+      if (!wasWrong) { addStat(false) }
+      setWasWrong(true)
     }
   }
 
