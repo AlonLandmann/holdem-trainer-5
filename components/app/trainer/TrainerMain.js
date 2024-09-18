@@ -151,7 +151,9 @@ export default function TrainerMain({ user }) {
             />
           </div>
         }
-        <Stats stats={stats} />
+        {statsInView &&
+          <Stats stats={stats} />
+        }
       </div>
     </div>
   )
