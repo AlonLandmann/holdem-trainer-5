@@ -1,10 +1,6 @@
 import Card from "./Card";
 
 export default function Stats({ stats }) {
-  function handleLinkToRange(rangeId) {
-    window.open(`/ranges/${rangeId}`, '_blank').focus()
-  }
-
   return (
     <div className='sticky top-[57px] z-10 min-w-72 p-5'>
       <div className='height-[30px] mb-[5px] px-1 py-[6px] flex justify-center items-center gap-[5px] text-neutral-600 truncate'>
@@ -30,7 +26,7 @@ export default function Stats({ stats }) {
               border rounded-[3px] p-[5px] flex items-center gap-3 bg-[#202020]
               opactiy-80 cursor-pointer transition hover:bg-[#242424]
             `}
-            onClick={() => { handleLinkToRange(stat.rangeId) }}
+            onClick={() => { window.open(`/app/editor/${stat.rangeId}`, '_blank').focus() }}
           >
             <div className={`flex gap-[2px] ${stat.correct ? 'grayscale' : ''}`}>
               <Card card={stat.holeCards.slice(0, 2)} small />
