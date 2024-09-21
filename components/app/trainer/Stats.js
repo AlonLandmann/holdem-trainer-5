@@ -44,7 +44,7 @@ export default function Stats({ stats }) {
           </div>
         ))}
         <div
-          className='absolute bottom-5 right-5 h-full bg-gradient-to-b from-transparent to-[#181818]'
+          className='absolute bottom-5 right-5 h-full bg-gradient-to-b from-transparent to-neutral-900'
           style={{ width: 'calc(100% - 40px)', pointerEvents: 'none' }}
         >
 
