@@ -2,7 +2,7 @@ import Card from './Card'
 
 export default function Stats({ stats }) {
   return (
-    <div className='sticky top-[57px] z-10 min-w-72 p-5'>
+    <div className='relative z-10 min-w-72 p-5'>
       <div className='height-[30px] mb-[5px] px-1 py-[6px] flex justify-center items-center gap-[5px] text-neutral-600 truncate'>
         <i className='bi bi-bar-chart-line-fill'></i>
         <div> {stats.length} Trained</div>
@@ -43,6 +43,12 @@ export default function Stats({ stats }) {
             </div>
           </div>
         ))}
+        <div
+          className='absolute bottom-5 right-5 h-full bg-gradient-to-b from-transparent to-[#181818]'
+          style={{ width: 'calc(100% - 40px)', pointerEvents: 'none' }}
+        >
+
+        </div>
       </div>
     </div>
   )
