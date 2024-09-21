@@ -9,6 +9,7 @@ import Table from './Table'
 import RandomNumber from './RandomNumber'
 import AnswerButtons from './AnswerButtons'
 import Stats from './Stats'
+import Sidebar from './Sidebar'
 
 export default function TrainerMain({ user }) {
   const [sidebarInView, setSidebarInView] = useState(true)
@@ -125,7 +126,11 @@ export default function TrainerMain({ user }) {
         setStatsInView={setStatsInView}
       />
       <div className='flex'>
-        <div className='w-72'></div>
+        {sidebarInView &&
+          <Sidebar
+            user={user}
+          />
+        }
         {range &&
           <div className='grow p-5 flex flex-col items-center gap-7'>
             <h1 className='text-xl'>
