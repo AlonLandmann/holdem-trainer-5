@@ -1,26 +1,13 @@
 import Button from '@/components/_common_/Button'
-import Input from '@/components/_common_/Input'
 import { useLoadingQueue } from '@/hooks/useLoadingQueue'
-import { useUser } from '@/hooks/useUser'
-import handleManagerRequest from '@/lib/client/managerRequests'
 import MatrixDisplay from './MatrixDisplay'
 import RangeName from './RangeName'
 import RangeHistory from './RangeHistory'
 import RangeLegend from './RangeLegend'
+import RangeUiButtons from './RangeUiButtons'
 
 export default function RangeCard({ range, target, setTarget, selectedRanges, setSelectedRanges }) {
-  const [user, setUser] = useUser()
   const [loadingQueue, setLoadingQueue] = useLoadingQueue()
-
-  async function handleDelete() {
-    if (confirm(`Are you sure you want to delete the range '${range.name}'? This action cannot be undone.`)) {
-      await handleManagerRequest(`/api/ranges/delete?rangeId=${range.id}&rangeIndex=${range.index}&folderId=${range.folderId}`, 'DELETE', setUser)
-    }
-  }
-
-  async function handleDuplicate() {
-    await handleManagerRequest('/api/ranges/duplicate', 'POST', setUser, range)
-  }
 
   async function handleSelect() {
     setSelectedRanges(prev => {
@@ -61,38 +48,27 @@ export default function RangeCard({ range, target, setTarget, selectedRanges, se
     >
       <RangeName range={range} />
       <RangeHistory range={range} />
-      <MatrixDisplay range={range} />
-      <RangeLegend range={range} />
-      <div className='flex flex-col gap-1 pr-1 text-sm z-40'>
-        <Button
-          theme='tertiary'
-          icon='trash3'
-          onClick={handleDelete}
-          useQueue
-        />
-        <Button
-          theme='tertiary'
-          icon='pen'
-          onClick={() => { window.location = `/app/editor/${range.id}` }}
-        />
-        <Button
-          theme='tertiary'
-          icon='copy'
-          onClick={handleDuplicate}
-          useQueue
-        />
-        <Button
-          theme='tertiary'
-          utilClasses='mt-auto text-xs'
-          icon={selectedRanges.includes(range.id) ? 'check-square' : 'square'}
-          onClick={handleSelect}
-          useQueue
-        />
-        <Button
-          theme='tertiary'
-          icon='crosshair'
-          onClick={() => { window.location = `/app/trainer?ids=${JSON.stringify([range.id])}` }}
-        />
+      <div className='flex gap-1'>
+        <MatrixDisplay range={range} />
+        <RangeUiButtons range={range} />
+      </div>
+      <div className='w-[418px] flex justify-between gap-1'>
+        <RangeLegend range={range} />
+        <div className='flex items-center gap-1'>
+          <Button
+            theme='secondary'
+            icon={selectedRanges.includes(range.id) ? 'check-square' : 'square'}
+            text='Select'
+            onClick={handleSelect}
+            useQueue
+          />
+          <Button
+            theme='primary'
+            icon='crosshair'
+            text='Train Now'
+            onClick={() => { window.location = `/app/trainer?ids=${JSON.stringify([range.id])}` }}
+          />
+        </div>
       </div>
     </div>
   )
