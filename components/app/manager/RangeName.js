@@ -1,0 +1,67 @@
+import Button from '@/components/_common_/Button'
+import Input from '@/components/_common_/Input'
+import handleManagerRequest from '@/lib/client/managerRequests'
+import { useEffect, useState } from 'react'
+
+export default function RangeName({ range }) {
+  const [renameInView, setRenameInView] = useState(false)
+  const [renaming, setRenaming] = useState(false)
+  const [renameValue, setRenameValue] = useState(range.name)
+
+  useEffect(() => {
+    setRenaming(false)
+    setRenameValue(range.name)
+  }, [range])
+
+  async function handleRename() {
+    await handleManagerRequest(`/api/ranges/rename?rangeId=${range.id}`, 'PATCH', setUser, {
+      name: renameValue
+    })
+  }
+
+  return (
+    <div
+        className='flex items-center gap-3 z-40'
+        onMouseEnter={() => setRenameInView(true)}
+        onMouseLeave={() => setRenameInView(false)}
+      >
+        {!renaming &&
+          <>
+            <h1 className='text-lg'>
+              {range.name}
+            </h1>
+            <Button
+              theme='tertiary'
+              utilClasses={`transition ${renameInView ? 'opacity-100' : 'opacity-0'}`}
+              icon='input-cursor'
+              onClick={async () => setRenaming(true)}
+              useQueue
+            />
+          </>
+        }
+        {renaming &&
+          <>
+            <Input
+              theme='rename'
+              utilClasses='text-lg'
+              value={renameValue}
+              onChange={e => setRenameValue(e.target.value)}
+            />
+            <Button
+              theme='tertiary'
+              utilClasses='text-sm'
+              icon='x-lg'
+              onClick={async () => { setRenaming(false); setRenameValue(range.name) }}
+              useQueue
+            />
+            <Button
+              theme='tertiary'
+              icon='check2'
+              onClick={handleRename}
+              useQueue
+            />
+          </>
+        }
+      </div>
+  )
+}

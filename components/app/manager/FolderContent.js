@@ -4,7 +4,7 @@ import handleManagerRequest from '@/lib/client/managerRequests'
 import { useEffect, useState } from 'react'
 import FolderPlaceholder from './FolderPlaceholder'
 import { useUser } from '@/hooks/useUser'
-import RangeBanner from './RangeBanner'
+import RangeCard from './RangeCard'
 import RangeGap from './RangeGap'
 import { useLoadingQueue } from '@/hooks/useLoadingQueue'
 
@@ -107,28 +107,28 @@ export default function FolderContent({ selectedFolder }) {
       }
       {selectedFolder.ranges.length > 0 &&
         <div
-          className='px-3 h-full overflow-y-auto'
+          className='px-3 h-full overflow-y-auto grid grid-cols-2'
           onDragLeave={handleDragLeave}
         >
-          <RangeGap
+          {/* <RangeGap
             index={0}
             target={target}
             setTarget={setTarget}
-          />
+          /> */}
           {selectedFolder.ranges.map((range, i) => (
             <div key={'range' + range.id}>
-              <RangeBanner
+              <RangeCard
                 range={range}
                 target={target}
                 setTarget={setTarget}
                 selectedRanges={selectedRanges}
                 setSelectedRanges={setSelectedRanges}
               />
-              <RangeGap
+              {/* <RangeGap
                 index={i + 1}
                 target={target}
                 setTarget={setTarget}
-              />
+              /> */}
             </div>
           ))}
         </div>

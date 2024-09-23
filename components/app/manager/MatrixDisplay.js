@@ -1,8 +1,10 @@
 import { frequencyColor, strategyColor } from '@/lib/client/colors'
 import { numFromSuit, numFromValue, suits, values } from '@/lib/shared/cards'
 
+const CELLWIDTH = 8
+
 export default function MatrixDisplay({ range }) {
-  const cellWidth = 4
+  const cellWidth = CELLWIDTH
   const blockWidth = 4 * cellWidth
   const matrixWidth = 13 * blockWidth + 2
 
