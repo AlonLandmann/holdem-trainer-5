@@ -2,7 +2,7 @@ import Button from '@/components/_common_/Button'
 import { useState } from 'react'
 
 export default function SidebarFolder({ folder, selected, setSelected }) {
-  const [expanded, setExpanded] = useState(false)
+  const [expanded, setExpanded] = useState(true)
 
   function handleToggle(rangeId) {
     setSelected(prev => {

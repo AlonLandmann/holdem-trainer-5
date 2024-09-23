@@ -1,10 +1,18 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import SidebarFolder from './SidebarFolder'
 import Button from '@/components/_common_/Button'
 import toast from 'react-hot-toast'
+import { useRouter } from 'next/router'
 
 export default function Sidebar({ user }) {
+  const router = useRouter()
   const [selected, setSelected] = useState([])
+
+  useEffect(() => {
+    if (router.query) {
+      setSelected(JSON.parse(router.query.ids))
+    }
+  }, [router.isReady])
 
   function handleStartNewSession() {
     if (selected.length) {
