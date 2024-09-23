@@ -19,32 +19,30 @@ export default function RangeCard({ range, target, setTarget, selectedRanges, se
     })
   }
 
-  function handleDragStart(event) {
-    if (!loadingQueue) {
-      event.dataTransfer.setData('text/plain', JSON.stringify({
-        type: 'range',
-        origin: range.index,
-        originId: range.id,
-        originFolderId: range.folderId,
-      }))
-    }
-  }
+  // function handleDragStart(event) {
+  //   if (!loadingQueue) {
+  //     event.dataTransfer.setData('text/plain', JSON.stringify({
+  //       type: 'range',
+  //       origin: range.index,
+  //       originId: range.id,
+  //       originFolderId: range.folderId,
+  //     }))
+  //   }
+  // }
 
-  function handleDragOver(event, index) {
-    if (!loadingQueue) {
-      const data = JSON.parse(event.dataTransfer.getData('text/plain'))
+  // function handleDragOver(event, index) {
+  //   if (!loadingQueue) {
+  //     const data = JSON.parse(event.dataTransfer.getData('text/plain'))
 
-      if (data.type === 'range' && target !== index) {
-        setTarget(index)
-      }
-    }
-  }
+  //     if (data.type === 'range' && target !== index) {
+  //       setTarget(index)
+  //     }
+  //   }
+  // }
 
   return (
     <div
       className='relative'
-      draggable
-      onDragStart={handleDragStart}
     >
       <RangeName range={range} />
       <RangeHistory range={range} />
@@ -57,6 +55,7 @@ export default function RangeCard({ range, target, setTarget, selectedRanges, se
         <div className='flex items-center gap-1'>
           <Button
             theme='secondary'
+            utilClasses='rounded-none'
             icon={selectedRanges.includes(range.id) ? 'check-square' : 'square'}
             text='Select'
             onClick={handleSelect}
@@ -64,6 +63,7 @@ export default function RangeCard({ range, target, setTarget, selectedRanges, se
           />
           <Button
             theme='primary'
+            utilClasses='rounded-none'
             icon='crosshair'
             text='Train Now'
             onClick={() => { window.location = `/app/trainer?ids=${JSON.stringify([range.id])}` }}
