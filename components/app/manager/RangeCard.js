@@ -6,6 +6,7 @@ import handleManagerRequest from '@/lib/client/managerRequests'
 import MatrixDisplay from './MatrixDisplay'
 import RangeName from './RangeName'
 import RangeHistory from './RangeHistory'
+import RangeLegend from './RangeLegend'
 
 export default function RangeCard({ range, target, setTarget, selectedRanges, setSelectedRanges }) {
   const [user, setUser] = useUser()
@@ -61,15 +62,7 @@ export default function RangeCard({ range, target, setTarget, selectedRanges, se
       <RangeName range={range} />
       <RangeHistory range={range} />
       <MatrixDisplay range={range} />
-
-
-      <div className='grow grid grid-cols-1 lg:grid-cols-2 gap-2'>
-        <div className='flex flex-col'>
-          <div className='text-neutral-600 z-40'>
-            {JSON.stringify(range.options)}
-          </div>
-        </div>
-      </div>
+      <RangeLegend range={range} />
       <div className='flex flex-col gap-1 pr-1 text-sm z-40'>
         <Button
           theme='tertiary'
