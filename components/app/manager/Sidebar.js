@@ -26,7 +26,7 @@ export default function Sidebar({ selectedFolder, setSelectedFolder }) {
   }
 
   return !user ? null : (
-    <div className='bg-neutral-900 border-r w-56 flex flex-col'>
+    <div className='border-r w-56 flex flex-col'>
       <div className='border-b p-3 flex justify-between items-center'>
         <h1 className='text-neutral-600'>
           Manager

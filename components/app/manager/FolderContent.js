@@ -47,7 +47,7 @@ export default function FolderContent({ selectedFolder }) {
   }
 
   return (
-    <div className='grow bg-neutral-900 flex flex-col max-h-screen'>
+    <div className='grow flex flex-col max-h-screen'>
       <div className='flex justify-between gap-3 border-b p-3'>
         <div
           className='grow flex items-center gap-3'
@@ -107,7 +107,7 @@ export default function FolderContent({ selectedFolder }) {
       }
       {selectedFolder.ranges.length > 0 &&
         <div
-          className='px-3 bg-neutral-950 h-full overflow-y-auto'
+          className='px-3 h-full overflow-y-auto'
           onDragLeave={handleDragLeave}
         >
           <RangeGap

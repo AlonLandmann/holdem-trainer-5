@@ -65,11 +65,9 @@ export default function RangeBanner({ range, target, setTarget, selectedRanges, 
     }
   }
 
-  // <div className='min-w-36 h-36 bg-neutral-800 rounded mr-4'></div>
-
   return (
     <div
-      className='relative flex p-4 gap-6 rounded bg-neutral-900 max-w-[1000px]'
+      className='relative flex p-4 gap-6 border'
       draggable
       onDragStart={handleDragStart}
     >

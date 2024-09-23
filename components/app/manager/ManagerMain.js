@@ -20,7 +20,7 @@ export default function ManagerMain({ user }) {
   }, [user])
 
   return !selectedFolder ? null : (
-    <>
+    <div className='bg-neutral-900 grow flex'>
       <Sidebar
         selectedFolder={selectedFolder}
         setSelectedFolder={setSelectedFolder}
@@ -28,6 +28,6 @@ export default function ManagerMain({ user }) {
       <FolderContent
         selectedFolder={selectedFolder}
       />
-    </>
+    </div>
   )
 }
