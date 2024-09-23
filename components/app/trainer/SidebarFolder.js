@@ -16,29 +16,23 @@ export default function SidebarFolder({ folder, selected, setSelected }) {
 
   return (
     <div>
-      <div className='flex gap-1'>
-        <Button
-          theme='tertiary'
-          icon={expanded ? 'chevron-down' : 'chevron-right'}
-          onClick={() => { setExpanded(prev => !prev) }}
-        />
-        <h3>
-          {folder.name}
-        </h3>
-      </div>
+      <Button
+        theme='tertiary'
+        utilClasses='text-neutral-600 hover:text-neutral-500 mb-1'
+        text={folder.name}
+        onClick={() => { setExpanded(prev => !prev) }}
+      />
       {expanded &&
-        <div>
+        <div className='flex flex-col gap-[2px]'>
           {folder.ranges.map(range => (
-            <div key={'range' + range.id} className='flex gap-1'>
-              <Button
-                theme='tertiary'
-                icon={selected.includes(range.id) ? 'check-square' : 'square'}
-                onClick={() => { handleToggle(range.id) }}
-              />
-              <h3>
-                {range.name}
-              </h3>
-            </div>
+            <Button
+              key={'range' + range.id}
+              theme='tertiary'
+              utilClasses={selected.includes(range.id) ? '' : 'text-neutral-600'}
+              icon={selected.includes(range.id) ? 'check2' : 'dot'}
+              text={range.name}
+              onClick={() => { handleToggle(range.id) }}
+            />
           ))}
         </div>
       }

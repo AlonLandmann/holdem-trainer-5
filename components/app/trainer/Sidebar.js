@@ -25,7 +25,7 @@ export default function Sidebar({ user }) {
   return (
     <div className='min-w-72 p-5'>
       <div
-        className='overflow-y-auto no-scrollbar mb-5'
+        className='overflow-y-auto no-scrollbar mb-5 flex flex-col gap-2'
         style={{ height: 'calc(100vh - 112px - 46px)' }}
       >
         {user.folders.map(folder => (
@@ -39,7 +39,6 @@ export default function Sidebar({ user }) {
       </div>
       <Button
         theme='secondary'
-        icon='crosshair'
         text='Start new Session'
         onClick={handleStartNewSession}
       />

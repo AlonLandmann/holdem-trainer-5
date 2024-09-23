@@ -19,7 +19,7 @@ export default function Card({ card, small = false }) {
         <div
           className={`
             absolute top-4 ${small ? 'left-0' : 'left-1'} text-5xl
-            ${card[1] === 's' ? 'opacity-10' : 'opacity-15'}
+            ${card[1] === 's' ? 'opacity-5' : 'opacity-15'}
           `}
         >
           <i className={suitIcon(card[1])}></i>
