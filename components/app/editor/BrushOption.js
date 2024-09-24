@@ -1,7 +1,7 @@
 import Button from '@/components/_common_/Button'
 import Input from '@/components/_common_/Input'
 import { optionColor } from '@/lib/client/colors'
-import { isValid } from '@/lib/shared/cards'
+import { optionPercentage } from '@/lib/client/percentages'
 import { isEqual } from 'lodash'
 import { useEffect, useMemo, useState } from 'react'
 
@@ -20,24 +20,7 @@ export default function BrushOption({
   const [error, setError] = useState(false)
 
   const percentage = useMemo(() => {
-    let frequencyTotal = 0
-    let total = 0
-
-    range.matrix.forEach(c => {
-      if (!isValid(c.combo, range.spot.board) || !c.frequency) {
-        return
-      }
-
-      range.options.forEach((o, i) => {
-        if (isEqual(o, option)) {
-          frequencyTotal += c.frequency * c.strategy[i]
-        }
-
-        total += c.frequency * c.strategy[i]
-      })
-    })
-
-    return (100 * frequencyTotal / total).toFixed(1)
+    return optionPercentage(range, option)
   }, [range, option])
 
   useEffect(() => {
