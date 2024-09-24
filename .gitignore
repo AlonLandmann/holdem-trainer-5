@@ -36,3 +36,4 @@ next-env.d.ts
 
 # custom scripts
 prisma/seed.js
+prisma/backup.js
