@@ -62,12 +62,12 @@ export default function EditorMain({ user }) {
             />
           </div>
           <div className='flex flex-col gap-3 p-3'>
-            <Legend
+            <Categories
               range={range}
               setSelected={setSelected}
               setHovered={setHovered}
             />
-            <Categories
+            <Legend
               range={range}
               setSelected={setSelected}
               setHovered={setHovered}
