@@ -27,7 +27,7 @@ export default function Legend({ range, setHovered, setSelected }) {
   })
 
   return (!range.spot.options) ? null : (
-    <div className='border-b py-3 px-[18px] bg-neutral-[#202020] opacity-80'>
+    <div className='border rounded py-3 px-[18px] bg-neutral-[#202020] opacity-80'>
       <div className='pb-1 text-neutral-400'>
         Legend
       </div>

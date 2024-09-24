@@ -52,7 +52,7 @@ export default function Stacks({ range, setRange, setError }) {
 
   return (
     <div
-      className='relative border-b py-3 px-4 flex flex-col bg-neutral-[#202020] opacity-80'
+      className='relative border rounded py-3 px-4 flex flex-col bg-neutral-[#202020] opacity-80'
       onMouseEnter={() => { setMouseOver(true) }}
       onMouseLeave={() => { setMouseOver(false) }}
     >

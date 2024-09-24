@@ -17,7 +17,7 @@ export default function Sidebar({
 }) {
   return (
     <div
-      className='overflow-y-auto no-scrollbar'
+      className='p-3 overflow-y-auto no-scrollbar flex flex-col gap-3'
       style={{ maxHeight: 'calc(100vh - 49px)' }}
     >
       <Stacks
@@ -40,16 +40,6 @@ export default function Sidebar({
         selected={selected}
         setSelected={setSelected}
         setOptionHover={setOptionHover}
-      />
-      <Legend
-        range={range}
-        setSelected={setSelected}
-        setHovered={setHovered}
-      />
-      <Categories
-        range={range}
-        setSelected={setSelected}
-        setHovered={setHovered}
       />
     </div>
   )

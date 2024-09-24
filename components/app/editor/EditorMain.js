@@ -4,6 +4,8 @@ import Matrix from './Matrix'
 import Sidebar from './Sidebar'
 import Toolbar from './Toolbar'
 import Title from './Title'
+import Legend from './Legend'
+import Categories from './Categories'
 
 export default function EditorMain({ user }) {
   const router = useRouter()
@@ -18,14 +20,14 @@ export default function EditorMain({ user }) {
   const [error, setError] = useState(false)
 
   function setRangeWithUndo(newRange) {
-    setPast((prev) => [...prev, range].slice(-50)) 
+    setPast((prev) => [...prev, range].slice(-50))
     setRange(newRange)
     setFuture([])
   }
 
   return !range ? null : (
     <>
-      <div className='bg-neutral-900 border-r'>
+      <div className='bg-neutral-900'>
         <Title />
         <Sidebar
           range={range}
@@ -48,15 +50,29 @@ export default function EditorMain({ user }) {
           setFuture={setFuture}
           error={error}
         />
-        <div className='p-3'>
-          <Matrix
-            range={range}
-            selected={selected}
-            setSelected={setSelected}
-            hovered={hovered}
-            setHovered={setHovered}
-            optionHover={optionHover}
-          />
+        <div className='flex'>
+          <div className='p-3'>
+            <Matrix
+              range={range}
+              selected={selected}
+              setSelected={setSelected}
+              hovered={hovered}
+              setHovered={setHovered}
+              optionHover={optionHover}
+            />
+          </div>
+          <div className='flex flex-col gap-3 p-3'>
+            <Legend
+              range={range}
+              setSelected={setSelected}
+              setHovered={setHovered}
+            />
+            <Categories
+              range={range}
+              setSelected={setSelected}
+              setHovered={setHovered}
+            />
+          </div>
         </div>
       </div>
     </>
