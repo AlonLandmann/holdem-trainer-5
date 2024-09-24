@@ -50,9 +50,9 @@ export default function RangeCard({ range, target, setTarget, selectedRanges, se
         <MatrixDisplay range={range} />
         <RangeUiButtons range={range} />
       </div>
-      <div className='w-[418px] flex justify-between gap-5'>
+      <div className='w-[418px] flex items-start justify-between gap-5'>
         <RangeLegend range={range} />
-        <div className='flex items-center gap-1'>
+        <div className='flex items-center gap-1 py-1'>
           <Button
             theme='secondary'
             utilClasses='rounded-none'
