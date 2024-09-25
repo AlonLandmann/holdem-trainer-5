@@ -9,20 +9,21 @@ generator client {
 }
 
 model User {
-  id                Int       @id @default(autoincrement())
-  createdAt         DateTime  @default(now())
-  email             String    @unique
+  id                Int               @id @default(autoincrement())
+  createdAt         DateTime          @default(now())
+  email             String            @unique
   username          String?
   hash              String?
-  googleId          String?   @unique
-  isVerified        Boolean   @default(false)
-  verificationToken String?   @default(uuid())
-  role              String    @default("user")
-  membership        String    @default("free")
+  googleId          String?           @unique
+  isVerified        Boolean           @default(false)
+  verificationToken String?           @default(uuid())
+  role              String            @default("user")
+  membership        String            @default("free")
   session           Session?
   settings          Settings?
   folders           Folder[]
   articles          Article[]
+  TrainingSession   TrainingSession[]
 }
 
 model Session {
@@ -50,20 +51,21 @@ model Folder {
 }
 
 model Range {
-  id            Int      @id @default(autoincrement())
+  id            Int            @id @default(autoincrement())
   index         Int
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-  name          String   @default("New Range")
-  stacks        Float[]  @default([100, 100, 100, 100, 100, 100])
-  history       String[] @default([])
-  options       String[] @default(["fold", "call"])
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  name          String         @default("New Range")
+  stacks        Float[]        @default([100, 100, 100, 100, 100, 100])
+  history       String[]       @default([])
+  options       String[]       @default(["fold", "call"])
   matrix        Bytes
-  folder        Folder   @relation(fields: [folderId], references: [id])
+  folder        Folder         @relation(fields: [folderId], references: [id])
   folderId      Int
-  successors    Range[]  @relation("Pred-Succ")
-  predecessor   Range?   @relation("Pred-Succ", fields: [predecessorId], references: [id])
+  successors    Range[]        @relation("Pred-Succ")
+  predecessor   Range?         @relation("Pred-Succ", fields: [predecessorId], references: [id])
   predecessorId Int?
+  trainingUnits TrainingUnit[]
 }
 
 model Article {
@@ -81,4 +83,25 @@ model Article {
   slug        String
   abstract    String
   content     String
+}
+
+model TrainingSession {
+  id            Int            @id @default(autoincrement())
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  complexity    Float
+  trainingUnits TrainingUnit[]
+  user          User           @relation(fields: [userId], references: [id])
+  userId        Int
+}
+
+model TrainingUnit {
+  id                Int             @id @default(autoincrement())
+  correct           Int             @default(0)
+  total             Int             @default(0)
+  score             Float           @default(0)
+  trainingSession   TrainingSession @relation(fields: [trainingSessionId], references: [id])
+  trainingSessionId Int
+  range             Range?          @relation(fields: [rangeId], references: [id])
+  rangeId           Int?
 }
