@@ -11,6 +11,7 @@ import AnswerButtons from './AnswerButtons'
 import Stats from './Stats'
 import Sidebar from './Sidebar'
 import { v4 as uuid } from 'uuid'
+import toast from 'react-hot-toast'
 
 export default function TrainerMain({ user }) {
   const [sidebarInView, setSidebarInView] = useState(true)
@@ -27,6 +28,7 @@ export default function TrainerMain({ user }) {
   const [wasWrong, setWasWrong] = useState(false)
   const [sessionId, setSessionId] = useState(null)
   const [count, setCount] = useState(0)
+  const [batch, setBatch] = useState([])
 
   // initial range load
   useEffect(() => {
@@ -75,6 +77,35 @@ export default function TrainerMain({ user }) {
     }
   }, [range, holeCards, randomNumber, wasWrong])
 
+  // logging
+  useEffect(() => {
+    (async () => {
+      const n = batch.length
+
+      if (n >= 5) {
+        try {
+          const res = await fetch('/api/logs/training', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(batch)
+          })
+
+          const json = await res.json()
+
+          if (json.success) {
+            setBatch(prev => prev.slice(n))
+            /// DEV ONLY
+            toast.success(`batch of ${n} stored.`)
+          }
+        } catch (error) {
+          console.log(error)
+          /// DEV ONLY
+          toast.error('unexpected batch error occurred.')
+        }
+      }
+    })()
+  }, [batch])
+
   // border flash feedback
   useEffect(() => {
     return () => {
@@ -111,10 +142,17 @@ export default function TrainerMain({ user }) {
     }]))
   }
 
+  function addToBatch(correct) {
+    setBatch(prev => prev.concat([{
+      rangeId: range.id,
+      correct
+    }]))
+  }
+
   function handleCheckAnswer(option) {
     if (isCorrect(option)) {
       activateFlash('correct')
-      if (!wasWrong) { addStat(true) }
+      if (!wasWrong) { addStat(true); addToBatch(true); setCount(prev => prev + 1) }
       setWasWrong(false)
       const newRange = sample(ranges)
       setRange(newRange)
@@ -123,7 +161,7 @@ export default function TrainerMain({ user }) {
       setRandomNumber(rng())
     } else {
       activateFlash('incorrect')
-      if (!wasWrong) { addStat(false) }
+      if (!wasWrong) { addStat(false); addToBatch(false); setCount(prev => prev + 1) }
       setWasWrong(true)
     }
   }
@@ -163,6 +201,7 @@ export default function TrainerMain({ user }) {
               range={range}
               handleCheckAnswer={handleCheckAnswer}
             />
+            <div>{count} / {user.settings.sessionLength}</div>
           </div>
         }
         {statsInView &&

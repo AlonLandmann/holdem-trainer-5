@@ -35,10 +35,11 @@ model Session {
 }
 
 model Settings {
-  id          Int     @id @default(autoincrement())
-  manualSizes Boolean @default(false)
-  user        User    @relation(fields: [userId], references: [id])
-  userId      Int     @unique
+  id            Int     @id @default(autoincrement())
+  manualSizes   Boolean @default(false)
+  sessionLength Int     @default(20)
+  user          User    @relation(fields: [userId], references: [id])
+  userId        Int     @unique
 }
 
 model Folder {
