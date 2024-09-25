@@ -95,12 +95,17 @@ export default function TrainerMain({ user }) {
           if (json.success) {
             setBatch(prev => prev.slice(n))
             /// DEV ONLY
-            toast.success(`batch of ${n} stored.`)
+            if (process.env.NODE_ENV !== 'production') {
+              toast.success(`batch of ${n} stored.`)
+            }
+            
           }
         } catch (error) {
           console.log(error)
           /// DEV ONLY
-          toast.error('unexpected batch error occurred.')
+          if (process.env.NODE_ENV !== 'production') {
+            toast.error('unexpected batch error occurred.')
+          }
         }
       }
     })()
