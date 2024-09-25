@@ -11,7 +11,7 @@ import AnswerButtons from './AnswerButtons'
 import Stats from './Stats'
 import Sidebar from './Sidebar'
 import { v4 as uuid } from 'uuid'
-import toast from 'react-hot-toast'
+import Button from '@/components/_common_/Button'
 
 export default function TrainerMain({ user }) {
   const [sidebarInView, setSidebarInView] = useState(true)
@@ -57,7 +57,7 @@ export default function TrainerMain({ user }) {
 
   // hotkeys
   useEffect(() => {
-    if (range) {
+    if (range && count <= user.settings.sessionLength) {
       function handleKeyPress(event) {
         const n = range.options.length
         const listenFor = [...Array(n + 1).keys()].slice(1).map(i => String(i))
@@ -132,7 +132,8 @@ export default function TrainerMain({ user }) {
   function handleCheckAnswer(option) {
     if (isCorrect(option)) {
       activateFlash('correct')
-      if (!wasWrong) { addStat(true); setCount(prev => prev + 1); logCombo(true) }
+      if (!wasWrong) { addStat(true); logCombo(true) }
+      setCount(prev => prev + 1)
       setWasWrong(false)
       const newRange = sample(ranges)
       setRange(newRange)
@@ -141,7 +142,7 @@ export default function TrainerMain({ user }) {
       setRandomNumber(rng())
     } else {
       activateFlash('incorrect')
-      if (!wasWrong) { addStat(false); setCount(prev => prev + 1); logCombo(false) }
+      if (!wasWrong) { addStat(false); logCombo(false) }
       setWasWrong(true)
     }
   }
@@ -158,7 +159,7 @@ export default function TrainerMain({ user }) {
             user={user}
           />
         }
-        {range &&
+        {range && count <= user.settings.sessionLength &&
           <div className='grow p-5 flex flex-col items-center gap-7'>
             <h1 className='text-xl'>
               {range.name}
@@ -182,6 +183,26 @@ export default function TrainerMain({ user }) {
               handleCheckAnswer={handleCheckAnswer}
             />
             <div>{count} / {user.settings.sessionLength}</div>
+          </div>
+        }
+        {count > user.settings.sessionLength &&
+          <div className='p-5 flex flex-col justify-center items-center'>
+            <i className='bi bi-flag-fill text-[100px] text-neutral-800 mb-2'></i>
+            <h1 className='text-xl mb-1'>
+              Session complete!
+            </h1>
+            <div>
+              <div className='flex gap-1 text-neutral-500 text-lg mb-7'>
+                <div>{stats.reduce((acc, s) => acc + Boolean(s.correct), 0)} / {count - 1} correct</div>
+                <div>·</div>
+                <div>{(100 * stats.reduce((acc, s) => acc + Boolean(s.correct), 0) / (count - 1)).toFixed(1)} % accuracy</div>
+              </div>
+            </div>
+            <Button
+              theme='primary'
+              text='Train again'
+              onClick={() => { window.location.reload() }}
+            />
           </div>
         }
         {statsInView &&
