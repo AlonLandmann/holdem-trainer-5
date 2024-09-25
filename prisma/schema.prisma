@@ -90,7 +90,6 @@ model TrainingSession {
   id            String         @id
   createdAt     DateTime       @default(now())
   updatedAt     DateTime       @updatedAt
-  complexity    Float
   trainingUnits TrainingUnit[]
   user          User           @relation(fields: [userId], references: [id])
   userId        Int
@@ -98,9 +97,10 @@ model TrainingSession {
 
 model TrainingUnit {
   id                Int             @id @default(autoincrement())
-  correct           Int             @default(0)
-  total             Int             @default(0)
-  score             Float           @default(0)
+  correct           Int
+  total             Int
+  complexity        Float
+  score             Float
   trainingSession   TrainingSession @relation(fields: [trainingSessionId], references: [id])
   trainingSessionId String
   range             Range?          @relation(fields: [rangeId], references: [id])
