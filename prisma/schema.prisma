@@ -86,7 +86,7 @@ model Article {
 }
 
 model TrainingSession {
-  id            Int            @id @default(autoincrement())
+  id            String         @id
   createdAt     DateTime       @default(now())
   updatedAt     DateTime       @updatedAt
   complexity    Float
@@ -101,7 +101,7 @@ model TrainingUnit {
   total             Int             @default(0)
   score             Float           @default(0)
   trainingSession   TrainingSession @relation(fields: [trainingSessionId], references: [id])
-  trainingSessionId Int
+  trainingSessionId String
   range             Range?          @relation(fields: [rangeId], references: [id])
   rangeId           Int?
 }

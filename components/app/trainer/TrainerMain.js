@@ -10,6 +10,7 @@ import RandomNumber from './RandomNumber'
 import AnswerButtons from './AnswerButtons'
 import Stats from './Stats'
 import Sidebar from './Sidebar'
+import { v4 as uuid } from 'uuid'
 
 export default function TrainerMain({ user }) {
   const [sidebarInView, setSidebarInView] = useState(true)
@@ -24,10 +25,15 @@ export default function TrainerMain({ user }) {
   const [timer, setTimer] = useState(null)
   const [stats, setStats] = useState([])
   const [wasWrong, setWasWrong] = useState(false)
+  const [sessionId, setSessionId] = useState(null)
+  const [count, setCount] = useState(0)
 
   // initial range load
   useEffect(() => {
     const ids = router.query.ids ? JSON.parse(router.query.ids) : []
+
+    if (!ids.length) return
+
     const loadedRanges = []
 
     user.folders.forEach(folder => {
@@ -45,24 +51,27 @@ export default function TrainerMain({ user }) {
     setSpot(loadedRange.spot)
     setHoleCards(sampleHoleCards(loadedRange))
     setRandomNumber(rng())
+    setSessionId(uuid())
   }, [router.isReady])
 
   // hotkeys
   useEffect(() => {
-    function handleKeyPress(event) {
-      const n = range.options.length
-      const listenFor = [...Array(n + 1).keys()].slice(1).map(i => String(i))
+    if (range) {
+      function handleKeyPress(event) {
+        const n = range.options.length
+        const listenFor = [...Array(n + 1).keys()].slice(1).map(i => String(i))
 
-      if (listenFor.includes(event.key)) {
-        handleCheckAnswer(range.options[Number(event.key) - 1])
+        if (listenFor.includes(event.key)) {
+          handleCheckAnswer(range.options[Number(event.key) - 1])
+        }
       }
-    }
 
-    document.removeEventListener('keydown', handleKeyPress)
-    document.addEventListener('keydown', handleKeyPress)
-
-    return () => {
       document.removeEventListener('keydown', handleKeyPress)
+      document.addEventListener('keydown', handleKeyPress)
+
+      return () => {
+        document.removeEventListener('keydown', handleKeyPress)
+      }
     }
   }, [range, holeCards, randomNumber, wasWrong])
 
@@ -125,7 +134,7 @@ export default function TrainerMain({ user }) {
         setSidebarInView={setSidebarInView}
         setStatsInView={setStatsInView}
       />
-      <div className='flex'>
+      <div className='flex justify-between'>
         {sidebarInView &&
           <Sidebar
             user={user}

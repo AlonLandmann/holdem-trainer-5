@@ -10,7 +10,7 @@ export default function Sidebar({ user }) {
 
   useEffect(() => {
     if (router.query) {
-      setSelected(JSON.parse(router.query.ids))
+      setSelected(JSON.parse(router.query.ids || '[]'))
     }
   }, [router.isReady])
 
