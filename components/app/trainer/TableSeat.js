@@ -15,7 +15,7 @@ export default function TableSeat({ spot, seat, heroPosition, combo }) {
 
   return (
     <div
-      className='absolute h-[90px] w-[80px] flex flex-col items-center gap-[1px] text-sm'
+      className='absolute h-[90px] w-[80px] flex flex-col items-center gap-[1px] text-sm z-10'
       style={layout[seat]}
     >
       <div className='text-neutral-500'>
