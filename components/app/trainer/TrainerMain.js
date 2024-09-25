@@ -27,8 +27,7 @@ export default function TrainerMain({ user }) {
   const [stats, setStats] = useState([])
   const [wasWrong, setWasWrong] = useState(false)
   const [sessionId, setSessionId] = useState(null)
-  const [count, setCount] = useState(0)
-  const [batch, setBatch] = useState([])
+  const [count, setCount] = useState(1)
 
   // initial range load
   useEffect(() => {
@@ -77,40 +76,6 @@ export default function TrainerMain({ user }) {
     }
   }, [range, holeCards, randomNumber, wasWrong])
 
-  // logging
-  useEffect(() => {
-    (async () => {
-      const n = batch.length
-
-      if (n >= 5) {
-        try {
-          const res = await fetch('/api/logs/training', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(batch)
-          })
-
-          const json = await res.json()
-
-          if (json.success) {
-            setBatch(prev => prev.slice(n))
-            /// DEV ONLY
-            if (process.env.NODE_ENV !== 'production') {
-              toast.success(`batch of ${n} stored.`)
-            }
-            
-          }
-        } catch (error) {
-          console.log(error)
-          /// DEV ONLY
-          if (process.env.NODE_ENV !== 'production') {
-            toast.error('unexpected batch error occurred.')
-          }
-        }
-      }
-    })()
-  }, [batch])
-
   // border flash feedback
   useEffect(() => {
     return () => {
@@ -147,17 +112,34 @@ export default function TrainerMain({ user }) {
     }]))
   }
 
-  function addToBatch(correct) {
-    setBatch(prev => prev.concat([{
-      rangeId: range.id,
-      correct
-    }]))
+  async function logCombo(correct) {
+    try {
+      const res = await fetch('/api/logs/training', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          userId: user.id,
+          sessionId,
+          rangeId: range.id,
+          correct
+        })
+      })
+
+      const json = await res.json()
+
+      if (json.success) {
+        toast.success('stored') // dev-only
+      }
+    } catch (error) {
+      toast.error('error') // dev-only
+      console.log(error)
+    }
   }
 
   function handleCheckAnswer(option) {
     if (isCorrect(option)) {
       activateFlash('correct')
-      if (!wasWrong) { addStat(true); addToBatch(true); setCount(prev => prev + 1) }
+      if (!wasWrong) { addStat(true); setCount(prev => prev + 1); logCombo(true) }
       setWasWrong(false)
       const newRange = sample(ranges)
       setRange(newRange)
@@ -166,7 +148,7 @@ export default function TrainerMain({ user }) {
       setRandomNumber(rng())
     } else {
       activateFlash('incorrect')
-      if (!wasWrong) { addStat(false); addToBatch(false); setCount(prev => prev + 1) }
+      if (!wasWrong) { addStat(false); setCount(prev => prev + 1); logCombo(false) }
       setWasWrong(true)
     }
   }
