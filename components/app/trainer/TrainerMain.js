@@ -124,14 +124,7 @@ export default function TrainerMain({ user }) {
           correct
         })
       })
-
-      const json = await res.json()
-
-      if (json.success) {
-        toast.success('stored') // dev-only
-      }
     } catch (error) {
-      toast.error('error') // dev-only
       console.log(error)
     }
   }
