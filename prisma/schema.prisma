@@ -23,7 +23,7 @@ model User {
   settings          Settings?
   folders           Folder[]
   articles          Article[]
-  TrainingSession   TrainingSession[]
+  trainingSessions  TrainingSession[]
 }
 
 model Session {
