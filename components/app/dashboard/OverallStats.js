@@ -1,4 +1,4 @@
-import { averageComplexity, totalCombos } from '@/lib/client/stats'
+import { averageRangeComplexity, totalCombos, totalScore } from '@/lib/client/stats'
 import OverallStat from './OverallStat'
 
 export default function OverallStats({ user }) {
@@ -11,8 +11,8 @@ export default function OverallStats({ user }) {
       />
       <OverallStat
         icon='columns-gap'
-        number={`${(averageComplexity(user)).toFixed(2)}`}
-        label='avg complexity'
+        number={`${(averageRangeComplexity(user)).toFixed(2)}`}
+        label='range complexity'
       />
       <OverallStat
         icon='crosshair'
@@ -20,8 +20,13 @@ export default function OverallStats({ user }) {
         label='combos trained'
       />
       <OverallStat
+        icon='layout-wtf'
+        number={(totalScore(user.trainingSessions) / totalCombos(user.trainingSessions)).toFixed(2)}
+        label='training complexity'
+      />
+      <OverallStat
         icon='graph-up-arrow'
-        number={totalCombos(user.trainingSessions) * 0.6}
+        number={totalScore(user.trainingSessions).toFixed(0)}
         label='total score'
       />
     </section>

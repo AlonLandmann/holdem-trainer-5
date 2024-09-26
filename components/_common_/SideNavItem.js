@@ -16,7 +16,9 @@ export default function SideNavItem({ icon, extendedView, text, href }) {
         ${isSelected ? 'bg-neutral-800' : ''}
       `}
       onClick={() => {
-        if (href) {
+        if (href === '/app/dashboard') {
+          window.location = `${href}?extended=true`
+        } else if (href) {
           router.push(`${href}?extended=true`)
         }
       }}

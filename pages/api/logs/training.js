@@ -4,7 +4,7 @@ export default async function handler(req, res) {
   try {
     switch (req.method) {
       case 'POST':
-        const { userId, sessionId, rangeId, correct } = req.body
+        const { userId, sessionId, rangeId, correct, complexity } = req.body
 
         let trainingSession = await prisma.trainingSession.findUnique({ where: { id: sessionId } })
 
@@ -33,8 +33,8 @@ export default async function handler(req, res) {
               trainingSessionId: sessionId,
               correct: Number(correct),
               total: 1,
-              complexity: 0.8,
-              score: 0.8
+              complexity,
+              score: correct ? complexity : 0
             },
           })
         } else {
@@ -47,10 +47,13 @@ export default async function handler(req, res) {
             },
             data: {
               correct: {
-                increment: Number(correct)
+                increment: Number(correct),
               },
               total: {
                 increment: 1
+              },
+              score: {
+                increment: correct ? complexity : 0
               }
             }
           })

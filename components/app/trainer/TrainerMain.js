@@ -121,7 +121,8 @@ export default function TrainerMain({ user }) {
           userId: user.id,
           sessionId,
           rangeId: range.id,
-          correct
+          correct,
+          complexity: range.complexity,
         })
       })
     } catch (error) {
