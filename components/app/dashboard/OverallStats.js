@@ -3,7 +3,7 @@ import OverallStat from './OverallStat'
 
 export default function OverallStats({ user }) {
   return (
-    <div className='flex flex-wrap gap-6'>
+    <div className='flex flex-wrap gap-8'>
       <div>
         <h3 className='px-2 text-neutral-500 text-lg mb-2'>
           Ranges
