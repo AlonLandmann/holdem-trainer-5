@@ -46,6 +46,7 @@ export default function RangeCard({ range, target, setTarget, selectedRanges, se
     >
       <RangeName range={range} />
       <RangeHistory range={range} />
+      <div>{(range.complexity).toFixed(2)}</div>
       <div className='flex gap-1'>
         <MatrixDisplay range={range} />
         <RangeUiButtons range={range} />

@@ -1,4 +1,4 @@
-import { totalCombos } from '@/lib/client/stats'
+import { averageComplexity, totalCombos } from '@/lib/client/stats'
 import OverallStat from './OverallStat'
 
 export default function OverallStats({ user }) {
@@ -11,7 +11,7 @@ export default function OverallStats({ user }) {
       />
       <OverallStat
         icon='columns-gap'
-        number={totalCombos(user.trainingSessions)}
+        number={`${(100 * averageComplexity(user)).toFixed(1)}`}
         label='avg complexity'
       />
       <OverallStat
