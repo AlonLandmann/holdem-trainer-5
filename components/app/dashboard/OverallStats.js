@@ -3,12 +3,12 @@ import OverallStat from './OverallStat'
 
 export default function OverallStats({ user }) {
   return (
-    <div className='flex flex-wrap flex-col gap-6'>
+    <div className='flex flex-wrap gap-6'>
       <div>
         <h3 className='px-2 text-neutral-500 text-lg mb-2'>
           Ranges
         </h3>
-        <div className='flex gap-4'>
+        <div className='flex gap-3'>
           <OverallStat
             icon='ui-checks'
             number={user.nrRanges}
@@ -25,7 +25,7 @@ export default function OverallStats({ user }) {
         <h3 className='px-2 text-neutral-500 text-lg mb-2'>
           Training
         </h3>
-        <div className='flex gap-4'>
+        <div className='flex gap-3'>
           <OverallStat
             icon='crosshair'
             number={totalCombos(user.trainingSessions)}
