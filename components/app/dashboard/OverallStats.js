@@ -7,7 +7,12 @@ export default function OverallStats({ user }) {
       <OverallStat
         icon='ui-checks'
         number={user.nrRanges}
-        label='number of ranges'
+        label='nr of ranges'
+      />
+      <OverallStat
+        icon='columns-gap'
+        number={`${(averageComplexity(user)).toFixed(2)}`}
+        label='avg complexity'
       />
       <OverallStat
         icon='crosshair'
@@ -15,13 +20,8 @@ export default function OverallStats({ user }) {
         label='combos trained'
       />
       <OverallStat
-        icon='columns-gap'
-        number={`${(100 * averageComplexity(user)).toFixed(1)}`}
-        label='avg complexity'
-      />
-      <OverallStat
         icon='graph-up-arrow'
-        number={totalCombos(user.trainingSessions)}
+        number={totalCombos(user.trainingSessions) * 0.6}
         label='total score'
       />
     </section>
