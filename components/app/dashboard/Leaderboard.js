@@ -29,7 +29,7 @@ export default function Leaderboard({ user }) {
             key={'rank' + i}
             className={`
               flex items-center gap-2 text-sm py-1 px-3
-              ${user.id === rank.id ? 'bg-neutral-800  rounded-sm' : ''}
+              ${user.id === rank.id ? 'bg-neutral-800  rounded' : ''}
             `}
           >
             <div className='font-mono min-w-4 text-neutral-500'>
