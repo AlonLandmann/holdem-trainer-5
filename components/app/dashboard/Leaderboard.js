@@ -24,7 +24,7 @@ export default function Leaderboard({ user }) {
         Leaderboard
       </h3>
       <div className='p-4 flex flex-col gap-2 border rounded'>
-        {leaderboard.slice(0, 20).map((rank, i) => (
+        {leaderboard.slice(0, 10).map((rank, i) => (
           <div key={'rank' + i} className='flex items-center gap-2 text-sm'>
             <div className='font-mono min-w-4 text-neutral-500'>
               {i + 1}.
