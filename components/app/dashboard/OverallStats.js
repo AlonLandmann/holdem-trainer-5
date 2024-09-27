@@ -2,6 +2,10 @@ import { averageRangeComplexity, totalCombos, totalScore } from '@/lib/client/st
 import OverallStat from './OverallStat'
 
 export default function OverallStats({ user }) {
+  const combos = totalCombos(user.trainingSessions)
+  const score = totalScore(user.trainingSessions)
+  const trainingComplexity = combos ? (score / combos).toFixed(2) : '-'
+
   return (
     <div className='flex flex-wrap gap-8'>
       <div>
@@ -16,7 +20,7 @@ export default function OverallStats({ user }) {
           />
           <OverallStat
             icon='columns-gap'
-            number={`${(averageRangeComplexity(user)).toFixed(2)}`}
+            number={averageRangeComplexity(user)}
             label='range complexity'
           />
         </div>
@@ -28,21 +32,20 @@ export default function OverallStats({ user }) {
         <div className='flex gap-3'>
           <OverallStat
             icon='crosshair'
-            number={totalCombos(user.trainingSessions)}
+            number={combos}
             label='combos trained'
           />
           <OverallStat
             icon='layout-wtf'
-            number={(totalScore(user.trainingSessions) / totalCombos(user.trainingSessions)).toFixed(2)}
+            number={trainingComplexity}
             label='training complexity'
           />
           <OverallStat
             icon='graph-up-arrow'
-            number={totalScore(user.trainingSessions).toFixed(1)}
+            number={score.toFixed(1)}
             label='total score'
           />
         </div>
-
       </div>
     </div>
   )
