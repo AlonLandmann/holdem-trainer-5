@@ -7,7 +7,7 @@ export default function OverallStats({ user }) {
   const trainingComplexity = combos ? (score / combos).toFixed(2) : '-'
 
   return (
-    <div className='flex flex-wrap gap-8'>
+    <div className='flex flex-wrap gap-8 mb-8'>
       <div>
         <h3 className='px-2 text-neutral-500 text-lg mb-2'>
           Ranges
