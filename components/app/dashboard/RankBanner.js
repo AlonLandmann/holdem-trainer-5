@@ -26,7 +26,10 @@ export default function RankBanner({ rank, withName = false }) {
         {['Colonel', 'General'].includes(militaryRank) &&
           <i className='bi bi-x-lg'></i>
         }
-        {['Captain', 'General'].includes(militaryRank) &&
+        {['Captain', 'Major', 'General'].includes(militaryRank) &&
+          < i className={`bi bi-suit-${suit.toLowerCase()}-fill`}></i>
+        }
+        {['Major'].includes(militaryRank) &&
           < i className={`bi bi-suit-${suit.toLowerCase()}-fill`}></i>
         }
         <i className={`bi bi-suit-${suit.toLowerCase()}-fill`}></i>
