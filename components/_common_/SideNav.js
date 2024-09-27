@@ -63,6 +63,12 @@ export default function SideNav() {
             text='Trainer'
             href='/app/trainer'
           />
+          <SideNavItem
+            icon='book'
+            extendedView={extendedView}
+            text='Academy'
+            href='/academy'
+          />
         </div>
         <div className={separatorStyle}></div>
         <div className={groupStyle}>

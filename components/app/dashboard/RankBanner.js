@@ -1,4 +1,8 @@
 export default function RankBanner({ rank }) {
+  if (rank === 'Recruit') return (
+    <div className='text-lg text-neutral-500'>Recruit</div>
+  )
+
   const info = rank.split(' ')
   const suit = rank === 'Recruit' ? null : info[0]
   const militaryRank = rank === 'Recruit' ? 'Recruit' : info[1]
@@ -20,7 +24,7 @@ export default function RankBanner({ rank }) {
         {['Colonel', 'General'].includes(militaryRank) &&
           <i className='bi bi-x-lg'></i>
         }
-        {['Captain', 'General'] &&
+        {['Captain', 'General'].includes(militaryRank) &&
           < i className={`bi bi-suit-${suit.toLowerCase()}-fill`}></i>
         }
         <i className={`bi bi-suit-${suit.toLowerCase()}-fill`}></i>
