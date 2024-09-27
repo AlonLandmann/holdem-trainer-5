@@ -1,6 +1,7 @@
 import { setSessionCookie } from '@/lib/server/cookies'
 import { sendVerificationLink } from '@/lib/server/email'
 import prisma from '@/lib/server/prisma'
+import { generateUsername } from '@/lib/server/usernames'
 import sha256 from 'sha256'
 
 export default async function handler(req, res) {
@@ -16,6 +17,7 @@ export default async function handler(req, res) {
         const newUser = await prisma.user.create({
           data: {
             email,
+            username: generateUsername(),
             hash: sha256(password),
             session: { create: {} },
             settings: { create: {} },
