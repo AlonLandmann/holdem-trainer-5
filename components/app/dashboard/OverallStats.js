@@ -42,7 +42,7 @@ export default function OverallStats({ user }) {
           />
           <OverallStat
             icon='graph-up-arrow'
-            number={score.toFixed(1)}
+            number={score.toFixed(0)}
             label='total score'
           />
         </div>
