@@ -24,7 +24,7 @@ export default function Leaderboard({ user }) {
         Leaderboard
       </h3>
       <div className='p-3 flex flex-col gap-1 border rounded'>
-        {leaderboard.slice(0, 10).map((rank, i) => (
+        {leaderboard.map((rank, i) => (
           <div
             key={'rank' + i}
             className={`
@@ -32,7 +32,7 @@ export default function Leaderboard({ user }) {
               ${user.id === rank.id ? 'bg-neutral-800  rounded' : ''}
             `}
           >
-            <div className='font-mono min-w-4 text-neutral-500'>
+            <div className='font-mono min-w-6 text-neutral-500 text-right'>
               {i + 1}.
             </div>
             <div className='text-neutral-300'>
