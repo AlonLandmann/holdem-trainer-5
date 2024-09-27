@@ -1,6 +1,7 @@
 import Button from '@/components/_common_/Button'
 import { random } from 'lodash'
 import { useRouter } from 'next/router'
+import { useState } from 'react'
 
 const QUOTES = [
   { author: 'Pablo Picasso', quote: 'I am always doing that which I cannot do, in order that I may learn how to do it.' },
@@ -10,7 +11,7 @@ const QUOTES = [
 
 export default function QuoteCta() {
   const router = useRouter()
-  const { author, quote } = QUOTES[random(QUOTES.length - 1)]
+  const [quoteState, setQuoteState] = useState(QUOTES[random(QUOTES.length - 1)]) 
 
   return (
     <div className='grow flex flex-col justify-center items-center'>
@@ -19,21 +20,29 @@ export default function QuoteCta() {
           “
         </div>
         <p className='max-w-[40ch] text-xl pl-10 mb-3 text-neutral-400'>
-          {quote}
+          {quoteState.quote}
         </p>
         <div className='flex gap-2 pl-6 mb-8 text-lg'>
           <i className='bi bi-dash text-neutral-500'></i>
           <div className='text-neutral-500'>
-            {author}
+            {quoteState.author}
           </div>
         </div>
       </div>
-      <Button
-        theme='primary'
-        icon='arrow-right'
-        text='Continue Training'
-        onClick={() => { router.push('/app/trainer') }}
-      />
+      <div className='flex gap-2'>
+        <Button
+          theme='secondary'
+          icon='ui-checks'
+          text='Manage Ranges'
+          onClick={() => { router.push('/app/manager') }}
+        />
+        <Button
+          theme='primary'
+          icon='crosshair'
+          text='Keep Training'
+          onClick={() => { router.push('/app/trainer') }}
+        />
+      </div>
     </div>
   )
 }

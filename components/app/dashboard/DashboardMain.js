@@ -10,7 +10,7 @@ export default function DashboardMain({ user }) {
     <div className='grow bg-neutral-900 p-5'>
       <TopLine user={user} />
       <OverallStats user={user} />
-      <section className='flex'>
+      <section className='flex gap-8'>
         <Leaderboard user={user} />
         <QuoteCta />
       </section>
