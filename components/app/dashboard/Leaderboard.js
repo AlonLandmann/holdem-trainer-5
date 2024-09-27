@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
+import RankBanner from './RankBanner'
+import { getMilitaryRank } from '@/lib/client/stats'
 
 export default function Leaderboard({ user }) {
   const [leaderboard, setLeaderboard] = useState(null)
   const [userRank, setUserRank] = useState(null)
-  
+
   useEffect(() => {
     (async () => {
       const res = await fetch('/api/logs/leaderboard')
@@ -17,15 +19,29 @@ export default function Leaderboard({ user }) {
   }, [])
 
   return (!leaderboard || !(userRank > 0)) ? null : (
-    <div className='border rounded p-4'>
-      <div className='flex justify-between items-center gap-4 text-neutral-500'>
-        <h3 className='uppercase tracking-wide text-sm'>
-          Leaderboards
-        </h3>
-        <i className='bi bi-graph-up-arrow'></i>
-      </div>
-      <div>
-
+    <div>
+      <h3 className='px-2 text-neutral-500 text-lg mb-2'>
+        Leaderboard
+      </h3>
+      <div className='p-4 flex flex-col gap-2 border rounded'>
+        {leaderboard.slice(0, 20).map((rank, i) => (
+          <div key={'rank' + i} className='flex items-center gap-2 text-sm'>
+            <div className='font-mono min-w-4 text-neutral-500'>
+              {i + 1}.
+            </div>
+            <div className='text-neutral-300'>
+              {rank.username ? rank.username : `User ${rank.email.split('@')[0]}`}
+            </div>
+            <div className='font-mono min-w-36 text-right ml-auto'>
+              {rank.totalScore.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+            </div>
+            <div className='min-w-16 flex justify-start ml-2 text-xs'>
+              <RankBanner
+                rank={getMilitaryRank(rank.totalScore)}
+              />
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   )

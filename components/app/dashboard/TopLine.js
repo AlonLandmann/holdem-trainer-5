@@ -1,4 +1,4 @@
-import { rank } from '@/lib/client/stats'
+import { getMilitaryRank, totalScore } from '@/lib/client/stats'
 import RankBanner from './RankBanner'
 
 export default function TopLine({ user }) {
@@ -8,7 +8,8 @@ export default function TopLine({ user }) {
         User {user.email.split('@')[0]} 
       </h1>
       <RankBanner
-        rank={rank(user)}
+        rank={getMilitaryRank(totalScore(user.trainingSessions))}
+        withName
       />
     </div>
   )

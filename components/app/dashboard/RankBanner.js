@@ -1,6 +1,8 @@
-export default function RankBanner({ rank }) {
+export default function RankBanner({ rank, withName = false }) {
   if (rank === 'Recruit') return (
-    <div className='text-lg text-neutral-500'>Recruit</div>
+    <div className={`${withName ? 'text-lg' : 'text-sm'} text-neutral-500`}>
+      Recruit
+    </div>
   )
 
   const info = rank.split(' ')
@@ -29,9 +31,11 @@ export default function RankBanner({ rank }) {
         }
         <i className={`bi bi-suit-${suit.toLowerCase()}-fill`}></i>
       </div>
-      <div className='text-lg text-neutral-500'>
-        {rank}
-      </div>
+      {withName &&
+        <div className='text-lg text-neutral-500'>
+          {rank}
+        </div>
+      }
     </div>
   )
 }

@@ -1,6 +1,6 @@
 export default function OverallStat({ icon, number, label }) {
   function withSeparators(x) {
-    return String(x).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return String(x).replace(/\B(?=(\d{3})+(?!\d))/g, ',')
   }
 
   return (
