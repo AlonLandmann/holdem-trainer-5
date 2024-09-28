@@ -22,7 +22,7 @@ export default async function handler(req, res) {
           GROUP BY
             DATE_TRUNC('day', ts."createdAt")
           ORDER BY
-            "date" DESC;
+            "date" ASC;
         `;
 
         // Convert BigInt to regular numbers

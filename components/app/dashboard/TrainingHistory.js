@@ -27,14 +27,30 @@ export default function TrainingHistory({ user }) {
 
   const today = new Date()
   const startCandidate1 = new Date(today.getFullYear(), today.getMonth() - 3, 1)
-  const startCandidate2 = trainingHistory ? new Date(trainingHistory[trainingHistory.length - 1].date) : today
-  const start = startCandidate1 > startCandidate2 ? startCandidate1 : startCandidate2
+  const startCandidate2 = trainingHistory ? new Date(trainingHistory[0].date) : today
+  const start = startCandidate1.getTime() > startCandidate2.getTime() ? startCandidate1 : startCandidate2
+  console.log(startCandidate1, startCandidate2, start)
   const end = new Date(today.getFullYear(), today.getMonth() + 1, 0)
   const diffInDays = (end - start) / 1000 / 3600 / 24
   const span = []
+  const nrMonths = (end.getMonth() - start.getMonth() + 12) % 12
+  const monthNames = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
+  const months = []
 
-  for (let i = 0; i < diffInDays; i++) {
-    span.push(formatDate((new Date(start.getFullYear(), start.getMonth(), start.getDate() + i))))
+  if (trainingHistory) {
+    for (let i = 0; i < diffInDays; i++) {
+      const dt = new Date(start.getFullYear(), start.getMonth(), start.getDate() + i)
+
+      span.push(formatDate((dt)))
+
+      if (dt.getDate() === 1) {
+        months.push({ name: monthNames[dt.getMonth()], days: 1 })
+      } else {
+        if (months.length) {
+          months[months.length - 1].days++
+        }
+      }
+    }
   }
 
   function dailyMax() {
@@ -42,7 +58,6 @@ export default function TrainingHistory({ user }) {
   }
 
   function percentageHeight(num) {
-    console.log(`${(num / dailyMax()).toFixed(0)}%`)
     return `${(100 * num / dailyMax()).toFixed(0)}%`
   }
 
@@ -100,6 +115,17 @@ export default function TrainingHistory({ user }) {
             >
               {(tallestLine() * 0.25 * i).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
             </div>
+          ))}
+        </div>
+        <div className='flex'>
+          {months.map((month, i) => (
+            <label
+              key={month.name}
+              className={`py-1 text-neutral-500 text-center ${i ? 'border-l pl-[2px]' : ''}`}
+              style={{ width: `${8 * month.days}px` }}
+            >
+              {month.name}
+            </label>
           ))}
         </div>
       </div>
