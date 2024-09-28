@@ -27,7 +27,7 @@ export default function TrainingHistory({ user }) {
 
   const today = new Date()
   const startCandidate1 = new Date(today.getFullYear(), today.getMonth() - 3, 1)
-  const startCandidate2 = trainingHistory ? new Date(trainingHistory[0].date) : today
+  const startCandidate2 = (trainingHistory && trainingHistory[0]) ? new Date(trainingHistory[0].date) : today
   const start = startCandidate1.getTime() > startCandidate2.getTime() ? startCandidate1 : startCandidate2
   console.log(startCandidate1, startCandidate2, start)
   const end = new Date(today.getFullYear(), today.getMonth() + 1, 0)
