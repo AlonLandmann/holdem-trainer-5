@@ -18,7 +18,7 @@ export default function Leaderboard({ user }) {
     })()
   }, [])
 
-  return (!leaderboard || !(userRank > 0)) ? null : (
+  return (!leaderboard || !(userRank >= 0)) ? null : (
     <div>
       <h3 className='px-2 text-neutral-500 text-lg mb-2'>
         Leaderboard
