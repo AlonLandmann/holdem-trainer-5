@@ -27,7 +27,7 @@ export default function TrainingHistory({ user }) {
 
   const today = new Date()
   const startCandidate1 = new Date(today.getFullYear(), today.getMonth() - 3, 1)
-  const startCandidate2 = new Date(trainingHistory[trainingHistory.length - 1].date)
+  const startCandidate2 = trainingHistory ? new Date(trainingHistory[trainingHistory.length - 1].date) : today
   const start = startCandidate1 > startCandidate2 ? startCandidate1 : startCandidate2
   const end = new Date(today.getFullYear(), today.getMonth() + 1, 0)
   const diffInDays = (end - start) / 1000 / 3600 / 24
@@ -54,18 +54,51 @@ export default function TrainingHistory({ user }) {
     }
   }
 
-  console.log(start, end, diffInDays, span, trainingHistory, trainingHistory ? dailyMax() : '')
+  function tallestLine() {
+    let scale = 1
+    const max = dailyMax()
+
+    if (max > 100) { scale = 10 }
+    if (max > 500) { scale = 50 }
+    if (max > 1000) { scale = 100 }
+    if (max > 5000) { scale = 500 }
+    if (max > 10000) { scale = 1000 }
+
+    return Math.floor(dailyMax() / scale) * scale
+  }
 
   return !trainingHistory ? null : (
     <div>
       <h3 className='px-2 text-neutral-500 text-lg mb-2'>
         Training History
       </h3>
-      <div className='inline-block'>
-        <div className='p-3 pt-12 flex gap-[2px] items-end h-[200px] border rounded'>
+      <div className='inline-block p-3 pl-20 pb-5 pt-12 border rounded'>
+        <div className='relative flex gap-[2px] items-end h-[200px]'>
           {span.map(day => (
-            <div key={day} className='bg-neutral-600 w-[6px] rounded-sm' style={{ height: percentageHeight(getNum(day)) }}>
+            <div
+              key={day}
+              className='bg-neutral-600 w-[6px] rounded-sm z-10 opacity-70'
+              style={{ height: percentageHeight(getNum(day)) }}
+            >
 
+            </div>
+          ))}
+          {Array(5).fill('').map((_, i) => (
+            <div
+              key={'grid-line' + i}
+              className='absolute bottom-0 left-0 w-full h-[1px] bg-neutral-800 z-0'
+              style={{ bottom: `${((tallestLine() / dailyMax()) * 200 * i * 0.25)}px` }}
+            >
+
+            </div>
+          ))}
+          {Array(5).fill('').map((_, i) => (
+            <div
+              key={'grid-line' + i}
+              className='absolute bottom-0 -left-16 z-0 text-right w-12 text-sm font-mono text-neutral-500'
+              style={{ bottom: `${((tallestLine() / dailyMax()) * 200 * i * 0.25) - 8}px` }}
+            >
+              {(tallestLine() * 0.25 * i).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
             </div>
           ))}
         </div>
