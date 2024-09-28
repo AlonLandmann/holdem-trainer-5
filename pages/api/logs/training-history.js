@@ -4,25 +4,36 @@ export default async function handler(req, res) {
   try {
     switch (req.method) {
       case 'GET':
-        // const leaderboard = await prisma.$queryRaw`
-        //   SELECT
-        //     u.id,
-        //     u.email,
-        //     u.username,
-        //     COALESCE(SUM(tu.score), 0) AS "totalScore"
-        //   FROM
-        //     "User" u
-        //   LEFT JOIN
-        //     "TrainingSession" ts ON ts."userId" = u.id
-        //   LEFT JOIN
-        //     "TrainingUnit" tu ON tu."trainingSessionId" = ts.id
-        //   GROUP BY
-        //     u.id
-        //   ORDER BY
-        //     "totalScore" DESC;
-        // `;
+        const userId = Number(req.query.userId)
 
-        // return res.status(200).json({ success: true, leaderboard })
+        const trainingHistory = await prisma.$queryRaw`
+          SELECT
+            DATE_TRUNC('day', ts."createdAt") AS "date",
+            SUM(tu.total) AS "total",
+            SUM(tu.correct) AS "correct",
+            SUM(tu.score) AS "score"
+          FROM
+            "TrainingSession" ts
+          JOIN
+            "TrainingUnit" tu ON tu."trainingSessionId" = ts.id
+          WHERE
+            ts."userId" = ${userId}
+            AND ts."createdAt" >= DATE_TRUNC('month', NOW()) - INTERVAL '4 months'
+          GROUP BY
+            DATE_TRUNC('day', ts."createdAt")
+          ORDER BY
+            "date" DESC;
+        `;
+
+        // Convert BigInt to regular numbers
+        const formattedHistory = trainingHistory.map(item => ({
+          ...item,
+          total: Number(item.total),
+          correct: Number(item.correct),
+          score: Number(item.score),
+        }));
+
+        return res.status(200).json({ success: true, trainingHistory: formattedHistory })
 
       default:
         return res.status(400).json({ success: false, message: 'Invalid request.' })
