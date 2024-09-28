@@ -7,10 +7,10 @@ import TrainingHistory from './TrainingHistory'
 
 export default function DashboardMain({ user }) {
   return (
-    <div className='grow bg-neutral-900 p-5'>
+    <div className='grow bg-neutral-900 p-5 max-h-screen overflow-y-auto'>
       <TopLine user={user} />
       <OverallStats user={user} />
-      <section className='flex gap-8'>
+      <section className='flex gap-8 mb-8'>
         <Leaderboard user={user} />
         <QuoteCta />
       </section>
