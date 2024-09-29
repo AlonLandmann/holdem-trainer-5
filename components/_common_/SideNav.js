@@ -2,6 +2,7 @@ import { useRouter } from 'next/router'
 import Button from './Button'
 import { useState } from 'react'
 import SideNavItem from './SideNavItem'
+import toast from 'react-hot-toast'
 
 export default function SideNav() {
   const router = useRouter()
@@ -14,6 +15,22 @@ export default function SideNav() {
     h-[1px] ${extendedView ? 'w-32' : 'w-7'}
     bg-neutral-800 self-center my-2
   `
+
+  async function handleLogout() {
+    console.log('here')
+    const res = await fetch('/api/auth/logout', {
+      method: 'POST',
+      credentials: 'include',
+    })
+
+    const json = await res.json()
+
+    if (!json.success) {
+      return toast.error(json.message || 'An unexpected error occurred.')
+    }
+
+    window.location = '/auth/login'
+  }
 
   return (
     <>
@@ -82,6 +99,7 @@ export default function SideNav() {
             icon='arrow-return-left'
             extendedView={extendedView}
             text='Logout'
+            onClick={handleLogout}
           />
         </div>
       </div>

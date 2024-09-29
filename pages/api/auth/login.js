@@ -41,10 +41,10 @@ export default async function handler(req, res) {
         return res.status(200).json({ success: true })
 
       default:
-        res.status(400).json({ success: false, message: TOASTS.invalidRequest })
+        res.status(400).json({ success: false, message: 'Invalid request.' })
     }
   } catch (error) {
     console.log(error)
-    res.status(500).json({ success: false, message: TOASTS.internalServerError })
+    res.status(500).json({ success: false, message: 'Internal server error.' })
   }
 }
