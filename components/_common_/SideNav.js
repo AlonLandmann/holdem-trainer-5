@@ -17,7 +17,6 @@ export default function SideNav() {
   `
 
   async function handleLogout() {
-    console.log('here')
     const res = await fetch('/api/auth/logout', {
       method: 'POST',
       credentials: 'include',
