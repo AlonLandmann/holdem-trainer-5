@@ -2,7 +2,6 @@ import { useUser } from '@/hooks/useUser'
 import Link from 'next/link'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
-import Button from './Button'
 
 export default function Navbar() {
   const [user, setUser] = useUser()
