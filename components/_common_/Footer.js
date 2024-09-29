@@ -1,9 +1,6 @@
-import { useUser } from '@/hooks/useUser'
 import Link from 'next/link'
 
 export default function Footer() {
-  const [user, setUser] = useUser()
-
   return (
     <div className='bg-[#202020] flex flex-col'>
       <div
@@ -59,12 +56,6 @@ export default function Footer() {
           <div className='flex flex-col items-start gap-2 text-[15px] md:text-base'>
             <Link href='/pricing' className='hover:text-neutral-400'>HT-pro</Link>
             <Link href='/support' className='hover:text-neutral-400'>Support</Link>
-            {!user &&
-              <Link href='/signup' className='hover:text-neutral-400'>Signup</Link>
-            }
-            {user &&
-              <Link href='/app/dashboard' className='hover:text-neutral-400'>Dashboard</Link>
-            }
           </div>
         </div>
       </div>
