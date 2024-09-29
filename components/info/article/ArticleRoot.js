@@ -1,7 +1,9 @@
+import InfoLayout from '@/components/_common_/InfoLayout'
+
 export default function ArticleRoot() {
   return (
-    <div>
+    <InfoLayout>
       Article
-    </div>
+    </InfoLayout>
   )
 }

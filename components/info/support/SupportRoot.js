@@ -1,7 +1,9 @@
+import InfoLayout from '@/components/_common_/InfoLayout'
+
 export default function SupportRoot() {
   return (
-    <div>
+    <InfoLayout>
       Support
-    </div>
+    </InfoLayout>
   )
 }
