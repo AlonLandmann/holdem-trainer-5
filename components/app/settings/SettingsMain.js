@@ -14,34 +14,34 @@ export default function SettingsMain({ user }) {
           Account Settings
         </h1>
         <div className='flex flex-col gap-2'>
-          <div className={rowStyle}>
-            <label className={labelStyle}>
-              Email
-            </label>
-            <div className={currentValueStyle}>
-              {user.email}
-            </div>
-            {!user.googleId && user.isVerified &&
-              <div>
-                <i className='bi bi-check2'></i>
-                <span> verified</span>
+          {!user.googleId &&
+            <div className={rowStyle}>
+              <label className={labelStyle}>
+                Email
+              </label>
+              <div className={currentValueStyle}>
+                {user.email}
               </div>
-            }
-            <div className={buttons}>
-              {!user.googleId && !user.isVerified &&
-                <Button
-                  theme='secondary'
-                  text='verifiy'
-                />
+              {user.isVerified &&
+                <div>
+                  <i className='bi bi-check2'></i>
+                  <span> verified</span>
+                </div>
               }
-              {!user.googleId &&
+              <div className={buttons}>
+                {!user.isVerified &&
+                  <Button
+                    theme='secondary'
+                    text='verifiy'
+                  />
+                }
                 <Button
                   theme='secondary'
                   text='change'
                 />
-              }
+              </div>
             </div>
-          </div>
+          }
           <div className={rowStyle}>
             <label className={labelStyle}>
               Username
@@ -56,24 +56,26 @@ export default function SettingsMain({ user }) {
               />
             </div>
           </div>
-          <div className={rowStyle}>
-            <label className={labelStyle}>
-              Password
-            </label>
-            <div className={currentValueStyle}>
+          {!user.googleId &&
+            <div className={rowStyle}>
+              <label className={labelStyle}>
+                Password
+              </label>
+              <div className={currentValueStyle}>
 
+              </div>
+              <div className={buttons}>
+                <Button
+                  theme='secondary'
+                  text='change'
+                />
+                <Button
+                  theme='secondary'
+                  text='reset'
+                />
+              </div>
             </div>
-            <div className={buttons}>
-              <Button
-                theme='secondary'
-                text='change'
-              />
-              <Button
-                theme='secondary'
-                text='reset'
-              />
-            </div>
-          </div>
+          }
           <div className={rowStyle}>
             <label className={labelStyle}>
               Membership
