@@ -81,7 +81,7 @@ model Article {
   level       Int
   category    String
   title       String
-  slug        String
+  slug        String   @unique
   abstract    String
   content     String
 }
