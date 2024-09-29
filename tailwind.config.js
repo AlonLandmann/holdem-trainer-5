@@ -6,6 +6,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      screens: {
+        'xs': '480px',
+      },
       fontFamily: {
         sans: ['Red Hat Display', 'sans-serif'],
         decorative: ['Amita', 'cursive'],
