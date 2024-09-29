@@ -1,0 +1,109 @@
+import Button from '@/components/_common_/Button'
+import { capitalize } from 'lodash'
+
+export default function SettingsMain({ user }) {
+  const rowStyle = 'flex items-center'
+  const labelStyle = 'w-36 text-neutral-400'
+  const currentValueStyle = 'w-32'
+  const buttons = 'flex gap-2'
+
+  return (
+    <div className='py-10 px-12'>
+      <section>
+        <h1 className='mb-5 text-neutral-500 text-lg'>
+          Account Settings
+        </h1>
+        <div className='flex flex-col gap-2'>
+          <div className={rowStyle}>
+            <label className={labelStyle}>
+              Email
+            </label>
+            <div className={currentValueStyle}>
+              {user.email}
+            </div>
+            {!user.googleId && user.isVerified &&
+              <div>
+                <i className='bi bi-check2'></i>
+                <span> verified</span>
+              </div>
+            }
+            <div className={buttons}>
+              {!user.googleId && !user.isVerified &&
+                <Button
+                  theme='secondary'
+                  text='verifiy'
+                />
+              }
+              {!user.googleId &&
+                <Button
+                  theme='secondary'
+                  text='change'
+                />
+              }
+            </div>
+          </div>
+          <div className={rowStyle}>
+            <label className={labelStyle}>
+              Username
+            </label>
+            <div className={currentValueStyle}>
+              {user.username}
+            </div>
+            <div className={buttons}>
+              <Button
+                theme='secondary'
+                text='change'
+              />
+            </div>
+          </div>
+          <div className={rowStyle}>
+            <label className={labelStyle}>
+              Password
+            </label>
+            <div className={currentValueStyle}>
+
+            </div>
+            <div className={buttons}>
+              <Button
+                theme='secondary'
+                text='change'
+              />
+              <Button
+                theme='secondary'
+                text='reset'
+              />
+            </div>
+          </div>
+          <div className={rowStyle}>
+            <label className={labelStyle}>
+              Membership
+            </label>
+            <div className={currentValueStyle}>
+              {capitalize(user.membership)}
+            </div>
+            <div className={buttons}>
+              <Button
+                theme='secondary'
+                text={user.membership === 'free' ? 'upgrade' : 'change'}
+              />
+            </div>
+          </div>
+          <div className={rowStyle}>
+            <label className={labelStyle}>
+              Account
+            </label>
+            <div className={currentValueStyle}>
+
+            </div>
+            <div className={buttons}>
+              <Button
+                theme='secondary'
+                text='delete'
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  )
+}
