@@ -1,10 +1,12 @@
-import { averageRangeComplexity, totalCombos, totalScore } from '@/lib/client/stats'
+import { averageRangeComplexity, totalCombos, totalCorrect, totalScore } from '@/lib/client/stats'
 import OverallStat from './OverallStat'
 
 export default function OverallStats({ user }) {
   const combos = totalCombos(user.trainingSessions)
+  const correct = totalCorrect(user.trainingSessions)
+  const accuracy = combos ? (correct / combos).toFixed(2) : '-'
   const score = totalScore(user.trainingSessions)
-  const trainingComplexity = combos ? (score / combos).toFixed(2) : '-'
+  const trainingComplexity = correct ? (score / correct).toFixed(2) : '-'
 
   return (
     <div className='flex flex-wrap gap-8 mb-8'>
@@ -31,9 +33,14 @@ export default function OverallStats({ user }) {
         </h3>
         <div className='flex gap-3'>
           <OverallStat
-            icon='crosshair'
+            icon='hash'
             number={combos}
             label='combos trained'
+          />
+          <OverallStat
+            icon='crosshair'
+            number={accuracy}
+            label='accuracy'
           />
           <OverallStat
             icon='layout-wtf'
