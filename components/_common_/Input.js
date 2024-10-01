@@ -22,19 +22,18 @@ export default function Input({
   placeholder = '',
   min = undefined,
   max = undefined,
+  step = 1,
   value,
   onChange,
 }) {
   return (
     <input
-      className={`
-        ${themes[theme]}
-        ${utilClasses}
-      `}
+      className={`${themes[theme]} ${utilClasses}`}
       name={name}
       type={type}
       min={min}
       max={max}
+      step={step}
       placeholder={placeholder}
       value={value}
       onChange={onChange}
