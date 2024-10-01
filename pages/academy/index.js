@@ -1,10 +1,17 @@
 import Page from '@/components/_common_/Page'
 import AcademyRoot from '@/components/info/academy/AcademyRoot'
+import prisma from '@/lib/server/prisma'
 
-export default function AcademyPage() {
+export default function AcademyPage({ articles }) {
   return (
     <Page title='Academy'>
-      <AcademyRoot />
+      <AcademyRoot articles={JSON.parse(articles)} />
     </Page>
   )
+}
+
+export async function getServerSideProps() {
+  const articles = await prisma.article.findMany()
+
+  return { props: { articles: JSON.stringify(articles) } }
 }
