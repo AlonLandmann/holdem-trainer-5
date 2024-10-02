@@ -1,5 +1,5 @@
 import InfoLayout from '@/components/_common_/InfoLayout'
-import { capitalize } from 'lodash'
+import ArticleBanner from './ArticleBanner'
 
 export default function AcademyRoot({ articles }) {
   return (
@@ -14,11 +14,12 @@ export default function AcademyRoot({ articles }) {
             Welcome to the Hold'em Academy. Learn Game-Theory-Optimal Texas Hold'em from the ground up with articles, prepared ranges, as well as in-depth videos.
           </h4>
         </div>
-        <div className='flex flex-col gap-1 max-w-[600px] text-center px-12 pb-16'>
+        <div className='flex flex-col gap-5 max-w-[900px] px-12 pb-16'>
           {articles.map(article => (
-            <div key={article.slug}>
-              {capitalize(article.title)}
-            </div>
+            <ArticleBanner
+              key={'article' + article.id}
+              article={article}
+            />
           ))}
         </div>
       </div>

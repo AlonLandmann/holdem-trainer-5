@@ -1,0 +1,5 @@
+@use '@/styles/_global_/layout';
+
+.container {
+  @include layout.rootContainer;
+}

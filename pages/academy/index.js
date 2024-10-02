@@ -11,7 +11,11 @@ export default function AcademyPage({ articles }) {
 }
 
 export async function getServerSideProps() {
-  const articles = await prisma.article.findMany()
+  const articles = await prisma.article.findMany({
+    include: {
+      author: true
+    }
+  })
 
   return { props: { articles: JSON.stringify(articles) } }
 }

@@ -1,3 +1,6 @@
 export default {
-  reactStrictMode: true
+  reactStrictMode: true,
+  images: {
+    domains: ['images.unsplash.com']
+  }
 }

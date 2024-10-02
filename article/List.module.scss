@@ -1,0 +1,17 @@
+.container {
+  padding: 20px 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  text-align: left;
+
+  i {
+    font-size: 4px;
+  }
+}
