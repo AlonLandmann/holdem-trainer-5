@@ -1,47 +1,30 @@
 import Input from '@/components/_common_/Input'
 
 export default function ArticleEditor({ copy, setCopy }) {
+  
   function handleChange() {
-
+    
   }
 
+  const labelStyle ='self-start mt-[10px] text-neutral-400'
+
   return (
-    <div className='sticky top-0 overflow-y-auto max-h-screen flex flex-col gap-[10px] p-5'>
-      <label>Title</label>
+    <div
+      className='self-start sticky top-0 overflow-y-auto max-h-screen grid gap-[10px] p-5'
+      style={{ gridTemplateColumns: '100px 1fr' }}
+    >
+      <label className={labelStyle}>
+        Title
+      </label>
       <Input
         name='title'
         type='text'
         value={copy.title}
         onChange={handleChange}
       />
-      <div className='px-[11px] pb-[10px] text-sm text-neutral-500'>
-        {copy.slug}
-      </div>
-      <label>Category</label>
-      <Input
-        name='category'
-        type='text'
-        value={copy.category}
-        onChange={handleChange}
-      />
-      <label>Author</label>
-      <Input
-        name='author'
-        type='text'
-        value={copy.author.username}
-        onChange={handleChange}
-      />
-      <label>Publication Status</label>
-      <select
-        name='isPublished'
-        className='appearance-none'
-        value={copy.isPublished}
-        onChange={handleChange}
-      >
-        <option value='1'>Yes</option>
-        <option value='0'>No</option>
-      </select>
-      <label>Abstract</label>
+      <label className={labelStyle}>
+        Abstract
+      </label>
       <textarea
         name='abstract'
         className='resize-none'
@@ -50,7 +33,39 @@ export default function ArticleEditor({ copy, setCopy }) {
         value={copy.abstract}
         onChange={handleChange}
       />
-      <label>Difficulty</label>
+      {/* <label className={labelStyle}>
+        Category
+      </label>
+      <Input
+        name='category'
+        type='text'
+        value={copy.category}
+        onChange={handleChange}
+      /> */}
+      <label className={labelStyle}>
+        Author
+      </label>
+      <Input
+        name='author'
+        type='text'
+        value={copy.author.username}
+        onChange={handleChange}
+      />
+      <label className={labelStyle}>
+        Status
+      </label>
+      <select
+        name='isPublished'
+        className='appearance-none'
+        value={copy.isPublished}
+        onChange={handleChange}
+      >
+        <option value='1'>Published</option>
+        <option value='0'>Unpublished</option>
+      </select>
+      <label className={labelStyle}>
+        Difficulty
+      </label>
       <select
         name='difficultyLevel'
         className='appearance-none'
@@ -62,25 +77,31 @@ export default function ArticleEditor({ copy, setCopy }) {
         <option value='3'>Advanced</option>
         <option value='4'>Expert</option>
       </select>
-      <label>Time to read</label>
+      <label className={labelStyle}>
+        Time to read
+      </label>
       <Input
         name='readTime'
         type='number'
         value={copy.readTime}
         onChange={handleChange}
       />
-      <label>Image URL</label>
+      <label className={labelStyle}>
+        Image URL
+      </label>
       <Input
         name='imageUrl'
         type='text'
         value={copy.imageUrl}
         onChange={handleChange}
       />
-      <label>Content</label>
+      <label className={labelStyle}>
+        Content
+      </label>
       <textarea
         name='content'
         className='resize-none'
-        rows={18}
+        rows={22}
         spellCheck={false}
         value={copy.content}
         onChange={handleChange}
