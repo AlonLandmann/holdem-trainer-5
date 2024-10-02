@@ -42,6 +42,29 @@ export default function ArticleEditor({ copy, setCopy, authors }) {
         onChange={handleChange}
       /> */}
       <label className={labelStyle}>
+        Difficulty
+      </label>
+      <select
+        name='difficultyLevel'
+        className='appearance-none'
+        value={String(copy.difficultyLevel)}
+        onChange={handleChange}
+      >
+        <option value='1'>Beginner</option>
+        <option value='2'>Intermediate</option>
+        <option value='3'>Advanced</option>
+        <option value='4'>Expert</option>
+      </select>
+      <label className={labelStyle}>
+        Time to read
+      </label>
+      <Input
+        name='readTime'
+        type='number'
+        value={copy.readTime}
+        onChange={handleChange}
+      />
+      <label className={labelStyle}>
         Author
       </label>
       <select
@@ -68,29 +91,6 @@ export default function ArticleEditor({ copy, setCopy, authors }) {
         <option value='1'>Published</option>
         <option value='0'>Unpublished</option>
       </select>
-      <label className={labelStyle}>
-        Difficulty
-      </label>
-      <select
-        name='difficultyLevel'
-        className='appearance-none'
-        value={String(copy.difficultyLevel)}
-        onChange={handleChange}
-      >
-        <option value='1'>Beginner</option>
-        <option value='2'>Intermediate</option>
-        <option value='3'>Advanced</option>
-        <option value='4'>Expert</option>
-      </select>
-      <label className={labelStyle}>
-        Time to read
-      </label>
-      <Input
-        name='readTime'
-        type='number'
-        value={copy.readTime}
-        onChange={handleChange}
-      />
       <label className={labelStyle}>
         Image URL
       </label>
