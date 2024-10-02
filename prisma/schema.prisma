@@ -52,21 +52,22 @@ model Folder {
 }
 
 model Range {
-  id            Int            @id @default(autoincrement())
-  index         Int
-  createdAt     DateTime       @default(now())
-  updatedAt     DateTime       @updatedAt
-  name          String         @default("New Range")
-  stacks        Float[]        @default([100, 100, 100, 100, 100, 100])
-  history       String[]       @default([])
-  options       String[]       @default(["fold", "call"])
-  matrix        Bytes
-  folder        Folder         @relation(fields: [folderId], references: [id])
-  folderId      Int
-  successors    Range[]        @relation("Pred-Succ")
-  predecessor   Range?         @relation("Pred-Succ", fields: [predecessorId], references: [id])
-  predecessorId Int?
-  trainingUnits TrainingUnit[]
+  id                Int            @id @default(autoincrement())
+  index             Int
+  createdAt         DateTime       @default(now())
+  updatedAt         DateTime       @updatedAt
+  name              String         @default("New Range")
+  stacks            Float[]        @default([100, 100, 100, 100, 100, 100])
+  history           String[]       @default([])
+  options           String[]       @default(["fold", "call"])
+  matrix            Bytes
+  folder            Folder         @relation(fields: [folderId], references: [id])
+  folderId          Int
+  successors        Range[]        @relation("Pred-Succ")
+  predecessor       Range?         @relation("Pred-Succ", fields: [predecessorId], references: [id])
+  predecessorId     Int?
+  trainingUnits     TrainingUnit[]
+  featuringArticles Article[]
 }
 
 model Article {
@@ -84,6 +85,7 @@ model Article {
   slug        String   @unique
   abstract    String
   content     String
+  ranges      Range[]
 }
 
 model TrainingSession {

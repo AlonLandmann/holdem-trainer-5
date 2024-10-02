@@ -1,13 +1,13 @@
 import Image from 'next/image'
 
-export default function ArticleBanner({ article }) {
-  const difficultyInfo = [
-    { color: '#96dea9', background: '#3a6e48', suit: 'club', displayText: 'Beginner' },
-    { color: '#8dd6e0', background: '#2e6067', suit: 'diamond', displayText: 'Intermediate' },
-    { color: '#e29292', background: '#6c3b3b', suit: 'heart', displayText: 'Advanced' },
-    { color: '#aaaaaa', background: '#151515', suit: 'spade', displayText: 'Expert' },
-  ]
+const difficultyInfo = [
+  { color: '#96dea9', background: '#3a6e48', suit: 'club', displayText: 'Beginner' },
+  { color: '#8dd6e0', background: '#2e6067', suit: 'diamond', displayText: 'Intermediate' },
+  { color: '#e29292', background: '#6c3b3b', suit: 'heart', displayText: 'Advanced' },
+  { color: '#aaaaaa', background: '#151515', suit: 'spade', displayText: 'Expert' },
+]
 
+export default function ArticleBanner({ article }) {
   const { color, background, suit, displayText } = difficultyInfo[article.level - 1]
 
   return (

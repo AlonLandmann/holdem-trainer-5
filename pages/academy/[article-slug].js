@@ -16,7 +16,8 @@ export async function getServerSideProps(context) {
       slug: context.query['article-slug']
     },
     include: {
-      author: true
+      author: true,
+      ranges: true,
     }
   })
 
