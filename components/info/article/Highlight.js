@@ -1,12 +1,11 @@
 import { v4 as uuid } from 'uuid'
-import css from '@/styles/article/Highlight.module.scss'
 import TeX from './TeX'
 
 export default function Highlight({ tex }) {
   return (
-    <div className={css.container}>
+    <div className='py-[20px] px-[40px] flex flex-col gap-5'>
       {tex.split('||||').map(row => (
-        <div key={uuid()} className={css.row}>
+        <div key={uuid()} className='flex justify-center gap-[30px]'>
           {row.split('|||').map(item => (
             <TeX key={uuid()} tex={item} />
           ))}

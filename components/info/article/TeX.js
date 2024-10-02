@@ -5,7 +5,6 @@ import Highlight from './Highlight'
 import List from './List'
 import Table from './Table'
 import Link from 'next/link'
-import MatrixDisplay from '../ranges/MatrixDisplay'
 
 export default function TeX({ tex, ranges = [] }) {
   let parsed = []

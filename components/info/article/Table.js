@@ -1,5 +1,4 @@
 import { v4 as uuid } from 'uuid'
-import css from '@/styles/article/Table.module.scss'
 import TeX from './TeX'
 
 export default function Table({ tex }) {
@@ -46,14 +45,14 @@ export default function Table({ tex }) {
   }
 
   return (
-    <table className={css.container} cellSpacing={0}>
+    <table className='p-2' cellSpacing={0}>
       <tbody>
         {table.map(row => (
-          <tr key={uuid()} className={`${css.row}`}>
+          <tr key={uuid()}>
             {row.map(cell => (
               <td
                 key={uuid()}
-                className={css.cell}
+                className='py-[5px] px-[10px] text-center'
                 style={{
                   borderBottom: cell.borderBottom ? '1px solid #999' : undefined,
                   borderRight: cell.borderRight ? '1px solid #999' : undefined
