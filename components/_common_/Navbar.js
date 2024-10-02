@@ -65,7 +65,7 @@ export default function Navbar() {
           <Link href='/app/trainer' className={ddItemStyle}>
             Training
           </Link>
-          <Link href='/app/articles' className={ddItemStyle}>
+          <Link href='/academy' className={ddItemStyle}>
             Academy
           </Link>
           {!user &&
