@@ -1,14 +1,33 @@
+import Button from '@/components/_common_/Button'
 import Input from '@/components/_common_/Input'
 import { produce } from 'immer'
+import { kebabCase } from 'lodash'
+import toast from 'react-hot-toast'
 
 export default function ArticleEditor({ copy, setCopy, authors }) {
+  const labelStyle ='self-start mt-[10px] text-neutral-400'
+
   function handleChange(event, modifier) {
     setCopy(produce(draft => {
       draft[event.target.name] = modifier(event.target.value)
     }))
   }
 
-  const labelStyle ='self-start mt-[10px] text-neutral-400'
+  async function handleSave() {
+    const res = await fetch(`/api/articles/${copy.id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(copy)
+    })
+
+    const json = await res.json()
+
+    if (json.success) {
+      window.location = `/admin/editor/${kebabCase(copy.title)}`
+    } else {
+      toast.error(json.message || 'An unexpected error occurred.')
+    }
+  }
 
   return (
     <div
@@ -113,6 +132,15 @@ export default function ArticleEditor({ copy, setCopy, authors }) {
         spellCheck={false}
         value={copy.content}
         onChange={e => { handleChange(e, value => value) }}
+      />
+      <label className={labelStyle}>
+        Save
+      </label>
+      <Button
+        theme='primary'
+        text='Save Changes'
+        onClick={handleSave}
+        useQueue
       />
     </div>
   )
