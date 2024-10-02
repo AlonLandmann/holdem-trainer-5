@@ -13,7 +13,7 @@ export default function ArticleRoot({ article }) {
 
   return (
     <InfoLayout>
-      <div className='w-full max-w-[640px] mx-auto p-5 fle flex-col gap-5'>
+      <div className='w-full max-w-[640px] mx-auto px-5 py-12 fle flex-col gap-5'>
         <section className='flex flex-col gap-5'>
           <h1 className='text-3xl capitalize'>
             {article.title}
@@ -40,7 +40,7 @@ export default function ArticleRoot({ article }) {
               {article.updatedAt.slice(0, 10)}
             </div>
           </div>
-          <div className='relative overflow-hidden w-full aspect-[1.6] sepia mb-[10px]'>
+          <div className='relative overflow-hidden w-full aspect-[1.6] sepia mb-6'>
             <Image
               src={article.imageUrl}
               alt='Article Image'
@@ -48,6 +48,9 @@ export default function ArticleRoot({ article }) {
               objectFit='cover'
             />
           </div>
+        </section>
+        <section className='leading-8 text-neutral-400'>
+          {article.content}
         </section>
       </div>
     </InfoLayout>
