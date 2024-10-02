@@ -3,12 +3,13 @@ import ArticleEditorRoot from '@/components/admin/article-editor/ArticleEditorRo
 import prisma from '@/lib/server/prisma'
 import { random } from 'lodash'
 
-export default function ArticleEditorPage({ article, suggestions }) {
+export default function ArticleEditorPage({ article, suggestions, authors }) {
   return (
     <Page title='Article Editor'>
       <ArticleEditorRoot
         article={JSON.parse(article)}
         suggestions={JSON.parse(suggestions)}
+        authors={authors}
       />
     </Page>
   )
@@ -60,10 +61,21 @@ export async function getServerSideProps(context) {
     },
   })
 
+  const authors = await prisma.user.findMany({
+    where: {
+      role: 'Admin'
+    },
+    select: {
+      id: true,
+      username: true,
+    }
+  })
+
   return {
     props: {
       article: JSON.stringify(article),
       suggestions: JSON.stringify(suggestions),
+      authors,
     }
   }
 }

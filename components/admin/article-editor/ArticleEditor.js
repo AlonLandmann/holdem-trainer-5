@@ -1,7 +1,6 @@
 import Input from '@/components/_common_/Input'
 
-export default function ArticleEditor({ copy, setCopy }) {
-  
+export default function ArticleEditor({ copy, setCopy, authors }) {
   function handleChange() {
     
   }
@@ -45,12 +44,18 @@ export default function ArticleEditor({ copy, setCopy }) {
       <label className={labelStyle}>
         Author
       </label>
-      <Input
-        name='author'
-        type='text'
-        value={copy.author.username}
+      <select
+        name='authorId'
+        className='appearance-none'
+        value={copy.authorId}
         onChange={handleChange}
-      />
+      >
+        {authors.map(author => (
+          <option key={'author' + author.id} value={String(author.id)}>
+            {author.username}
+          </option>
+        ))}
+      </select>
       <label className={labelStyle}>
         Status
       </label>

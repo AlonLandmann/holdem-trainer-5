@@ -2,7 +2,7 @@ import Article from '@/components/_common_/Article'
 import ArticleEditor from './ArticleEditor'
 import { useState } from 'react'
 
-export default function ArticleEditorRoot({ article, suggestions }) {
+export default function ArticleEditorRoot({ article, suggestions, authors }) {
   const [copy, setCopy] = useState(article)
 
   return !copy ? null : (
@@ -10,6 +10,7 @@ export default function ArticleEditorRoot({ article, suggestions }) {
       <ArticleEditor
         copy={copy}
         setCopy={setCopy}
+        authors={authors}
       />
       <div className='bg-neutral-900'>
         <Article
