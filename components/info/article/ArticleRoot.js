@@ -1,6 +1,7 @@
 import Button from '@/components/_common_/Button'
 import InfoLayout from '@/components/_common_/InfoLayout'
 import Image from 'next/image'
+import ArticleBanner from '../../_common_/ArticleBanner'
 
 const difficultyInfo = [
   { color: '#96dea9', background: '#3a6e48', suit: 'club', displayText: 'Beginner' },
@@ -9,7 +10,7 @@ const difficultyInfo = [
   { color: '#aaaaaa', background: '#151515', suit: 'spade', displayText: 'Expert' },
 ]
 
-export default function ArticleRoot({ article }) {
+export default function ArticleRoot({ article, suggestions }) {
   const { color, background, suit, displayText } = difficultyInfo[article.level - 1]
 
   return (
@@ -69,6 +70,14 @@ export default function ArticleRoot({ article }) {
             utilClasses='text-base w-[30px] h-[30px]'
             icon='discord'
           />
+        </section>
+        <section className='py-5 flex flex-col gap-3'>
+          {suggestions.map(suggestion => (
+            <ArticleBanner
+              key={'suggestion' + suggestion.id}
+              article={suggestion}
+            />
+          ))}
         </section>
       </div>
     </InfoLayout>

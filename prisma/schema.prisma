@@ -80,7 +80,7 @@ model Article {
   imageUrl    String
   readTime    Int
   level       Int
-  category    String
+  category    String // not used at the moment
   title       String
   slug        String   @unique
   abstract    String
