@@ -30,6 +30,7 @@ export async function getServerSideProps(context) {
       slug: {
         not: context.query['article-slug']
       },
+      isPublished: true,
     }
   })
 
@@ -38,6 +39,7 @@ export async function getServerSideProps(context) {
       slug: {
         not: context.query['article-slug']
       },
+      isPublished: true,
     },
     take: 3,
     skip: Math.max(0, random(nrOtherArticles - 3)),

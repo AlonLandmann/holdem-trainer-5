@@ -12,8 +12,11 @@ export default function AcademyPage({ articles }) {
 
 export async function getServerSideProps() {
   const articles = await prisma.article.findMany({
+    where: {
+      isPublished: true,
+    },
     include: {
-      author: true
+      author: true,
     }
   })
 
