@@ -1,12 +1,19 @@
-import Article from "@/components/_common_/Article";
+import Article from '@/components/_common_/Article'
+import ArticleEditor from './ArticleEditor'
+import { useState } from 'react'
 
 export default function ArticleEditorRoot({ article, suggestions }) {
-  return (
+  const [copy, setCopy] = useState(article)
+
+  return !copy ? null : (
     <div className='grid grid-cols-2'>
-      <div>Editor</div>
+      <ArticleEditor
+        copy={copy}
+        setCopy={setCopy}
+      />
       <div className='bg-neutral-900'>
         <Article
-          article={article}
+          article={copy}
           suggestions={suggestions}
         />
       </div>

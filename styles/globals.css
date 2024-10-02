@@ -33,8 +33,8 @@ input.spinner-less[type=number] {
 
 select {
   padding: 10px 15px;
-  border: 1px solid #333;
-  border-radius: 3px;
+  border: 1px solid #222;
+  border-radius: 2px;
   outline: none;
   font-family: 'Red Hat Display', sans-serif;
   font-size: 14px;
@@ -50,5 +50,20 @@ select {
     &::placeholder {
       color: #fff;
     }
+  }
+}
+
+textarea {
+  padding: 10px 15px;
+  border: 1px solid #222;
+  border-radius: 2px;
+  outline: none;
+  font-family: 'Red Hat Display', sans-serif;
+  font-size: 14px;
+  background: #222;
+  
+  &:focus {
+    border: 1px solid #555;
+    outline: none;
   }
 }
