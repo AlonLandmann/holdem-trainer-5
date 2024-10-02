@@ -1,6 +1,7 @@
 import Page from '@/components/_common_/Page'
 import ArticleRoot from '@/components/info/article/ArticleRoot'
 import prisma from '@/lib/server/prisma'
+import { random } from 'lodash'
 
 export default function ArticlePage({ article, suggestions }) {
   return (
@@ -24,6 +25,14 @@ export async function getServerSideProps(context) {
     }
   })
 
+  const nrOtherArticles = await prisma.article.count({
+    where: {
+      slug: {
+        not: context.query['article-slug']
+      },
+    }
+  })
+
   const suggestions = await prisma.article.findMany({
     where: {
       slug: {
@@ -31,6 +40,7 @@ export async function getServerSideProps(context) {
       },
     },
     take: 3,
+    skip: Math.max(0, random(nrOtherArticles - 3)),
     select: {
       id: true,
       updatedAt: true,
@@ -45,7 +55,7 @@ export async function getServerSideProps(context) {
       title: true,
       slug: true,
       abstract: true,
-    }
+    },
   })
 
   return {
