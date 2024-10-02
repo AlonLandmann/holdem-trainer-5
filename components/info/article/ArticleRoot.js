@@ -1,3 +1,4 @@
+import Button from '@/components/_common_/Button'
 import InfoLayout from '@/components/_common_/InfoLayout'
 import Image from 'next/image'
 
@@ -49,8 +50,25 @@ export default function ArticleRoot({ article }) {
             />
           </div>
         </section>
-        <section className='leading-8 text-neutral-400'>
+        <section className='leading-8 text-neutral-400 mb-6'>
           {article.content}
+        </section>
+        <section className='border-t border-b py-[30px] px-[10px] flex'>
+          <Button
+            theme='tertiary'
+            utilClasses='text-base w-[30px] h-[30px]'
+            icon='youtube'
+          />
+          <Button
+            theme='tertiary'
+            utilClasses='text-base w-[30px] h-[30px]'
+            icon='twitter-x'
+          />
+          <Button
+            theme='tertiary'
+            utilClasses='text-base w-[30px] h-[30px]'
+            icon='discord'
+          />
         </section>
       </div>
     </InfoLayout>
