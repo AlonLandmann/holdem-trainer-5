@@ -128,7 +128,7 @@ export default function ArticleEditor({ copy, setCopy, authors }) {
       <textarea
         name='content'
         className='resize-none'
-        rows={22}
+        rows={21}
         spellCheck={false}
         value={copy.content}
         onChange={e => { handleChange(e, value => value) }}
