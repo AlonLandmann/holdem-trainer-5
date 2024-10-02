@@ -23,7 +23,7 @@ export default function ArticleBanner({ article }) {
           objectFit='cover'
         />
       </div>
-      <div className='grow flex flex-col gap-3 py-2 px-4'>
+      <div className='grow flex flex-col gap-3 py-4 pl-5 pr-6'>
         <h2 className='text-xl capitalize'>
           {article.title}
         </h2>
