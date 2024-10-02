@@ -12,10 +12,10 @@ export default function ArticleBanner({ article }) {
 
   return (
     <div
-      className='border rounded p-2 flex gap-4 bg-[#202020] opacity-80 cursor-pointer transition hover:bg-[#242424]'
+      className='flex cursor-pointer transition hover:bg-[#242424] border rounded overflow-hidden'
       onClick={() => { window.location = `/academy/${article.slug}` }}
     >
-      <div className='relative rounded overflow-hidden min-h-56 min-w-56'>
+      <div className='relative overflow-hidden min-h-56 min-w-56 sepia rounded-[3px]'>
         <Image
           src={article.imageUrl}
           alt='Article Image'
@@ -23,30 +23,30 @@ export default function ArticleBanner({ article }) {
           objectFit='cover'
         />
       </div>
-      <div className='grow flex flex-col gap-3'>
-        <h2 className='text-xl pr-2 capitalize'>
+      <div className='grow flex flex-col gap-3 py-2 px-4'>
+        <h2 className='text-xl capitalize'>
           {article.title}
         </h2>
-        <p className='text-neutral-400 pr-2'>
+        <p className='text-neutral-500 text-sm'>
           {article.abstract}
         </p>
         <div className='mt-auto flex items-center gap-4 text-neutral-500 text-sm'>
-          <div>
-            {article.author.username}
-          </div>
-          <div>
-            {article.updatedAt.slice(0, 10)}
+          <div
+            className='flex items-center gap-2 rounded-[3px] py-[2px] px-[6px]'
+            style={{ color, background }}
+          >
+            <i className={`bi bi-suit-${suit}-fill`}></i>
+            <span>{displayText}</span>
           </div>
           <div className='flex items-baseline gap-[6px]'>
             <i className='bi bi-clock-history'></i>
             {article.readTime}
           </div>
-          <div
-            className='flex items-center gap-2 rounded-[3px] py-[2px] px-[6px] opacity-80'
-            style={{ color, background }}
-          >
-            <i className={`bi bi-suit-${suit}-fill`}></i>
-            {' '}{displayText}
+          <div className='ml-auto'>
+            {article.author.username}
+          </div>
+          <div>
+            {article.updatedAt.slice(0, 10)}
           </div>
         </div>
       </div>
