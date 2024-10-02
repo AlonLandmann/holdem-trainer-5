@@ -2,6 +2,7 @@ import Button from '@/components/_common_/Button'
 import Image from 'next/image'
 import ArticleBanner from './ArticleBanner'
 import TeX from './TeX'
+import { validateUrl } from '@/lib/client/validate'
 
 const difficultyInfo = [
   { color: '#96dea9', background: '#3a6e48', suit: 'club', displayText: 'Beginner' },
@@ -41,14 +42,16 @@ export default function Article({ article, suggestions }) {
             {article.updatedAt.slice(0, 10)}
           </div>
         </div>
-        <div className='relative overflow-hidden w-full aspect-[1.6] sepia mb-6'>
-          <Image
-            src={article.imageUrl}
-            alt='Article Image'
-            fill
-            objectFit='cover'
-          />
-        </div>
+        {validateUrl(article.imageUrl) &&
+          <div className='relative overflow-hidden w-full aspect-[1.6] sepia mb-6'>
+            <Image
+              src={article.imageUrl}
+              alt='Article Image'
+              fill
+              objectFit='cover'
+            />
+          </div>
+        }
       </section>
       <section className='leading-8 text-neutral-400 mb-6'>
         <TeX

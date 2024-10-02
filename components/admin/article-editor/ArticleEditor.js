@@ -1,8 +1,11 @@
 import Input from '@/components/_common_/Input'
+import { produce } from 'immer'
 
 export default function ArticleEditor({ copy, setCopy, authors }) {
-  function handleChange() {
-    
+  function handleChange(event, modifier) {
+    setCopy(produce(draft => {
+      draft[event.target.name] = modifier(event.target.value)
+    }))
   }
 
   const labelStyle ='self-start mt-[10px] text-neutral-400'
@@ -19,7 +22,7 @@ export default function ArticleEditor({ copy, setCopy, authors }) {
         name='title'
         type='text'
         value={copy.title}
-        onChange={handleChange}
+        onChange={e => { handleChange(e, value => value) }}
       />
       <label className={labelStyle}>
         Abstract
@@ -30,7 +33,7 @@ export default function ArticleEditor({ copy, setCopy, authors }) {
         rows={3}
         spellCheck={false}
         value={copy.abstract}
-        onChange={handleChange}
+        onChange={e => { handleChange(e, value => value) }}
       />
       {/* <label className={labelStyle}>
         Category
@@ -39,16 +42,16 @@ export default function ArticleEditor({ copy, setCopy, authors }) {
         name='category'
         type='text'
         value={copy.category}
-        onChange={handleChange}
+        onChange={e => { handleChange(e, value => value) }}
       /> */}
       <label className={labelStyle}>
         Difficulty
       </label>
       <select
-        name='difficultyLevel'
+        name='level'
         className='appearance-none'
-        value={String(copy.difficultyLevel)}
-        onChange={handleChange}
+        value={String(copy.level)}
+        onChange={e => { handleChange(e, value => Number(value)) }}
       >
         <option value='1'>Beginner</option>
         <option value='2'>Intermediate</option>
@@ -62,7 +65,7 @@ export default function ArticleEditor({ copy, setCopy, authors }) {
         name='readTime'
         type='number'
         value={copy.readTime}
-        onChange={handleChange}
+        onChange={e => { handleChange(e, value => Number(value)) }}
       />
       <label className={labelStyle}>
         Author
@@ -71,7 +74,7 @@ export default function ArticleEditor({ copy, setCopy, authors }) {
         name='authorId'
         className='appearance-none'
         value={copy.authorId}
-        onChange={handleChange}
+        onChange={e => { handleChange(e, value => Number(value)) }}
       >
         {authors.map(author => (
           <option key={'author' + author.id} value={String(author.id)}>
@@ -85,8 +88,8 @@ export default function ArticleEditor({ copy, setCopy, authors }) {
       <select
         name='isPublished'
         className='appearance-none'
-        value={copy.isPublished}
-        onChange={handleChange}
+        value={copy.isPublished ? '1' : '0'}
+        onChange={e => { handleChange(e, value => (value === '1')) }}
       >
         <option value='1'>Published</option>
         <option value='0'>Unpublished</option>
@@ -98,7 +101,7 @@ export default function ArticleEditor({ copy, setCopy, authors }) {
         name='imageUrl'
         type='text'
         value={copy.imageUrl}
-        onChange={handleChange}
+        onChange={e => { handleChange(e, value => value) }}
       />
       <label className={labelStyle}>
         Content
@@ -109,7 +112,7 @@ export default function ArticleEditor({ copy, setCopy, authors }) {
         rows={22}
         spellCheck={false}
         value={copy.content}
-        onChange={handleChange}
+        onChange={e => { handleChange(e, value => value) }}
       />
     </div>
   )
