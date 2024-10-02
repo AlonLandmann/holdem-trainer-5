@@ -5,8 +5,9 @@ import Highlight from './Highlight'
 import List from './List'
 import Table from './Table'
 import Link from 'next/link'
+import RangeDisplayCard from '../admin/article-editor/RangeDisplayCard'
 
-export default function TeX({ tex, ranges = [] }) {
+export default function TeX({ tex }) {
   let parsed = []
   let mode = 'text'
   let main = ''
@@ -162,14 +163,10 @@ export default function TeX({ tex, ranges = [] }) {
   }
 
   function pushRange() {
-    const index = ranges.findIndex(r => r.id === main)
+    parsed.push(
+      <RangeDisplayCard rangeId={Number(main)} />
+    )
 
-    if (index !== -1) {
-      parsed.push(
-        <MatrixDisplay range={ranges[index]} />
-      )
-    }
-      
     main = ''
   }
 
