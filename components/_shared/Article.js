@@ -1,6 +1,6 @@
 import Button from '@/components/_ui/Button'
 import Image from 'next/image'
-import ArticleBanner from './ArticleBanner'
+import ArticleBanner from '../academy/ArticleBanner'
 import TeX from '@/components/_parser/TeX'
 import { validateUrl } from '@/lib/validate'
 
