@@ -1,7 +1,7 @@
 import Button from '@/components/_ui/Button'
 import Image from 'next/image'
 import ArticleBanner from '../academy/ArticleBanner'
-import TeX from '@/components/_parser/TeX'
+import TeX from './TeX'
 import { validateUrl } from '@/lib/validate'
 
 const difficultyInfo = [
