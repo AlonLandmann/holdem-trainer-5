@@ -1,4 +1,4 @@
-import Button from '@/components/_common_/Button'
+import Button from '@/components/_ui/Button'
 import { random } from 'lodash'
 import { useRouter } from 'next/router'
 import { useState } from 'react'

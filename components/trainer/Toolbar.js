@@ -1,4 +1,4 @@
-import Button from '@/components/_common_/Button'
+import Button from '@/components/_ui/Button'
 
 export default function Toolbar({ setSidebarInView, setStatsInView }) {
   return (

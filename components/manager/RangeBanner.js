@@ -1,5 +1,5 @@
-import Button from '@/components/_common_/Button'
-import Input from '@/components/_common_/Input'
+import Button from '@/components/_ui/Button'
+import Input from '@/components/_ui/Input'
 import { useLoadingQueue } from '@/hooks/useLoadingQueue'
 import { useUser } from '@/hooks/useUser'
 import handleManagerRequest from '@/lib/client/managerRequests'

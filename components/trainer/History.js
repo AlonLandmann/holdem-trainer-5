@@ -1,4 +1,4 @@
-import Button from '@/components/_common_/Button'
+import Button from '@/components/_ui/Button'
 import { actionInTrainerHistory } from '@/lib/client/display'
 import { spotInfo } from '@/lib/shared/spots'
 

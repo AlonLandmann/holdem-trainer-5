@@ -1,4 +1,4 @@
-import Button from '@/components/_common_/Button'
+import Button from '@/components/_ui/Button'
 import { useLoadingQueue } from '@/hooks/useLoadingQueue'
 import MatrixDisplay from './MatrixDisplay'
 import RangeName from './RangeName'

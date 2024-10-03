@@ -1,4 +1,4 @@
-import Button from '@/components/_common_/Button'
+import Button from '@/components/_ui/Button'
 import { deck, sampleFromDeck } from '@/lib/shared/cards'
 import { produce } from 'immer'
 import { useState } from 'react'

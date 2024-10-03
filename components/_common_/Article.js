@@ -1,4 +1,4 @@
-import Button from '@/components/_common_/Button'
+import Button from '@/components/_ui/Button'
 import Image from 'next/image'
 import ArticleBanner from './ArticleBanner'
 import TeX from './TeX'

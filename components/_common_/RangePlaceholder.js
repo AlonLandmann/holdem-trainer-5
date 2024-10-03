@@ -1,5 +1,5 @@
 import handleManagerRequest from '@/lib/client/managerRequests'
-import Button from './Button'
+import Button from '../_ui/Button'
 import { useUser } from '@/hooks/useUser'
 
 export default function RangePlaceholder() {

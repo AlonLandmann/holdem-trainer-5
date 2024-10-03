@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import Button from '@/components/_common_/Button'
-import Input from '@/components/_common_/Input'
-import Anchor from '@/components/_common_/Anchor'
+import Button from '@/components/_ui/Button'
+import Input from '@/components/_ui/Input'
+import Anchor from '@/components/_ui/Anchor'
 import toast from 'react-hot-toast'
 import googleAuthUrl from '@/lib/client/googleAuthUrl'
 

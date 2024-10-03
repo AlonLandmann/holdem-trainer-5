@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router'
-import Button from './Button'
+import Button from '../_ui/Button'
 import { useState } from 'react'
 import SideNavItem from './SideNavItem'
 import toast from 'react-hot-toast'

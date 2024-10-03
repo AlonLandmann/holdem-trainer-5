@@ -1,4 +1,4 @@
-import Button from '@/components/_common_/Button'
+import Button from '@/components/_ui/Button'
 import { capitalize } from 'lodash'
 
 export default function SettingsMain({ user }) {

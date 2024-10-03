@@ -11,7 +11,7 @@ import AnswerButtons from './AnswerButtons'
 import Stats from './Stats'
 import Sidebar from './Sidebar'
 import { v4 as uuid } from 'uuid'
-import Button from '@/components/_common_/Button'
+import Button from '@/components/_ui/Button'
 
 export default function TrainerMain({ user }) {
   const [sidebarInView, setSidebarInView] = useState(true)

@@ -1,4 +1,4 @@
-import Button from '@/components/_common_/Button'
+import Button from '@/components/_ui/Button'
 import { useState } from 'react'
 
 export default function SidebarFolder({ folder, selected, setSelected }) {

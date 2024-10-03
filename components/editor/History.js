@@ -2,7 +2,7 @@ import { positions, spotInfo, streets } from '@/lib/shared/spots'
 import HistoryAction from './HistoryAction'
 import HistoryAddAction from './HistoryAddAction'
 import HistoryAddStreet from './HistoryAddStreet'
-import Button from '@/components/_common_/Button'
+import Button from '@/components/_ui/Button'
 import { produce } from 'immer'
 import { useState } from 'react'
 

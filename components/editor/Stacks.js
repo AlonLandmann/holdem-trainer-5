@@ -1,4 +1,4 @@
-import Input from '@/components/_common_/Input'
+import Input from '@/components/_ui/Input'
 import { positions, spotInfo } from '@/lib/shared/spots'
 import { produce } from 'immer'
 import { useEffect, useState, useTransition } from 'react'

@@ -1,4 +1,4 @@
-import Button from '@/components/_common_/Button'
+import Button from '@/components/_ui/Button'
 import Category from './Category'
 import { categorize, categorizePreflop, retrieveInOrder, retrievePreflopInOrder } from '@/lib/shared/categories'
 import { produce } from 'immer'

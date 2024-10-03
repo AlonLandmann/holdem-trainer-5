@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import SidebarFolder from './SidebarFolder'
-import Button from '@/components/_common_/Button'
+import Button from '@/components/_ui/Button'
 import toast from 'react-hot-toast'
 import { useRouter } from 'next/router'
 

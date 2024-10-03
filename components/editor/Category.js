@@ -1,4 +1,4 @@
-import Button from '@/components/_common_/Button'
+import Button from '@/components/_ui/Button'
 import StrategyPreview from './StrategyPreview'
 import { strategyColor } from '@/lib/client/colors'
 

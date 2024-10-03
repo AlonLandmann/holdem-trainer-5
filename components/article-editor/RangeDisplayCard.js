@@ -1,4 +1,4 @@
-import Button from '@/components/_common_/Button'
+import Button from '@/components/_ui/Button'
 import MatrixDisplay from '@/components/manager/MatrixDisplay'
 import RangeHistory from '@/components/manager/RangeHistory'
 import RangeLegend from '@/components/manager/RangeLegend'
