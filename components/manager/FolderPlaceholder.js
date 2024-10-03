@@ -1,6 +1,6 @@
 import Button from '@/components/_ui/Button'
 import { useUser } from '@/hooks/useUser'
-import handleManagerRequest from '@/lib/client/managerRequests'
+import handleManagerRequest from '@/lib/managerRequests'
 
 export default function FolderPlaceholder({ selectedFolder }) {
   const [user, setUser] = useUser()

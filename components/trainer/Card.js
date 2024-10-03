@@ -1,4 +1,4 @@
-import { suitIcon } from '@/lib/shared/cards'
+import { suitIcon } from '@/lib/cards'
 
 export default function Card({ card, small = false }) {
   return (

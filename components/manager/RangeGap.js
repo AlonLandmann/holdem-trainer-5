@@ -1,6 +1,6 @@
 import { useLoadingQueue } from '@/hooks/useLoadingQueue'
 import { useUser } from '@/hooks/useUser'
-import handleManagerRequest from '@/lib/client/managerRequests'
+import handleManagerRequest from '@/lib/managerRequests'
 import { useState } from 'react'
 
 export default function RangeGap({ index, target, setTarget }) {

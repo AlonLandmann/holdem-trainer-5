@@ -1,4 +1,4 @@
-import { getMilitaryRank, totalScore } from '@/lib/client/stats'
+import { getMilitaryRank, totalScore } from '@/lib/stats'
 import RankBanner from './RankBanner'
 
 export default function TopLine({ user }) {

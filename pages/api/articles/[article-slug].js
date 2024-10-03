@@ -1,4 +1,4 @@
-import prisma from '@/lib/server/prisma'
+import prisma from '@/lib/prisma'
 import { kebabCase } from 'lodash'
 
 export default async function handler(req, res) {

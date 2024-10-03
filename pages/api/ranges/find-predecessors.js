@@ -1,5 +1,5 @@
-import prisma from '@/lib/server/prisma'
-import { actionToStorage, optionToStorage, toClientFormat } from '@/lib/server/ranges'
+import prisma from '@/lib/prisma'
+import { actionToStorage, optionToStorage, toClientFormat } from '@/lib/ranges'
 
 export default async function handler(req, res) {
   try {

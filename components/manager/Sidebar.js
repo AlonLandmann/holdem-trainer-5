@@ -1,6 +1,6 @@
 import Button from '@/components/_ui/Button'
 import SidebarFolder from './SidebarFolder'
-import handleManagerRequest from '@/lib/client/managerRequests'
+import handleManagerRequest from '@/lib/managerRequests'
 import SidebarGap from './SidebarGap'
 import { useState } from 'react'
 import { useLoadingQueue } from '@/hooks/useLoadingQueue'

@@ -1,6 +1,6 @@
 import Button from '@/components/_ui/Button'
 import Input from '@/components/_ui/Input'
-import { positions } from '@/lib/shared/spots'
+import { positions } from '@/lib/spots'
 import { produce } from 'immer'
 import { useState } from 'react'
 import toast from 'react-hot-toast'

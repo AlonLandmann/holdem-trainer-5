@@ -1,4 +1,4 @@
-import { positions } from '@/lib/shared/spots'
+import { positions } from '@/lib/spots'
 import TableSeat from './TableSeat'
 import TableBoard from './TableBoard'
 import TableChips from './TableChips'

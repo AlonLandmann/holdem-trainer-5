@@ -1,5 +1,5 @@
-import { sendVerificationLink } from '@/lib/server/email'
-import prisma from '@/lib/server/prisma'
+import { sendVerificationLink } from '@/lib/email'
+import prisma from '@/lib/prisma'
 import { v4 as uuid } from 'uuid'
 
 export default async function handler(req, res) {

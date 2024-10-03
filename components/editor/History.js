@@ -1,4 +1,4 @@
-import { positions, spotInfo, streets } from '@/lib/shared/spots'
+import { positions, spotInfo, streets } from '@/lib/spots'
 import HistoryAction from './HistoryAction'
 import HistoryAddAction from './HistoryAddAction'
 import HistoryAddStreet from './HistoryAddStreet'

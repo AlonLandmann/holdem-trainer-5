@@ -1,5 +1,5 @@
-import { removeSessionCookie } from '@/lib/server/cookies'
-import prisma from '@/lib/server/prisma'
+import { removeSessionCookie } from '@/lib/cookies'
+import prisma from '@/lib/prisma'
 
 export default async function handler(req, res) {
   try {

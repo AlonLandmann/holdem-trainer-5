@@ -1,4 +1,4 @@
-import { isValid } from '@/lib/shared/cards'
+import { isValid } from '@/lib/cards'
 import Category from './Category'
 import { reverse, sortBy } from 'lodash'
 

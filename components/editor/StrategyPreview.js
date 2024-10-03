@@ -1,4 +1,4 @@
-import { optionColor } from '@/lib/client/colors'
+import { optionColor } from '@/lib/colors'
 import { useState } from 'react'
 
 const HEIGHT = 20

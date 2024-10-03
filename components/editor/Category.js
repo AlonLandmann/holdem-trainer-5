@@ -1,6 +1,6 @@
 import Button from '@/components/_ui/Button'
 import StrategyPreview from './StrategyPreview'
-import { strategyColor } from '@/lib/client/colors'
+import { strategyColor } from '@/lib/colors'
 
 export default function Category({ range, comboArray, name, fraction, strategy, setSelected, setHovered }) {
   function handleAddToSelected() {

@@ -1,4 +1,4 @@
-import handleUserRequest from '@/lib/server/routes'
+import handleUserRequest from '@/lib/routes'
 
 export default async function handler(req, res) {
   return handleUserRequest(req, res, 'POST', async (prisma, user) => {

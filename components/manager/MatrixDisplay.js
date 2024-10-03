@@ -1,5 +1,5 @@
-import { frequencyColor, strategyColor } from '@/lib/client/colors'
-import { numFromSuit, numFromValue, suits, values } from '@/lib/shared/cards'
+import { frequencyColor, strategyColor } from '@/lib/colors'
+import { numFromSuit, numFromValue, suits, values } from '@/lib/cards'
 
 const CELLWIDTH = 8
 

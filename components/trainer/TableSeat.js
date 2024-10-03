@@ -1,4 +1,4 @@
-import { positions } from '@/lib/shared/spots'
+import { positions } from '@/lib/spots'
 import Card from './Card'
 
 export default function TableSeat({ spot, seat, heroPosition, combo }) {

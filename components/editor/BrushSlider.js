@@ -1,4 +1,4 @@
-import { optionColor } from '@/lib/client/colors'
+import { optionColor } from '@/lib/colors'
 import { useEffect, useRef } from 'react'
 
 export default function BrushSlider({ range, frequencies, setFrequencies }) {

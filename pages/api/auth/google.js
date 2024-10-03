@@ -1,6 +1,6 @@
-import { setSessionCookie } from '@/lib/server/cookies'
-import { getGoogleUserInfo } from '@/lib/server/google'
-import prisma from '@/lib/server/prisma'
+import { setSessionCookie } from '@/lib/cookies'
+import { getGoogleUserInfo } from '@/lib/google'
+import prisma from '@/lib/prisma'
 
 export default async function handler(req, res) {
   try {

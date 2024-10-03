@@ -1,5 +1,5 @@
-import { optionColor } from '@/lib/client/colors'
-import { optionPercentage } from '@/lib/client/percentages'
+import { optionColor } from '@/lib/colors'
+import { optionPercentage } from '@/lib/percentages'
 
 export default function RangeLegend({ range }) {
   return (

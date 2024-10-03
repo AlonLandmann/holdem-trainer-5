@@ -4,7 +4,7 @@ import Input from '@/components/_ui/Input'
 import Anchor from '@/components/_ui/Anchor'
 import { useRouter } from 'next/router'
 import toast from 'react-hot-toast'
-import googleAuthUrl from '@/lib/client/googleAuthUrl'
+import googleAuthUrl from '@/lib/googleAuthUrl'
 
 export default function LoginRoot() {
   const router = useRouter()

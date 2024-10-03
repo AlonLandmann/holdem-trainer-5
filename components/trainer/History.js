@@ -1,6 +1,6 @@
 import Button from '@/components/_ui/Button'
-import { actionInTrainerHistory } from '@/lib/client/display'
-import { spotInfo } from '@/lib/shared/spots'
+import { actionInTrainerHistory } from '@/lib/display'
+import { spotInfo } from '@/lib/spots'
 
 export default function History({ range, spot, setSpot }) {
   const i = spot.history.length

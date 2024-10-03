@@ -1,7 +1,7 @@
 import Button from '@/components/_ui/Button'
 import Input from '@/components/_ui/Input'
-import { optionColor } from '@/lib/client/colors'
-import { optionPercentage } from '@/lib/client/percentages'
+import { optionColor } from '@/lib/colors'
+import { optionPercentage } from '@/lib/percentages'
 import { isEqual } from 'lodash'
 import { useEffect, useMemo, useState } from 'react'
 

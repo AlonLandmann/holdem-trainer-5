@@ -1,5 +1,5 @@
 import Input from '@/components/_ui/Input'
-import { positions, spotInfo } from '@/lib/shared/spots'
+import { positions, spotInfo } from '@/lib/spots'
 import { produce } from 'immer'
 import { useEffect, useState, useTransition } from 'react'
 

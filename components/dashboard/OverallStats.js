@@ -1,4 +1,4 @@
-import { averageRangeComplexity, totalCombos, totalCorrect, totalScore } from '@/lib/client/stats'
+import { averageRangeComplexity, totalCombos, totalCorrect, totalScore } from '@/lib/stats'
 import OverallStat from './OverallStat'
 
 export default function OverallStats({ user }) {

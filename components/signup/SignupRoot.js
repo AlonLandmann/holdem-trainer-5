@@ -3,7 +3,7 @@ import Button from '@/components/_ui/Button'
 import Input from '@/components/_ui/Input'
 import Anchor from '@/components/_ui/Anchor'
 import toast from 'react-hot-toast'
-import googleAuthUrl from '@/lib/client/googleAuthUrl'
+import googleAuthUrl from '@/lib/googleAuthUrl'
 
 export default function SignupRoot() {
   const [email, setEmail] = useState('')

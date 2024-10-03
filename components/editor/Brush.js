@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
 import BrushOption from './BrushOption'
-import { evenSplit } from '@/lib/shared/rounding'
+import { evenSplit } from '@/lib/rounding'
 import { produce } from 'immer'
 import toast from 'react-hot-toast'
 import Input from '@/components/_ui/Input'
 import Button from '@/components/_ui/Button'
-import { isValid } from '@/lib/shared/cards'
+import { isValid } from '@/lib/cards'
 import BrushSlider from './BrushSlider'
 
 export default function Brush({ range, setRange, selected, setSelected, setOptionHover }) {

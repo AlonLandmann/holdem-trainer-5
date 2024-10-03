@@ -1,5 +1,5 @@
 import Button from '@/components/_ui/Button'
-import { deck, sampleFromDeck } from '@/lib/shared/cards'
+import { deck, sampleFromDeck } from '@/lib/cards'
 import { produce } from 'immer'
 import { useState } from 'react'
 

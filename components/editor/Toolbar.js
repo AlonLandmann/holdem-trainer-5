@@ -1,6 +1,6 @@
 import Button from '@/components/_ui/Button'
 import { useUser } from '@/hooks/useUser'
-import handleManagerRequest from '@/lib/client/managerRequests'
+import handleManagerRequest from '@/lib/managerRequests'
 import { isEqual } from 'lodash'
 import { useMemo } from 'react'
 import toast from 'react-hot-toast'

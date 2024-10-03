@@ -1,4 +1,4 @@
-import handleManagerRequest from '@/lib/client/managerRequests'
+import handleManagerRequest from '@/lib/managerRequests'
 import Button from '../_ui/Button'
 import { useUser } from '@/hooks/useUser'
 

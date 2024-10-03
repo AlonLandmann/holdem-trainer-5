@@ -1,7 +1,7 @@
-import { setSessionCookie } from '@/lib/server/cookies'
-import { sendVerificationLink } from '@/lib/server/email'
-import prisma from '@/lib/server/prisma'
-import { generateUsername } from '@/lib/server/usernames'
+import { setSessionCookie } from '@/lib/cookies'
+import { sendVerificationLink } from '@/lib/email'
+import prisma from '@/lib/prisma'
+import { generateUsername } from '@/lib/usernames'
 import sha256 from 'sha256'
 
 export default async function handler(req, res) {

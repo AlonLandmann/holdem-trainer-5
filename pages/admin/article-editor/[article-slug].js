@@ -1,6 +1,6 @@
 import Page from '@/components/_layout/Page'
 import ArticleEditorRoot from '@/components/article-editor/ArticleEditorRoot'
-import prisma from '@/lib/server/prisma'
+import prisma from '@/lib/prisma'
 import { random } from 'lodash'
 
 export default function ArticleEditorPage({ article, suggestions, authors }) {

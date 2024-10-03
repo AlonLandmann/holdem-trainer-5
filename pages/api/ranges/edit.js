@@ -1,5 +1,5 @@
-import { toStorageFormat } from '@/lib/server/ranges'
-import handleUserRequest from '@/lib/server/routes'
+import { toStorageFormat } from '@/lib/ranges'
+import handleUserRequest from '@/lib/routes'
 
 export default async function handler(req, res) {
   return handleUserRequest(req, res, 'PUT', async (prisma, user) => {

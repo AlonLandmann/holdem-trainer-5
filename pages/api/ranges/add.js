@@ -1,5 +1,5 @@
-import handleUserRequest from '@/lib/server/routes'
-import { defaultMatrixBuffer } from '@/lib/server/ranges'
+import handleUserRequest from '@/lib/routes'
+import { defaultMatrixBuffer } from '@/lib/ranges'
 
 export default async function handler(req, res) {
   return handleUserRequest(req, res, 'POST', async (prisma, user) => {

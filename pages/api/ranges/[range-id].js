@@ -1,5 +1,5 @@
-import prisma from '@/lib/server/prisma'
-import { toClientFormat } from '@/lib/server/ranges'
+import prisma from '@/lib/prisma'
+import { toClientFormat } from '@/lib/ranges'
 
 export default async function handler(req, res) {
   try {

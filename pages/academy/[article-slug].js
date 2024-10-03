@@ -1,6 +1,6 @@
 import Page from '@/components/_layout/Page'
 import ArticleRoot from '@/components/article/ArticleRoot'
-import prisma from '@/lib/server/prisma'
+import prisma from '@/lib/prisma'
 import { random } from 'lodash'
 
 export default function ArticlePage({ article, suggestions }) {

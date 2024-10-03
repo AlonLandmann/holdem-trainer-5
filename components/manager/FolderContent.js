@@ -1,6 +1,6 @@
 import Button from '@/components/_ui/Button'
 import Input from '@/components/_ui/Input'
-import handleManagerRequest from '@/lib/client/managerRequests'
+import handleManagerRequest from '@/lib/managerRequests'
 import { useEffect, useState } from 'react'
 import FolderPlaceholder from './FolderPlaceholder'
 import { useUser } from '@/hooks/useUser'
