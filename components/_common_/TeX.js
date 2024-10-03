@@ -5,7 +5,7 @@ import Highlight from './Highlight'
 import List from './List'
 import Table from './Table'
 import Link from 'next/link'
-import RangeDisplayCard from '../admin/article-editor/RangeDisplayCard'
+import RangeDisplayCard from '../article-editor/RangeDisplayCard'
 
 export default function TeX({ tex }) {
   let parsed = []

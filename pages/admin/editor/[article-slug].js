@@ -1,5 +1,5 @@
 import Page from '@/components/_common_/Page'
-import ArticleEditorRoot from '@/components/admin/article-editor/ArticleEditorRoot'
+import ArticleEditorRoot from '@/components/article-editor/ArticleEditorRoot'
 import prisma from '@/lib/server/prisma'
 import { random } from 'lodash'
 

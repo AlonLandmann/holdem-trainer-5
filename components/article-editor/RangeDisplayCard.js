@@ -1,7 +1,7 @@
 import Button from '@/components/_common_/Button'
-import MatrixDisplay from '@/components/app/manager/MatrixDisplay'
-import RangeHistory from '@/components/app/manager/RangeHistory'
-import RangeLegend from '@/components/app/manager/RangeLegend'
+import MatrixDisplay from '@/components/manager/MatrixDisplay'
+import RangeHistory from '@/components/manager/RangeHistory'
+import RangeLegend from '@/components/manager/RangeLegend'
 import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 

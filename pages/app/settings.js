@@ -1,5 +1,5 @@
 import Page from '@/components/_common_/Page'
-import SettingsRoot from '@/components/app/settings/SettingsRoot'
+import SettingsRoot from '@/components/settings/SettingsRoot'
 
 export default function SettingsPage() {
   return (

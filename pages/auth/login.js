@@ -1,5 +1,5 @@
 import Page from '@/components/_common_/Page'
-import LoginRoot from '@/components/auth/login/LoginRoot'
+import LoginRoot from '@/components/login/LoginRoot'
 
 export default function LoginPage() {
   return (
