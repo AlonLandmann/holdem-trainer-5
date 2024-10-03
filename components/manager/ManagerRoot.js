@@ -1,4 +1,4 @@
-import RangePlaceholder from '@/components/_shared/RangePlaceholder'
+import RangePlaceholder from './RangePlaceholder'
 import SideNav from '@/components/_layout/SideNav'
 import { useUser } from '@/hooks/useUser'
 import ManagerMain from './ManagerMain'
