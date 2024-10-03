@@ -44,7 +44,7 @@ export default function Navbar() {
   }
 
   return (
-    <div className='sticky top-0 z-50 h-[40px] flex bg-[#202020]'>
+    <div className='sticky top-0 z-50 h-[40px] flex bg-[#171717f8] border-b'>
       <div className='mr-auto py-2 px-3 flex items-center font-decorative text-[17px]'>
         <Link href='/'>HT</Link>
       </div>
