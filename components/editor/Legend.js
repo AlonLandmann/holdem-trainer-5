@@ -1,5 +1,5 @@
+import Category from '@/components/editor/Category'
 import { isValid } from '@/lib/cards'
-import Category from './Category'
 import { reverse, sortBy } from 'lodash'
 
 export default function Legend({ range, setHovered, setSelected }) {

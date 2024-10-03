@@ -1,5 +1,5 @@
 import Button from '@/components/_ui/Button'
-import Category from './Category'
+import Category from '@/components/editor/Category'
 import { categorize, categorizePreflop, retrieveInOrder, retrievePreflopInOrder } from '@/lib/categories'
 import { produce } from 'immer'
 import { useState } from 'react'

@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react'
-import RankBanner from './RankBanner'
+import RankBanner from '@/components/dashboard/RankBanner'
 import { getMilitaryRank } from '@/lib/stats'
+import { useEffect, useState } from 'react'
 
 export default function Leaderboard({ user }) {
   const [leaderboard, setLeaderboard] = useState(null)

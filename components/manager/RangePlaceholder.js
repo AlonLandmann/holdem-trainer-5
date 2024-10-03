@@ -1,6 +1,6 @@
-import handleManagerRequest from '@/lib/managerRequests'
-import Button from '../_ui/Button'
+import Button from '@/components/_ui/Button'
 import { useUser } from '@/hooks/useUser'
+import handleManagerRequest from '@/lib/managerRequests'
 
 export default function RangePlaceholder() {
   const [user, setUser] = useUser()

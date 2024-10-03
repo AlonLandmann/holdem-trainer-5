@@ -1,5 +1,5 @@
+import RankBanner from '@/components/dashboard/RankBanner'
 import { getMilitaryRank, totalScore } from '@/lib/stats'
-import RankBanner from './RankBanner'
 
 export default function TopLine({ user }) {
   return (

@@ -1,8 +1,8 @@
-import { positions, spotInfo, streets } from '@/lib/spots'
-import HistoryAction from './HistoryAction'
-import HistoryAddAction from './HistoryAddAction'
-import HistoryAddStreet from './HistoryAddStreet'
 import Button from '@/components/_ui/Button'
+import HistoryAction from '@/components/editor/HistoryAction'
+import HistoryAddAction from '@/components/editor/HistoryAddAction'
+import HistoryAddStreet from '@/components/editor/HistoryAddStreet'
+import { positions, spotInfo, streets } from '@/lib/spots'
 import { produce } from 'immer'
 import { useState } from 'react'
 

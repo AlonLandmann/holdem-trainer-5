@@ -1,8 +1,8 @@
 import Button from '@/components/_ui/Button'
-import Image from 'next/image'
-import ArticleBanner from '../academy/ArticleBanner'
-import TeX from './TeX'
+import ArticleBanner from '@/components/academy/ArticleBanner'
+import TeX from '@/components/article/TeX'
 import { validateUrl } from '@/lib/validate'
+import Image from 'next/image'
 
 const difficultyInfo = [
   { color: '#96dea9', background: '#3a6e48', suit: 'club', displayText: 'Beginner' },

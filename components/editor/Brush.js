@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react'
-import BrushOption from './BrushOption'
+import Button from '@/components/_ui/Button'
+import Input from '@/components/_ui/Input'
+import BrushOption from '@/components/editor/BrushOption'
+import BrushSlider from '@/components/editor/BrushSlider'
+import { isValid } from '@/lib/cards'
 import { evenSplit } from '@/lib/rounding'
 import { produce } from 'immer'
+import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
-import Input from '@/components/_ui/Input'
-import Button from '@/components/_ui/Button'
-import { isValid } from '@/lib/cards'
-import BrushSlider from './BrushSlider'
 
 export default function Brush({ range, setRange, selected, setSelected, setOptionHover }) {
   const foldEnabled = Boolean(range.options.find(o => o.type === 'fold'))

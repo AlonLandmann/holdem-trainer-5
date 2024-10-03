@@ -1,7 +1,7 @@
-import RangePlaceholder from '../manager/RangePlaceholder'
 import SideNav from '@/components/_layout/SideNav'
+import RangePlaceholder from '@/components/manager/RangePlaceholder'
+import TrainerMain from '@/components/trainer/TrainerMain'
 import { useUser } from '@/hooks/useUser'
-import TrainerMain from './TrainerMain'
 
 export default function TrainerRoot() {
   const [user, setUser] = useUser()

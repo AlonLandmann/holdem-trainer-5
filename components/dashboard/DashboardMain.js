@@ -1,8 +1,8 @@
-import Leaderboard from './Leaderboard'
-import OverallStats from './OverallStats'
-import QuoteCta from './QuoteCta'
-import TopLine from './TopLine'
-import TrainingHistory from './TrainingHistory'
+import Leaderboard from '@/components/dashboard/Leaderboard'
+import OverallStats from '@/components/dashboard/OverallStats'
+import QuoteCta from '@/components/dashboard/QuoteCta'
+import TopLine from '@/components/dashboard/TopLine'
+import TrainingHistory from '@/components/dashboard/TrainingHistory'
 
 export default function DashboardMain({ user }) {
   return (

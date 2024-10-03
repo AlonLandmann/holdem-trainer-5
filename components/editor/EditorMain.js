@@ -1,11 +1,11 @@
+import Categories from '@/components/editor/Categories'
+import Legend from '@/components/editor/Legend'
+import Matrix from '@/components/editor/Matrix'
+import Sidebar from '@/components/editor/Sidebar'
+import Title from '@/components/editor/Title'
+import Toolbar from '@/components/editor/Toolbar'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
-import Matrix from './Matrix'
-import Sidebar from './Sidebar'
-import Toolbar from './Toolbar'
-import Title from './Title'
-import Legend from './Legend'
-import Categories from './Categories'
 
 export default function EditorMain({ user }) {
   const router = useRouter()
@@ -34,7 +34,6 @@ export default function EditorMain({ user }) {
           setRange={setRangeWithUndo}
           selected={selected}
           setSelected={setSelected}
-          setHovered={setHovered}
           setOptionHover={setOptionHover}
           error={error}
           setError={setError}

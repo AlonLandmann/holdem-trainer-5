@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react'
 import Button from '@/components/_ui/Button'
 import Input from '@/components/_ui/Input'
 import Anchor from '@/components/_ui/Anchor'
-import { useRouter } from 'next/router'
-import toast from 'react-hot-toast'
 import googleAuthUrl from '@/lib/googleAuthUrl'
+import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
+import toast from 'react-hot-toast'
 
 export default function LoginRoot() {
   const router = useRouter()

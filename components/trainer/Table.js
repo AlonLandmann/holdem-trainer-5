@@ -1,8 +1,8 @@
 import { positions } from '@/lib/spots'
-import TableSeat from './TableSeat'
-import TableBoard from './TableBoard'
-import TableChips from './TableChips'
-import TableDealerButton from './TableDealerButton'
+import TableBoard from '@/components/trainer/TableBoard'
+import TableChips from '@/components/trainer/TableChips'
+import TableDealerButton from '@/components/trainer/TableDealerButton'
+import TableSeat from '@/components/trainer/TableSeat'
 
 export default function Table({ spot, holeCards, heroPosition, flash }) {
   return (

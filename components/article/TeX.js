@@ -1,11 +1,11 @@
-import { v4 as uuid } from 'uuid'
-import { InlineMath, BlockMath } from 'react-katex'
-import 'katex/dist/katex.min.css'
-import Highlight from './Highlight'
-import List from './List'
-import Table from './Table'
+import Highlight from '@/components/article/Highlight'
+import List from '@/components/article/List'
+import RangeDisplayCard from '@/components/article/RangeDisplayCard'
+import Table from '@/components/article/Table'
 import Link from 'next/link'
-import RangeDisplayCard from '../article-editor/RangeDisplayCard'
+import { InlineMath, BlockMath } from 'react-katex'
+import { v4 as uuid } from 'uuid'
+import 'katex/dist/katex.min.css'
 
 export default function TeX({ tex }) {
   let parsed = []

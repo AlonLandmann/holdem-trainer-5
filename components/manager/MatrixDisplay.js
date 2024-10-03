@@ -1,5 +1,5 @@
-import { frequencyColor, strategyColor } from '@/lib/colors'
 import { numFromSuit, numFromValue, suits, values } from '@/lib/cards'
+import { frequencyColor, strategyColor } from '@/lib/colors'
 
 const CELLWIDTH = 8
 

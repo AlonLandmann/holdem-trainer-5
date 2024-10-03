@@ -1,5 +1,5 @@
-import { frequencyColor, strategyColor } from '@/lib/colors'
 import { combos, includingValue, numFromSuit, numFromValue, sameValue, suits, values } from '@/lib/cards'
+import { frequencyColor, strategyColor } from '@/lib/colors'
 import { isNull } from 'lodash'
 
 export default function Matrix({ range, selected, setSelected, hovered, setHovered, optionHover }) {

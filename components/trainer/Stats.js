@@ -1,4 +1,4 @@
-import Card from './Card'
+import Card from '@/components/trainer/Card'
 
 export default function Stats({ stats }) {
   return (

@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react'
-import SidebarFolder from './SidebarFolder'
 import Button from '@/components/_ui/Button'
-import toast from 'react-hot-toast'
+import SidebarFolder from '@/components/trainer/SidebarFolder'
 import { useRouter } from 'next/router'
+import { useEffect, useState } from 'react'
+import toast from 'react-hot-toast'
 
 export default function Sidebar({ user }) {
   const router = useRouter()

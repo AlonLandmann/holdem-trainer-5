@@ -1,10 +1,10 @@
 import Button from '@/components/_ui/Button'
 import Input from '@/components/_ui/Input'
+import MatrixDisplay from '@/components/manager/MatrixDisplay'
 import { useLoadingQueue } from '@/hooks/useLoadingQueue'
 import { useUser } from '@/hooks/useUser'
 import handleManagerRequest from '@/lib/managerRequests'
 import { useEffect, useState } from 'react'
-import MatrixDisplay from './MatrixDisplay'
 
 export default function RangeBanner({ range, target, setTarget, selectedRanges, setSelectedRanges }) {
   const [user, setUser] = useUser()

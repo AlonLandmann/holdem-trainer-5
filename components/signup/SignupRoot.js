@@ -1,9 +1,9 @@
-import { useState } from 'react'
+import Anchor from '@/components/_ui/Anchor'
 import Button from '@/components/_ui/Button'
 import Input from '@/components/_ui/Input'
-import Anchor from '@/components/_ui/Anchor'
-import toast from 'react-hot-toast'
 import googleAuthUrl from '@/lib/googleAuthUrl'
+import { useState } from 'react'
+import toast from 'react-hot-toast'
 
 export default function SignupRoot() {
   const [email, setEmail] = useState('')

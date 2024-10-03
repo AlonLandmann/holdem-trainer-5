@@ -1,6 +1,6 @@
 import SideNav from '@/components/_layout/SideNav'
+import SettingsMain from '@/components/settings/SettingsMain'
 import { useUser } from '@/hooks/useUser'
-import SettingsMain from './SettingsMain'
 
 export default function SettingsRoot() {
   const [user, setUser] = useUser()

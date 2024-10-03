@@ -1,12 +1,12 @@
 import Button from '@/components/_ui/Button'
 import Input from '@/components/_ui/Input'
+import FolderPlaceholder from '@/components/manager/FolderPlaceholder'
+import RangeCard from '@/components/manager/RangeCard'
+import RangeGap from '@/components/manager/RangeGap'
+import { useLoadingQueue } from '@/hooks/useLoadingQueue'
+import { useUser } from '@/hooks/useUser'
 import handleManagerRequest from '@/lib/managerRequests'
 import { useEffect, useState } from 'react'
-import FolderPlaceholder from './FolderPlaceholder'
-import { useUser } from '@/hooks/useUser'
-import RangeCard from './RangeCard'
-import RangeGap from './RangeGap'
-import { useLoadingQueue } from '@/hooks/useLoadingQueue'
 
 export default function FolderContent({ selectedFolder }) {
   const [user, setUser] = useUser()

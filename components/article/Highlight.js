@@ -1,5 +1,5 @@
+import TeX from '@/components/article/TeX'
 import { v4 as uuid } from 'uuid'
-import TeX from './TeX'
 
 export default function Highlight({ tex }) {
   return (

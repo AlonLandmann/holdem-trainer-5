@@ -1,5 +1,5 @@
-import Article from '../article/Article'
-import ArticleEditor from './ArticleEditor'
+import Article from '@/components/article/Article'
+import ArticleEditor from '@/components/article-editor/ArticleEditor'
 import { useState } from 'react'
 
 export default function ArticleEditorRoot({ article, suggestions, authors }) {

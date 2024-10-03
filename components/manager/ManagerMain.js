@@ -1,6 +1,6 @@
+import FolderContent from '@/components/manager/FolderContent'
+import Sidebar from '@/components/manager/Sidebar'
 import { useEffect, useState } from 'react'
-import FolderContent from './FolderContent'
-import Sidebar from './Sidebar'
 
 export default function ManagerMain({ user }) {
   const [selectedFolder, setSelectedFolder] = useState(

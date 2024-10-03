@@ -1,7 +1,7 @@
+import SideNavItem from '@/components/_layout/SideNavItem'
+import Button from '@/components/_ui/Button'
 import { useRouter } from 'next/router'
-import Button from '../_ui/Button'
 import { useState } from 'react'
-import SideNavItem from './SideNavItem'
 import toast from 'react-hot-toast'
 
 export default function SideNav() {

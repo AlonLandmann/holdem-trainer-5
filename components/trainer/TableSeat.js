@@ -1,5 +1,5 @@
+import Card from '@/components/trainer/Card'
 import { positions } from '@/lib/spots'
-import Card from './Card'
 
 export default function TableSeat({ spot, seat, heroPosition, combo }) {
   const p = (heroPosition + seat) % 6

@@ -1,5 +1,5 @@
+import Button from '@/components/_ui/Button'
 import { useRouter } from 'next/router'
-import Button from '../_ui/Button'
 
 export default function SideNavItem({ icon, extendedView, text, href, onClick }) {
   const router = useRouter()

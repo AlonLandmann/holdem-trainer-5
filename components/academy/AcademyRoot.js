@@ -1,5 +1,5 @@
 import InfoLayout from '@/components/_layout/InfoLayout'
-import ArticleBanner from './ArticleBanner'
+import ArticleBanner from '@/components/academy/ArticleBanner'
 
 export default function AcademyRoot({ articles }) {
   return (

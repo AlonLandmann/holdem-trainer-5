@@ -1,10 +1,10 @@
 import Button from '@/components/_ui/Button'
+import MatrixDisplay from '@/components/manager/MatrixDisplay'
+import RangeHistory from '@/components/manager/RangeHistory'
+import RangeLegend from '@/components/manager/RangeLegend'
+import RangeName from '@/components/manager/RangeName'
+import RangeUiButtons from '@/components/manager/RangeUiButtons'
 import { useLoadingQueue } from '@/hooks/useLoadingQueue'
-import MatrixDisplay from './MatrixDisplay'
-import RangeName from './RangeName'
-import RangeHistory from './RangeHistory'
-import RangeLegend from './RangeLegend'
-import RangeUiButtons from './RangeUiButtons'
 
 export default function RangeCard({ range, target, setTarget, selectedRanges, setSelectedRanges }) {
   const [loadingQueue, setLoadingQueue] = useLoadingQueue()

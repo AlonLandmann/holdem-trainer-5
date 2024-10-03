@@ -1,16 +1,13 @@
-import Brush from './Brush'
-import Categories from './Categories'
-import History from './History'
-import Legend from './Legend'
-import Predecessor from './Predecessor'
-import Stacks from './Stacks'
+import Brush from '@/components/editor/Brush'
+import History from '@/components/editor/History'
+import Predecessor from '@/components/editor/Predecessor'
+import Stacks from '@/components/editor/Stacks'
 
 export default function Sidebar({
   range,
   setRange,
   selected,
   setSelected,
-  setHovered,
   setOptionHover,
   error,
   setError,

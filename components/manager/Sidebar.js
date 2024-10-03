@@ -1,10 +1,10 @@
 import Button from '@/components/_ui/Button'
-import SidebarFolder from './SidebarFolder'
-import handleManagerRequest from '@/lib/managerRequests'
-import SidebarGap from './SidebarGap'
-import { useState } from 'react'
+import SidebarFolder from '@/components/manager/SidebarFolder'
+import SidebarGap from '@/components/manager/SidebarGap'
 import { useLoadingQueue } from '@/hooks/useLoadingQueue'
 import { useUser } from '@/hooks/useUser'
+import handleManagerRequest from '@/lib/managerRequests'
+import { useState } from 'react'
 
 export default function Sidebar({ selectedFolder, setSelectedFolder }) {
   const [user, setUser] = useUser()
