@@ -1,5 +1,5 @@
 import Page from '@/components/_common_/Page'
-import AcademyRoot from '@/components/info/academy/AcademyRoot'
+import AcademyRoot from '@/components/academy/AcademyRoot'
 import prisma from '@/lib/server/prisma'
 
 export default function AcademyPage({ articles }) {
