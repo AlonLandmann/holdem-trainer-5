@@ -1,4 +1,4 @@
-import Article from '@/components/_common_/Article'
+import Article from '@/components/_shared/Article'
 import ArticleEditor from './ArticleEditor'
 import { useState } from 'react'
 
