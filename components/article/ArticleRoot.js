@@ -1,4 +1,4 @@
-import Article from '@/components/_shared/Article'
+import Article from './Article'
 import InfoLayout from '@/components/_layout/InfoLayout'
 
 export default function ArticleRoot({ article, suggestions }) {
