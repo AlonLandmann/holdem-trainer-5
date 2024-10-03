@@ -1,5 +1,5 @@
 import Article from '@/components/_common_/Article'
-import InfoLayout from '@/components/_common_/InfoLayout'
+import InfoLayout from '@/components/_layout/InfoLayout'
 
 export default function ArticleRoot({ article, suggestions }) {
 

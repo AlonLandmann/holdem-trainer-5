@@ -1,4 +1,4 @@
-import SideNav from '@/components/_common_/SideNav'
+import SideNav from '@/components/_layout/SideNav'
 import { useUser } from '@/hooks/useUser'
 import SettingsMain from './SettingsMain'
 

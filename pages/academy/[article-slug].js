@@ -1,4 +1,4 @@
-import Page from '@/components/_common_/Page'
+import Page from '@/components/_layout/Page'
 import ArticleRoot from '@/components/article/ArticleRoot'
 import prisma from '@/lib/server/prisma'
 import { random } from 'lodash'

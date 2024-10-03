@@ -1,4 +1,4 @@
-import Page from '@/components/_common_/Page'
+import Page from '@/components/_layout/Page'
 import AcademyRoot from '@/components/academy/AcademyRoot'
 import prisma from '@/lib/server/prisma'
 

@@ -1,4 +1,4 @@
-import Page from '@/components/_common_/Page'
+import Page from '@/components/_layout/Page'
 import SupportRoot from '@/components/support/SupportRoot'
 
 export default function SupportPage() {

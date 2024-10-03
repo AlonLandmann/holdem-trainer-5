@@ -1,4 +1,4 @@
-import Page from '@/components/_common_/Page'
+import Page from '@/components/_layout/Page'
 import TrainerRoot from '@/components/trainer/TrainerRoot'
 
 export default function TrainerPage() {
