@@ -32,26 +32,46 @@ export default function InfoNavbar() {
 
   return (
     <div className='sticky top-0 z-50 h-14 px-5 flex justify-between bg-neutral-900 bg-opacity-90 border-b'>
-      <div className='flex items-center gap-4'>
+      <div className='flex items-center gap-5'>
         <A href='/' text='HT' utilClasses='font-decorative text-lg' />
         <h1 className='text-neutral-500 hidden lg:block'>
           Hold'em Trainer
         </h1>
       </div>
-      <div className='flex items-center gap-4'>
+      <div className='flex items-center'>
+        <div className='hidden md:flex gap-8 mr-7'>
+          <A
+            text='Demo'
+            href='/app/manager'
+            utilClasses=' transition text-sm font-medium'
+          />
+          <A
+            text='Academy'
+            href='/academy'
+            utilClasses=' transition text-sm font-medium'
+          />
+          <A
+            text='HT-Pro'
+            href='/pricing'
+            utilClasses=' transition text-sm font-medium'
+          />
+        </div>
+        {true &&
+          <Button
+            theme='link'
+            utilClasses='md:hidden'
+            icon='three-dots-vertical'
+            onClick={() => { setDdInView(prev => !prev) }}
+          />
+        }
         {true &&
           <Button
             theme='nice'
-            utilClasses='py-3 px-4'
+            utilClasses='hidden md:block py-3 px-4'
             text='Log in'
             onClick={() => { window.location = '/auth/login' }}
           />
         }
-        <Button
-          theme='link'
-          icon='three-dots-vertical'
-          onClick={() => { setDdInView(prev => !prev) }}
-        />
       </div>
       {ddInView &&
         <div className='fixed w-full sm:w-fit min-w-[200px] top-14 right-0 flex flex-col  bg-neutral-900 border-b sm:border-l'>
