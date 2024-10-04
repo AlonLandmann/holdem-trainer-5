@@ -31,10 +31,10 @@ export default function Footer() {
         </div>
         <div>
           <h1 className='mb-3 text-xl font-medium text-neutral-600'>
-            Academy
+            Learn
           </h1>
           <div className='flex flex-col items-start gap-2 text-sm xs:text-base'>
-            <A href='/academy' text='General' />
+            <A href='/academy' text='Principles' />
             <A href='/academy' text='Preflop' />
             <A href='/academy' text='Postflop' />
           </div>

@@ -24,6 +24,11 @@ const themes = {
     `,
     hotkey: ' text-neutral-600',
     text: 'grow text-center',
+  },
+  link: {
+    container: 'text-neutral-300 transition hover:text-neutral-400',
+    icon: '',
+    text: '',
   }
 }
 
