@@ -68,7 +68,7 @@ export default function LoginRoot() {
             onChange={e => setPassword(e.target.value)}
           />
           <Button
-            utilClasses='w-full rounded-sm'
+            utilClasses='w-full rounded-sm py-3 px-4'
             text='Log In'
             type='submit'
             onClick={handleEmailLogin}
@@ -84,14 +84,14 @@ export default function LoginRoot() {
         </div>
         <div className='pt-5 pb-7 self-stretch'>
           <Button
-            utilClasses='w-full rounded-sm'
+            utilClasses='w-full rounded-sm py-3 px-4'
             text='Google'
             onClick={() => { window.location = googleAuthUrl }}
           />
         </div>
-        <p className='text-sm text-neutral-500 px-2'>
-          New to Hold'em Trainer? <A text='Sign up' href='/auth/signup' /> instead.
-        </p>
+        <div className='text-sm text-neutral-500 px-2 flex gap-1'>
+          New to Hold'em Trainer? <A href='/auth/signup' text='Sign up' /> instead.
+        </div>
       </form>
     </div>
   )

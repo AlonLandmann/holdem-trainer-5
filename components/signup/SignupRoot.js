@@ -68,7 +68,7 @@ export default function SignupRoot() {
             onChange={e => setPassword(e.target.value)}
           />
           <Button
-            utilClasses='w-full rounded-sm'
+            utilClasses='w-full rounded-sm py-3 px-4'
             text='Sign Up'
             type='submit'
             onClick={handleEmailSignup}
@@ -84,14 +84,14 @@ export default function SignupRoot() {
         </div>
         <div className='pt-5 pb-7 self-stretch'>
           <Button
-            utilClasses='w-full rounded-sm'
+            utilClasses='w-full rounded-sm py-3 px-4'
             text='Google'
             onClick={() => { window.location = googleAuthUrl }}
           />
         </div>
-        <p className='text-sm text-neutral-500 px-2'>
+        <div className='text-sm text-neutral-500 px-2 flex gap-1'>
           Already have an account? <A text='Log in' href='/auth/login' /> instead.
-        </p>
+        </div>
       </form>
     </div>
   )
