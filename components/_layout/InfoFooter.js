@@ -1,6 +1,6 @@
 import A from '../_ui/A'
 
-export default function Footer() {
+export default function InfoFooter() {
   return (
     <div className='border-t flex flex-col'>
       <div className={`

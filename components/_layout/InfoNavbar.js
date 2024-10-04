@@ -4,7 +4,7 @@ import toast from 'react-hot-toast'
 import A from '../_ui/A'
 import Button from '../_ui/Button'
 
-export default function Navbar() {
+export default function InfoNavbar() {
   const [user, setUser] = useUser()
   const [ddInView, setDdInView] = useState(false)
 
