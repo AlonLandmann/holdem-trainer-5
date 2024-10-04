@@ -2,10 +2,10 @@ import Highlight from '@/components/article/Highlight'
 import List from '@/components/article/List'
 import RangeDisplayCard from '@/components/article/RangeDisplayCard'
 import Table from '@/components/article/Table'
-import Link from 'next/link'
+import 'katex/dist/katex.min.css'
 import { InlineMath, BlockMath } from 'react-katex'
 import { v4 as uuid } from 'uuid'
-import 'katex/dist/katex.min.css'
+import A from '../_ui/A'
 
 export default function TeX({ tex }) {
   let parsed = []
@@ -90,9 +90,7 @@ export default function TeX({ tex }) {
     }
 
     parsed.push(
-      <Link key={uuid()} href={url}>
-        {content}
-      </Link>
+      <A key={uuid()} text={content} href={url} />
     )
 
     main = ''

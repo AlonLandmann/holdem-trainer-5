@@ -1,4 +1,4 @@
-import Anchor from '@/components/_ui/Anchor'
+import A from '@/components/_ui/A'
 import Button from '@/components/_ui/Button'
 import Input from '@/components/_ui/Input'
 import googleAuthUrl from '@/lib/googleAuthUrl'
@@ -90,7 +90,7 @@ export default function SignupRoot() {
           />
         </div>
         <p className='text-sm text-neutral-500 px-2'>
-          Already have an account? <Anchor href='/auth/login' text='Log in' /> instead.
+          Already have an account? <A text='Log in' href='/auth/login' /> instead.
         </p>
       </form>
     </div>

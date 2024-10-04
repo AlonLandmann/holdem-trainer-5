@@ -1,32 +1,26 @@
-import Link from 'next/link'
+import A from '../_ui/A'
 
 export default function Footer() {
   return (
     <div className='bg-[#171717] border-t flex flex-col'>
-      <div
-        className={`
-          py-[20px] px-[35px] grid grid-cols-1 gap-5 gap-y-[30px]
-          xs:grid-cols-2 xs:py-[30px] xs:px-[50px]
-          lg:gap-y-5 lg:grid-cols-4
-        `}
-      >
+      <div className={`
+        py-[20px] px-[35px] grid grid-cols-1 gap-5 gap-y-[30px]
+        xs:grid-cols-2 xs:py-[30px] xs:px-[50px]
+        lg:gap-y-5 lg:grid-cols-4
+      `}>
         <div className='flex flex-col'>
-          <div className='self-start font-decorative text-[25px]'>
-            <Link href='/'>HT</Link>
-          </div>
+          <A
+            utilClasses='font-decorative text-2xl'
+            href='/'
+            text='HT'
+          />
           <div className='pb-2 text-sm text-neutral-400'>
             info@holdem-trainer.com
           </div>
           <div className='mt-auto flex gap-[15px]'>
-            <div className='text-xl text-neutral-300 cursor-pointer hover:text-neutral-400'>
-              <i className='bi bi-youtube'></i>
-            </div>
-            <div className='text-xl text-neutral-300 cursor-pointer hover:text-neutral-400'>
-              <i className='bi bi-twitter-x'></i>
-            </div>
-            <div className='text-xl text-neutral-300 cursor-pointer hover:text-neutral-400'>
-              <i className='bi bi-discord'></i>
-            </div>
+            <A utilClasses='text-xl' icon='youtube' href='/' />
+            <A utilClasses='text-xl' icon='twitter-x' href='/' />
+            <A utilClasses='text-xl' icon='discord' href='/' />
           </div>
         </div>
         <div>
@@ -34,9 +28,9 @@ export default function Footer() {
             App
           </h1>
           <div className='flex flex-col items-start gap-2 text-[15px] md:text-base'>
-            <Link href='/app/manager' className='hover:text-neutral-400'>Manager</Link>
-            <Link href='/app/editor/dummyId' className='hover:text-neutral-400'>Editor</Link>
-            <Link href='/app/trainer' className='hover:text-neutral-400'>Trainer</Link>
+            <A text='Manager' href='/app/manager' />
+            <A text='Editor' href='/app/editor/dummyId' />
+            <A text='Trainer' href='/app/trainer' />
           </div>
         </div>
         <div>
@@ -44,9 +38,9 @@ export default function Footer() {
             Academy
           </h1>
           <div className='flex flex-col items-start gap-2 text-[15px] md:text-base'>
-            <Link href='/academy' className='hover:text-neutral-400'>General</Link>
-            <Link href='/academy' className='hover:text-neutral-400'>Preflop</Link>
-            <Link href='/academy' className='hover:text-neutral-400'>Postflop</Link>
+            <A text='General' href='/academy' />
+            <A text='Preflop' href='/academy' />
+            <A text='Postflop' href='/academy' />
           </div>
         </div>
         <div>
@@ -54,24 +48,22 @@ export default function Footer() {
             Info
           </h1>
           <div className='flex flex-col items-start gap-2 text-[15px] md:text-base'>
-            <Link href='/pricing' className='hover:text-neutral-400'>HT-pro</Link>
-            <Link href='/support' className='hover:text-neutral-400'>Support</Link>
+            <A text='HT-pro' href='/pricing' />
+            <A text='Support' href='/support' />
           </div>
         </div>
       </div>
-      <div
-        className={`
-          py-[20px] px-[35px] flex flex-col self-start text-[11px] gap-[15px]
-          xs:self-center xs:flex-row xs:py-[15px] xs:px-[50px]
-        `}
-      >
+      <div className={`
+        py-[20px] px-[35px] flex flex-col self-start text-[11px] gap-[15px]
+        xs:self-center xs:flex-row xs:py-[15px] xs:px-[50px]
+      `}>
         <div className='text-neutral-400'>
           © 2024 - A. Landmann
         </div>
         <div className='flex gap-3 flex-col xs:flex-row'>
-          <Link href='/support' className='hover:text-neutral-400'>FAQ</Link>
-          <Link href='/support' className='hover:text-neutral-400'>Privacy Policy</Link>
-          <Link href='/support' className='hover:text-neutral-400'>Terms & Conditions</Link>
+          <A text='FAQ' href='/support' />
+          <A text='Privacy Policy' href='/support' />
+          <A text='Terms & Conditions' href='/support' />
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import Button from '@/components/_ui/Button'
 import Input from '@/components/_ui/Input'
-import Anchor from '@/components/_ui/Anchor'
+import A from '@/components/_ui/A'
 import googleAuthUrl from '@/lib/googleAuthUrl'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
@@ -90,7 +90,7 @@ export default function LoginRoot() {
           />
         </div>
         <p className='text-sm text-neutral-500 px-2'>
-          New to Hold'em Trainer? <Anchor href='/auth/signup' text='Sign up' /> instead.
+          New to Hold'em Trainer? <A text='Sign up' href='/auth/signup' /> instead.
         </p>
       </form>
     </div>
