@@ -2,68 +2,64 @@ import A from '../_ui/A'
 
 export default function Footer() {
   return (
-    <div className='bg-[#171717] border-t flex flex-col'>
+    <div className='border-t flex flex-col'>
       <div className={`
-        py-[20px] px-[35px] grid grid-cols-1 gap-5 gap-y-[30px]
-        xs:grid-cols-2 xs:py-[30px] xs:px-[50px]
-        lg:gap-y-5 lg:grid-cols-4
+        py-5 px-8 grid grid-cols-1 gap-5 gap-y-8
+        xs:py-10 xs:px-12 xs:grid-cols-2
+        lg:grid-cols-4 lg:gap-y-5
       `}>
         <div className='flex flex-col'>
-          <A
-            utilClasses='font-decorative text-2xl'
-            href='/'
-            text='HT'
-          />
-          <div className='pb-2 text-sm text-neutral-400'>
+          <A href='/' text='HT' utilClasses='font-decorative text-2xl' />
+          <div className='py-2 text-sm text-neutral-400'>
             info@holdem-trainer.com
           </div>
-          <div className='mt-auto flex gap-[15px]'>
-            <A utilClasses='text-xl' icon='youtube' href='/' />
-            <A utilClasses='text-xl' icon='twitter-x' href='/' />
-            <A utilClasses='text-xl' icon='discord' href='/' />
+          <div className='mt-auto flex gap-4'>
+            <A href='/' icon='youtube' utilClasses='text-xl' />
+            <A href='/' icon='twitter-x' utilClasses='text-xl' />
+            <A href='/' icon='discord' utilClasses='text-xl' />
           </div>
         </div>
         <div>
-          <h1 className='mb-3 text-xl md:text-[22px] font-medium text-neutral-600'>
+          <h1 className='mb-3 text-xl font-medium text-neutral-600'>
             App
           </h1>
-          <div className='flex flex-col items-start gap-2 text-[15px] md:text-base'>
-            <A text='Manager' href='/app/manager' />
-            <A text='Editor' href='/app/editor/dummyId' />
-            <A text='Trainer' href='/app/trainer' />
+          <div className='flex flex-col items-start gap-2 text-sm xs:text-base'>
+            <A href='/app/manager' text='Manager' />
+            <A href='/app/editor/dummyId' text='Editor' />
+            <A href='/app/trainer' text='Trainer' />
           </div>
         </div>
         <div>
-          <h1 className='mb-3 text-xl md:text-[22px] font-medium text-neutral-600'>
+          <h1 className='mb-3 text-xl font-medium text-neutral-600'>
             Academy
           </h1>
-          <div className='flex flex-col items-start gap-2 text-[15px] md:text-base'>
-            <A text='General' href='/academy' />
-            <A text='Preflop' href='/academy' />
-            <A text='Postflop' href='/academy' />
+          <div className='flex flex-col items-start gap-2 text-sm xs:text-base'>
+            <A href='/academy' text='General' />
+            <A href='/academy' text='Preflop' />
+            <A href='/academy' text='Postflop' />
           </div>
         </div>
         <div>
-          <h1 className='mb-3 text-xl md:text-[22px] font-medium text-neutral-600'>
+          <h1 className='mb-3 text-xl font-medium text-neutral-600'>
             Info
           </h1>
-          <div className='flex flex-col items-start gap-2 text-[15px] md:text-base'>
-            <A text='HT-pro' href='/pricing' />
-            <A text='Support' href='/support' />
+          <div className='flex flex-col items-start gap-2 text-sm xs:text-base'>
+            <A href='/pricing' text='HT-pro' />
+            <A href='/support' text='Support' />
           </div>
         </div>
       </div>
       <div className={`
-        py-[20px] px-[35px] flex flex-col self-start text-[11px] gap-[15px]
-        xs:self-center xs:flex-row xs:py-[15px] xs:px-[50px]
+        py-5 px-8 self-start flex flex-col gap-4 text-xs
+        xs:self-center xs:flex-row xs:py-4 xs:px-12
       `}>
         <div className='text-neutral-400'>
           © 2024 - A. Landmann
         </div>
         <div className='flex gap-3 flex-col xs:flex-row'>
-          <A text='FAQ' href='/support' />
-          <A text='Privacy Policy' href='/support' />
-          <A text='Terms & Conditions' href='/support' />
+          <A href='/support' text='FAQ' />
+          <A href='/support' text='Privacy Policy' />
+          <A href='/support' text='Terms & Conditions' />
         </div>
       </div>
     </div>

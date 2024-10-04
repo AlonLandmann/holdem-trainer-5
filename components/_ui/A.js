@@ -1,8 +1,8 @@
 export default function A({
-  utilClasses,
+  href = '/',
   icon,
   text,
-  href = '/',
+  utilClasses,
 }) {
   return (
     <a
