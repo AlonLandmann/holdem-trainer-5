@@ -39,6 +39,7 @@ export default function Sidebar({ user }) {
       </div>
       <Button
         theme='secondary'
+        utilClasses='py-3 px-4'
         text='Start new Session'
         onClick={handleStartNewSession}
       />

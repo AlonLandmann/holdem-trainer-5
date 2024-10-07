@@ -41,7 +41,7 @@ export default function RangeDisplayCard({ rangeId }) {
         <div className='flex items-center gap-1 py-1'>
           <Button
             theme='secondary'
-            utilClasses='rounded-none'
+            utilClasses='py-3 px-4 rounded-none'
             icon='copy'
             text='Copy'
             onClick={handleCopy}
@@ -49,7 +49,7 @@ export default function RangeDisplayCard({ rangeId }) {
           />
           <Button
             theme='primary'
-            utilClasses='rounded-none'
+            utilClasses='py-3 px-4 rounded-none'
             icon='crosshair'
             text='Train Now'
             onClick={handleTrain}

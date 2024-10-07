@@ -56,7 +56,7 @@ export default function RangeCard({ range, target, setTarget, selectedRanges, se
         <div className='flex items-center gap-1 py-1'>
           <Button
             theme='secondary'
-            utilClasses='rounded-none'
+            utilClasses='py-3 px-4 rounded-none'
             icon={selectedRanges.includes(range.id) ? 'check-square' : 'square'}
             text='Select'
             onClick={handleSelect}
@@ -64,7 +64,7 @@ export default function RangeCard({ range, target, setTarget, selectedRanges, se
           />
           <Button
             theme='primary'
-            utilClasses='rounded-none'
+            utilClasses='py-3 px-4 rounded-none'
             icon='crosshair'
             text='Train Now'
             onClick={() => { window.location = `/app/trainer?ids=${JSON.stringify([range.id])}` }}

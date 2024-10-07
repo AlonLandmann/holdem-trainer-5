@@ -32,12 +32,14 @@ export default function QuoteCta() {
       <div className='flex gap-2'>
         <Button
           theme='secondary'
+          utilClasses='py-3 px-4'
           icon='ui-checks'
           text='Manage Ranges'
           onClick={() => { router.push('/app/manager') }}
         />
         <Button
           theme='primary'
+          utilClasses='py-3 px-4'
           icon='crosshair'
           text='Keep Training'
           onClick={() => { router.push('/app/trainer') }}

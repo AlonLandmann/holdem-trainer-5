@@ -32,11 +32,13 @@ export default function SettingsMain({ user }) {
                 {!user.isVerified &&
                   <Button
                     theme='secondary'
+                    utilClasses='py-3 px-4'
                     text='verifiy'
                   />
                 }
                 <Button
                   theme='secondary'
+                  utilClasses='py-3 px-4'
                   text='change'
                 />
               </div>
@@ -52,6 +54,7 @@ export default function SettingsMain({ user }) {
             <div className={buttons}>
               <Button
                 theme='secondary'
+                utilClasses='py-3 px-4'
                 text='change'
               />
             </div>
@@ -67,10 +70,12 @@ export default function SettingsMain({ user }) {
               <div className={buttons}>
                 <Button
                   theme='secondary'
+                  utilClasses='py-3 px-4'
                   text='change'
                 />
                 <Button
                   theme='secondary'
+                  utilClasses='py-3 px-4'
                   text='reset'
                 />
               </div>
@@ -86,6 +91,7 @@ export default function SettingsMain({ user }) {
             <div className={buttons}>
               <Button
                 theme='secondary'
+                utilClasses='py-3 px-4'
                 text={user.membership === 'free' ? 'upgrade' : 'change'}
               />
             </div>
@@ -100,6 +106,7 @@ export default function SettingsMain({ user }) {
             <div className={buttons}>
               <Button
                 theme='secondary'
+                utilClasses='py-3 px-4'
                 text='delete'
               />
             </div>

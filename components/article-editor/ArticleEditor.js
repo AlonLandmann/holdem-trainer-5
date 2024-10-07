@@ -5,7 +5,7 @@ import { kebabCase } from 'lodash'
 import toast from 'react-hot-toast'
 
 export default function ArticleEditor({ copy, setCopy, authors }) {
-  const labelStyle ='self-start mt-[10px] text-neutral-400'
+  const labelStyle = 'self-start mt-[10px] text-neutral-400'
 
   function handleChange(event, modifier) {
     setCopy(produce(draft => {
@@ -138,6 +138,7 @@ export default function ArticleEditor({ copy, setCopy, authors }) {
       </label>
       <Button
         theme='primary'
+        utilClasses='py-3 px-4'
         text='Save Changes'
         onClick={handleSave}
         useQueue

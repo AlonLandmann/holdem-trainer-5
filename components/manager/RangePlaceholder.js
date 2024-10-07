@@ -22,6 +22,7 @@ export default function RangePlaceholder() {
       </p>
       <Button
         theme='secondary'
+        utilClasses='py-3 px-4'
         icon='plus-lg'
         text='Add Range'
         onClick={handleAddRange}

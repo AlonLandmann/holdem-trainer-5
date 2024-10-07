@@ -27,6 +27,7 @@ export default function FolderPlaceholder({ selectedFolder }) {
       <div className='flex gap-2'>
         <Button
           theme='primary'
+          utilClasses='py-3 px-4'
           icon='plus-lg'
           text='Add Range'
           onClick={handleAddRange}
@@ -34,6 +35,7 @@ export default function FolderPlaceholder({ selectedFolder }) {
         />
         <Button
           theme='secondary'
+          utilClasses='py-3 px-4'
           icon='trash3'
           text='Delete Folder'
           onClick={handleDeleteFolder}

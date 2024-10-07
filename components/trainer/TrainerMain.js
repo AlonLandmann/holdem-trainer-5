@@ -201,6 +201,7 @@ export default function TrainerMain({ user }) {
             </div>
             <Button
               theme='primary'
+              utilClasses='py-3 px-4'
               text='Train again'
               onClick={() => { window.location.reload() }}
             />
