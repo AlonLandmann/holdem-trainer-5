@@ -23,7 +23,7 @@ export default function ArticleEditor({ copy, setCopy, authors }) {
     const json = await res.json()
 
     if (json.success) {
-      window.location = `/admin/editor/${kebabCase(copy.title)}`
+      window.location = `/admin/article-editor/${kebabCase(copy.title)}`
     } else {
       toast.error(json.message || 'An unexpected error occurred.')
     }
