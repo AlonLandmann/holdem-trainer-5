@@ -8,6 +8,7 @@ export function useUser() {
 
 export function UserProvider({ children }) {
   const [user, setUser] = useState(null)
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     (async () => {
@@ -29,11 +30,13 @@ export function UserProvider({ children }) {
       } catch (error) {
         console.log(error)
       }
+
+      setIsLoading(false)
     })()
   }, [])
 
   return (
-    <UserContext.Provider value={[user, setUser]}>
+    <UserContext.Provider value={[user, setUser, isLoading]}>
       {children}
     </UserContext.Provider>
   )
