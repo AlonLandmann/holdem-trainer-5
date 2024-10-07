@@ -6,7 +6,7 @@ export default function AcademyRoot({ articles }) {
     <InfoLayout>
       <div className='flex flex-col items-center'>
         <div className='self-stretch flex flex-col items-center p-12 pt-16'>
-          <i className='bi bi-mortarboard text-7xl text-neutral-600 mb-8'></i>
+          <i className='bi bi-book text-7xl text-neutral-600 mb-8'></i>
           <h1 className='text-5xl mb-5'>
             Hold'em Academy
           </h1>

@@ -1,7 +1,7 @@
 import Button from '@/components/_ui/Button'
 import { useRouter } from 'next/router'
 
-export default function SideNavItem({ icon, extendedView, text, href, onClick }) {
+export default function SideNavItem({ icon, text, href, onClick, extendedView }) {
   const router = useRouter()
   const currentNav = router.pathname.split('/')[2]
   const targetNav = href && href.split('/')[2]
@@ -17,9 +17,9 @@ export default function SideNavItem({ icon, extendedView, text, href, onClick })
       `}
       onClick={() => {
         if (href === '/app/dashboard') {
-          window.location = `${href}?extended=true`
+          window.location = href
         } else if (href) {
-          router.push(`${href}?extended=true`)
+          router.push(href)
         } else {
           onClick()
         }

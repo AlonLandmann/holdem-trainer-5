@@ -33,7 +33,11 @@ export default function InfoNavbar() {
   return (
     <div className='sticky top-0 z-50 h-14 flex justify-between bg-neutral-900 bg-opacity-90 border-b'>
       <div className='px-5 flex items-center gap-5'>
-        <A href='/' text='HT' utilClasses='font-decorative text-lg' />
+        <A
+          href='/'
+          text='HT'
+          utilClasses='font-decorative text-lg'
+        />
         <h1 className='text-neutral-500 hidden lg:block'>
           Hold'em Trainer
         </h1>
