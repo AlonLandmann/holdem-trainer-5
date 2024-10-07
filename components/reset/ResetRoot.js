@@ -3,12 +3,25 @@ import AuthLayout from '../_layout/AuthLayout'
 import Button from '../_ui/Button'
 import Input from '../_ui/Input'
 import A from '../_ui/A'
+import toast from 'react-hot-toast'
 
 export default function ResetRoot() {
   const [email, setEmail] = useState('')
 
   async function handleSendCode() {
+    const res = await fetch('/api/auth/reset-code', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email }),
+    })
 
+    const json = await res.json()
+
+    if (json.success) {
+      toast.success('A verification code has been sent to your email.')
+    } else {
+      toast.error(json.message || 'An unexpected error occurred.')
+    }
   }
 
   return (

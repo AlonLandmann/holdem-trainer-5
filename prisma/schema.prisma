@@ -17,6 +17,7 @@ model User {
   googleId          String?           @unique
   isVerified        Boolean           @default(false)
   verificationToken String?           @default(uuid())
+  passwordResetCode String?
   role              String            @default("user")
   membership        String            @default("free")
   session           Session?
