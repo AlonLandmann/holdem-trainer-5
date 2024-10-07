@@ -36,7 +36,7 @@ export default function AppNavbar() {
           <A
             href='/'
             text='HT'
-            utilClasses={`px-3 py-2 font-decorative ${extendedView ? 'self-start' : ''} `}
+            utilClasses='py-2 font-decorative w-[39px] justify-center'
           />
           <AppNavbarItem
             icon='graph-up-arrow'
