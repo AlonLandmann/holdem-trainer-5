@@ -17,14 +17,6 @@ const themes = {
     icon: '',
     text: 'text-sm',
   },
-  answer: {
-    container: `
-      h-[50px] w-[120px] py-1 px-5 flex items-center gap-2 border rounded transition
-      text-neutral-400 hover:text-neutral-50 hover:bg-neutral-800 hover:border-neutral-800
-    `,
-    hotkey: ' text-neutral-600',
-    text: 'grow text-center',
-  },
   link: {
     container: 'text-neutral-300 transition hover:text-neutral-400',
     icon: '',
@@ -39,7 +31,12 @@ const themes = {
     container: 'w-full px-3 py-2 rounded text-neutral-400 transition hover:bg-neutral-800 hover:text-white cursor-pointer',
     icon: '',
     text: 'text-sm',
-  }
+  },
+  answer: {
+    container: 'h-14 w-32 py-1 px-5 flex items-center gap-2 border rounded transition text-neutral-400 hover:text-neutral-50 hover:bg-neutral-800 hover:border-neutral-800',
+    hotkey: 'text-neutral-600',
+    text: 'grow text-center',
+  },
 }
 
 export default function Button({
@@ -68,27 +65,21 @@ export default function Button({
 
   return (
     <button
+      type={type}
+      onClick={useQueue ? handleQueuedExecution : onClick}
+      disabled={disabled || (useQueue && loadingQueue)}
       className={`
         relative
         ${(icon && text) ? 'flex items-center gap-3' : ''}
         ${themes[theme].container}
         ${utilClasses}
       `}
-      type={type}
-      onClick={useQueue ? handleQueuedExecution : onClick}
-      disabled={disabled || (useQueue && loadingQueue)}
     >
       {loading &&
         <div className='absolute w-full left-0 flex justify-center'>
-          <span className='inline-block animate-pulse'>
-            ·
-          </span>
-          <span className='inline-block animate-pulse [animation-delay:0.2s]'>
-            ·
-          </span>
-          <span className='inline-block animate-pulse [animation-delay:1s]'>
-            ·
-          </span>
+          <span className='inline-block animate-pulse'>·</span>
+          <span className='inline-block animate-pulse [animation-delay:0.2s]'>·</span>
+          <span className='inline-block animate-pulse [animation-delay:1s]'>·</span>
         </div>
       }
       {hotkey &&
