@@ -14,8 +14,11 @@ module.exports = {
         decorative: ['Amita', 'cursive'],
       },
       borderColor: {
-        DEFAULT: 'rgb(38, 38, 38)', // Set your default border color here
+        DEFAULT: 'rgb(38, 38, 38)',
       },
+      transitionProperty: {
+        'width': 'width',
+      }
     },
   },
   plugins: [],

@@ -24,19 +24,15 @@ export default function SideNav() {
     }
   }
 
-  const groupStyle = 'flex flex-col gap-2 px-2 py-2'
-  const separatorStyle = `h-[1px] ${extendedView ? 'w-32' : 'w-7'} bg-neutral-800 self-center my-2`
-
   return (
     <>
       <div className='min-w-14'></div>
       <div
-        className={`h-screen absolute z-20 ${extendedView ? 'w-40' : 'w-14'} flex flex-col bg-neutral-900 border-r`}
+        className={`h-screen absolute z-20 ${extendedView ? 'w-40' : 'w-14'} flex flex-col bg-neutral-900 border-r transition-width`}
         onMouseEnter={() => { if (listenForEnter) { setExtendedView(true) } }}
         onMouseLeave={() => { setExtendedView(false) }}
-        style={{ transition: 'width 200ms' }}
       >
-        <div className={groupStyle}>
+        <div className='flex flex-col gap-2 px-2 py-2'>
           <A
             href='/'
             text='HT'
@@ -49,8 +45,8 @@ export default function SideNav() {
             extendedView={extendedView}
           />
         </div>
-        <div className={separatorStyle}></div>
-        <div className={groupStyle + ' mb-auto'}>
+        <div className={`h-[1px] ${extendedView ? 'w-32' : 'w-7'} bg-neutral-800 self-center my-2`}></div>
+        <div className={'flex flex-col gap-2 px-2 py-2 mb-auto'}>
           <SideNavItem
             icon='ui-checks'
             text='Manager'
@@ -76,8 +72,8 @@ export default function SideNav() {
             extendedView={extendedView}
           />
         </div>
-        <div className={separatorStyle}></div>
-        <div className={groupStyle}>
+        <div className={`h-[1px] ${extendedView ? 'w-32' : 'w-7'} bg-neutral-800 self-center my-2`}></div>
+        <div className='flex flex-col gap-2 px-2 py-2'>
           <SideNavItem
             icon='gear'
             text='Settings'
