@@ -77,20 +77,36 @@ export default function InfoNavbar() {
             <Button
               theme='nice'
               utilClasses='w-10 h-10'
-              text={user.username.slice(0, 2).toUpperCase()}
+              text={user.username.slice(0, 1).toUpperCase()}
+              onClick={() => { setDdInView(prev => !prev) }}
             />
           }
         </div>
       </div>
       {ddInView &&
-        <div className='fixed w-full sm:w-fit min-w-[200px] top-14 right-0 flex flex-col  bg-neutral-900 border-b sm:border-l'>
-          <A href='/academy' text='Academy' utilClasses='py-4 px-6 text-start' />
-          {!user &&
-            <A href='auth/login' text='Log in' utilClasses='py-4 px-6 text-start' />
-          }
-          <A href='/pricing' text='HT-pro' utilClasses='py-4 px-6 text-start' />
+        <div className='fixed w-full md:hidden top-14 right-0 flex flex-col bg-neutral-900 border-b'>
+          <A
+            text={user ? 'My Ranges' : 'Demo'}
+            href='/app/manager'
+            utilClasses=' p-5 text-start'
+          />
+          <A
+            text='Academy'
+            href='/academy'
+            utilClasses=' p-5 text-start'
+          />
+          <A
+            text={user ? 'HT - Pro' : 'Pricing'}
+            href='/pricing'
+            utilClasses=' p-5 text-start'
+          />
           {user &&
-            <Button theme='link' text='Log out' onClick={handleLogout} utilClasses='py-4 px-6 text-start' />
+            <Button
+              theme='link'
+              text='Log out'
+              onClick={handleLogout}
+              utilClasses='p-5 text-start'
+            />
           }
         </div>
       }
