@@ -45,6 +45,8 @@ const themes = {
 export default function Button({
   theme = 'primary',
   utilClasses = '',
+  iconClasses = '',
+  textClasses = '',
   icon,
   hotkey,
   text,
@@ -95,12 +97,12 @@ export default function Button({
         </span>
       }
       {icon &&
-        <span className={`${loading ? 'opacity-0' : ''} ${themes[theme].icon}`}>
+        <span className={`${loading ? 'opacity-0' : ''} ${themes[theme].icon} ${iconClasses}`}>
           <i className={`bi bi-${icon}`}></i>
         </span>
       }
       {text &&
-        <span className={`${loading ? 'opacity-0' : ''} ${themes[theme].text}`}>
+        <span className={`${loading ? 'opacity-0' : ''} ${themes[theme].text} ${textClasses}`}>
           {text}
         </span>
       }
