@@ -6,20 +6,20 @@ import A from '../_ui/A'
 
 export default function SideNav() {
   const [extendedView, setExtendedView] = useState(false)
-
-  const groupStyle = 'flex flex-col gap-2 px-2 py-2'
-  const separatorStyle = `h-[1px] ${extendedView ? 'w-32' : 'w-7'} bg-neutral-800 self-center my-2`
-
+  
   async function handleLogout() {
     const res = await fetch('/api/auth/logout', { method: 'POST', credentials: 'include' })
     const json = await res.json()
-
+    
     if (json.success) {
       window.location = '/auth/login'
     } else {
       toast.error(json.message || 'An unexpected error occurred.')
     }
   }
+  
+  const groupStyle = 'flex flex-col gap-2 px-2 py-2'
+  const separatorStyle = `h-[1px] ${extendedView ? 'w-32' : 'w-7'} bg-neutral-800 self-center my-2`
 
   return (
     <>

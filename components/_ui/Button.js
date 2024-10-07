@@ -34,6 +34,11 @@ const themes = {
     container: 'bg-neutral-700 bg-opacity-50 hover:bg-opacity-70 font-medium rounded transition text-sm text-neutral-300',
     icon: '',
     text: '',
+  },
+  sidenav: {
+    container: 'w-full px-3 py-2 rounded text-neutral-400 transition hover:bg-neutral-800 hover:text-white cursor-pointer',
+    icon: '',
+    text: 'text-sm',
   }
 }
 
