@@ -12,7 +12,7 @@ export default function SideNavItem({ icon, text, href, onClick, extendedView })
       window.location = href
     } else if (href) {
       router.push(href)
-    } else {
+    } else if (onClick) {
       onClick()
     }
   }
