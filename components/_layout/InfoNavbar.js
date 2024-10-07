@@ -31,17 +31,17 @@ export default function InfoNavbar() {
   }
 
   return (
-    <div className='sticky top-0 z-50 h-14 px-5 flex justify-between bg-neutral-900 bg-opacity-90 border-b'>
-      <div className='flex items-center gap-5'>
+    <div className='sticky top-0 z-50 h-14 flex justify-between bg-neutral-900 bg-opacity-90 border-b'>
+      <div className='px-5 flex items-center gap-5'>
         <A href='/' text='HT' utilClasses='font-decorative text-lg' />
         <h1 className='text-neutral-500 hidden lg:block'>
           Hold'em Trainer
         </h1>
       </div>
-      <div className='flex items-center'>
+      <div className='flex items-center px-3'>
         <div className='hidden md:flex gap-8 mr-7'>
           <A
-            text='Demo'
+            text={user ? 'My Ranges' : 'Demo'}
             href='/app/manager'
             utilClasses=' transition text-sm font-medium'
           />
@@ -51,27 +51,36 @@ export default function InfoNavbar() {
             utilClasses=' transition text-sm font-medium'
           />
           <A
-            text='HT-Pro'
+            text={user ? 'HT - Pro' : 'Pricing'}
             href='/pricing'
             utilClasses=' transition text-sm font-medium'
           />
         </div>
-        {true &&
-          <Button
-            theme='link'
-            utilClasses='md:hidden'
-            icon='three-dots-vertical'
-            onClick={() => { setDdInView(prev => !prev) }}
-          />
-        }
-        {true &&
-          <Button
-            theme='nice'
-            utilClasses='hidden md:block py-3 px-4'
-            text='Log in'
-            onClick={() => { window.location = '/auth/login' }}
-          />
-        }
+        <div className='flex gap-4'>
+          {true &&
+            <Button
+              theme='link'
+              utilClasses='md:hidden'
+              icon='three-dots-vertical'
+              onClick={() => { setDdInView(prev => !prev) }}
+            />
+          }
+          {!user &&
+            <Button
+              theme='nice'
+              utilClasses='py-3 px-4'
+              text='Log in'
+              onClick={() => { window.location = '/auth/login' }}
+            />
+          }
+          {user &&
+            <Button
+              theme='nice'
+              utilClasses='w-10 h-10'
+              text={user.username.slice(0, 2).toUpperCase()}
+            />
+          }
+        </div>
       </div>
       {ddInView &&
         <div className='fixed w-full sm:w-fit min-w-[200px] top-14 right-0 flex flex-col  bg-neutral-900 border-b sm:border-l'>

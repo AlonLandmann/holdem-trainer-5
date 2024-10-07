@@ -31,7 +31,7 @@ const themes = {
     text: '',
   },
   nice: {
-    container: 'bg-neutral-800 font-medium rounded transition hover:bg-neutral-700 text-sm text-neutral-400 hover:text-neutral-300',
+    container: 'bg-neutral-700 bg-opacity-50 hover:bg-opacity-70 font-medium rounded transition text-sm text-neutral-300',
     icon: '',
     text: '',
   }
