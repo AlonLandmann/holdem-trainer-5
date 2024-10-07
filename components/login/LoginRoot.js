@@ -18,31 +18,24 @@ export default function LoginRoot() {
   }, [router.query])
 
   async function handleEmailLogin(event) {
-    event.preventDefault()
+    const res = await fetch('/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password })
+    })
 
-    try {
-      const res = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
-      })
+    const json = await res.json()
 
-      const json = await res.json()
-
-      if (json.success) {
-        window.location = '/app/dashboard'
-      } else {
-        return toast.error(json.message || 'An unexpected error occurred.')
-      }
-    } catch (error) {
-      console.log(error)
-      toast.error('An unexpected error occurred.')
+    if (json.success) {
+      window.location = '/app/dashboard'
+    } else {
+      return toast.error(json.message || 'An unexpected error occurred.')
     }
   }
 
   return (
-    <div className='min-h-screen p-3 flex justify-center items-center'>
-      <form className='max-w-96 pt-12 pb-7 px-11 bg-neutral-900 rounded flex flex-col items-center'>
+    <div className='min-h-screen bg-neutral-900 p-3 flex justify-center items-center'>
+      <form className='max-w-96 pt-12 pb-7 px-11 border rounded flex flex-col items-center'>
         <h1 className='font-decorative text-5xl text-neutral-700 mb-9'>
           HT
         </h1>
@@ -74,6 +67,9 @@ export default function LoginRoot() {
             onClick={handleEmailLogin}
             useQueue
           />
+          <div className='text-sm text-neutral-500 px-2 flex gap-1 mt-1 mb-2'>
+            Forgot your password? <A href='/auth/reset' text='Click here' /> to reset it.
+          </div>
         </div>
         <div className='flex items-center self-stretch gap-2 px-2'>
           <div className='flex-grow bg-neutral-600 h-[1px]'></div>
@@ -82,7 +78,7 @@ export default function LoginRoot() {
           </div>
           <div className='flex-grow bg-neutral-600 h-[1px]'></div>
         </div>
-        <div className='pt-5 pb-7 self-stretch'>
+        <div className='pt-5 pb-8 self-stretch'>
           <Button
             utilClasses='w-full rounded-sm py-3 px-4'
             text='Google'

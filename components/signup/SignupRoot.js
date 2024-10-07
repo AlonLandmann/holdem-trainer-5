@@ -10,8 +10,6 @@ export default function SignupRoot() {
   const [password, setPassword] = useState('')
 
   async function handleEmailSignup(event) {
-    event.preventDefault()
-    
     if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
       return toast.error('Make sure to provide a valid email address.')
     }
@@ -20,29 +18,24 @@ export default function SignupRoot() {
       return toast.error('Password must contain at least 8 characters, one lowercase letter, one upper case letter, and one number.')
     }
 
-    try {
-      const res = await fetch('/api/auth/signup', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
-      })
-  
-      const json = await res.json()
-  
-      if (json.success) {
-        window.location = '/app/dashboard'
-      } else {
-        toast.error(json.message || 'An unexpected error occurred.')
-      }
-    } catch (error) {
-      console.log(error)
-      toast.error('An unexpected error occurred.')
+    const res = await fetch('/api/auth/signup', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password })
+    })
+
+    const json = await res.json()
+
+    if (json.success) {
+      window.location = '/app/dashboard'
+    } else {
+      toast.error(json.message || 'An unexpected error occurred.')
     }
   }
 
   return (
-    <div className='min-h-screen p-3 flex justify-center items-center'>
-      <form className='max-w-96 pt-12 pb-7 px-11 bg-neutral-900 rounded flex flex-col items-center'>
+    <div className='min-h-screen bg-neutral-900 p-3 flex justify-center items-center'>
+      <form className='max-w-96 pt-12 pb-7 px-11 border rounded flex flex-col items-center'>
         <h1 className='font-decorative text-5xl text-neutral-700 mb-9'>
           HT
         </h1>
@@ -82,7 +75,7 @@ export default function SignupRoot() {
           </div>
           <div className='flex-grow bg-neutral-600 h-[1px]'></div>
         </div>
-        <div className='pt-5 pb-7 self-stretch'>
+        <div className='pt-5 pb-8 self-stretch'>
           <Button
             utilClasses='w-full rounded-sm py-3 px-4'
             text='Google'
@@ -90,7 +83,7 @@ export default function SignupRoot() {
           />
         </div>
         <div className='text-sm text-neutral-500 px-2 flex gap-1'>
-          Already have an account? <A text='Log in' href='/auth/login' /> instead.
+          Already have an account? <A href='/auth/login' text='Log in' /> instead.
         </div>
       </form>
     </div>
