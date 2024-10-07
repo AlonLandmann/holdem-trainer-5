@@ -1,10 +1,10 @@
-import SideNavItem from '@/components/_layout/SideNavItem'
+import AppNavbarItem from '@/components/_layout/AppNavbarItem'
 import Button from '@/components/_ui/Button'
 import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 import A from '../_ui/A'
 
-export default function SideNav() {
+export default function AppNavbar() {
   const [extendedView, setExtendedView] = useState(false)
   const [listenForEnter, setListenForEnter] = useState(false)
 
@@ -38,7 +38,7 @@ export default function SideNav() {
             text='HT'
             utilClasses={`px-3 py-2 font-decorative ${extendedView ? 'self-start' : ''} `}
           />
-          <SideNavItem
+          <AppNavbarItem
             icon='graph-up-arrow'
             text='Dashboard'
             href='/app/dashboard'
@@ -47,25 +47,25 @@ export default function SideNav() {
         </div>
         <div className={`h-[1px] ${extendedView ? 'w-32' : 'w-7'} bg-neutral-800 self-center my-2`}></div>
         <div className={'flex flex-col gap-2 px-2 py-2 mb-auto'}>
-          <SideNavItem
+          <AppNavbarItem
             icon='ui-checks'
             text='Manager'
             href='/app/manager'
             extendedView={extendedView}
           />
-          <SideNavItem
+          <AppNavbarItem
             icon='pen'
             text='Editor'
             href='/app/editor/dummy-range'
             extendedView={extendedView}
           />
-          <SideNavItem
+          <AppNavbarItem
             icon='crosshair'
             text='Trainer'
             href='/app/trainer'
             extendedView={extendedView}
           />
-          <SideNavItem
+          <AppNavbarItem
             icon='book'
             text='Academy'
             href='/academy'
@@ -74,13 +74,13 @@ export default function SideNav() {
         </div>
         <div className={`h-[1px] ${extendedView ? 'w-32' : 'w-7'} bg-neutral-800 self-center my-2`}></div>
         <div className='flex flex-col gap-2 px-2 py-2'>
-          <SideNavItem
+          <AppNavbarItem
             icon='gear'
             text='Settings'
             href='/app/settings'
             extendedView={extendedView}
           />
-          <SideNavItem
+          <AppNavbarItem
             icon='arrow-return-left'
             text='Logout'
             onClick={handleLogout}

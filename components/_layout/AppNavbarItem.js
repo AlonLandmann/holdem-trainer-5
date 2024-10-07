@@ -1,7 +1,7 @@
 import Button from '@/components/_ui/Button'
 import { useRouter } from 'next/router'
 
-export default function SideNavItem({ icon, text, href, onClick, extendedView }) {
+export default function AppNavbarItem({ icon, text, href, onClick, extendedView }) {
   const router = useRouter()
   const currentNav = router.pathname.split('/')[2]
   const targetNav = href && href.split('/')[2]
