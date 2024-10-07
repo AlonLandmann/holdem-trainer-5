@@ -5,6 +5,7 @@ import googleAuthUrl from '@/lib/googleAuthUrl'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
+import AuthLayout from '../_layout/AuthLayout'
 
 export default function LoginRoot() {
   const router = useRouter()
@@ -34,7 +35,7 @@ export default function LoginRoot() {
   }
 
   return (
-    <div className='min-h-screen bg-neutral-900 p-3 flex justify-center items-center'>
+    <AuthLayout>
       <form className='max-w-96 pt-12 pb-7 px-11 border rounded flex flex-col items-center'>
         <h1 className='font-decorative text-5xl text-neutral-700 mb-9'>
           HT
@@ -89,6 +90,6 @@ export default function LoginRoot() {
           New to Hold'em Trainer? <A href='/auth/signup' text='Sign up' /> instead.
         </div>
       </form>
-    </div>
+    </AuthLayout>
   )
 }

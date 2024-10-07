@@ -4,6 +4,7 @@ import Input from '@/components/_ui/Input'
 import googleAuthUrl from '@/lib/googleAuthUrl'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
+import AuthLayout from '../_layout/AuthLayout'
 
 export default function SignupRoot() {
   const [email, setEmail] = useState('')
@@ -34,7 +35,7 @@ export default function SignupRoot() {
   }
 
   return (
-    <div className='min-h-screen bg-neutral-900 p-3 flex justify-center items-center'>
+    <AuthLayout>
       <form className='max-w-96 pt-12 pb-7 px-11 border rounded flex flex-col items-center'>
         <h1 className='font-decorative text-5xl text-neutral-700 mb-9'>
           HT
@@ -86,6 +87,6 @@ export default function SignupRoot() {
           Already have an account? <A href='/auth/login' text='Log in' /> instead.
         </div>
       </form>
-    </div>
+    </AuthLayout>
   )
 }
