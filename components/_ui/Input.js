@@ -25,6 +25,8 @@ export default function Input({
   step = 1,
   value,
   onChange,
+  onDragOver = (e) => { e.preventDefault() },
+  onDrop = (e) => { e.preventDefault() },
 }) {
   return (
     <input
@@ -37,6 +39,8 @@ export default function Input({
       placeholder={placeholder}
       value={value}
       onChange={onChange}
+      onDragOver={onDragOver}
+      onDrop={onDrop}
     />
   )
 }
