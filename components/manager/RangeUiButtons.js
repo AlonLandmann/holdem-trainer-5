@@ -16,11 +16,19 @@ export default function RangeUiButtons({ range, folderLength }) {
   }
 
   async function handleSortUp() {
-
+    await handleManagerRequest('/api/ranges/move-within', 'PATCH', setUser, {
+      origin: range.index,
+      originId: range.id,
+      target: range.index - 1,
+    })
   }
 
   async function handleSortDown() {
-    
+    await handleManagerRequest('/api/ranges/move-within', 'PATCH', setUser, {
+      origin: range.index,
+      originId: range.id,
+      target: range.index + 2,
+    })
   }
 
   return (
