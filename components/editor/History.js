@@ -46,7 +46,7 @@ export default function History({ range, setRange, error }) {
     >
       {(error && mouseOver) &&
         <div
-          className='absolute top-[1px] left-[1px] rounded-sm flex justify-center items-center gap-2 bg-[#111111ee] z-10'
+          className='absolute top-[1px] left-[1px] rounded-sm flex justify-center items-center gap-2 bg-neutral-900 z-10'
           style={{ height: 'calc(100% - 1px)', width: 'calc(100% - 1px)' }}
         >
           <i className='bi bi-lock'></i>
