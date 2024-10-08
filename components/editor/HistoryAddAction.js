@@ -36,8 +36,8 @@ export default function HistoryAddAction({ spot, setRange, adjustDraftToNewHisto
   }
 
   return (
-    <div className='flex justify-center gap-1'>
-      <div className='self-center px-3 text-sm text-neutral-400 lowercase'>
+    <div className='flex gap-1'>
+      <div className='self-center text-sm text-neutral-400 lowercase mr-auto'>
         {positions[spot.p]}
       </div>
       {spot.options.includes('fold') &&
