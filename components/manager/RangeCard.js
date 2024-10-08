@@ -6,7 +6,7 @@ import RangeName from '@/components/manager/RangeName'
 import RangeUiButtons from '@/components/manager/RangeUiButtons'
 import { useLoadingQueue } from '@/hooks/useLoadingQueue'
 
-export default function RangeCard({ range, target, setTarget, selectedRanges, setSelectedRanges }) {
+export default function RangeCard({ range, selectedRanges, setSelectedRanges }) {
   const [loadingQueue, setLoadingQueue] = useLoadingQueue()
 
   async function handleSelect() {
@@ -19,29 +19,23 @@ export default function RangeCard({ range, target, setTarget, selectedRanges, se
     })
   }
 
-  // function handleDragStart(event) {
-  //   if (!loadingQueue) {
-  //     event.dataTransfer.setData('text/plain', JSON.stringify({
-  //       type: 'range',
-  //       origin: range.index,
-  //       originId: range.id,
-  //       originFolderId: range.folderId,
-  //     }))
-  //   }
-  // }
-
-  // function handleDragOver(event, index) {
-  //   if (!loadingQueue) {
-  //     const data = JSON.parse(event.dataTransfer.getData('text/plain'))
-
-  //     if (data.type === 'range' && target !== index) {
-  //       setTarget(index)
-  //     }
-  //   }
-  // }
+  function handleDragStart(event) {
+    if (!loadingQueue) {
+      event.dataTransfer.setData('text/plain', JSON.stringify({
+        type: 'range',
+        origin: range.index,
+        originId: range.id,
+        originFolderId: range.folderId,
+      }))
+    }
+  }
 
   return (
-    <div className='relative'>
+    <div
+      className='relative bg-neutral-900 p-2 rounded'
+      draggable
+      onDragStart={handleDragStart}
+    >
       <RangeName range={range} />
       <RangeHistory range={range} />
       <div className='flex gap-1'>
@@ -71,16 +65,3 @@ export default function RangeCard({ range, target, setTarget, selectedRanges, se
     </div>
   )
 }
-
-{/* <div
-        className='absolute left-0 top-0 z-10 h-1/5 w-full'
-        onDragOver={(e) => { handleDragOver(e, range.index) }}
-      >
-
-      </div>
-      <div
-        className='absolute left-0 bottom-0 z-10 h-1/5 w-full'
-        onDragOver={(e) => { handleDragOver(e, range.index + 1) }}
-      >
-
-      </div> */}

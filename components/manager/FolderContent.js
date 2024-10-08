@@ -2,7 +2,6 @@ import Button from '@/components/_ui/Button'
 import Input from '@/components/_ui/Input'
 import FolderPlaceholder from '@/components/manager/FolderPlaceholder'
 import RangeCard from '@/components/manager/RangeCard'
-import RangeGap from '@/components/manager/RangeGap'
 import { useLoadingQueue } from '@/hooks/useLoadingQueue'
 import { useUser } from '@/hooks/useUser'
 import handleManagerRequest from '@/lib/managerRequests'
@@ -10,11 +9,9 @@ import { useEffect, useState } from 'react'
 
 export default function FolderContent({ selectedFolder }) {
   const [user, setUser] = useUser()
-  const [loadingQueue, setLoadingQueue] = useLoadingQueue()
   const [renameInView, setRenameInView] = useState(false)
   const [renaming, setRenaming] = useState(false)
   const [renameValue, setRenameValue] = useState(selectedFolder.name)
-  const [target, setTarget] = useState(null)
   const [selectedRanges, setSelectedRanges] = useState([])
 
   useEffect(() => {
@@ -34,16 +31,6 @@ export default function FolderContent({ selectedFolder }) {
 
   async function handleTrainSelected() {
     window.location = `/app/trainer?ids=${JSON.stringify(selectedRanges)}`
-  }
-
-  function handleDragLeave(event) {
-    if (!loadingQueue) {
-      const isLeavingParent = !event.currentTarget.contains(event.relatedTarget)
-
-      if (isLeavingParent) {
-        setTarget(null)
-      }
-    }
   }
 
   return (
@@ -106,29 +93,14 @@ export default function FolderContent({ selectedFolder }) {
         />
       }
       {selectedFolder.ranges.length > 0 &&
-        <div
-          className='p-5 h-full overflow-y-auto flex flex-wrap gap-x-8 gap-y-10'
-          onDragLeave={handleDragLeave}
-        >
-          {/* <RangeGap
-            index={0}
-            target={target}
-            setTarget={setTarget}
-          /> */}
+        <div className='p-3 h-full overflow-y-auto flex flex-wrap gap-x-4 gap-y-6'>
           {selectedFolder.ranges.map((range, i) => (
             <div key={'range' + range.id}>
               <RangeCard
                 range={range}
-                target={target}
-                setTarget={setTarget}
                 selectedRanges={selectedRanges}
                 setSelectedRanges={setSelectedRanges}
               />
-              {/* <RangeGap
-                index={i + 1}
-                target={target}
-                setTarget={setTarget}
-              /> */}
             </div>
           ))}
         </div>

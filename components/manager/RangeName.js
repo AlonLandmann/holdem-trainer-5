@@ -23,8 +23,7 @@ export default function RangeName({ range }) {
 
   return (
     <div
-        className='flex items-center gap-3 z-40'
-        style={{ maxWidth: 'calc(100% - 34px)' }}
+        className='flex items-center gap-3 z-40 max-w-[418px]'
         onMouseEnter={() => setRenameInView(true)}
         onMouseLeave={() => setRenameInView(false)}
       >
