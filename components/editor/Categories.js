@@ -34,7 +34,7 @@ export default function Categories({ range, setSelected, setHovered }) {
   }
 
   return (
-    <div className='border rounded py-3 px-[18px] bg-neutral-[#202020] opacity-80'>
+    <div className='border rounded py-3 px-4 text-neutral-400'>
       {!range.spot.options &&
         <div className='h-[400px] w-[322px] flex justify-center items-center text-neutral-600'>
           non-trainable spot

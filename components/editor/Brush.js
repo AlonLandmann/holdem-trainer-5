@@ -151,7 +151,7 @@ export default function Brush({ range, setRange, selected, setSelected, setOptio
   }
 
   return (!range.spot.options) ? null : (
-    <div className='border rounded py-3 px-4 flex flex-col bg-neutral-[#202020] opacity-80'>
+    <div className='border rounded py-3 px-4 flex flex-col text-neutral-300'>
       <h1 className='pb-1 text-neutral-400'>
         Brush
       </h1>
