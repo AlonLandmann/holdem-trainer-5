@@ -76,7 +76,7 @@ export default function Predecessor({ range, setRange }) {
   }
 
   return (!range.spot.options || typeof index !== 'number' || !user) ? null : (
-    <div className='border rounded py-3 px-4 flex flex-col bg-neutral-[#202020] opacity-80'>
+    <div className='border rounded py-3 px-4 flex flex-col'>
       <h1 className='pb-3 text-neutral-400'>
         Link
       </h1>

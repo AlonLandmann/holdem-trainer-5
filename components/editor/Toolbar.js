@@ -33,11 +33,7 @@ export default function Toolbar({ range, setRange, past, setPast, future, setFut
     if (error) return null
     if (!range.spot.options) return toast.error('The current history does not imply a player choice.')
     await handleManagerRequest('/api/ranges/edit', 'PUT', setUser, range)
-
-    /// ALSO DEAL WITH LINKS HERE <---
   }
-
-  /// ALLOW SWAPPING OF RANGES
 
   return (
     <div className='border-b p-3 flex gap-4 h-[49px]'>
