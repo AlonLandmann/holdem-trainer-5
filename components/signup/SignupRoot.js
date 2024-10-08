@@ -5,17 +5,18 @@ import googleAuthUrl from '@/lib/googleAuthUrl'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
 import AuthLayout from '../_layout/AuthLayout'
+import { validateEmail, validatePassword } from '@/lib/validate'
 
 export default function SignupRoot() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
   async function handleEmailSignup(event) {
-    if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) {
+    if (!validateEmail(email)) {
       return toast.error('Make sure to provide a valid email address.')
     }
 
-    if (password.length < 8 || !/[a-z]/.test(password) || !/[A-Z]/.test(password) || !/[0-9]/.test(password)) {
+    if (!validatePassword(password)) {
       return toast.error('Password must contain at least 8 characters, one lowercase letter, one upper case letter, and one number.')
     }
 
