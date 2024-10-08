@@ -2,7 +2,7 @@ import Button from '@/components/_ui/Button'
 import { useUser } from '@/hooks/useUser'
 import handleManagerRequest from '@/lib/managerRequests'
 
-export default function RangeUiButtons({ range }) {
+export default function RangeUiButtons({ range, folderLength }) {
   const [user, setUser] = useUser()
 
   async function handleDelete() {
@@ -13,6 +13,14 @@ export default function RangeUiButtons({ range }) {
 
   async function handleDuplicate() {
     await handleManagerRequest('/api/ranges/duplicate', 'POST', setUser, range)
+  }
+
+  async function handleSortUp() {
+
+  }
+
+  async function handleSortDown() {
+    
   }
 
   return (
@@ -27,11 +35,27 @@ export default function RangeUiButtons({ range }) {
         theme='tertiary'
         icon='pen'
         onClick={() => { window.location = `/app/editor/${range.id}` }}
+        useQueue
       />
       <Button
         theme='tertiary'
         icon='trash3'
         onClick={handleDelete}
+        useQueue
+      />
+      <Button
+        theme='tertiary'
+        utilClasses='mt-auto'
+        icon='arrow-up'
+        onClick={handleSortUp}
+        disabled={range.index === 0}
+        useQueue
+      />
+      <Button
+        theme='tertiary'
+        icon='arrow-down'
+        onClick={handleSortDown}
+        disabled={range.index === folderLength - 1}
         useQueue
       />
     </div>

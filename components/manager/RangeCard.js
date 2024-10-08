@@ -6,7 +6,7 @@ import RangeName from '@/components/manager/RangeName'
 import RangeUiButtons from '@/components/manager/RangeUiButtons'
 import { useLoadingQueue } from '@/hooks/useLoadingQueue'
 
-export default function RangeCard({ range, selectedRanges, setSelectedRanges }) {
+export default function RangeCard({ range, selectedRanges, setSelectedRanges, folderLength }) {
   const [loadingQueue, setLoadingQueue] = useLoadingQueue()
 
   async function handleSelect() {
@@ -40,7 +40,10 @@ export default function RangeCard({ range, selectedRanges, setSelectedRanges }) 
       <RangeHistory range={range} />
       <div className='flex gap-1'>
         <MatrixDisplay range={range} />
-        <RangeUiButtons range={range} />
+        <RangeUiButtons
+          range={range}
+          folderLength={folderLength}
+        />
       </div>
       <div className='w-[418px] flex items-start justify-between gap-5'>
         <RangeLegend range={range} />

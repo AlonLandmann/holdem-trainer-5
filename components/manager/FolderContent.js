@@ -2,7 +2,6 @@ import Button from '@/components/_ui/Button'
 import Input from '@/components/_ui/Input'
 import FolderPlaceholder from '@/components/manager/FolderPlaceholder'
 import RangeCard from '@/components/manager/RangeCard'
-import { useLoadingQueue } from '@/hooks/useLoadingQueue'
 import { useUser } from '@/hooks/useUser'
 import { selectedForTraining } from '@/lib/display'
 import handleManagerRequest from '@/lib/managerRequests'
@@ -101,6 +100,7 @@ export default function FolderContent({ selectedFolder }) {
                 range={range}
                 selectedRanges={selectedRanges}
                 setSelectedRanges={setSelectedRanges}
+                folderLength={selectedFolder.ranges.length}
               />
             </div>
           ))}

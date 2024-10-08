@@ -73,6 +73,7 @@ export default function Button({
         ${(icon && text) ? 'flex items-center gap-3' : ''}
         ${themes[theme].container}
         ${utilClasses}
+        ${disabled ? 'opacity-50' : ''}
       `}
     >
       {loading &&
