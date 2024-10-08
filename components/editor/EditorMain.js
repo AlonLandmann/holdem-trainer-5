@@ -2,7 +2,6 @@ import Categories from '@/components/editor/Categories'
 import Legend from '@/components/editor/Legend'
 import Matrix from '@/components/editor/Matrix'
 import Sidebar from '@/components/editor/Sidebar'
-import Title from '@/components/editor/Title'
 import Toolbar from '@/components/editor/Toolbar'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
@@ -28,7 +27,11 @@ export default function EditorMain({ user }) {
   return !range ? null : (
     <>
       <div className='bg-neutral-900'>
-        <Title />
+        <div className='border-b border-r p-3 h-[49px]'>
+          <h1 className='text-neutral-600'>
+            Editor
+          </h1>
+        </div>
         <Sidebar
           range={range}
           setRange={setRangeWithUndo}
