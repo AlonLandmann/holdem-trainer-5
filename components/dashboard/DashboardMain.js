@@ -1,6 +1,5 @@
 import Leaderboard from '@/components/dashboard/Leaderboard'
 import OverallStats from '@/components/dashboard/OverallStats'
-import QuoteCta from '@/components/dashboard/QuoteCta'
 import TopLine from '@/components/dashboard/TopLine'
 import TrainingHistory from '@/components/dashboard/TrainingHistory'
 
@@ -9,11 +8,10 @@ export default function DashboardMain({ user }) {
     <div className='grow bg-neutral-900 p-5 max-h-screen overflow-y-auto'>
       <TopLine user={user} />
       <OverallStats user={user} />
-      <section className='flex gap-8 mb-8'>
+      <section className='flex flex-wrap gap-8'>
         <Leaderboard user={user} />
-        <QuoteCta />
+        <TrainingHistory user={user} />
       </section>
-      <TrainingHistory user={user} />
     </div>
   )
 }

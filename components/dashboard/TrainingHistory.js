@@ -26,14 +26,12 @@ export default function TrainingHistory({ user }) {
   }, [])
 
   const today = new Date()
-  const startCandidate1 = new Date(today.getFullYear(), today.getMonth() - 3, 1)
+  const startCandidate1 = new Date(today.getFullYear(), today.getMonth() - 2, 1)
   const startCandidate2 = (trainingHistory && trainingHistory[0]) ? new Date(trainingHistory[0].date) : today
   const start = startCandidate1.getTime() > startCandidate2.getTime() ? startCandidate1 : startCandidate2
-  console.log(startCandidate1, startCandidate2, start)
   const end = new Date(today.getFullYear(), today.getMonth() + 1, 0)
   const diffInDays = (end - start) / 1000 / 3600 / 24
   const span = []
-  const nrMonths = (end.getMonth() - start.getMonth() + 12) % 12
   const monthNames = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
   const months = []
 
@@ -92,7 +90,7 @@ export default function TrainingHistory({ user }) {
           {span.map(day => (
             <div
               key={day}
-              className='bg-neutral-600 w-[6px] rounded-sm z-10 opacity-70'
+              className='bg-neutral-400 w-1 z-10 opacity-80'
               style={{ height: percentageHeight(getNum(day)) }}
             >
 
@@ -122,7 +120,7 @@ export default function TrainingHistory({ user }) {
             <label
               key={month.name}
               className={`py-1 text-neutral-500 text-center ${i ? 'border-l pl-[2px]' : ''}`}
-              style={{ width: `${8 * month.days}px` }}
+              style={{ width: `${6 * month.days}px` }}
             >
               {month.name}
             </label>
