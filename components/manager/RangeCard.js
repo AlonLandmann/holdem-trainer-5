@@ -41,12 +41,9 @@ export default function RangeCard({ range, target, setTarget, selectedRanges, se
   // }
 
   return (
-    <div
-      className='relative'
-    >
+    <div className='relative'>
       <RangeName range={range} />
       <RangeHistory range={range} />
-      <div>{(range.complexity).toFixed(2)}</div>
       <div className='flex gap-1'>
         <MatrixDisplay range={range} />
         <RangeUiButtons range={range} />
@@ -56,15 +53,15 @@ export default function RangeCard({ range, target, setTarget, selectedRanges, se
         <div className='flex items-center gap-1 py-1'>
           <Button
             theme='secondary'
-            utilClasses='py-3 px-4 rounded-none'
+            utilClasses='py-3 px-4 rounded-sm'
             icon={selectedRanges.includes(range.id) ? 'check-square' : 'square'}
             text='Select'
             onClick={handleSelect}
             useQueue
           />
           <Button
-            theme='primary'
-            utilClasses='py-3 px-4 rounded-none'
+            theme='nice'
+            utilClasses='py-3 px-4 rounded-sm font-normal'
             icon='crosshair'
             text='Train Now'
             onClick={() => { window.location = `/app/trainer?ids=${JSON.stringify([range.id])}` }}
