@@ -162,7 +162,7 @@ export default function Brush({ range, setRange, selected, setSelected, setOptio
               range={range}
               option={{ type: 'fold' }}
               enabled={foldEnabled}
-              display='fold'
+              display='Fold'
               frequency={foldEnabled ? frequencies[0] : 0}
               handleChange={e => handleFrequencyChange(e, 0)}
               handleClick={() => handleToggle('fold')}
@@ -173,7 +173,7 @@ export default function Brush({ range, setRange, selected, setSelected, setOptio
               range={range}
               option={{ type: 'call' }}
               enabled={callEnabled}
-              display='call'
+              display='Call'
               frequency={callEnabled ? (foldEnabled ? frequencies[1] : frequencies[0]) : 0}
               handleChange={e => handleFrequencyChange(e, foldEnabled ? 1 : 0)}
               handleClick={() => handleToggle('call')}
@@ -226,7 +226,7 @@ export default function Brush({ range, setRange, selected, setSelected, setOptio
           />
           <Button
             theme='secondary'
-            utilClasses='self-stretch py-0 px-[12px]'
+            utilClasses='self-stretch py-0 px-3'
             text='add size'
             onClick={handleAddSize}
           />
@@ -239,7 +239,7 @@ export default function Brush({ range, setRange, selected, setSelected, setOptio
       />
       <Button
         theme='secondary'
-        utilClasses='w-full py-[11px] px-3 justify-center'
+        utilClasses='w-full py-3 px-4 justify-center'
         text='apply brush'
         icon='brush'
         disabled={anyErrors}
