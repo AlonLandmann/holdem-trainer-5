@@ -134,7 +134,7 @@ export default function FolderContent({ selectedFolder }) {
         </div>
       }
       <div className='border-t p-3 text-neutral-600 flex justify-between gap-3'>
-        <div>
+        <div className={selectedRanges.length ? 'text-neutral-300' : ''}>
           {selectedRanges.length ? ('# ' + selectedRanges.length) : 'No'} {selectedRanges.length > 1 ? 'ranges' : 'range'} selected for training
         </div>
         <Button
