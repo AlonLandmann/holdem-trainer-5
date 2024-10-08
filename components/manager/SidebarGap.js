@@ -2,6 +2,7 @@ import { useLoadingQueue } from '@/hooks/useLoadingQueue'
 import { useUser } from '@/hooks/useUser'
 import handleManagerRequest from '@/lib/managerRequests'
 import { useState } from 'react'
+import LoadingDots from '../_ui/LoadingDots'
 
 export default function SidebarGap({ index, target, setTarget }) {
   const [user, setUser] = useUser()
@@ -50,11 +51,7 @@ export default function SidebarGap({ index, target, setTarget }) {
       onDrop={handleDrop}
     >
       {loading &&
-        <div className='absolute w-full h-full left-0 flex justify-center items-center'>
-          <span className='inline-block animate-pulse'>·</span>
-          <span className='inline-block animate-pulse [animation-delay:0.2s]'>·</span>
-          <span className='inline-block animate-pulse [animation-delay:1s]'>·</span>
-        </div>
+        <LoadingDots utilClasses='h-full items-center' />
       }
     </div>
   )

@@ -1,5 +1,6 @@
 import { useLoadingQueue } from '@/hooks/useLoadingQueue'
 import { useState } from 'react'
+import LoadingDots from './LoadingDots'
 
 const themes = {
   primary: {
@@ -77,11 +78,7 @@ export default function Button({
       `}
     >
       {loading &&
-        <div className='absolute w-full left-0 flex justify-center'>
-          <span className='inline-block animate-pulse'>·</span>
-          <span className='inline-block animate-pulse [animation-delay:0.2s]'>·</span>
-          <span className='inline-block animate-pulse [animation-delay:1s]'>·</span>
-        </div>
+        <LoadingDots />
       }
       {hotkey &&
         <span className={`${loading ? 'opacity-0' : ''} ${themes[theme].hotkey}`}>

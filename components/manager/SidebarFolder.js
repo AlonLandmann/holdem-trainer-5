@@ -2,6 +2,7 @@ import { useLoadingQueue } from '@/hooks/useLoadingQueue'
 import { useUser } from '@/hooks/useUser'
 import handleManagerRequest from '@/lib/managerRequests'
 import { useState } from 'react'
+import LoadingDots from '../_ui/LoadingDots'
 
 export default function SidebarFolder({
   folder,
@@ -89,11 +90,7 @@ export default function SidebarFolder({
       `}
     >
       {loading &&
-        <div className='absolute w-full left-0 flex justify-center'>
-          <span className='inline-block animate-pulse'>·</span>
-          <span className='inline-block animate-pulse [animation-delay:0.2s]'>·</span>
-          <span className='inline-block animate-pulse [animation-delay:1s]'>·</span>
-        </div>
+        <LoadingDots />
       }
       <span className={`${isSelected ? 'text-neutral-200' : ''} ${loading ? 'opacity-0' : ''}`}>
         {folder.name}

@@ -1,6 +1,7 @@
 import { useUser } from '@/hooks/useUser'
 import { produce } from 'immer'
 import { useEffect, useState } from 'react'
+import LoadingDots from '../_ui/LoadingDots'
 
 export default function Predecessor({ range, setRange }) {
   const [user, setUser] = useUser()
@@ -91,17 +92,7 @@ export default function Predecessor({ range, setRange }) {
           </select>
         }
         {loading &&
-          <div className='absolute w-full left-0 flex justify-center min-h-4'>
-            <span className='inline-block animate-pulse'>
-              ·
-            </span>
-            <span className='inline-block animate-pulse [animation-delay:0.2s]'>
-              ·
-            </span>
-            <span className='inline-block animate-pulse [animation-delay:1s]'>
-              ·
-            </span>
-          </div>
+          <LoadingDots utilClasses='min-h-4' />
         }
       </div>
     </div>
