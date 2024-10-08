@@ -1,10 +1,10 @@
 import Page from '@/components/_layout/Page'
-import VerifyPage from '@/components/verify/VerifyPage'
+import VerifyRoot from '@/components/verify/VerifyRoot'
 
 export default function VerifyPage() {
   return (
-    <Page title='Reset'>
-      <VerifyPage />
+    <Page title='Verify'>
+      <VerifyRoot />
     </Page>
   )
 }
