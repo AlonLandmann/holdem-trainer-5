@@ -62,7 +62,9 @@ export default function Stacks({ range, setRange, setError }) {
           style={{ height: 'calc(100% - 1px)', width: 'calc(100% - 1px)' }}
         >
           <i className='bi bi-lock'></i>
-          <div>To edit stacks, reset history.</div>
+          <div>
+            To edit stacks, reset history.
+          </div>
         </div>
       }
       <div className='mb-3 flex items-center gap-4'>
