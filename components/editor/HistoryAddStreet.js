@@ -5,7 +5,7 @@ import { useState } from 'react'
 
 export default function HistoryAddStreet({ spot, setRange, adjustDraftToNewHistory }) {
   const street = spot.state
-  const n = street == 'flop' ? 3 : 1
+  const n = street === 'flop' ? 3 : 1
   const [cards, setCards] = useState(sampleFromDeck(n, spot.board))
 
   function handleChangeCard(event, i) {
