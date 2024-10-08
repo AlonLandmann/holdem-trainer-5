@@ -1,9 +1,11 @@
 import Button from '@/components/_ui/Button'
 import Input from '@/components/_ui/Input'
+import { useUser } from '@/hooks/useUser'
 import handleManagerRequest from '@/lib/managerRequests'
 import { useEffect, useState } from 'react'
 
 export default function RangeName({ range }) {
+  const [user, setUser] = useUser()
   const [renameInView, setRenameInView] = useState(false)
   const [renaming, setRenaming] = useState(false)
   const [renameValue, setRenameValue] = useState(range.name)
@@ -21,7 +23,7 @@ export default function RangeName({ range }) {
 
   return (
     <div
-        className='flex items-center gap-3 z-40'
+        className='flex items-center gap-3 z-40 max-w-[418px]'
         onMouseEnter={() => setRenameInView(true)}
         onMouseLeave={() => setRenameInView(false)}
       >
@@ -43,7 +45,7 @@ export default function RangeName({ range }) {
           <>
             <Input
               theme='rename'
-              utilClasses='text-lg'
+              utilClasses='text-lg grow'
               value={renameValue}
               onChange={e => setRenameValue(e.target.value)}
             />
