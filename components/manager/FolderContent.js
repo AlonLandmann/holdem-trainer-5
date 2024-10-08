@@ -4,6 +4,7 @@ import FolderPlaceholder from '@/components/manager/FolderPlaceholder'
 import RangeCard from '@/components/manager/RangeCard'
 import { useLoadingQueue } from '@/hooks/useLoadingQueue'
 import { useUser } from '@/hooks/useUser'
+import { selectedForTraining } from '@/lib/display'
 import handleManagerRequest from '@/lib/managerRequests'
 import { useEffect, useState } from 'react'
 
@@ -107,7 +108,7 @@ export default function FolderContent({ selectedFolder }) {
       }
       <div className='border-t p-3 text-neutral-600 flex justify-between gap-3'>
         <div className={selectedRanges.length ? 'text-neutral-300' : ''}>
-          {selectedRanges.length ? ('# ' + selectedRanges.length) : 'No'} {selectedRanges.length > 1 ? 'ranges' : 'range'} selected for training
+          {selectedForTraining(selectedRanges.length)}
         </div>
         <Button
           theme='tertiary'
