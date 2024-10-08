@@ -51,15 +51,9 @@ export default function RangeGap({ index, target, setTarget }) {
     >
       {loading &&
         <div className='absolute w-full h-full left-0 flex justify-center items-center'>
-          <span className='inline-block animate-pulse'>
-            ·
-          </span>
-          <span className='inline-block animate-pulse [animation-delay:0.2s]'>
-            ·
-          </span>
-          <span className='inline-block animate-pulse [animation-delay:1s]'>
-            ·
-          </span>
+          <span className='inline-block animate-pulse'>·</span>
+          <span className='inline-block animate-pulse [animation-delay:0.2s]'>·</span>
+          <span className='inline-block animate-pulse [animation-delay:1s]'>·</span>
         </div>
       }
     </div>
