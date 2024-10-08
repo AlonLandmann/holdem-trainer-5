@@ -19,6 +19,8 @@ export default function LoginRoot() {
   }, [router.query])
 
   async function handleEmailLogin(event) {
+    event.preventDefault()
+    
     const res = await fetch('/api/auth/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

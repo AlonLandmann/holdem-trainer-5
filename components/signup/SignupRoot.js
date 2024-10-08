@@ -12,6 +12,8 @@ export default function SignupRoot() {
   const [password, setPassword] = useState('')
 
   async function handleEmailSignup(event) {
+    event.preventDefault()
+    
     if (!validateEmail(email)) {
       return toast.error('Make sure to provide a valid email address.')
     }
