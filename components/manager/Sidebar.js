@@ -64,7 +64,7 @@ export default function Sidebar({ selectedFolder, setSelectedFolder }) {
       </div>
       <div className='border-t mt-auto p-3 flex justify-between items-center'>
         <span className='text-neutral-600'>
-          Total # {user.nrRanges} / 40
+          {user.nrRanges}{(!user || user.membership === 'free') ? ' / 40' : ''} ranges
         </span>
         <Button
           theme='tertiary'
