@@ -15,10 +15,14 @@ export default function EditorRoot() {
         <RangePlaceholder />
       }
       {user && user.hasRanges &&
-        <EditorMain user={user} />
+        <EditorMain
+          user={user}
+          setViewHotkeyInfo={setViewHotkeyInfo}
+        />
       }
       {viewHotkeyInfo &&
         <EditorHotkeys
+          user={user}
           setUser={setUser}
           setViewHotkeyInfo={setViewHotkeyInfo}
         />

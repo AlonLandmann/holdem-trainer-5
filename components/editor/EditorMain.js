@@ -6,7 +6,7 @@ import Toolbar from '@/components/editor/Toolbar'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 
-export default function EditorMain({ user }) {
+export default function EditorMain({ user, setViewHotkeyInfo }) {
   const router = useRouter()
   const allRanges = user.folders.reduce((acc, curr) => acc.concat(curr.ranges), [])
   const selectedRange = allRanges.find(r => r.id === Number(router.query['range-id']))
@@ -35,6 +35,7 @@ export default function EditorMain({ user }) {
         future={future}
         setFuture={setFuture}
         error={error}
+        setViewHotkeyInfo={setViewHotkeyInfo}
       />
       <div className='flex p-3 gap-3'>
         <Sidebar

@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 import { useMemo } from 'react'
 import toast from 'react-hot-toast'
 
-export default function Toolbar({ allRanges, range, setRange, past, setPast, future, setFuture, error }) {
+export default function Toolbar({ allRanges, range, setRange, past, setPast, future, setFuture, error, setViewHotkeyInfo }) {
   const router = useRouter()
   const [user, setUser] = useUser()
   const referenceRange = useMemo(() => range, [range.id])
@@ -89,6 +89,12 @@ export default function Toolbar({ allRanges, range, setRange, past, setPast, fut
         onClick={handleSaveChanges}
         useQueue
         disabled={isEqual(range, referenceRange) || error}
+      />
+      <Button
+        theme='tertiary'
+        utilClasses='text-neutral-500 hover:text-neutral-300'
+        icon='alt'
+        onClick={() => { setViewHotkeyInfo(true) }}
       />
       <Button
         theme='tertiary'
