@@ -47,9 +47,10 @@ export default function Predecessor({ range, setRange }) {
 
   function handleChange(event) {
     const id = Number(event.target.value)
+    const candidate = candidates.find(c => c.id === id)
     setPredecessorId(id)
 
-    if (id === '') {
+    if (id === '' || !candidate) {
       setRange(produce(draft => {
         draft.predecessorId = null
 
@@ -58,7 +59,6 @@ export default function Predecessor({ range, setRange }) {
         }
       }))
     } else {
-      const candidate = candidates.find(c => c.id === id)
       const action = range.history[index]
       const actionIndex = candidate.options.findIndex(o => (
         (o.type === action.type) &&
