@@ -82,29 +82,26 @@ export default function Matrix({ range, selected, setSelected, hovered, setHover
 
   return (
     <div
+      className='grid'
       style={{
         width: `${matrixWidth + headlineWidth}px`,
         height: `${matrixWidth + headlineWidth}px`,
-        display: 'grid',
         gridTemplateColumns: `${headlineWidth}px 1fr`,
         gridTemplateRows: `${headlineWidth}px 1fr`,
       }}
     >
-      <div style={{ border: '1px solid rgb(38, 38, 38)' }}></div>
+      <div className='border'></div>
       <div className='flex'>
         {values.map(value => (
           <div
             key={'top-value' + value}
-            className='flex flex-col'
-            style={{
-              width: `${blockWidth + 1}px`,
-              height: `${headlineWidth}px`,
-              borderTop: '1px solid rgb(38, 38, 38)',
-              borderRight: '1px solid rgb(38, 38, 38)',
-              borderBottom: '1px solid rgb(38, 38, 38)',
-            }}
+            className='flex flex-col border-t border-r border-b'
             onMouseLeave={() => { setHovered([]) }}
             onMouseEnter={() => { setHovered(includingValue(value)) }}
+            style={{
+              width: `${blockWidth + 1}px`,
+              height: `${headlineWidth}px`
+            }}
           >
             <div className='grow flex justify-center items-center text-sm text-neutral-400'>
               {value}
@@ -133,16 +130,11 @@ export default function Matrix({ range, selected, setSelected, hovered, setHover
         {values.map(value => (
           <div
             key={'top-value' + value}
-            className='flex'
+            className='flex border-r border-b border-l'
             style={{
               width: `${headlineWidth}px`,
               height: `${blockWidth + 1}px`,
-              borderRight: '1px solid rgb(38, 38, 38)',
-              borderBottom: '1px solid rgb(38, 38, 38)',
-              borderLeft: '1px solid rgb(38, 38, 38)',
             }}
-            onMouseLeave={() => { setHovered([]) }}
-            onMouseEnter={() => { setHovered(includingValue(value)) }}
           >
 
             <div
