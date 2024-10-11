@@ -14,8 +14,8 @@ export default function Sidebar({
 }) {
   return (
     <div
-      className='p-3 overflow-y-auto no-scrollbar flex flex-col gap-3'
-      style={{ maxHeight: 'calc(100vh - 49px)' }}
+      className='flex flex-col gap-3 overflow-y-auto no-scrollbar'
+      style={{ maxHeight: 'calc(100vh - 49px - 24px)' }}
     >
       <Stacks
         range={range}

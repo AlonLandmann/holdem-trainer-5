@@ -1,5 +1,4 @@
 import AppNavbar from '@/components/_layout/AppNavbar'
-import { useUser } from '@/hooks/useUser'
 
 export default function AppLayout({ children }) {
   return (

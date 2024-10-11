@@ -25,13 +25,17 @@ export default function EditorMain({ user }) {
   }
 
   return !range ? null : (
-    <>
-      <div className='bg-neutral-900'>
-        <div className='border-b border-r p-3 h-[49px]'>
-          <h1 className='text-neutral-600'>
-            Editor
-          </h1>
-        </div>
+    <div className='grow'>
+      <Toolbar
+        range={range}
+        setRange={setRange}
+        past={past}
+        setPast={setPast}
+        future={future}
+        setFuture={setFuture}
+        error={error}
+      />
+      <div className='flex p-3 gap-3'>
         <Sidebar
           range={range}
           setRange={setRangeWithUndo}
@@ -41,42 +45,30 @@ export default function EditorMain({ user }) {
           error={error}
           setError={setError}
         />
-      </div>
-      <div className='bg-neutral-900 grow'>
-        <Toolbar
+        <Matrix
           range={range}
-          setRange={setRange}
-          past={past}
-          setPast={setPast}
-          future={future}
-          setFuture={setFuture}
-          error={error}
+          selected={selected}
+          setSelected={setSelected}
+          hovered={hovered}
+          setHovered={setHovered}
+          optionHover={optionHover}
         />
-        <div className='flex'>
-          <div className='p-3'>
-            <Matrix
-              range={range}
-              selected={selected}
-              setSelected={setSelected}
-              hovered={hovered}
-              setHovered={setHovered}
-              optionHover={optionHover}
-            />
-          </div>
-          <div className='flex flex-col gap-3 p-3'>
-            <Categories
-              range={range}
-              setSelected={setSelected}
-              setHovered={setHovered}
-            />
-            <Legend
-              range={range}
-              setSelected={setSelected}
-              setHovered={setHovered}
-            />
-          </div>
+        <div
+          className='flex flex-col gap-3 overflow-y-auto no-scrollbar'
+          style={{ maxHeight: 'calc(100vh - 49px - 24px)' }}
+        >
+          <Categories
+            range={range}
+            setSelected={setSelected}
+            setHovered={setHovered}
+          />
+          <Legend
+            range={range}
+            setSelected={setSelected}
+            setHovered={setHovered}
+          />
         </div>
       </div>
-    </>
+    </div>
   )
 }
