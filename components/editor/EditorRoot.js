@@ -18,7 +18,10 @@ export default function EditorRoot() {
         <EditorMain user={user} />
       }
       {viewHotkeyInfo &&
-        <EditorHotkeys user={user} setViewHotkeyInfo={setViewHotkeyInfo} />
+        <EditorHotkeys
+          setUser={setUser}
+          setViewHotkeyInfo={setViewHotkeyInfo}
+        />
       }
     </AppLayout>
   )
