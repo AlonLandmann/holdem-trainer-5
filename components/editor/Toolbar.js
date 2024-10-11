@@ -2,12 +2,19 @@ import Button from '@/components/_ui/Button'
 import { useUser } from '@/hooks/useUser'
 import handleManagerRequest from '@/lib/managerRequests'
 import { isEqual } from 'lodash'
+import { useRouter } from 'next/router'
 import { useMemo } from 'react'
 import toast from 'react-hot-toast'
 
-export default function Toolbar({ range, setRange, past, setPast, future, setFuture, error }) {
+export default function Toolbar({ allRanges, range, setRange, past, setPast, future, setFuture, error }) {
+  const router = useRouter()
   const [user, setUser] = useUser()
-  const referenceRange = useMemo(() => range, [])
+  const referenceRange = useMemo(() => range, [range.id])
+
+  function handleRangeChange(event) {
+    setRange(allRanges.find(r => String(r.id) === event.target.value))
+    router.push(`/app/editor/${event.target.value}`, undefined, { shallow: true });
+  }
 
   function handleUndo() {
     if (past.length > 0) {
@@ -43,9 +50,22 @@ export default function Toolbar({ range, setRange, past, setPast, future, setFut
 
   return (
     <div className='border-b p-3 flex gap-4 h-[49px]'>
-      <h1 className='text-neutral-500 mr-auto'>
-        {range.name}
-      </h1>
+      <select
+        name='range'
+        className='appearance-none mr-auto'
+        value={String(range.id)}
+        onChange={handleRangeChange}
+      >
+        {allRanges.map(r => (
+          <option
+            key={'option' + r.id}
+            disabled={r.id === range.id}
+            value={String(r.id)}
+          >
+            {r.name}
+          </option>
+        ))}
+      </select>
       <Button
         theme='tertiary'
         utilClasses='text-neutral-500 hover:text-neutral-300'

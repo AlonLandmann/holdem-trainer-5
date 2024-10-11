@@ -27,6 +27,7 @@ export default function EditorMain({ user }) {
   return !range ? null : (
     <div className='grow'>
       <Toolbar
+        allRanges={allRanges}
         range={range}
         setRange={setRange}
         past={past}
