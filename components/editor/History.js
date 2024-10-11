@@ -10,23 +10,36 @@ export default function History({ range, setRange, error }) {
   const [mouseOver, setMouseOver] = useState(false)
 
   function adjustDraftToNewHistory(draft) {
+    let allOptionsValid = true
+
     draft.spot = spotInfo(draft.stacks, draft.history)
-
-    if (['fold / call', 'fold / call / raise'].includes(draft.spot.state)) {
-      draft.options = [{ type: 'fold' }, { type: 'call' }]
-
-      for (let i = 0; i < draft.matrix.length; i++) {
-        draft.matrix[i].frequency = 1
-        draft.matrix[i].strategy = [1, 0]
+    draft.options.forEach(option => {
+      if (!draft.spot.options) {
+        allOptionsValid = false
+      } else if (!draft.spot.options.includes(option.type)) {
+        allOptionsValid = false
+      } else if (option.size && (option.size < draft.spot.min || option.size > draft.spot.max)) {
+        allOptionsValid = false
       }
-    }
+    })
 
-    if (draft.spot.state === 'check / bet') {
-      draft.options = [{ type: 'check' }]
+    if (!allOptionsValid) {
+      if (['fold / call', 'fold / call / raise'].includes(draft.spot.state)) {
+        draft.options = [{ type: 'fold' }, { type: 'call' }]
 
-      for (let i = 0; i < draft.matrix.length; i++) {
-        draft.matrix[i].frequency = 1
-        draft.matrix[i].strategy = [1]
+        for (let i = 0; i < draft.matrix.length; i++) {
+          draft.matrix[i].frequency = 1
+          draft.matrix[i].strategy = [1, 0]
+        }
+      }
+
+      if (draft.spot.state === 'check / bet') {
+        draft.options = [{ type: 'check' }]
+
+        for (let i = 0; i < draft.matrix.length; i++) {
+          draft.matrix[i].frequency = 1
+          draft.matrix[i].strategy = [1]
+        }
       }
     }
   }
