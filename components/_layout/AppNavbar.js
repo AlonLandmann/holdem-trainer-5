@@ -56,7 +56,7 @@ export default function AppNavbar() {
           <AppNavbarItem
             icon='pen'
             text='Editor'
-            href='/app/editor/dummy-range'
+            href='/app/editor/first-range'
             extendedView={extendedView}
           />
           <AppNavbarItem

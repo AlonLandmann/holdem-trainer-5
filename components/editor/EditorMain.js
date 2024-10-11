@@ -10,7 +10,7 @@ export default function EditorMain({ user }) {
   const router = useRouter()
   const allRanges = user.folders.reduce((acc, curr) => acc.concat(curr.ranges), [])
   const selectedRange = allRanges.find(r => r.id === Number(router.query['range-id']))
-  const [range, setRange] = useState(selectedRange)
+  const [range, setRange] = useState(selectedRange || allRanges[0])
   const [selected, setSelected] = useState([])
   const [hovered, setHovered] = useState([])
   const [optionHover, setOptionHover] = useState(null)
