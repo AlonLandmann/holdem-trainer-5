@@ -1,6 +1,7 @@
-import { combos, includingValue, numFromSuit, numFromValue, sameValue, suits, values } from '@/lib/cards'
+import { combos, numFromSuit, numFromValue, sameValue, suits, values } from '@/lib/cards'
 import { frequencyColor, strategyColor } from '@/lib/colors'
 import { isNull } from 'lodash'
+import MatrixHeaderCell from './MatrixHeaderCell'
 
 export default function Matrix({ range, selected, setSelected, hovered, setHovered, optionHover }) {
   const cellWidth = 15
@@ -93,95 +94,46 @@ export default function Matrix({ range, selected, setSelected, hovered, setHover
       <div className='border'></div>
       <div className='flex'>
         {values.map(value => (
-          <div
+          <MatrixHeaderCell
             key={'top-value' + value}
-            className='flex flex-col border-t border-r border-b'
-            onMouseLeave={() => { setHovered([]) }}
-            onMouseEnter={() => { setHovered(includingValue(value)) }}
-            style={{
-              width: `${blockWidth + 1}px`,
-              height: `${headlineWidth}px`
-            }}
-          >
-            <div className='grow flex justify-center items-center text-sm text-neutral-400'>
-              {value}
-            </div>
-            <div
-              className='grid grid-cols-4 justify-items-center items-center text-neutral-800 leading-none'
-              style={{ height: `${suitArrayWidth}px` }}
-            >
-              <div className='text-[10px]'>
-                <i className='bi bi-suit-spade-fill'></i>
-              </div>
-              <div className='text-[9px]'>
-                <i className='bi bi-suit-heart-fill'></i>
-              </div>
-              <div className='text-[10px]'>
-                <i className='bi bi-suit-diamond-fill'></i>
-              </div>
-              <div className='text-[10px]'>
-                <i className='bi bi-suit-club-fill'></i>
-              </div>
-            </div>
-          </div>
+            value={value}
+            position='top'
+            setHovered={setHovered}
+            blockWidth={blockWidth}
+            headlineWidth={headlineWidth}
+            suitArrayWidth={suitArrayWidth}
+          />
         ))}
       </div>
       <div className='flex flex-col'>
         {values.map(value => (
-          <div
-            key={'top-value' + value}
-            className='flex border-r border-b border-l'
-            style={{
-              width: `${headlineWidth}px`,
-              height: `${blockWidth + 1}px`,
-            }}
-          >
-
-            <div
-              className='grow flex justify-center items-center text-sm text-neutral-400'
-            >
-              {value}
-            </div>
-            <div
-              className='grid grid-rows-4 justify-items-center items-center text-neutral-800 leading-none'
-              style={{ width: `${suitArrayWidth}px` }}
-            >
-              <div className='text-[10px]'>
-                <i className='bi bi-suit-spade-fill'></i>
-              </div>
-              <div className='text-[9px]'>
-                <i className='bi bi-suit-heart-fill'></i>
-              </div>
-              <div className='text-[10px]'>
-                <i className='bi bi-suit-diamond-fill'></i>
-              </div>
-              <div className='text-[10px]'>
-                <i className='bi bi-suit-club-fill'></i>
-              </div>
-            </div>
-          </div>
+          <MatrixHeaderCell
+            key={'left-value' + value}
+            value={value}
+            position='left'
+            setHovered={setHovered}
+            blockWidth={blockWidth}
+            headlineWidth={headlineWidth}
+            suitArrayWidth={suitArrayWidth}
+          />
         ))}
       </div>
       <div
+        className='grid gap-[1px] bg-[#222] border-b border-r'
         style={{
           width: `${matrixWidth}px`,
           height: `${matrixWidth}px`,
-          borderBottom: '1px solid rgb(38, 38, 38)',
-          borderRight: '1px solid rgb(38, 38, 38)',
-          display: 'grid',
           gridTemplateColumns: `repeat(13, ${blockWidth}px)`,
-          gap: '1px',
-          background: '#222',
         }}
       >
         {values.map(v1 => (
           values.map(v2 => (
             <div
               key={'block' + v1 + v2}
+              className='grid'
               style={{
                 width: `${blockWidth}px`,
                 height: `${blockWidth}px`,
-                display: 'grid',
                 gridTemplateColumns: `repeat(4, ${cellWidth}px)`,
               }}
             >
@@ -189,12 +141,12 @@ export default function Matrix({ range, selected, setSelected, hovered, setHover
                 suits.map(s2 => (
                   <div
                     key={'cell' + v1 + v2 + s1 + s2}
+                    onClick={e => handleCellClick(e, v1, v2, s1, s2)}
                     style={{
                       width: `${cellWidth}px`,
                       height: `${cellWidth}px`,
                       ...cellStyle(v1, v2, s1, s2),
                     }}
-                    onClick={e => handleCellClick(e, v1, v2, s1, s2)}
                   >
 
                   </div>
