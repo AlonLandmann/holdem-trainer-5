@@ -91,7 +91,7 @@ export default function Button({
         </span>
       }
       {text &&
-        <span className={`${loading ? 'opacity-0' : ''} ${themes[theme].text} ${textClasses}`}>
+        <span className={`${loading ? 'opacity-0' : ''} ${themes[theme].text} ${textClasses} text-nowrap`}>
           {text}
         </span>
       }
