@@ -7,6 +7,6 @@ export default async function handler(req, res) {
       data: req.body,
     })
 
-    return { success: true, message: 'Settings saved.' }
+    return { success: true }
   })
 }

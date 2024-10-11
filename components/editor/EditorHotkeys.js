@@ -54,12 +54,17 @@ export default function EditorHotkeys({ user, setUser, setViewHotkeyInfo }) {
             <div>{isMacOS ? 'Option' : 'Alt'} + Shift</div>
             <div>deselect all suited combos of equal value</div>
           </div>
-          <Button
-            theme='nice'
-            utilClasses='py-3 px-4 mt-10'
-            text='OK'
-            onClick={handleDismiss}
-          />
+          <div className='flex items-center gap-4 mt-10'>
+            <Button
+              theme='nice'
+              utilClasses='py-3 px-4'
+              text='OK'
+              onClick={handleDismiss}
+            />
+            <div className='text-sm text-neutral-500 max-w-[55ch]'>
+              View the hotkeys again at any time by clicking on the <i className='bi bi-alt'></i> icon in the toolbar.
+            </div>
+          </div>
         </div>
       </div>
     </div>
