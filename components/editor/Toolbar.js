@@ -13,7 +13,9 @@ export default function Toolbar({ allRanges, range, setRange, past, setPast, fut
 
   function handleRangeChange(event) {
     setRange(allRanges.find(r => String(r.id) === event.target.value))
-    router.push(`/app/editor/${event.target.value}`, undefined, { shallow: true });
+    router.push(`/app/editor/${event.target.value}`, undefined, { shallow: true })
+    setPast([])
+    setFuture([])
   }
 
   function handleUndo() {
@@ -49,10 +51,10 @@ export default function Toolbar({ allRanges, range, setRange, past, setPast, fut
   }
 
   return (
-    <div className='border-b p-3 flex gap-4 h-[49px]'>
+    <div className='border-b px-3 flex gap-4 h-[49px]'>
       <select
         name='range'
-        className='appearance-none mr-auto'
+        className='appearance-none mr-auto self-center py-2 px-3'
         value={String(range.id)}
         onChange={handleRangeChange}
       >
