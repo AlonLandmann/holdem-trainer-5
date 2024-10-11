@@ -35,6 +35,12 @@ export default function Toolbar({ range, setRange, past, setPast, future, setFut
     await handleManagerRequest('/api/ranges/edit', 'PUT', setUser, range)
   }
 
+  function handleTrain() {
+    if (isEqual(range, referenceRange) || confirm('You have unsaved changes, which will be lost if you start training. Do you want to proceed anyway?')) {
+      window.location = `/app/trainer?ids=${JSON.stringify([range.id])}`
+    }
+  }
+
   return (
     <div className='border-b p-3 flex gap-4 h-[49px]'>
       <h1 className='text-neutral-500 mr-auto'>
@@ -61,6 +67,13 @@ export default function Toolbar({ range, setRange, past, setPast, future, setFut
         onClick={handleSaveChanges}
         useQueue
         disabled={isEqual(range, referenceRange) || error}
+      />
+      <Button
+        theme='tertiary'
+        utilClasses='text-neutral-500 hover:text-neutral-300'
+        icon='crosshair'
+        onClick={handleTrain}
+        useQueue
       />
     </div>
   )
