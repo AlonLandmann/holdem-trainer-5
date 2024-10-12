@@ -27,6 +27,7 @@ export default function Input({
   onChange,
   onDragOver = (e) => { e.preventDefault() },
   onDrop = (e) => { e.preventDefault() },
+  disabled = false
 }) {
   return (
     <input
@@ -41,6 +42,7 @@ export default function Input({
       onChange={onChange}
       onDragOver={onDragOver}
       onDrop={onDrop}
+      disabled={disabled}
     />
   )
 }

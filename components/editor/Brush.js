@@ -168,6 +168,7 @@ export default function Brush({ range, setRange, selected, setSelected, setOptio
               handleClick={() => handleToggle('fold')}
               setAnyErrors={setAnyErrors}
               setOptionHover={setOptionHover}
+              nrOptionsTotal={n}
             />
             <BrushOption
               range={range}
@@ -179,6 +180,7 @@ export default function Brush({ range, setRange, selected, setSelected, setOptio
               handleClick={() => handleToggle('call')}
               setAnyErrors={setAnyErrors}
               setOptionHover={setOptionHover}
+              nrOptionsTotal={n}
             />
           </>
         }
@@ -193,6 +195,7 @@ export default function Brush({ range, setRange, selected, setSelected, setOptio
             handleClick={() => handleToggle('check')}
             setAnyErrors={setAnyErrors}
             setOptionHover={setOptionHover}
+            nrOptionsTotal={n}
           />
         }
         {range.options.filter(o => o.size).map((option, i) => (
@@ -207,6 +210,7 @@ export default function Brush({ range, setRange, selected, setSelected, setOptio
             handleClick={() => handleRemoveOption(offset + i)}
             setAnyErrors={setAnyErrors}
             setOptionHover={setOptionHover}
+            nrOptionsTotal={n}
           />
         ))}
       </div>

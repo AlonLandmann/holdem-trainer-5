@@ -15,6 +15,7 @@ export default function BrushOption({
   handleClick,
   setAnyErrors,
   setOptionHover,
+  nrOptionsTotal
 }) {
   const [value, setValue] = useState(frequency)
   const [error, setError] = useState(false)
@@ -38,7 +39,7 @@ export default function BrushOption({
     const isNotTooAccurate = v.split('.').length <= 1 || v.split('.')[1].length <= 1
     setError(!isValid || !isNotTooAccurate)
     setAnyErrors(!isValid || !isNotTooAccurate)
-    let freq = isValid ? isNotTooAccurate ? v : String(Math.floor(10 * Number(v)) / 10) : '0'
+    let freq = isValid ? (isNotTooAccurate ? v : String(Math.floor(10 * Number(v)) / 10)) : '0'
     handleChange({ target: { value: freq } })
   }
 
@@ -73,7 +74,7 @@ export default function BrushOption({
         min={0}
         max={100}
         step={0.1}
-        disabled={!enabled}
+        disabled={!enabled || (nrOptionsTotal === 1)}
         value={value}
         onChange={handleLocalChange}
       />
