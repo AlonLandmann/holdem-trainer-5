@@ -10,6 +10,7 @@ export default function TrainerRoot() {
   const [page, setPage] = useState('start')
   const [selected, setSelected] = useState([])
   const [nrCombos, setNrCombos] = useState(20)
+  const [stats, setStats] = useState([])
 
   return (
     <AppLayout>
@@ -32,12 +33,15 @@ export default function TrainerRoot() {
           setPage={setPage}
           selected={selected}
           nrCombos={nrCombos}
+          stats={stats}
+          setStats={setStats}
         />
       }
       {user && user.hasRanges && page === 'end' &&
         <TrainerEndPage
           user={user}
           setPage={setPage}
+          stats={stats}
         />
       }
     </AppLayout>

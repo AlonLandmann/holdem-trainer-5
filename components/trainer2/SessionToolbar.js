@@ -8,7 +8,7 @@ export default function SessionToolbar({ setPage, count, stats, nrCombos }) {
         Trainer
       </h1>
       <div className='font-mono text-sm text-neutral-500 mr-4'>
-        {count - 1} / {nrCombos} {accuracy(stats)}
+        {count} / {nrCombos}{stats.length ? ' · ' : ' '}{accuracy(stats)}
       </div>
       <Button
         theme='nice'

@@ -6,7 +6,7 @@ import { sampleHoleCards } from '@/lib/cards'
 import { rng } from '@/lib/rounding'
 import { v4 as uuid } from 'uuid'
 
-export default function TrainerSessionPage({ user, setPage, selected, nrCombos }) {
+export default function TrainerSessionPage({ user, setPage, selected, nrCombos, stats, setStats }) {
   const sessionId = useMemo(() => uuid(), [])
   const ranges = useMemo(() => {
     const loadedRanges = []
@@ -28,7 +28,6 @@ export default function TrainerSessionPage({ user, setPage, selected, nrCombos }
   const [randomNumber, setRandomNumber] = useState(rng())
   const [flash, setFlash] = useState(null)
   const [timer, setTimer] = useState(null)
-  const [stats, setStats] = useState([])
   const [wasWrong, setWasWrong] = useState(false)
   const [count, setCount] = useState(1)
 
@@ -85,6 +84,7 @@ export default function TrainerSessionPage({ user, setPage, selected, nrCombos }
       holeCards,
       rangeId: range.id,
       rangeName: range.name,
+      rangeComplexity: range.complexity,
       correct
     }]))
   }
