@@ -21,9 +21,7 @@ export default function Category({ range, comboArray, name, fraction, strategy, 
 
   return (
     <div
-      className='py-[2px] flex items-center gap-[3px]'
-      onMouseEnter={handleSetHovered}
-      onMouseLeave={handleClearHovered}
+      className='flex items-center gap-[3px]'
     >
       <Button
         theme='secondary'
@@ -37,14 +35,16 @@ export default function Category({ range, comboArray, name, fraction, strategy, 
         icon='plus-lg'
         onClick={handleAddToSelected}
       />
-      <div className='grow flex items-center gap-[2px]'>
+      <div className='grow h-[34px] py-[2px] flex items-center gap-[2px]'
+        onMouseEnter={handleSetHovered}
+        onMouseLeave={handleClearHovered}>
         <div className='min-w-16 sm:min-w-24 pl-[6px] pr-[3px]'>
           {name != '--use-strategy--' ? name :
             <div
               className='w-[15px] h-[15px] rounded-sm'
               style={{ background: strategyColor(range, strategy) }}
             >
-              
+
             </div>
           }
         </div>
