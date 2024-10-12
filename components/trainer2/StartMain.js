@@ -46,12 +46,12 @@ export default function StartMain({ user, selected, setSelected }) {
                 <div className='text-neutral-300 text-sm'>
                   {range.name}
                 </div>
-                <div className='ml-auto'>
+                {/* <div className='ml-auto'>
                   <StrategyPreview
                     range={range}
                     strategy={overallStrategy(range)}
                   />
-                </div>
+                </div> */}
               </div>
             ))}
           </div>
