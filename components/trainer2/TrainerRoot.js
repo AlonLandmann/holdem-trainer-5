@@ -31,7 +31,6 @@ export default function TrainerRoot() {
           user={user}
           setPage={setPage}
           selected={selected}
-          setSelected={setSelected}
           nrCombos={nrCombos}
         />
       }

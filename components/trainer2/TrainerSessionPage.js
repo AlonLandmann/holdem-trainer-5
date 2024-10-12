@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import SessionToolbar from './SessionToolbar'
 import SessionMain from './SessionMain'
 import { isEqual, sample } from 'lodash'
@@ -6,8 +6,9 @@ import { sampleHoleCards } from '@/lib/cards'
 import { rng } from '@/lib/rounding'
 import { v4 as uuid } from 'uuid'
 
-export default function TrainerSessionPage({ user, setPage, selected, setSelected, nrCombos }) {
-  const [ranges, setRanges] = useState(() => {
+export default function TrainerSessionPage({ user, setPage, selected, nrCombos }) {
+  const sessionId = useMemo(() => uuid(), [])
+  const ranges = useMemo(() => {
     const loadedRanges = []
 
     user.folders.forEach(folder => {
@@ -19,7 +20,7 @@ export default function TrainerSessionPage({ user, setPage, selected, setSelecte
     })
 
     return loadedRanges
-  })
+  }, [])
 
   const [range, setRange] = useState(sample(ranges))
   const [spot, setSpot] = useState(range.spot)
@@ -29,12 +30,11 @@ export default function TrainerSessionPage({ user, setPage, selected, setSelecte
   const [timer, setTimer] = useState(null)
   const [stats, setStats] = useState([])
   const [wasWrong, setWasWrong] = useState(false)
-  const [sessionId, setSessionId] = useState(uuid())
   const [count, setCount] = useState(1)
 
   // hotkeys
   useEffect(() => {
-    if (range && count <= user.settings.sessionLength) {
+    if (range && count <= nrCombos) {
       function handleKeyPress(event) {
         const n = range.options.length
         const listenFor = [...Array(n + 1).keys()].slice(1).map(i => String(i))
