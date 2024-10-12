@@ -34,7 +34,7 @@ export default function TrainerSessionPage({ user, setPage, selected, nrCombos }
 
   // hotkeys
   useEffect(() => {
-    if (range && count <= nrCombos) {
+    if (range) {
       function handleKeyPress(event) {
         const n = range.options.length
         const listenFor = [...Array(n + 1).keys()].slice(1).map(i => String(i))
@@ -111,6 +111,7 @@ export default function TrainerSessionPage({ user, setPage, selected, nrCombos }
     if (isCorrect(option)) {
       activateFlash('correct')
       if (!wasWrong) { addStat(true); logCombo(true) }
+      if (count >= nrCombos) { setPage('end') }
       setCount(prev => prev + 1)
       setWasWrong(false)
       const newRange = sample(ranges)
