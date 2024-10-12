@@ -28,6 +28,14 @@ export default async function handler(req, res) {
                 ranges: {
                   orderBy: {
                     index: 'asc'
+                  },
+                  include: {
+                    successors: {
+                      select: {
+                        id: true,
+                        name: true,
+                      }
+                    }
                   }
                 }
               },
