@@ -1,11 +1,7 @@
 import { accuracy } from '@/lib/display'
 import Button from '../_ui/Button'
 
-export default function SessionToolbar({ count, stats, nrCombos }) {
-  function handleEndSession() {
-
-  }
-
+export default function SessionToolbar({ setPage, count, stats, nrCombos }) {
   return (
     <div className='border-b h-[49px] flex items-center px-3'>
       <h1 className='text-neutral-500 mr-auto'>
@@ -19,7 +15,8 @@ export default function SessionToolbar({ count, stats, nrCombos }) {
         utilClasses='h-[39px] px-3 gap-1 rounded-sm'
         icon='flag-fill'
         text='End Session'
-        onClick={handleEndSession}
+        onClick={() => { setPage('end') }}
+        disabled={count === 1}
       />
     </div>
   )

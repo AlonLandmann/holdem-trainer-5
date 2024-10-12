@@ -129,6 +129,7 @@ export default function TrainerSessionPage({ user, setPage, selected, nrCombos }
   return (
     <div className='grow'>
       <SessionToolbar
+        setPage={setPage}
         count={count}
         stats={stats}
         nrCombos={nrCombos}
