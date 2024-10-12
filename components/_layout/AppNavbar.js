@@ -64,12 +64,6 @@ export default function AppNavbar() {
             href='/app/trainer'
             extendedView={extendedView}
           />
-          <AppNavbarItem
-            icon='book'
-            text='Academy'
-            href='/academy'
-            extendedView={extendedView}
-          />
         </div>
         <div className={`h-[1px] ${extendedView ? 'w-32' : 'w-7'} bg-neutral-800 self-center my-2`}></div>
         <div className='flex flex-col gap-2 px-2 py-2'>
