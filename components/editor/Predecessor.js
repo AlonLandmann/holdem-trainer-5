@@ -2,6 +2,7 @@ import { useUser } from '@/hooks/useUser'
 import { produce } from 'immer'
 import { useEffect, useState } from 'react'
 import LoadingDots from '../_ui/LoadingDots'
+import Button from '../_ui/Button'
 
 export default function Predecessor({ range, setRange }) {
   const [user, setUser] = useUser()
@@ -75,14 +76,25 @@ export default function Predecessor({ range, setRange }) {
     }
   }
 
+  function handleRefresh() {
+    handleChange({ target: { value: String(predecessorId) } })
+  }
+
   return (!range.spot.options || typeof index !== 'number' || !user) ? null : (
     <div className='border rounded py-3 px-4 flex flex-col'>
-      <h1 className='pb-3 text-neutral-400'>
-        Link
-      </h1>
+      <div className='flex justify-between items-center mb-3'>
+        <h1 className='text-neutral-400'>
+          Link
+        </h1>
+        <Button
+          theme='tertiary'
+          icon='arrow-counterclockwise'
+          onClick={handleRefresh}
+        />
+      </div>
       <div className='relative min-h-8'>
         {!loading &&
-          <select  className='appearance-none w-full' value={predecessorId} onChange={handleChange}>
+          <select className='appearance-none w-full' value={predecessorId} onChange={handleChange}>
             <option value=''>-- select a range --</option>
             {candidates.map(candidate => (
               <option key={candidate.id} value={candidate.id}>
