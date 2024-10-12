@@ -1,5 +1,7 @@
 import { intersection, isEqual } from 'lodash'
 import Checkbox from '../_ui/Checkbox'
+import StrategyPreview from '../editor/StrategyPreview'
+import { overallStrategy } from '@/lib/percentages'
 
 export default function StartMain({ user, selected, setSelected }) {
   function toggleRange(rangeId) {
@@ -25,7 +27,7 @@ export default function StartMain({ user, selected, setSelected }) {
   }
 
   return (
-    <div className='p-3 grid grid-cols-4 gap-x-5 gap-y-8'>
+    <div className='p-3 grid grid-cols-4 gap-x-10 gap-y-9'>
       {user.folders.map(folder => (
         <div key={'folder' + folder.id}>
           <h3
@@ -43,6 +45,12 @@ export default function StartMain({ user, selected, setSelected }) {
                 />
                 <div className='text-neutral-300 text-sm'>
                   {range.name}
+                </div>
+                <div className='ml-auto'>
+                  <StrategyPreview
+                    range={range}
+                    strategy={overallStrategy(range)}
+                  />
                 </div>
               </div>
             ))}
