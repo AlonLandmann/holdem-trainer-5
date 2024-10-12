@@ -43,7 +43,7 @@ export default function HistoryAddAction({ spot, setRange, adjustDraftToNewHisto
       {spot.options.includes('fold') &&
         <Button
           theme='secondary'
-          utilClasses='px-3 py-0'
+          utilClasses='px-3 py-3'
           text='fold'
           onClick={() => { handleAddAction('fold') }}
         />
@@ -51,7 +51,7 @@ export default function HistoryAddAction({ spot, setRange, adjustDraftToNewHisto
       {spot.options.includes('call') &&
         <Button
           theme='secondary'
-          utilClasses='px-3 py-0'
+          utilClasses='px-3 py-3'
           text='call'
           onClick={() => { handleAddAction('call') }}
         />
