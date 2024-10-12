@@ -32,6 +32,7 @@ export default function TrainerRoot() {
           setPage={setPage}
           selected={selected}
           setSelected={setSelected}
+          nrCombos={nrCombos}
         />
       }
       {user && user.hasRanges && page === 'end' &&
