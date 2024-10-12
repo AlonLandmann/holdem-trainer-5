@@ -1,8 +1,14 @@
-import { useState } from 'react'
+import toast from 'react-hot-toast'
 import Button from '../_ui/Button'
 
-export default function StartToolbar({ selected }) {
-  const [nrRanges, setNrRanges] = useState(20)
+export default function StartToolbar({ setPage, selected, nrCombos, setNrCombos }) {
+  function handleStart() {
+    if (selected.length) {
+      setPage('session')
+    } else {
+      toast('Please select at least one range to train.')
+    }
+  }
 
   return (
     <div className='border-b h-[49px] flex items-center px-3'>
@@ -10,13 +16,13 @@ export default function StartToolbar({ selected }) {
         Trainer
       </h1>
       <span className='text-sm text-neutral-500 mr-4'>
-        {selected.length} selected
+        {selected.length} ranges selected
       </span>
       <select
         name='nrCombos'
         className='appearance-none py-2 px-3 mr-1'
-        value={String(nrRanges)}
-        onChange={e => { setNrRanges(Number(e.target.value)) }}
+        value={String(nrCombos)}
+        onChange={e => { setNrCombos(Number(e.target.value)) }}
       >
         <option value='20'>20 Combos</option>
         <option value='50'>50 Combos</option>
@@ -27,6 +33,7 @@ export default function StartToolbar({ selected }) {
         utilClasses='h-[39px] px-3 gap-1 rounded-sm'
         icon='crosshair'
         text='Start Training'
+        onClick={handleStart}
       />
     </div>
   )

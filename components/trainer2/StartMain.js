@@ -29,7 +29,7 @@ export default function StartMain({ user, selected, setSelected }) {
       {user.folders.map(folder => (
         <div key={'folder' + folder.id}>
           <h3
-            className='text-neutral-400 bg-neutral-800 py-2 px-3 rounded-sm mb-1 bg-opacity-40 transition hover:bg-opacity-70 cursor-pointer'
+            className='text-neutral-400 bg-neutral-800 py-2 px-3 rounded-sm mb-1 bg-opacity-40 transition hover:bg-opacity-70 cursor-pointer select-none'
             onClick={() => { toggleFolder(folder) }}
           >
             {folder.name}
