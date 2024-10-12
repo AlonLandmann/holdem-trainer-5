@@ -88,7 +88,7 @@ export default function Predecessor({ range, setRange }) {
         </h1>
         <Button
           theme='tertiary'
-          icon='arrow-counterclockwise'
+          icon='arrow-repeat'
           onClick={handleRefresh}
         />
       </div>
