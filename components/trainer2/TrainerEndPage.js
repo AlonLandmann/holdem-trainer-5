@@ -1,7 +1,7 @@
 import EndMain from './EndMain'
 import EndToolbar from './EndToolbar'
 
-export default function TrainerEndPage({ setPage, stats, setStats }) {
+export default function TrainerEndPage({ user, setPage, stats, setStats }) {
   return (
     <div className='grow'>
       <EndToolbar
@@ -9,6 +9,7 @@ export default function TrainerEndPage({ setPage, stats, setStats }) {
         setStats={setStats}
       />
       <EndMain
+        user={user}
         stats={stats}
       />
     </div>

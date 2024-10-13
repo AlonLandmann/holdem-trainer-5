@@ -1,8 +1,6 @@
-export default function OverallStat({ icon, number, label }) {
-  function withSeparators(x) {
-    return String(x).replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-  }
+import { withSeparators } from '@/lib/display'
 
+export default function OverallStat({ icon, number, label }) {
   return (
     <div className='relative flex flex-col justify-center items-center px-5 py-3 border rounded w-52 h-28 gap-2'>
       <i className={`bi bi-${icon} text-neutral-700 text-xl absolute top-1 right-2`}></i>

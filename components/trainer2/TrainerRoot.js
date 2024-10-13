@@ -38,7 +38,8 @@ export default function TrainerRoot() {
         />
       }
       {user && user.hasRanges && page === 'end' &&
-        <TrainerEndPage 
+        <TrainerEndPage
+          user={user}
           setPage={setPage}
           stats={stats}
           setStats={setStats}
