@@ -73,7 +73,7 @@ export default function TrainerSessionPage({ user, setPage, selected, nrCombos, 
     for (let i = 0, sum = 0; i < strategy.length; i++) {
       sum += strategy[i]
 
-      if (randomNumber / 100 < sum) {
+      if (randomNumber / 100 < sum || (sum === 1 && randomNumber === 100)) {
         return isEqual(option, range.options[i])
       }
     }
