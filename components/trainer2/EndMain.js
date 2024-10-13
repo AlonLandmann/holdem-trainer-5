@@ -35,16 +35,13 @@ export default function EndMain({ user, stats }) {
         </div>
       </div>
       <div className='h-[1px] w-[500px] bg-neutral-800 self-center mb-3'></div>
-      <div className='flex items-center gap-5 mb-3'>
-        <RankBanner rank={newRank} />
+      <div className='flex items-center gap-3 mb-3'>
         <div className='text-xl text-neutral-500 flex items-baseline'>
           <div className='text-3xl text-neutral-200 mr-2'>
             {withSeparators(newScore.toFixed(0))}
           </div>
-          <div className='mr-4'>
-            Point total
-          </div>
         </div>
+        <RankBanner rank={newRank} withName />
       </div>
       {getNextRankInfo(newScore) &&
         <>
