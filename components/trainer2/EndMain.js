@@ -1,5 +1,5 @@
 import { accuracy, withSeparators } from '@/lib/display'
-import { getMilitaryRank, totalScore } from '@/lib/stats'
+import { getCurrentRankInfo, getMilitaryRank, getNextRankInfo, totalScore } from '@/lib/stats'
 import RankBanner from '../dashboard/RankBanner'
 
 export default function EndMain({ user, stats }) {
@@ -35,17 +35,36 @@ export default function EndMain({ user, stats }) {
         </div>
       </div>
       <div className='h-[1px] w-[500px] bg-neutral-800 self-center mb-3'></div>
-      <div className='text-xl text-neutral-500 flex items-center mb-1'>
-        <div className='text-3xl text-neutral-200 mr-2'>
-          {withSeparators(newScore.toFixed(0))}
+      <div className='flex items-center gap-5 mb-3'>
+        <RankBanner rank={newRank} />
+        <div className='text-xl text-neutral-500 flex items-baseline'>
+          <div className='text-3xl text-neutral-200 mr-2'>
+            {withSeparators(newScore.toFixed(0))}
+          </div>
+          <div className='mr-4'>
+            Point total
+          </div>
         </div>
-        <div className='mr-4'>
-          Point total
-        </div>
-        <RankBanner rank={newRank} withName />
       </div>
-      <div>
-      </div>
-    </div >
+      {getNextRankInfo(newScore) &&
+        <>
+          <div className='h-[1px] w-[500px] bg-neutral-800 self-center mb-5'></div>
+          <div className='h-[4px] w-[300px] rounded-sm bg-neutral-800 overflow-hidden mb-3'>
+            <div className='h-full bg-neutral-700' style={{ width: `${(100 * (newScore - getCurrentRankInfo(newScore).score) / (getNextRankInfo(newScore).score - getCurrentRankInfo(newScore).score)).toFixed(0)}%` }}></div>
+          </div>
+          <div className='flex gap-2 items-baseline'>
+            <span className='tracking-wide text-sm text-neutral-500'>
+              Next rank at
+            </span>
+            <span className='text-neutral-400'>
+              {withSeparators(getNextRankInfo(newScore).score)}
+            </span>
+            <span className='tracking-wide text-sm text-neutral-500'>
+              points
+            </span>
+          </div>
+        </>
+      }
+    </div>
   )
 }
