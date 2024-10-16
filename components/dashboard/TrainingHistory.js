@@ -87,24 +87,37 @@ export default function TrainingHistory({ user }) {
 
   return !trainingHistory ? null : (
     <div className='mb-14 self-stretch flex justify-center'>
-      <div className='pl-20 pr-5 pt-12 max-w-full'>
+      <div className='pl-20 pt-12 max-w-full'>
         <div className='relative'>
-          <div className='flex gap-[2px] justify-center items-end h-[200px] overflow-x-auto min-w-[500px]' ref={containerRef}>
-            {span.map(day => (
-              <div
-                key={day}
-                className='bg-neutral-600 z-10 min-w-2 opacity-80'
-                style={{ height: percentageHeight(getNum(day)) }}
-              >
+          <div className='justify-center overflow-x-auto min-w-[500px]' ref={containerRef}>
+            <div className='flex gap-[2px] items-end h-[200px]'>
+              {span.map(day => (
+                <div
+                  key={day}
+                  className='bg-neutral-600 z-10 min-w-2 opacity-80'
+                  style={{ height: percentageHeight(getNum(day)) }}
+                >
 
-              </div>
-            ))}
+                </div>
+              ))}
+            </div>
+            <div className='flex'>
+              {months.map((month, i) => (
+                <label
+                  key={month.name}
+                  className={`py-1 text-neutral-500 text-center ${i ? 'border-l pl-[2px]' : ''}`}
+                  style={{ width: `${10 * month.days}px` }}
+                >
+                  {month.name}
+                </label>
+              ))}
+            </div>
           </div>
           {Array(5).fill('').map((_, i) => (
             <div
               key={'grid-line' + i}
-              className='absolute bottom-0 left-0 w-full h-[1px] bg-neutral-800 z-0'
-              style={{ bottom: `${((tallestLine() / dailyMax) * 200 * i * 0.25)}px` }}
+              className='absolute left-0 w-full h-[1px] bg-neutral-800 z-0'
+              style={{ bottom: `${((tallestLine() / dailyMax) * 200 * i * 0.25) + 32}px` }}
             >
 
             </div>
@@ -112,22 +125,11 @@ export default function TrainingHistory({ user }) {
           {Array(5).fill('').map((_, i) => (
             <div
               key={'grid-line' + i}
-              className='absolute bottom-0 -left-16 z-0 text-right w-12 text-sm font-mono text-neutral-500'
-              style={{ bottom: `${((tallestLine() / dailyMax) * 200 * i * 0.25) - 8}px` }}
+              className='absolute -left-16 z-0 text-right w-12 text-sm font-mono text-neutral-500'
+              style={{ bottom: `${((tallestLine() / dailyMax) * 200 * i * 0.25) + 24}px` }}
             >
               {(tallestLine() * 0.25 * i).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
             </div>
-          ))}
-        </div>
-        <div className='flex'>
-          {months.map((month, i) => (
-            <label
-              key={month.name}
-              className={`py-1 text-neutral-500 text-center ${i ? 'border-l pl-[2px]' : ''}`}
-              style={{ width: `${10 * month.days}px` }}
-            >
-              {month.name}
-            </label>
           ))}
         </div>
 
