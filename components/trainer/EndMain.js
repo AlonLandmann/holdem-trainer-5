@@ -12,26 +12,35 @@ export default function EndMain({ user, stats }) {
 
   return (
     <div
-      className='p-8 flex flex-col justify-center items-center'
+      className='p-8 flex flex-col justify-center items-center overflow-auto no-scrollbar'
       style={{ minHeight: 'calc(100vh - 49px)' }}
     >
       <i className='bi bi-flag text-[100px] text-neutral-700 mb-4'></i>
       <h1 className='text-3xl mb-5'>
         Session complete!
       </h1>
-      <div className='text-neutral-500 text-lg mb-2'>
-        {stats.length} combos trained
+      <div className='text-neutral-500 text-lg mb-2 grid grid-cols-2 gap-3 items-baseline'>
+        <div className='text-neutral-300 text-right text-2xl'>
+          {stats.length}
+        </div>
+        <div>
+          combos
+        </div>
       </div>
-      <div className='text-neutral-500 text-lg mb-4'>
-        {accuracy(stats)} accuracy
+      <div className='text-neutral-500 text-lg mb-2 grid grid-cols-2 gap-3 items-baseline'>
+        <div className='text-neutral-300 text-right text-2xl'>
+          {accuracy(stats)}
+        </div>
+        <div>
+          accuracy
+        </div>
       </div>
-      <div className='text-xl text-neutral-500 flex gap-2 items-baseline mb-3'>
-        <i className='bi bi-plus text-3xl'></i>
-        <div className='text-3xl text-neutral-200'>
+      <div className='text-neutral-500 text-lg mb-6 grid grid-cols-2 gap-3 items-baseline'>
+        <div className='text-neutral-300 text-right text-2xl'>
           {withSeparators(pointsEarned.toFixed(0))}
         </div>
         <div>
-          Points earned
+          points
         </div>
       </div>
       <div className='h-[1px] w-[500px] bg-neutral-800 self-center mb-3'></div>
