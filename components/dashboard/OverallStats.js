@@ -16,12 +16,12 @@ export default function OverallStats({ user }) {
         label='nr of ranges'
       />
       <OverallStat
-        icon='hash'
+        icon='crosshair'
         number={combos}
         label='combos trained'
       />
       <OverallStat
-        icon='crosshair'
+        icon='bullseye'
         number={accuracy}
         label='accuracy'
       />
