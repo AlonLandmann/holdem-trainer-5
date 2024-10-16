@@ -1,5 +1,5 @@
 import OverallStat from '@/components/dashboard/OverallStat'
-import { averageRangeComplexity, totalCombos, totalCorrect, totalScore } from '@/lib/stats'
+import { totalCombos, totalCorrect, totalScore } from '@/lib/stats'
 
 export default function OverallStats({ user }) {
   const combos = totalCombos(user.trainingSessions)
