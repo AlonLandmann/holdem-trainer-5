@@ -17,6 +17,7 @@ export default function TrainerRoot() {
   useEffect(() => {
     if (router.query.ids) {
       setSelected(JSON.parse(router.query.ids))
+      setPage('session')
     }
   }, [router.isReady])
 
