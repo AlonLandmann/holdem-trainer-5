@@ -1,9 +1,12 @@
 import { toStorageFormat } from '@/lib/ranges'
 import handleUserRequest from '@/lib/routes'
+import { computeComplexity } from '@/lib/stats'
 
 export default async function handler(req, res) {
   return handleUserRequest(req, res, 'PUT', async (prisma, user) => {
-    const updatedRange = toStorageFormat(req.body)
+    let range = req.body
+    range.complexity = computeComplexity(range)
+    const updatedRange = toStorageFormat(range)
 
     await prisma.range.update({
       where: {

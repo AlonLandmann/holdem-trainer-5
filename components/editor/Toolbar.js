@@ -1,8 +1,6 @@
 import Button from '@/components/_ui/Button'
 import { useUser } from '@/hooks/useUser'
 import handleManagerRequest from '@/lib/managerRequests'
-import { computeComplexity } from '@/lib/stats'
-import { produce } from 'immer'
 import { isEqual } from 'lodash'
 import { useRouter } from 'next/router'
 import { useMemo } from 'react'
@@ -48,11 +46,8 @@ export default function Toolbar({ allRanges, range, setRange, past, setPast, fut
     if (!range.spot.options) {
       return toast.error('The current history does not imply a player choice.')
     }
-
-    const newComplexity = computeComplexity(range)
-    const rangeWithNewCompexity = produce(range, draft => { draft.complexity = newComplexity })
     
-    await handleManagerRequest('/api/ranges/edit', 'PUT', setUser, rangeWithNewCompexity)
+    await handleManagerRequest('/api/ranges/edit', 'PUT', setUser, range)
 
     if (range.successors.length && confirm(`The following ranges are linked as successors to this range. Refreshing the links might be necessary. Would you like to open these ranges in new tabs now? ${JSON.stringify(range.successors.map(r => r.name))}`)) {
       range.successors.forEach(r => { window.open(`/app/editor/${r.id}`, '_blank') })
