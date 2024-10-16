@@ -77,7 +77,7 @@ export default function TrainingHistory({ user }) {
     <div className='mb-14 self-stretch flex justify-center'>
       <div className='pl-20 pr-5 pt-12 max-w-full'>
         <div className='relative'>
-          <div className='flex gap-[2px] items-end h-[200px] overflow-x-auto' ref={containerRef}>
+          <div className='flex gap-[2px] justify-center items-end h-[200px] overflow-x-auto min-w-[500px]' ref={containerRef}>
             {span.map(day => (
               <div
                 key={day}
