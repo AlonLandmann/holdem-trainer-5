@@ -5,6 +5,7 @@ import TrainerStartPage from './TrainerStartPage'
 import TrainerSessionPage from './TrainerSessionPage'
 import TrainerEndPage from './TrainerEndPage'
 import { useRouter } from 'next/router'
+import RangePlaceholder from '../manager/RangePlaceholder'
 
 export default function TrainerRoot() {
   const router = useRouter()
