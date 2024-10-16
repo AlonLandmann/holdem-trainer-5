@@ -50,10 +50,10 @@ export default function EndMain({ user, stats }) {
       }
       <div className='text-neutral-500 text-lg mb-7 grid grid-cols-2 gap-3 items-baseline'>
         <div className='text-neutral-300 text-right text-xl'>
-          {withSeparators(pointsEarned.toFixed(0))}
+          {pointsEarned < 10 ? withSeparators(pointsEarned.toFixed(1)) : withSeparators(pointsEarned.toFixed(0))}
         </div>
         <div>
-          point{Math.round(pointsEarned) !== 1 ? 's' : ''}
+          points
         </div>
       </div>
       <div className='h-[1px] w-[500px] bg-neutral-800 self-center mb-3'></div>
