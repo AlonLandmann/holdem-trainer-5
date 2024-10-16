@@ -13,6 +13,7 @@ export default async function handler(req, res) {
         history: range.history,
         options: range.options,
         matrix: range.matrix,
+        complexity: range.complexity,
         folder: { connect: { id: range.folderId } },
         predecessor: range.predecessorId
           ? { connect: { id: range.predecessorId } }

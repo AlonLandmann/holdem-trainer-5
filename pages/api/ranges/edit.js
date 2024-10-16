@@ -14,6 +14,7 @@ export default async function handler(req, res) {
         history: updatedRange.history,
         options: updatedRange.options,
         matrix: updatedRange.matrix,
+        complexity: updatedRange.complexity,
         predecessor: updatedRange.predecessorId
           ? { connect: { id: updatedRange.predecessorId } }
           : { disconnect: true }
