@@ -1,7 +1,5 @@
 import { intersection, isEqual } from 'lodash'
 import Checkbox from '../_ui/Checkbox'
-import StrategyPreview from '../editor/StrategyPreview'
-import { overallStrategy } from '@/lib/percentages'
 
 export default function StartMain({ user, selected, setSelected }) {
   function toggleRange(rangeId) {
@@ -46,12 +44,6 @@ export default function StartMain({ user, selected, setSelected }) {
                 <div className='text-neutral-300 text-sm'>
                   {range.name}
                 </div>
-                {/* <div className='ml-auto'>
-                  <StrategyPreview
-                    range={range}
-                    strategy={overallStrategy(range)}
-                  />
-                </div> */}
               </div>
             ))}
           </div>
