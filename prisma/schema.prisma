@@ -62,6 +62,7 @@ model Range {
   history           String[]       @default([])
   options           String[]       @default(["fold", "call"])
   matrix            Bytes
+  complexity        Float
   folder            Folder         @relation(fields: [folderId], references: [id])
   folderId          Int
   successors        Range[]        @relation("Pred-Succ")
