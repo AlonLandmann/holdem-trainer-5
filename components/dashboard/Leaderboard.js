@@ -41,7 +41,10 @@ export default function Leaderboard({ user }) {
             <div className='font-mono min-w-36 text-right ml-auto'>
               {rank.totalScore.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
             </div>
-            <div className={`min-w-16 flex justify-start ml-2 text-xs ${user.id === rank.id ? '' : 'opacity-25'}`}>
+            <div className={`
+              min-w-16 flex justify-start ml-2 text-xs
+              ${user.id === rank.id || getMilitaryRank(rank.totalScore) === 'Recruit' ? '' : 'opacity-25'}
+            `}>
               <RankBanner
                 rank={getMilitaryRank(rank.totalScore)}
               />
