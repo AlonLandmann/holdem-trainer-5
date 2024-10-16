@@ -1,6 +1,5 @@
 import { defaultMatrixBuffer } from '@/lib/ranges'
 import handleUserRequest from '@/lib/routes'
-import { computeComplexity } from '@/lib/stats'
 
 export default async function handler(req, res) {
   return handleUserRequest(req, res, 'POST', async (prisma, user) => {
@@ -31,7 +30,6 @@ export default async function handler(req, res) {
       data: {
         index: folder.ranges.length,
         matrix: defaultMatrixBuffer,
-        complexity: 0, // still needs adjustment
         folder: { connect: { id: folder.id } }
       }
     })
