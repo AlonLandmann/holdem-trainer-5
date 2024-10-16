@@ -10,33 +10,35 @@ export function UserProvider({ children }) {
   const [user, setUser] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
 
+  async function fetchUser() {
+    try {
+      const res = await fetch('/api/auth/check')
+      const json = await res.json()
+      const user = json.user
+
+      // hydrate
+      user.hasRanges = user.folders.reduce((acc, curr) => (
+        acc || curr.ranges.length
+      ), false)
+
+      user.nrRanges = user.folders.reduce((acc, curr) => (
+        acc + curr.ranges.length
+      ), 0)
+
+      setUser(user || null)
+    } catch (error) {
+      console.log(error)
+    }
+
+    setIsLoading(false)
+  }
+
   useEffect(() => {
-    (async () => {
-      try {
-        const res = await fetch('/api/auth/check')
-        const json = await res.json()
-        const user = json.user
-
-        // hydrate
-        user.hasRanges = user.folders.reduce((acc, curr) => (
-          acc || curr.ranges.length
-        ), false)
-
-        user.nrRanges = user.folders.reduce((acc, curr) => (
-          acc + curr.ranges.length
-        ), 0)
-
-        setUser(user || null)
-      } catch (error) {
-        console.log(error)
-      }
-
-      setIsLoading(false)
-    })()
+    fetchUser()
   }, [])
 
   return (
-    <UserContext.Provider value={[user, setUser, isLoading]}>
+    <UserContext.Provider value={[user, setUser, isLoading, fetchUser]}>
       {children}
     </UserContext.Provider>
   )

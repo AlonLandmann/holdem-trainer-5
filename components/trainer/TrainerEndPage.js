@@ -1,12 +1,13 @@
 import EndMain from './EndMain'
 import EndToolbar from './EndToolbar'
 
-export default function TrainerEndPage({ user, setPage, stats, setStats }) {
+export default function TrainerEndPage({ user, setPage, stats, setStats, fetchUser }) {
   return (
     <div className='grow'>
       <EndToolbar
         setPage={setPage}
         setStats={setStats}
+        fetchUser={fetchUser}
       />
       <EndMain
         user={user}

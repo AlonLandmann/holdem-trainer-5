@@ -1,12 +1,14 @@
 import Button from '../_ui/Button'
 
-export default function EndToolbar({ setPage, setStats }) {
-  function handleSelectRanges() {
+export default function EndToolbar({ setPage, setStats, fetchUser }) {
+  async function handleSelectRanges() {
+    await fetchUser()
     setStats([])
     setPage('start')
   }
 
-  function handleTrainAgain() {
+  async function handleTrainAgain() {
+    await fetchUser()
     setStats([])
     setPage('session')
   }
@@ -22,6 +24,7 @@ export default function EndToolbar({ setPage, setStats }) {
         icon='ui-checks'
         text='Choose ranges'
         onClick={handleSelectRanges}
+        useQueue
       />
       <Button
         theme='nice'
@@ -29,6 +32,7 @@ export default function EndToolbar({ setPage, setStats }) {
         icon='arrow-counterclockwise'
         text='Train again'
         onClick={handleTrainAgain}
+        useQueue
       />
     </div>
   )

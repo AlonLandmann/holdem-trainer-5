@@ -8,10 +8,8 @@ export default function AppNavbarItem({ icon, text, href, onClick, extendedView 
   const isSelected = currentNav === targetNav
 
   function handleClick() {
-    if (href === '/app/dashboard') {
+    if (href) {
       window.location = href
-    } else if (href) {
-      router.push(href)
     } else if (onClick) {
       onClick()
     }

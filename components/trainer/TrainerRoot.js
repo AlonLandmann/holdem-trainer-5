@@ -8,7 +8,7 @@ import { useRouter } from 'next/router'
 
 export default function TrainerRoot() {
   const router = useRouter()
-  const [user, setUser] = useUser()
+  const [user, setUser, isLoading, fetchUser] = useUser()
   const [page, setPage] = useState('start')
   const [selected, setSelected] = useState([])
   const [nrCombos, setNrCombos] = useState(20)
@@ -52,6 +52,7 @@ export default function TrainerRoot() {
           setPage={setPage}
           stats={stats}
           setStats={setStats}
+          fetchUser={fetchUser}
         />
       }
     </AppLayout>
