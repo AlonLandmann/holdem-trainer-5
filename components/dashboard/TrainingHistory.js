@@ -32,11 +32,23 @@ export default function TrainingHistory({ user }) {
   const diffInDays = (end - start) / 1000 / 3600 / 24
   const span = []
   const dailyMax = trainingHistory && trainingHistory.reduce((acc, curr) => Math.max(acc, curr.total), 0)
+  const monthNames = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
+  const months = []
+
 
   if (trainingHistory) {
     for (let i = 0; i < diffInDays; i++) {
       const dt = new Date(start.getFullYear(), start.getMonth(), start.getDate() + i)
       span.push(formatDate((dt)))
+      const monthName = monthNames[dt.getMonth()]
+
+      if (months.filter(({ name }) => name === monthName).length === 0) {
+        months.push({ name: monthName, days: 1 })
+      } else {
+        if (months.length > 0) {
+          months[months.length - 1].days += 1
+        }
+      }
     }
   }
 
@@ -107,6 +119,18 @@ export default function TrainingHistory({ user }) {
             </div>
           ))}
         </div>
+        <div className='flex'>
+          {months.map((month, i) => (
+            <label
+              key={month.name}
+              className={`py-1 text-neutral-500 text-center ${i ? 'border-l pl-[2px]' : ''}`}
+              style={{ width: `${10 * month.days}px` }}
+            >
+              {month.name}
+            </label>
+          ))}
+        </div>
+
       </div>
     </div>
   )
