@@ -5,13 +5,11 @@ import TrainingHistory from '@/components/dashboard/TrainingHistory'
 
 export default function DashboardMain({ user }) {
   return (
-    <div className='grow bg-neutral-900 p-5 max-h-screen overflow-y-auto'>
+    <div className='grow bg-neutral-900 p-8 max-h-screen overflow-y-auto flex flex-col items-center'>
       <TopLine user={user} />
       <OverallStats user={user} />
-      <section className='flex flex-wrap gap-8'>
-        <Leaderboard user={user} />
-        <TrainingHistory user={user} />
-      </section>
+      <Leaderboard user={user} />
+      <TrainingHistory user={user} />
     </div>
   )
 }
