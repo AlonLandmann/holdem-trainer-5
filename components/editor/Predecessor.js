@@ -17,6 +17,10 @@ export default function Predecessor({ range, setRange }) {
   }, [user, range.history])
 
   useEffect(() => {
+    setPredecessorId(range.predecessorId || '')
+  }, [range.id])
+
+  useEffect(() => {
     (async () => {
       if (loading) {
         if (!user || !user.id || !range.spot.options || typeof index !== 'number') {
