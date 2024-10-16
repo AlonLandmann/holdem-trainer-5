@@ -86,7 +86,7 @@ export default function TrainingHistory({ user }) {
   }
 
   return !trainingHistory ? null : (
-    <div className='mb-14 self-stretch flex justify-center'>
+    <div className='mb-16 self-stretch flex justify-center'>
       <div className='pl-20 pt-12 max-w-full'>
         <div className='relative'>
           <div className='justify-center overflow-x-auto min-w-[500px]' ref={containerRef}>
