@@ -1,7 +1,7 @@
-import AnswerButtons from '../trainer/AnswerButtons'
-import History from '../trainer/History'
-import RandomNumber from '../trainer/RandomNumber'
-import Table from '../trainer/Table'
+import AnswerButtons from './AnswerButtons'
+import History from './History'
+import RandomNumber from './RandomNumber'
+import Table from './Table'
 
 export default function SessionMain({
   range,
