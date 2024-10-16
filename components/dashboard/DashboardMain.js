@@ -8,8 +8,8 @@ export default function DashboardMain({ user }) {
     <div className='grow bg-neutral-900 p-8 max-h-screen overflow-y-auto flex flex-col items-center'>
       <TopLine user={user} />
       <OverallStats user={user} />
-      <Leaderboard user={user} />
       <TrainingHistory user={user} />
+      <Leaderboard user={user} />
     </div>
   )
 }
