@@ -1,16 +1,24 @@
 import { useUser } from '@/hooks/useUser'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import AppLayout from '../_layout/AppLayout'
 import TrainerStartPage from './TrainerStartPage'
 import TrainerSessionPage from './TrainerSessionPage'
 import TrainerEndPage from './TrainerEndPage'
+import { useRouter } from 'next/router'
 
 export default function TrainerRoot() {
+  const router = useRouter()
   const [user, setUser] = useUser()
   const [page, setPage] = useState('start')
   const [selected, setSelected] = useState([])
   const [nrCombos, setNrCombos] = useState(20)
   const [stats, setStats] = useState([])
+
+  useEffect(() => {
+    if (router.query.ids) {
+      setSelected(JSON.parse(router.query.ids))
+    }
+  }, [router.isReady])
 
   return (
     <AppLayout>
