@@ -20,9 +20,6 @@ export default function Leaderboard({ user }) {
 
   return (!leaderboard || !(userRank >= 0)) ? null : (
     <div>
-      <h3 className='px-2 text-neutral-500 text-lg mb-2'>
-        Leaderboard
-      </h3>
       <div className='p-3 flex flex-col gap-1 border rounded overflow-y-auto no-scrollbar max-h-[600px]'>
         {leaderboard.map((rank, i) => (
           <div

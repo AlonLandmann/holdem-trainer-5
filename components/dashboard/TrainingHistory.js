@@ -26,7 +26,7 @@ export default function TrainingHistory({ user }) {
   }, [])
 
   const today = new Date()
-  const startCandidate1 = new Date(today.getFullYear(), today.getMonth() - 2, 1)
+  const startCandidate1 = new Date(today.getFullYear(), today.getMonth() - 3, 1)
   const startCandidate2 = (trainingHistory && trainingHistory[0]) ? new Date(trainingHistory[0].date) : today
   const start = startCandidate1.getTime() > startCandidate2.getTime() ? startCandidate1 : startCandidate2
   const end = new Date(today.getFullYear(), today.getMonth() + 1, 0)
@@ -81,11 +81,8 @@ export default function TrainingHistory({ user }) {
   }
 
   return !trainingHistory ? null : (
-    <div>
-      <h3 className='px-2 text-neutral-500 text-lg mb-2'>
-        Training History
-      </h3>
-      <div className='inline-block p-3 pl-20 pb-5 pt-12 border rounded'>
+    <div className='mb-10 pr-5 self-stretch'>
+      <div className='pl-20 pb-5 pt-12'>
         <div className='relative flex gap-[2px] items-end h-[200px]'>
           {span.map(day => (
             <div
