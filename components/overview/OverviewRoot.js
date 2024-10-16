@@ -1,14 +1,14 @@
-import DashboardMain from '@/components/dashboard/DashboardMain'
+import OverviewMain from '@/components/overview/OverviewMain'
 import { useUser } from '@/hooks/useUser'
 import AppLayout from '../_layout/AppLayout'
 
-export default function DashboardRoot() {
+export default function OverviewRoot() {
   const [user, setUser] = useUser()
 
   return (
     <AppLayout>
       {user &&
-        <DashboardMain user={user} />
+        <OverviewMain user={user} />
       }
     </AppLayout>
   )

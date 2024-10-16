@@ -31,7 +31,7 @@ export default function SignupRoot() {
     const json = await res.json()
 
     if (json.success) {
-      window.location = '/app/dashboard'
+      window.location = '/app/overview'
     } else {
       toast.error(json.message || 'An unexpected error occurred.')
     }

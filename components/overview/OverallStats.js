@@ -1,4 +1,4 @@
-import OverallStat from '@/components/dashboard/OverallStat'
+import OverallStat from '@/components/overview/OverallStat'
 import { totalCombos, totalCorrect, totalScore } from '@/lib/stats'
 
 export default function OverallStats({ user }) {

@@ -39,8 +39,8 @@ export default function AppNavbar() {
           />
           <AppNavbarItem
             icon='graph-up-arrow'
-            text='Dashboard'
-            href='/app/dashboard'
+            text='Overview'
+            href='/app/overview'
             extendedView={extendedView}
           />
         </div>

@@ -1,6 +1,6 @@
 import { accuracy, withSeparators } from '@/lib/display'
 import { getCurrentRankInfo, getMilitaryRank, getNextRankInfo, totalScore } from '@/lib/stats'
-import RankBanner from '../dashboard/RankBanner'
+import RankBanner from '../overview/RankBanner'
 
 export default function EndMain({ user, stats }) {
   const prevScore = totalScore(user.trainingSessions)

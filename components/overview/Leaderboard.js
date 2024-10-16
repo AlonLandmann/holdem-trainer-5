@@ -1,4 +1,4 @@
-import RankBanner from '@/components/dashboard/RankBanner'
+import RankBanner from '@/components/overview/RankBanner'
 import { getMilitaryRank } from '@/lib/stats'
 import { useEffect, useState } from 'react'
 
