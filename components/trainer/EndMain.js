@@ -5,10 +5,11 @@ import RankBanner from '../dashboard/RankBanner'
 export default function EndMain({ user, stats }) {
   const prevScore = totalScore(user.trainingSessions)
   const prevRank = getMilitaryRank(prevScore)
-
   const pointsEarned = stats.reduce((acc, curr) => (acc + (curr.correct ? curr.rangeComplexity : 0)), 0)
   const newScore = prevScore + pointsEarned
   const newRank = getMilitaryRank(newScore)
+  const newRankScore = getCurrentRankInfo(newRank).score
+  const nextRankScore = getNextRankInfo(newScore).score
 
   return (
     <div
@@ -56,14 +57,19 @@ export default function EndMain({ user, stats }) {
         <>
           <div className='h-[1px] w-[500px] bg-neutral-800 self-center mb-5'></div>
           <div className='h-[4px] w-[300px] rounded-sm bg-neutral-800 overflow-hidden mb-3'>
-            <div className='h-full bg-neutral-700' style={{ width: `${(100 * (newScore - getCurrentRankInfo(newScore).score) / (getNextRankInfo(newScore).score - getCurrentRankInfo(newScore).score)).toFixed(0)}%` }}></div>
+            <div
+              className='h-full bg-neutral-700'
+              style={{ width: `${(100 * (newScore - newRankScore) / (nextRankScore - newRankScore)).toFixed(0)}%` }}
+            >
+
+            </div>
           </div>
           <div className='flex gap-2 items-baseline'>
             <span className='tracking-wide text-sm text-neutral-500'>
               Next rank at
             </span>
             <span className='text-neutral-400'>
-              {withSeparators(getNextRankInfo(newScore).score)}
+              {withSeparators(nextRankScore)}
             </span>
             <span className='tracking-wide text-sm text-neutral-500'>
               points
