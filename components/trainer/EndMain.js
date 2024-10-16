@@ -6,6 +6,8 @@ export default function EndMain({ user, stats }) {
   const prevScore = totalScore(user.trainingSessions)
   const prevRank = getMilitaryRank(prevScore)
   const pointsEarned = stats.reduce((acc, curr) => (acc + (curr.correct ? curr.rangeComplexity : 0)), 0)
+  const totalCorrect = stats.reduce((acc, curr) => (acc + (curr.correct ? 1 : 0)), 0)
+  const complexity = totalCorrect > 0 ? pointsEarned / totalCorrect : null
   const newScore = prevScore + pointsEarned
   const newRank = getMilitaryRank(newScore)
   const newRankScore = getCurrentRankInfo(newRank).score
@@ -36,12 +38,22 @@ export default function EndMain({ user, stats }) {
           accuracy
         </div>
       </div>
+      {complexity &&
+        <div className='text-neutral-500 text-lg mb-2 grid grid-cols-2 gap-3 items-baseline'>
+          <div className='text-neutral-300 text-right text-xl'>
+            {complexity.toFixed(2)}
+          </div>
+          <div>
+            complexity
+          </div>
+        </div>
+      }
       <div className='text-neutral-500 text-lg mb-7 grid grid-cols-2 gap-3 items-baseline'>
         <div className='text-neutral-300 text-right text-xl'>
           {withSeparators(pointsEarned.toFixed(0))}
         </div>
         <div>
-          points
+          point{Math.round(pointsEarned) !== 1 ? 's' : ''}
         </div>
       </div>
       <div className='h-[1px] w-[500px] bg-neutral-800 self-center mb-3'></div>
