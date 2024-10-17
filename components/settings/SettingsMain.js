@@ -1,4 +1,3 @@
-import { capitalize } from 'lodash'
 import SettingsToolbar from './SettingsToolbar'
 import Button from '../_ui/Button'
 import SettingsGroup from './SettingsGroup'
@@ -6,10 +5,12 @@ import Setting from './Setting'
 import { useState } from 'react'
 import { produce } from 'immer'
 import Input from '../_ui/Input'
+import toast from 'react-hot-toast'
 
 export default function SettingsMain({ user, setUser }) {
   const [username, setUsername] = useState(user.username)
   const [settings, setSettings] = useState(user.settings)
+  const [linkSent, setLinkSent] = useState(false)
 
   function handleChangeUsername(event) {
     setUsername(event.target.value)
@@ -19,6 +20,22 @@ export default function SettingsMain({ user, setUser }) {
     setSettings(produce(draft => {
       draft[event.target.name] = modifier(event.target.value)
     }))
+  }
+
+  async function handleResendVerificationLink() {
+    const res = await fetch('/api/auth/resend', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' }
+    })
+
+    const json = await res.json()
+
+    if (json.success) {
+      setLinkSent(true)
+      toast.success(`A verification link has been sent to ${user.email}.`)
+    } else {
+      toast.error(json.message || 'An unexpected error occurred.')
+    }
   }
 
   return (
@@ -36,22 +53,27 @@ export default function SettingsMain({ user, setUser }) {
               {user.email}
             </div>
             {user.isVerified &&
-              <div>
+              <div className='text-neutral-400'>
                 <i className='bi bi-check2'></i>
                 <span> verified</span>
               </div>
             }
-            <div className='flex gap-2'>
-              {!user.isVerified &&
-                <Button
-                  theme='link'
-                  text='verifiy'
-                />
-              }
+            {!user.isVerified && !linkSent &&
               <Button
                 theme='link'
-                text='change'
+                utilClasses='underline'
+                text='resend verifcation link'
+                onClick={handleResendVerificationLink}
+                useQueue
               />
+            }
+            {!user.isVerified && linkSent &&
+              <div className='text-neutral-400'>
+                verification link sent
+              </div>
+            }
+            <div className='text-neutral-500'>
+              To change your email address contact info@holdem-trainer.com directly.
             </div>
           </Setting>
           <Setting label='Username'>
