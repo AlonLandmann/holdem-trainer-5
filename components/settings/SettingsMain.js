@@ -8,7 +8,7 @@ export default function SettingsMain({ user }) {
   return (
     <div className='grow'>
       <SettingsToolbar />
-      <div className='p-5 flex flex-col items-start'>
+      <div className='p-5 flex flex-col gap-5'>
         <SettingsGroup title='Account'>
           <Setting label='Email' condition={!user.googleId}>
             <div className='w-32'>
@@ -70,6 +70,17 @@ export default function SettingsMain({ user }) {
               theme='link'
               text='delete'
             />
+          </Setting>
+        </SettingsGroup>
+        <SettingsGroup title='App'>
+          <Setting label='Brush application'>
+            
+          </Setting>
+          <Setting label='Successor ranges'>
+
+          </Setting>
+          <Setting label='Session length'>
+            
           </Setting>
         </SettingsGroup>
       </div>
