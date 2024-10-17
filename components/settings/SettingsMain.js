@@ -32,7 +32,7 @@ export default function SettingsMain({ user, setUser }) {
       <div className='p-5 flex flex-col gap-5'>
         <SettingsGroup title='Account'>
           <Setting label='Email' condition={!user.googleId}>
-            <div className='w-32'>
+            <div>
               {user.email}
             </div>
             {user.isVerified &&
@@ -71,12 +71,14 @@ export default function SettingsMain({ user, setUser }) {
             />
           </Setting>
           <Setting label='Membership'>
-            <div className='w-32'>
+            <div>
               {capitalize(user.membership)}
             </div>
             <Button
               theme='link'
-              text={user.membership === 'free' ? 'upgrade' : 'change'}
+              utilClasses='underline'
+              text={user.membership === 'free' ? 'upgrade' : 'adjust'}
+              onClick={() => { window.open('/pricing', '_blank') }}
             />
           </Setting>
           <Setting label='Account'>
