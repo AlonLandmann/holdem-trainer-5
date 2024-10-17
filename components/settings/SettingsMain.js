@@ -1,5 +1,7 @@
-import Button from '@/components/_ui/Button'
 import { capitalize } from 'lodash'
+import SettingsToolbar from './SettingsToolbar'
+import Button from '../_ui/Button'
+import SettingsGroup from './SettingsGroup'
 
 export default function SettingsMain({ user }) {
   const rowStyle = 'flex items-center'
@@ -8,12 +10,10 @@ export default function SettingsMain({ user }) {
   const buttons = 'flex gap-2'
 
   return (
-    <div className='py-10 px-12'>
-      <section>
-        <h1 className='mb-5 text-neutral-500 text-lg'>
-          Account Settings
-        </h1>
-        <div className='flex flex-col gap-2'>
+    <div className='grow'>
+      <SettingsToolbar />
+      <div className='p-5'>
+        <SettingsGroup title='Account'>
           {!user.googleId &&
             <div className={rowStyle}>
               <label className={labelStyle}>
@@ -111,8 +111,8 @@ export default function SettingsMain({ user }) {
               />
             </div>
           </div>
-        </div>
-      </section>
+        </SettingsGroup>
+      </div>
     </div>
   )
 }
