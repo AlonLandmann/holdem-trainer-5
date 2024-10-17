@@ -48,17 +48,17 @@ export default function SettingsMain({ user, setUser }) {
       />
       <div className='p-5 flex flex-col gap-5'>
         <SettingsGroup title='Account'>
-          <Setting label='Email' condition={!user.googleId}>
+          <Setting label='Email'>
             <div>
               {user.email}
             </div>
-            {user.isVerified &&
+            {!user.googleId && user.isVerified &&
               <div className='text-neutral-400'>
                 <i className='bi bi-check2'></i>
                 <span> verified</span>
               </div>
             }
-            {!user.isVerified && !linkSent &&
+            {!user.googleId && !user.isVerified && !linkSent &&
               <Button
                 theme='link'
                 utilClasses='underline'
@@ -67,14 +67,16 @@ export default function SettingsMain({ user, setUser }) {
                 useQueue
               />
             }
-            {!user.isVerified && linkSent &&
+            {!user.googleId && !user.isVerified && linkSent &&
               <div className='text-neutral-400'>
                 verification link sent
               </div>
             }
-            <div className='text-neutral-500'>
-              To change your email address contact info@holdem-trainer.com directly.
-            </div>
+            {!user.googleId &&
+              <div className='text-neutral-500'>
+                To change your email address contact info@holdem-trainer.com directly.
+              </div>
+            }
           </Setting>
           <Setting label='Username'>
             <Input
