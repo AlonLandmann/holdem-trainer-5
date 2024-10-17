@@ -22,6 +22,12 @@ export default function TrainerRoot() {
     }
   }, [router.isReady])
 
+  useEffect(() => {
+    if (!isLoading && user) {
+      setNrCombos(user.settings.defaultSessionLength)
+    }
+  }, [isLoading])
+
   return (
     <AppLayout>
       {user && !user.hasRanges &&
