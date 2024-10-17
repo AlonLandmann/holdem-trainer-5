@@ -1,9 +1,16 @@
 import Button from '@/components/_ui/Button'
 import handleManagerRequest from '@/lib/managerRequests'
 
-export default function SettingsToolbar({ settings, setUser }) {
+export default function SettingsToolbar({ user, setUser, username, settings }) {
   async function handleSave() {
     await handleManagerRequest('/api/settings/update', 'PATCH', setUser, settings)
+    
+    if (username !== user.username) {
+      await handleManagerRequest('/api/auth/change-username', 'PATCH', setUser, {
+        userId: user.id,
+        username
+      })
+    }
   }
 
   return (

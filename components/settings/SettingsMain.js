@@ -24,8 +24,10 @@ export default function SettingsMain({ user, setUser }) {
   return (
     <div className='grow'>
       <SettingsToolbar
-        settings={settings}
+        user={user}
         setUser={setUser}
+        username={username}
+        settings={settings}
       />
       <div className='p-5 flex flex-col gap-5'>
         <SettingsGroup title='Account'>
