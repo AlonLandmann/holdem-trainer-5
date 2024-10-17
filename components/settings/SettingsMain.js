@@ -5,16 +5,13 @@ import SettingsGroup from './SettingsGroup'
 import Setting from './Setting'
 
 export default function SettingsMain({ user }) {
-  const currentValueStyle = 'w-32'
-  const buttons = 'flex gap-2'
-
   return (
     <div className='grow'>
       <SettingsToolbar />
-      <div className='p-5'>
+      <div className='p-5 flex flex-col items-start'>
         <SettingsGroup title='Account'>
           <Setting label='Email' condition={!user.googleId}>
-            <div className={currentValueStyle}>
+            <div className='w-32'>
               {user.email}
             </div>
             {user.isVerified &&
@@ -23,69 +20,56 @@ export default function SettingsMain({ user }) {
                 <span> verified</span>
               </div>
             }
-            <div className={buttons}>
+            <div className='flex gap-2'>
               {!user.isVerified &&
                 <Button
-                  theme='secondary'
-                  utilClasses='py-3 px-4'
+                  theme='link'
                   text='verifiy'
                 />
               }
               <Button
-                theme='secondary'
-                utilClasses='py-3 px-4'
+                theme='link'
                 text='change'
               />
             </div>
           </Setting>
           <Setting label='Username'>
-            <div className={currentValueStyle}>
+            <div className='w-32'>
               {user.username}
             </div>
-            <div className={buttons}>
-              <Button
-                theme='secondary'
-                utilClasses='py-3 px-4'
-                text='change'
-              />
-            </div>
+            <Button
+              theme='link'
+              text='change'
+            />
           </Setting>
           <Setting label='Password' condition={!user.googleId}>
-            <div className={currentValueStyle}></div>
-            <div className={buttons}>
+            <div className='w-32'></div>
+            <div className='flex gap-2'>
               <Button
-                theme='secondary'
-                utilClasses='py-3 px-4'
+                theme='link'
                 text='change'
               />
               <Button
-                theme='secondary'
-                utilClasses='py-3 px-4'
+                theme='link'
                 text='reset'
               />
             </div>
           </Setting>
           <Setting label='Membership'>
-            <div className={currentValueStyle}>
+            <div className='w-32'>
               {capitalize(user.membership)}
             </div>
-            <div className={buttons}>
-              <Button
-                theme='secondary'
-                utilClasses='py-3 px-4'
-                text={user.membership === 'free' ? 'upgrade' : 'change'}
-              />
-            </div>
+            <Button
+              theme='link'
+              text={user.membership === 'free' ? 'upgrade' : 'change'}
+            />
           </Setting>
           <Setting label='Account'>
-            <div className={currentValueStyle}></div>
-            <div className={buttons}>
-              <Button
-                theme='secondary'
-                utilClasses='py-3 px-4'
-                text='delete'
-              />
-            </div>
+            <div className='w-32'></div>
+            <Button
+              theme='link'
+              text='delete'
+            />
           </Setting>
         </SettingsGroup>
       </div>
