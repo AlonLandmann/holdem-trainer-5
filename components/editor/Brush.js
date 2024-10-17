@@ -8,7 +8,7 @@ import { produce } from 'immer'
 import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 
-export default function Brush({ range, setRange, selected, setSelected, setOptionHover }) {
+export default function Brush({ range, setRange, selected, setSelected, setOptionHover, settings }) {
   const foldEnabled = Boolean(range.options.find(o => o.type === 'fold'))
   const callEnabled = Boolean(range.options.find(o => o.type === 'call'))
   const checkEnabled = Boolean(range.options.find(o => o.type === 'check'))
@@ -147,7 +147,9 @@ export default function Brush({ range, setRange, selected, setSelected, setOptio
       }
     }))
 
-    setSelected([])
+    if (settings.deselectAfterBrush) {
+      setSelected([])
+    }
   }
 
   return (!range.spot.options) ? null : (

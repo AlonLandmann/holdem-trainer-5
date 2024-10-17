@@ -65,6 +65,7 @@ export default function EditorMain({ user, setViewHotkeyInfo }) {
             selected={selected}
             setSelected={setSelected}
             setOptionHover={setOptionHover}
+            settings={user.settings}
           />
         </div>
         <Matrix
