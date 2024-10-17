@@ -63,7 +63,7 @@ export async function getServerSideProps(context) {
 
   const authors = await prisma.user.findMany({
     where: {
-      role: 'Admin'
+      role: 'admin'
     },
     select: {
       id: true,
