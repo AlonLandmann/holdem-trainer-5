@@ -17,6 +17,9 @@ export async function getServerSideProps() {
     },
     include: {
       author: true,
+    },
+    orderBy: {
+      id: 'asc'
     }
   })
 
