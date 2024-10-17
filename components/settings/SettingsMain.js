@@ -72,12 +72,12 @@ export default function SettingsMain({ user, setUser }) {
           </Setting>
           <Setting label='Membership'>
             <div>
-              {capitalize(user.membership)}
+              {user.membership}
             </div>
             <Button
               theme='link'
               utilClasses='underline'
-              text={user.membership === 'free' ? 'upgrade' : 'adjust'}
+              text={user.membership === 'HT-Basic' ? 'upgrade' : 'change'}
               onClick={() => { window.open('/pricing', '_blank') }}
             />
           </Setting>

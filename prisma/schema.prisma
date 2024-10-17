@@ -19,7 +19,7 @@ model User {
   verificationToken String?           @unique @default(uuid())
   passwordResetCode String?
   role              String            @default("user")
-  membership        String            @default("free")
+  membership        String            @default("HT-Basic")
   session           Session?
   settings          Settings?
   folders           Folder[]
