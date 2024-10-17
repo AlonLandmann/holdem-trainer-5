@@ -6,7 +6,7 @@ import Setting from './Setting'
 import { useState } from 'react'
 import { produce } from 'immer'
 
-export default function SettingsMain({ user }) {
+export default function SettingsMain({ user, setUser }) {
   const [settings, setSettings] = useState(user.settings)
 
   function handleChange(event, modifier) {
@@ -17,7 +17,10 @@ export default function SettingsMain({ user }) {
 
   return (
     <div className='grow'>
-      <SettingsToolbar />
+      <SettingsToolbar
+        settings={settings}
+        setUser={setUser}
+      />
       <div className='p-5 flex flex-col gap-5'>
         <SettingsGroup title='Account'>
           <Setting label='Email' condition={!user.googleId}>

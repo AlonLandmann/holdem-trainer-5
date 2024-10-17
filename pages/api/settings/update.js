@@ -7,6 +7,6 @@ export default async function handler(req, res) {
       data: req.body,
     })
 
-    return { success: true }
+    return { success: true, message: req.body.id ? 'Changes saved': null }
   })
 }

@@ -8,7 +8,10 @@ export default function SettingsRoot() {
   return (
     <AppLayout>
       {user &&
-        <SettingsMain user={user} />
+        <SettingsMain
+          user={user}
+          setUser={setUser}
+        />
       }
     </AppLayout>
   )
