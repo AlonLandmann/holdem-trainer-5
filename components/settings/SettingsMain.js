@@ -2,10 +2,9 @@ import { capitalize } from 'lodash'
 import SettingsToolbar from './SettingsToolbar'
 import Button from '../_ui/Button'
 import SettingsGroup from './SettingsGroup'
+import Setting from './Setting'
 
 export default function SettingsMain({ user }) {
-  const rowStyle = 'flex items-center'
-  const labelStyle = 'w-36 text-neutral-400'
   const currentValueStyle = 'w-32'
   const buttons = 'flex gap-2'
 
@@ -14,40 +13,32 @@ export default function SettingsMain({ user }) {
       <SettingsToolbar />
       <div className='p-5'>
         <SettingsGroup title='Account'>
-          {!user.googleId &&
-            <div className={rowStyle}>
-              <label className={labelStyle}>
-                Email
-              </label>
-              <div className={currentValueStyle}>
-                {user.email}
+          <Setting label='Email' condition={!user.googleId}>
+            <div className={currentValueStyle}>
+              {user.email}
+            </div>
+            {user.isVerified &&
+              <div>
+                <i className='bi bi-check2'></i>
+                <span> verified</span>
               </div>
-              {user.isVerified &&
-                <div>
-                  <i className='bi bi-check2'></i>
-                  <span> verified</span>
-                </div>
-              }
-              <div className={buttons}>
-                {!user.isVerified &&
-                  <Button
-                    theme='secondary'
-                    utilClasses='py-3 px-4'
-                    text='verifiy'
-                  />
-                }
+            }
+            <div className={buttons}>
+              {!user.isVerified &&
                 <Button
                   theme='secondary'
                   utilClasses='py-3 px-4'
-                  text='change'
+                  text='verifiy'
                 />
-              </div>
+              }
+              <Button
+                theme='secondary'
+                utilClasses='py-3 px-4'
+                text='change'
+              />
             </div>
-          }
-          <div className={rowStyle}>
-            <label className={labelStyle}>
-              Username
-            </label>
+          </Setting>
+          <Setting label='Username'>
             <div className={currentValueStyle}>
               {user.username}
             </div>
@@ -58,33 +49,23 @@ export default function SettingsMain({ user }) {
                 text='change'
               />
             </div>
-          </div>
-          {!user.googleId &&
-            <div className={rowStyle}>
-              <label className={labelStyle}>
-                Password
-              </label>
-              <div className={currentValueStyle}>
-
-              </div>
-              <div className={buttons}>
-                <Button
-                  theme='secondary'
-                  utilClasses='py-3 px-4'
-                  text='change'
-                />
-                <Button
-                  theme='secondary'
-                  utilClasses='py-3 px-4'
-                  text='reset'
-                />
-              </div>
+          </Setting>
+          <Setting label='Password' condition={!user.googleId}>
+            <div className={currentValueStyle}></div>
+            <div className={buttons}>
+              <Button
+                theme='secondary'
+                utilClasses='py-3 px-4'
+                text='change'
+              />
+              <Button
+                theme='secondary'
+                utilClasses='py-3 px-4'
+                text='reset'
+              />
             </div>
-          }
-          <div className={rowStyle}>
-            <label className={labelStyle}>
-              Membership
-            </label>
+          </Setting>
+          <Setting label='Membership'>
             <div className={currentValueStyle}>
               {capitalize(user.membership)}
             </div>
@@ -95,14 +76,9 @@ export default function SettingsMain({ user }) {
                 text={user.membership === 'free' ? 'upgrade' : 'change'}
               />
             </div>
-          </div>
-          <div className={rowStyle}>
-            <label className={labelStyle}>
-              Account
-            </label>
-            <div className={currentValueStyle}>
-
-            </div>
+          </Setting>
+          <Setting label='Account'>
+            <div className={currentValueStyle}></div>
             <div className={buttons}>
               <Button
                 theme='secondary'
@@ -110,7 +86,7 @@ export default function SettingsMain({ user }) {
                 text='delete'
               />
             </div>
-          </div>
+          </Setting>
         </SettingsGroup>
       </div>
     </div>
