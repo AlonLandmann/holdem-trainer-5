@@ -85,7 +85,7 @@ export default function TrainingHistory({ user }) {
     return Math.floor(dailyMax / scale) * scale
   }
 
-  return !trainingHistory ? null : (
+  return (!trainingHistory || !trainingHistory.length) ? null : (
     <div className='mb-16 self-stretch flex justify-center'>
       <div className='pl-20 pt-12 max-w-full'>
         <div className='relative'>
