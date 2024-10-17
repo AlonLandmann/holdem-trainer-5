@@ -39,6 +39,7 @@ export default function EditorMain({ user, setViewHotkeyInfo }) {
         setFuture={setFuture}
         error={error}
         setViewHotkeyInfo={setViewHotkeyInfo}
+        settings={user.settings}
       />
       <div className='flex p-3 gap-3'>
         <div

@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 import { useMemo } from 'react'
 import toast from 'react-hot-toast'
 
-export default function Toolbar({ allRanges, range, setRange, past, setPast, future, setFuture, error, setViewHotkeyInfo }) {
+export default function Toolbar({ allRanges, range, setRange, past, setPast, future, setFuture, error, setViewHotkeyInfo, settings }) {
   const router = useRouter()
   const [user, setUser] = useUser()
   const referenceRange = useMemo(() => range, [range.id])
@@ -54,7 +54,13 @@ export default function Toolbar({ allRanges, range, setRange, past, setPast, fut
     if (
       range.successors &&
       range.successors.length > 0 &&
-      confirm(`The following ranges are linked as successors to this range. Refreshing the links might be necessary. Would you like to open these ranges in new tabs now? ${JSON.stringify(range.successors.map(r => r.name))}`)
+      (
+        settings.afterPredecessorEdit === 'always' ||
+        (
+          settings.afterPredecessorEdit === 'ask' &&
+          confirm(`The following ranges are linked as successors to this range. Refreshing the links might be necessary. Would you like to open these ranges in new tabs now? ${JSON.stringify(range.successors.map(r => r.name))}`)
+        )
+      )
     ) {
       range.successors.forEach(r => { window.open(`/app/editor/${r.id}`, '_blank') })
     }
