@@ -53,7 +53,7 @@ export default function Article({ article, suggestions }) {
           </div>
         }
       </section>
-      <section className='leading-8 text-neutral-400 mb-6'>
+      <section className='leading-8 text-neutral-300 mb-6'>
         <TeX
           tex={article.content}
         />
