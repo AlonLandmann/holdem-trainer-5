@@ -37,10 +37,10 @@ model Session {
 
 model Settings {
   id                   Int     @id @default(autoincrement())
-  hotkeyInfoDismissed  Boolean @default(false)
   deselectAfterBrush   Boolean @default(true)
   afterPredecessorEdit String  @default("ask")
   defaultSessionLength Int     @default(20)
+  hotkeyInfoDismissed  Boolean @default(false)
   user                 User    @relation(fields: [userId], references: [id])
   userId               Int     @unique
 }

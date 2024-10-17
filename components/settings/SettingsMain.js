@@ -3,8 +3,18 @@ import SettingsToolbar from './SettingsToolbar'
 import Button from '../_ui/Button'
 import SettingsGroup from './SettingsGroup'
 import Setting from './Setting'
+import { useState } from 'react'
+import { produce } from 'immer'
 
 export default function SettingsMain({ user }) {
+  const [settings, setSettings] = useState(user.settings)
+
+  function handleChange(event, modifier) {
+    setSettings(produce(draft => {
+      draft[event.target.name] = modifier(event.target.value)
+    }))
+  }
+
   return (
     <div className='grow'>
       <SettingsToolbar />
@@ -73,14 +83,40 @@ export default function SettingsMain({ user }) {
           </Setting>
         </SettingsGroup>
         <SettingsGroup title='App'>
-          <Setting label='Brush application'>
-            
+          <Setting label='On brush application'>
+            <select
+              name='deselectAfterBrush'
+              className='appearance-none'
+              value={settings.deselectAfterBrush ? 'true' : ''}
+              onChange={e => { handleChange(e, value => Boolean(value)) }}
+            >
+              <option value='true'>Deselect all combos</option>
+              <option value=''>Keep selection</option>
+            </select>
           </Setting>
-          <Setting label='Successor ranges'>
-
+          <Setting label='On range edits'>
+            <select
+              name='afterPredecessorEdit'
+              className='appearance-none'
+              value={settings.afterPredecessorEdit}
+              onChange={e => { handleChange(e, value => value) }}
+            >
+              <option value='never'>Never open linked ranges</option>
+              <option value='ask'>Ask to open linked ranges</option>
+              <option value='always'>Always open linked ranges</option>
+            </select>
           </Setting>
           <Setting label='Session length'>
-            
+            <select
+              name='defaultSessionLength'
+              className='appearance-none'
+              value={String(settings.defaultSessionLength)}
+              onChange={e => { handleChange(e, value => Number(value)) }}
+            >
+              <option value='20'>20 Combos</option>
+              <option value='50'>50 Combos</option>
+              <option value='100'>100 Combos</option>
+            </select>
           </Setting>
         </SettingsGroup>
       </div>
