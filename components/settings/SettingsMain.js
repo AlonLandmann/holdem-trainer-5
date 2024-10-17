@@ -56,17 +56,12 @@ export default function SettingsMain({ user, setUser }) {
             />
           </Setting>
           <Setting label='Password' condition={!user.googleId}>
-            <div className='w-32'></div>
-            <div className='flex gap-2'>
-              <Button
-                theme='link'
-                text='change'
-              />
-              <Button
-                theme='link'
-                text='reset'
-              />
-            </div>
+            <Button
+              theme='link'
+              utilClasses='underline'
+              text='reset'
+              onClick={() => { window.open('/auth/reset', '_blank') }}
+            />
           </Setting>
           <Setting label='Membership'>
             <div className='w-32'>
@@ -78,11 +73,9 @@ export default function SettingsMain({ user, setUser }) {
             />
           </Setting>
           <Setting label='Account'>
-            <div className='w-32'></div>
-            <Button
-              theme='link'
-              text='delete'
-            />
+            <div className='text-neutral-500'>
+              To delete your account message info@holdem-trainer.com directly.
+            </div>
           </Setting>
         </SettingsGroup>
         <SettingsGroup title='App'>
