@@ -54,15 +54,6 @@ export default function ArticleEditor({ copy, setCopy, authors }) {
         value={copy.abstract}
         onChange={e => { handleChange(e, value => value) }}
       />
-      {/* <label className={labelStyle}>
-        Category
-      </label>
-      <Input
-        name='category'
-        type='text'
-        value={copy.category}
-        onChange={e => { handleChange(e, value => value) }}
-      /> */}
       <label className={labelStyle}>
         Difficulty
       </label>

@@ -21,7 +21,6 @@ export default async function handler(req, res) {
             imageUrl: updatedArticle.imageUrl,
             readTime: updatedArticle.readTime,
             level: updatedArticle.level,
-            // category: updatedArticle.category,
             title: updatedArticle.title,
             slug: kebabCase(updatedArticle.title),
             abstract: updatedArticle.abstract,
