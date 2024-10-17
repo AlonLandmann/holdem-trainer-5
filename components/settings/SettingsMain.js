@@ -5,11 +5,17 @@ import SettingsGroup from './SettingsGroup'
 import Setting from './Setting'
 import { useState } from 'react'
 import { produce } from 'immer'
+import Input from '../_ui/Input'
 
 export default function SettingsMain({ user, setUser }) {
+  const [username, setUsername] = useState(user.username)
   const [settings, setSettings] = useState(user.settings)
 
-  function handleChange(event, modifier) {
+  function handleChangeUsername(event) {
+    setUsername(event.target.value)
+  }
+
+  function handleChangeSettings(event, modifier) {
     setSettings(produce(draft => {
       draft[event.target.name] = modifier(event.target.value)
     }))
@@ -47,12 +53,11 @@ export default function SettingsMain({ user, setUser }) {
             </div>
           </Setting>
           <Setting label='Username'>
-            <div className='w-32'>
-              {user.username}
-            </div>
-            <Button
-              theme='link'
-              text='change'
+            <Input
+              utilClasses='py-[10px] px-[15px]'
+              style={{ lineHeight: '20px' }}
+              value={username}
+              onChange={handleChangeUsername}
             />
           </Setting>
           <Setting label='Password' condition={!user.googleId}>
@@ -74,7 +79,7 @@ export default function SettingsMain({ user, setUser }) {
           </Setting>
           <Setting label='Account'>
             <div className='text-neutral-500'>
-              To delete your account message info@holdem-trainer.com directly.
+              To delete your account email info@holdem-trainer.com directly.
             </div>
           </Setting>
         </SettingsGroup>
@@ -84,7 +89,7 @@ export default function SettingsMain({ user, setUser }) {
               name='deselectAfterBrush'
               className='appearance-none'
               value={settings.deselectAfterBrush ? 'true' : ''}
-              onChange={e => { handleChange(e, value => Boolean(value)) }}
+              onChange={e => { handleChangeSettings(e, value => Boolean(value)) }}
             >
               <option value='true'>Deselect all combos</option>
               <option value=''>Keep selection</option>
@@ -95,7 +100,7 @@ export default function SettingsMain({ user, setUser }) {
               name='afterPredecessorEdit'
               className='appearance-none'
               value={settings.afterPredecessorEdit}
-              onChange={e => { handleChange(e, value => value) }}
+              onChange={e => { handleChangeSettings(e, value => value) }}
             >
               <option value='never'>Never open linked ranges</option>
               <option value='ask'>Ask to open linked ranges</option>
@@ -107,7 +112,7 @@ export default function SettingsMain({ user, setUser }) {
               name='defaultSessionLength'
               className='appearance-none'
               value={String(settings.defaultSessionLength)}
-              onChange={e => { handleChange(e, value => Number(value)) }}
+              onChange={e => { handleChangeSettings(e, value => Number(value)) }}
             >
               <option value='20'>20 Combos</option>
               <option value='50'>50 Combos</option>
