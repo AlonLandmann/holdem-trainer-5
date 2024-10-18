@@ -5,11 +5,11 @@ import OfferCard from './OfferCard'
 export default function PricingRoot() {
   return (
     <InfoLayout>
-      <div className='flex justify-center gap-6 mt-20'>
+      <div className='flex justify-center gap-6 py-20'>
         <OfferCard
           title='HT-Basic'
           price={0}
-          btnTheme='secondary'
+          btnTheme='nice'
           btnText='currently active'
           btnDisabled={true}
         >
