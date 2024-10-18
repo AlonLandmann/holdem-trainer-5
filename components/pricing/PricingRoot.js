@@ -52,7 +52,7 @@ export default function PricingRoot() {
         </OfferCard>
       </div>
       <div className='flex flex-col items-center mb-20'>
-        <h1 className='text-5xl tracking-wide mb-10'>
+        <h1 className='text-3xl tracking-wide mb-10'>
           FAQ
         </h1>
         <div className='flex flex-col gap-10'>
