@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 export default function PricingFaqItem({ question, answer }) {
-  const [answerInView, setAnswerInView] = useState(false)
+  const [answerInView, setAnswerInView] = useState(true)
 
   return (
     <div className='w-[720px]'>
