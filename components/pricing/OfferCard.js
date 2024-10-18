@@ -13,7 +13,7 @@ export default function OfferCard({
 
   return (
     <div className='py-5 px-10 w-[320px] border rounded flex flex-col'>
-      <div className='py-8 flex justify-center items-center text-neutral-400 text-lg'>
+      <div className='py-4 pb-8 flex justify-center items-center text-neutral-400 text-lg'>
         {title}
       </div>
       <div className='flex justify-center items-center h-16 mb-4'>
@@ -42,7 +42,7 @@ export default function OfferCard({
           </div>
         }
       </div>
-      <div className='py-8 mb-10 flex flex-col gap-8 text-neutral-500'>
+      <div className='py-8 mb-10 flex flex-col gap-6 text-neutral-500'>
         {children}
       </div>
       <Button
