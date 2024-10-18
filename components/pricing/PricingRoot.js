@@ -5,7 +5,15 @@ import OfferCard from './OfferCard'
 export default function PricingRoot() {
   return (
     <InfoLayout>
-      <div className='flex justify-center gap-6 py-20'>
+      <div className='flex flex-col gap-3 items-center py-14'>
+        <h1 className='text-5xl'>
+          <span className='font-decorative'>HT</span> - Pro
+        </h1>
+        <h3 className='text-lg text-neutral-500'>
+          Unlock the full potential of Hold'em Trainer
+        </h3>
+      </div>
+      <div className='flex justify-center gap-6 mb-20'>
         <OfferCard
           title='HT-Basic'
           price={0}
