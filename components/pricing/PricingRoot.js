@@ -1,11 +1,12 @@
 import InfoLayout from '@/components/_layout/InfoLayout'
 import OfferCard from './OfferCard'
 import PricingFaqItem from './PricingFaqItem'
+import A from '../_ui/A'
 
 export default function PricingRoot() {
   return (
     <InfoLayout>
-      <div className='flex flex-col gap-3 items-center py-14'>
+      <div className='px-5 flex flex-col gap-3 items-center py-14'>
         <h1 className='text-5xl'>
           <span className='font-decorative'>HT</span> - Pro
         </h1>
@@ -13,7 +14,7 @@ export default function PricingRoot() {
           Unlock the full potential of Hold'em Trainer
         </h3>
       </div>
-      <div className='flex justify-center gap-6 mb-28'>
+      <div className='px-5 flex justify-center gap-6 mb-8'>
         <OfferCard
           title='HT-Basic'
           price={0}
@@ -50,6 +51,9 @@ export default function PricingRoot() {
           <div>Early access to new features</div>
           <div>Cancel at any time</div>
         </OfferCard>
+      </div>
+      <div className='px-5 mb-28 flex justify-center text-xs text-neutral-500'>
+        Make sure you agree to our <A href='/support' text='Terms & Conditions' utilClasses='mx-1' /> before upgrading to HT-Pro or HT-Elite.
       </div>
       <div className='flex flex-col items-center mb-20'>
         <h1 className='text-3xl tracking-wide mb-10'>
