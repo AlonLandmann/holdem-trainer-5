@@ -1,6 +1,6 @@
 import InfoLayout from '@/components/_layout/InfoLayout'
-import Button from '../_ui/Button'
 import OfferCard from './OfferCard'
+import PricingFaqItem from './PricingFaqItem'
 
 export default function PricingRoot() {
   return (
@@ -50,6 +50,29 @@ export default function PricingRoot() {
           <div>Early access to new features</div>
           <div>Cancel at any time</div>
         </OfferCard>
+      </div>
+      <div className='flex flex-col items-center mb-20'>
+        <h1 className='text-5xl tracking-wide mb-5'>
+          FAQ
+        </h1>
+        <PricingFaqItem
+          question='How do HT-Pro and HT-Elite allow me to manage more ranges?'
+          answer={`
+            With the free HT-Basic tier, you can manage up to 20 ranges in your repertoire.
+            To add further ranges you will have to delete old ones first.
+            With HT-Pro, this limit is increased to 100 ranges in your repertoire, and with
+            HT-Elite, you can add and manage as many ranges as you like.
+          `}
+        />
+        <PricingFaqItem
+          question='What if I cancel or downgrade, will my ranges get lost?'
+          answer={`
+            No. If you are managing more than 20 and your subscription expires,
+            your ranges will be locked for use, and you will be able to unlock 20 ranges
+            (or 100 ranges respectively) upon your next login. The remaining locked ranges will remain
+            on your account until you delete them, or until you decide to upgrade again.
+          `}
+        />
       </div>
     </InfoLayout>
   )
