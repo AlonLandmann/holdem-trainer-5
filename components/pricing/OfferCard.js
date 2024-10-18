@@ -28,6 +28,12 @@ export default function OfferCard({
             <div className='text-sm self-start'>
               {cents}
             </div>
+            <div className='text-neutral-500 mr-1 text-lg mt-2'>
+              /
+            </div>
+            <div className='mt-3'>
+              mo
+            </div>
           </div>
         }
         {price === 0 &&
