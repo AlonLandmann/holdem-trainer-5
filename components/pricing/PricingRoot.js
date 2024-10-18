@@ -59,20 +59,48 @@ export default function PricingRoot() {
           <PricingFaqItem
             question='How do HT-Pro and HT-Elite allow me to manage more ranges?'
             answer={`
-            With the free HT-Basic tier, you can manage up to 20 ranges in your repertoire.
-            To add further ranges you will have to delete old ones first.
-            With HT-Pro, this limit is increased to 100 ranges in your repertoire, and with
-            HT-Elite, you can add and manage as many ranges as you like.
-          `}
+              With the free HT-Basic tier you can manage up to 20 ranges in your repertoire.
+              To add further ranges you will have to delete old ones first.
+              With HT-Pro, this limit is increased to 100 ranges in your repertoire, and with
+              HT-Elite, you can add and manage as many ranges as you like.
+            `}
           />
           <PricingFaqItem
             question='What if I cancel or downgrade, will my ranges get lost?'
             answer={`
-            No. If you are managing more than 20 and your subscription expires,
-            your ranges will be locked for use, and you will be able to unlock 20 ranges
-            (or 100 ranges respectively) upon your next login. The remaining locked ranges will remain
-            on your account until you delete them, or until you decide to upgrade again.
-          `}
+              No. If you are managing more than 20 and your subscription expires,
+              your ranges will be locked for use, and you will be able to unlock 20 ranges
+              (or 100 ranges respectively) upon your next login. The remaining locked ranges will remain
+              on your account until you delete them, or until you decide to upgrade again.
+            `}
+          />
+          <PricingFaqItem
+            question='What is meant by parallel training?'
+            answer={`
+              Hold'em Trainer allows you train multiple ranges in a single session
+              randomly selecting different ones for each exercise. By default this functionality
+              is limited to selecting up to 4 ranges to train together. By upgrading to at least HT-Pro,
+              any amount of ranges can be trained together in a single session, allowing you to challenge yourself
+              accross your entire repertoire.
+            `}
+          />
+
+          <PricingFaqItem
+            question='What kind of access do I gain in the HT-Academy by upgrading?'
+            answer={`
+              The HT-Academy features many articles of different levels: Beginner, Intermediate, Advanced, and Expert.
+              These articles also include featured ranges that are explained, and which the reader may duplicate to
+              his own repertoire to train or to modify further. With the free HT-Basic tier users are able to
+              duplicate ranges only from beginner - level articles. By upgrading the ranges in every other level can
+              be duplicated as well.
+            `}
+          />
+          <PricingFaqItem
+            question='How can I cancel my subscription?'
+            answer={`
+              You can cancel your subscription at any time by navigating back to this page and changing your plan
+              to the HT-Basic tier. Your HT-Pro or HT-Elite features will remain active for one month after the last payment.
+            `}
           />
         </div>
       </div>
