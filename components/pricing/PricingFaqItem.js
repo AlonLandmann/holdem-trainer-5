@@ -4,11 +4,11 @@ export default function PricingFaqItem({ question, answer }) {
   const [answerInView, setAnswerInView] = useState(false)
 
   return (
-    <div
-      className='w-[800px]'
-      onClick={() => { setAnswerInView(prev => !prev) }}
-    >
-      <div className='flex'>
+    <div className='w-[720px]'>
+      <div
+        className='flex mb-2 gap-2 text-lg text-neutral-500 cursor-pointer transition hover:text-neutral-400'
+        onClick={() => { setAnswerInView(prev => !prev) }}
+      >
         {answerInView
           ? <i className='bi bi-chevron-down'></i>
           : <i className='bi bi-chevron-right'></i>
@@ -18,7 +18,7 @@ export default function PricingFaqItem({ question, answer }) {
         </div>
       </div>
       {answerInView &&
-        <div>
+        <div className='px-4 leading-8'>
           {answer}
         </div>
       }
