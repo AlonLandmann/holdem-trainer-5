@@ -13,9 +13,9 @@ export default function PricingRoot() {
           btnText='currently active'
           btnDisabled={true}
         >
-          <div>Manage up to <span>20</span> custom ranges</div>
-          <div>Train up to <span>4 </span> ranges at once</div>
-          <div>Duplicate ranges directly from <span>introductory</span> articles</div>
+          <div>Manage <span className='text-neutral-200'>up to 20</span> custom ranges</div>
+          <div>Train <span className='text-neutral-200'>up to 4 </span> ranges at once</div>
+          <div>Duplicate ranges directly from <span className='text-neutral-200'>introductory</span> articles</div>
         </OfferCard>
         <OfferCard
           title='HT-Pro'
@@ -24,10 +24,9 @@ export default function PricingRoot() {
           btnText='upgrade now'
           btnDisabled={false}
         >
-          <div>Manage up to <span>100</span> custom ranges</div>
-          <div><span>Unlimited</span> parallel training</div>
-          <div><span>Full</span> access to all articles in the HT-Academy</div>
-          <div>Access to priority-feedback discord-channel</div>
+          <div>Manage <span className='text-neutral-200'>up to 100</span> custom ranges</div>
+          <div><span className='text-neutral-200'>Unlimited</span> parallel training</div>
+          <div><span className='text-neutral-200'>Full</span> access to all articles in the HT-Academy</div>
           <div>Cancel at any time</div>
         </OfferCard>
         <OfferCard
@@ -37,10 +36,9 @@ export default function PricingRoot() {
           btnText='upgrade now'
           btnDisabled={false}
         >
-          <div>Manage up to <span>20</span> custom ranges</div>
-          <div><span>Unlimited</span> parallel training</div>
-          <div><span>Full</span> access to all articles in the HT-Academy</div>
-          <div>Access to priority-feedback discord-channel</div>
+          <div><span className='text-neutral-200'>Unlimited</span> range management</div>
+          <div><span className='text-neutral-200'>Unlimited</span> parallel training</div>
+          <div><span className='text-neutral-200'>Full</span> access to all articles in the HT-Academy</div>
           <div>Early access to new features</div>
           <div>Cancel at any time</div>
         </OfferCard>

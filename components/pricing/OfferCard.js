@@ -16,7 +16,7 @@ export default function OfferCard({
       <div className='py-8 flex justify-center items-center text-neutral-400 text-lg'>
         {title}
       </div>
-      <div className='flex justify-center items-center h-16'>
+      <div className='flex justify-center items-center h-16 mb-4'>
         {price > 0 &&
           <div className='flex items-center'>
             <div className='text-2xl mr-3 mt-1'>
@@ -37,12 +37,12 @@ export default function OfferCard({
           </div>
         }
         {price === 0 &&
-          <div className='text-xl uppercase tracking-wide'>
-            free
+          <div className='text-xl'>
+            Free
           </div>
         }
       </div>
-      <div className='py-8 mb-10 flex flex-col gap-4 text-sm'>
+      <div className='py-8 mb-10 flex flex-col gap-8 text-neutral-500'>
         {children}
       </div>
       <Button
