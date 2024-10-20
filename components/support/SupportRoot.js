@@ -1,13 +1,17 @@
 import InfoLayout from '@/components/_layout/InfoLayout'
 import SupportFaqItem from './SupportFaqItem'
-import A from '../_ui/A'
 import Link from 'next/link'
 import EditorHotkeys from '../editor/EditorHotkeys'
 import { useState } from 'react'
 import Button from '../_ui/Button'
+import { getMilitaryRank, rankScoresSorted } from '@/lib/stats'
+import RankBanner from '../overview/RankBanner'
+import { withSeparators } from '@/lib/display'
 
 export default function SupportRoot() {
   const [viewHotkeyInfo, setViewHotkeyInfo] = useState(false)
+
+  console.log(rankScoresSorted)
 
   return (
     <InfoLayout>
@@ -120,13 +124,29 @@ export default function SupportRoot() {
               The training score for this session would then be 96 x 0.25 = 24.
             </SupportFaqItem>
 
-            <SupportFaqItem question='How does the ranking system work?'>
-              XXX
-            </SupportFaqItem>
+            <div id='ranks'>
+              <SupportFaqItem question='How does the ranking system work?'>
+                Based on your total training score you are promoted through the following ranks. Your rank will be visible
+                on your player profile as well as on the global leaderboards.
+                <div className='flex flex-col gap-2 p-3 w-fit my-4'>
+                  {rankScoresSorted.map(score => (
+                    <div key={'score' + score} className='grid grid-cols-2 gap-3 items-center'>
+                      <div className='text-center'>
+                        {withSeparators(score)}
+                      </div>
+                      <RankBanner
+                        rank={getMilitaryRank(score)}
+                        withName
+                      />
+                    </div>
+                  ))}
+                </div>
+              </SupportFaqItem>
+            </div>
           </div>
         </div>
 
-        <div class='max-w-[800px] mx-auto mb-32'>
+        <div className='max-w-[800px] mx-auto mb-32'>
           <h1 className='text-2xl text-neutral-500'>
             Terms & Conditions
           </h1>
@@ -135,18 +155,18 @@ export default function SupportRoot() {
             Last updated - November 2024
           </p>
 
-          <div class='mb-5 leading-6'>
+          <div className='mb-5 leading-6'>
             <h2 className='text-neutral-500'>1. Introduction</h2>
             <p>Welcome to Hold'em Trainer ("Company", "we", "our", "us"). These Terms & Conditions ("Terms") govern your use of our software web-app, including any content, functionality, and services offered on or through Hold'em Trainer (the "Service").</p>
             <p>Please read these Terms carefully before using the Service. By using the Service, you agree to be bound by these Terms. If you do not agree to these Terms, you must not use our Service.</p>
           </div>
 
-          <div class='mb-5 leading-6'>
+          <div className='mb-5 leading-6'>
             <h2 className='text-neutral-500'>2. Eligibility</h2>
             <p>By using our Service, you represent that you are at least 18 years of age and have the legal capacity to enter into these Terms. If you are under 18, you must have the consent of your parent or legal guardian to use our Service.</p>
           </div>
 
-          <div class='mb-5 leading-6'>
+          <div className='mb-5 leading-6'>
             <h2 className='text-neutral-500'>3. Accounts & Subscriptions</h2>
             <p>To access certain features of the Service, you must create an account. You are responsible for maintaining the confidentiality of your account and for all activities that occur under your account.</p>
             <p>Our Service offers subscription plans:</p>
@@ -157,18 +177,18 @@ export default function SupportRoot() {
             <p>All subscriptions are billed on a monthly basis. You can cancel your subscription at any time from your account settings. However, refunds for partial months will not be issued.</p>
           </div>
 
-          <div class='mb-5 leading-6'>
+          <div className='mb-5 leading-6'>
             <h2 className='text-neutral-500'>4. Payment & Billing</h2>
             <p>All payments are processed securely through third-party payment processors. By providing your payment information, you authorize us to charge the applicable subscription fee. You agree to keep your billing information accurate and up to date.</p>
             <p>If a payment fails or is declined, your access to the Service may be suspended until the payment is successfully processed.</p>
           </div>
 
-          <div class='mb-5 leading-6'>
+          <div className='mb-5 leading-6'>
             <h2 className='text-neutral-500'>5. Intellectual Property</h2>
             <p>All content, features, and functionality of the Service (including but not limited to text, graphics, logos, and software) are owned by the Company or its licensors and are protected by intellectual property laws. You may not use any content from the Service without our prior written permission.</p>
           </div>
 
-          <div class='mb-5 leading-6'>
+          <div className='mb-5 leading-6'>
             <h2 className='text-neutral-500'>6. Prohibited Activities</h2>
             <p>While using the Service, you agree not to:</p>
             <ul>
@@ -179,38 +199,38 @@ export default function SupportRoot() {
             </ul>
           </div>
 
-          <div class='mb-5 leading-6'>
+          <div className='mb-5 leading-6'>
             <h2 className='text-neutral-500'>7. Termination</h2>
             <p>We may suspend or terminate your account if you violate these Terms, or if we believe your use of the Service is harmful to us, other users, or third parties. Upon termination, you will no longer have access to the Service, and any rights granted to you under these Terms will immediately cease.</p>
           </div>
 
-          <div class='mb-5 leading-6'>
+          <div className='mb-5 leading-6'>
             <h2 className='text-neutral-500'>8. Disclaimer of Warranties</h2>
             <p>The Service is provided on an "as-is" and "as-available" basis. We make no warranties or representations, express or implied, regarding the Service, including its availability, accuracy, or fitness for a particular purpose. Use of the Service is at your own risk.</p>
           </div>
 
-          <div class='mb-5 leading-6'>
+          <div className='mb-5 leading-6'>
             <h2 className='text-neutral-500'>9. Limitation of Liability</h2>
             <p>To the fullest extent permitted by law, we will not be liable for any damages arising from your use or inability to use the Service, including but not limited to direct, indirect, incidental, or consequential damages, even if we have been advised of the possibility of such damages.</p>
           </div>
 
-          <div class='mb-5 leading-6'>
+          <div className='mb-5 leading-6'>
             <h2 className='text-neutral-500'>10. Governing Law</h2>
             <p>These Terms are governed by the laws of Switzerland. Any disputes arising under these Terms shall be subject to the exclusive jurisdiction of the courts in the Canton of Zurich, Switzerland.</p>
           </div>
 
-          <div class='mb-5 leading-6'>
+          <div className='mb-5 leading-6'>
             <h2 className='text-neutral-500'>11. Changes to the Terms</h2>
             <p>We may update these Terms from time to time. When we do, we will notify you by updating the date at the top of this page. Continued use of the Service after changes to the Terms will constitute your acceptance of the updated Terms.</p>
           </div>
 
-          <div class='mb-5 leading-6'>
+          <div className='mb-5 leading-6'>
             <h2 className='text-neutral-500'>12. Contact Us</h2>
             <p>If you have any questions or concerns about these Terms, please contact us at info@holdem-trainer.com.</p>
           </div>
         </div>
 
-        <div class='max-w-[800px] mx-auto'>
+        <div className='max-w-[800px] mx-auto'>
           <h1 className='text-2xl text-neutral-500'>
             Privacy Policy
           </h1>
@@ -219,13 +239,13 @@ export default function SupportRoot() {
             Last updated - November 2024
           </p>
 
-          <div class='mb-5 leading-6'>
+          <div className='mb-5 leading-6'>
             <h2 className='text-neutral-500'>1. Introduction</h2>
             <p>Welcome to Hold'em Trainer ("Company", "we", "our", "us"). This Privacy Policy explains how we collect, use, disclose, and protect your information when you use our software web-app Hold'em Trainer (the "Service").</p>
             <p>Please read this policy carefully. By using the Service, you agree to the collection and use of information in accordance with this policy. If you do not agree to this policy, please do not use our Service.</p>
           </div>
 
-          <div class='mb-5 leading-6'>
+          <div className='mb-5 leading-6'>
             <h2 className='text-neutral-500'>2. Information We Collect</h2>
             <p>When you use our Service, we may collect personal information that you provide to us, such as:</p>
             <ul>
@@ -237,7 +257,7 @@ export default function SupportRoot() {
             <p>We may also collect information on how the Service is accessed and used, such as your IP address, browser type, device information, and pages you visit within our Service.</p>
           </div>
 
-          <div class='mb-5 leading-6'>
+          <div className='mb-5 leading-6'>
             <h2 className='text-neutral-500'>3. How We Use Your Information</h2>
             <p>We may use the information we collect for various purposes, including:</p>
             <ul>
@@ -249,7 +269,7 @@ export default function SupportRoot() {
             </ul>
           </div>
 
-          <div class='mb-5 leading-6'>
+          <div className='mb-5 leading-6'>
             <h2 className='text-neutral-500'>4. How We Share Your Information</h2>
             <p>We do not sell your personal information. However, we may share your information in the following circumstances:</p>
             <ul>
@@ -259,12 +279,12 @@ export default function SupportRoot() {
             </ul>
           </div>
 
-          <div class='mb-5 leading-6'>
+          <div className='mb-5 leading-6'>
             <h2 className='text-neutral-500'>5. Data Security</h2>
             <p>We take reasonable steps to protect the security of your information. However, no method of transmission over the internet or method of electronic storage is completely secure, and we cannot guarantee absolute security.</p>
           </div>
 
-          <div class='mb-5 leading-6'>
+          <div className='mb-5 leading-6'>
             <h2 className='text-neutral-500'>6. Your Data Rights</h2>
             <p>Depending on your location, you may have the following rights regarding your personal information:</p>
             <ul>
@@ -276,22 +296,22 @@ export default function SupportRoot() {
             <p>To exercise any of these rights, please contact us at info@holdem-trainer.com. We may require you to verify your identity before processing your request.</p>
           </div>
 
-          <div class='mb-5 leading-6'>
+          <div className='mb-5 leading-6'>
             <h2 className='text-neutral-500'>7. Third-Party Services</h2>
             <p>Our Service may contain links to third-party websites or services that are not operated by us. We have no control over and are not responsible for the privacy practices of these third parties. We encourage you to review their privacy policies before providing them with any personal information.</p>
           </div>
 
-          <div class='mb-5 leading-6'>
+          <div className='mb-5 leading-6'>
             <h2 className='text-neutral-500'>8. Children's Privacy</h2>
             <p>Our Service is not intended for use by individuals under the age of 18 ("Children"). We do not knowingly collect personal information from Children. If we discover that we have collected personal information from a Child without parental consent, we will delete that information promptly.</p>
           </div>
 
-          <div class='mb-5 leading-6'>
+          <div className='mb-5 leading-6'>
             <h2 className='text-neutral-500'>9. Changes to This Privacy Policy</h2>
             <p>We may update this Privacy Policy from time to time. When we do, we will notify you by updating the "Last Updated" date at the top of this page. Continued use of the Service after changes to this policy constitutes your acceptance of the updated Privacy Policy.</p>
           </div>
 
-          <div class='mb-5 leading-6'>
+          <div className='mb-5 leading-6'>
             <h2 className='text-neutral-500'>10. Contact Us</h2>
             <p>If you have any questions or concerns about this Privacy Policy, please contact us at info@holdem-trainer.com.</p>
           </div>
