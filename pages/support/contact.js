@@ -1,10 +1,10 @@
 import Page from '@/components/_layout/Page'
-import SupportRoot from '@/components/support/SupportRoot'
+import ContactRoot from '@/components/contact/ContactRoot'
 
 export default function SupportPage() {
   return (
-    <Page title='Support'>
-      <SupportRoot />
+    <Page title='Contact'>
+      <ContactRoot />
     </Page>
   )
 }
