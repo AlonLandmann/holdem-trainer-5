@@ -18,7 +18,7 @@ export default function SupportFaqItem({ question, answer }) {
         </div>
       </div>
       {answerInView &&
-        <div className='px-4 leading-8 text-neutral-300'>
+        <div className='px-4 leading-6 text-neutral-300'>
           {answer}
         </div>
       }

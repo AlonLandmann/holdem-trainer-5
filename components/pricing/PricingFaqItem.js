@@ -18,7 +18,7 @@ export default function PricingFaqItem({ question, answer }) {
         </div>
       </div>
       {answerInView &&
-        <div className='px-4 leading-8'>
+        <div className='px-4 leading-6'>
           {answer}
         </div>
       }
