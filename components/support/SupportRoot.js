@@ -1,9 +1,99 @@
 import InfoLayout from '@/components/_layout/InfoLayout'
+import SupportFaqItem from './SupportFaqItem'
 
 export default function SupportRoot() {
   return (
     <InfoLayout>
       <div className='p-10'>
+        <div className='max-w-[800px] mx-auto mb-32'>
+          <h1 className='text-2xl text-neutral-500 mb-5'>
+            FAQ
+          </h1>
+
+          <div className='flex flex-col gap-5'>
+
+
+            <SupportFaqItem
+              question="Why should I use Hold'em Trainer?"
+              answer={`
+              Hold'em Trainer allows you to build your basic poker game step by step.
+              The manager let's you gain an overview over your strategies pre- and post-flop,
+              and the trainer allows you to drill as many hands as you want in any given spot.
+              This is a much more efficient way to let the correct decisions become second nature,
+              especially for the more uncommon scenarios. Playing live gets you 30 hands per hour at best,
+              and while playing online let's you see more hands, it doesn't let you choose
+              the area of the game you'd like to work on, and it also doesn't provide immediate feedback.
+              With Hold'em Trainer you can train whatever you like, however often you like.
+            `}
+            />
+
+            <SupportFaqItem
+              question="How do I use Hold'em Trainer effectively?"
+              answer={`
+              
+            `}
+            />
+
+            <SupportFaqItem
+              question="When might it be useful to upgrade to a paid subscription?"
+              answer={`
+              
+            `}
+            />
+
+            <SupportFaqItem
+              question="I am new to poker, is Hold'em Trainer for me?"
+              answer={`
+              
+            `}
+            />
+
+
+            <SupportFaqItem
+              question="Setting up ranges is hard, how should I do it?"
+              answer={`
+              
+            `}
+            />
+
+            <SupportFaqItem
+              question='What is the purpose of linking ranges via the predecessor relation?'
+              answer={`
+              
+            `}
+            />
+
+            <SupportFaqItem
+              question='How am I supposed to train with the random number generator?'
+              answer={`
+
+            `}
+            />
+
+            <SupportFaqItem
+              question='How is the point score calculated after a training session?'
+              answer={`
+              
+            `}
+            />
+
+            <SupportFaqItem
+              question='How does the ranking system work?'
+              answer={`
+              
+            `}
+            />
+
+            <SupportFaqItem
+              question='How can I give feedback to the developers?'
+              answer={`
+              
+            `}
+            />
+          </div>
+        </div>
+
+
         <div class='max-w-[800px] mx-auto mb-32'>
           <h1 className='text-2xl text-neutral-500'>
             Terms & Conditions
