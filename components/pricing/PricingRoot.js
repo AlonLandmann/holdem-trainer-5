@@ -53,7 +53,7 @@ export default function PricingRoot() {
         </OfferCard>
       </div>
       <div className='px-5 mb-28 flex justify-center text-xs text-neutral-500'>
-        Make sure you agree to our <A href='/support/terms-and-conditions' text='Terms & Conditions' utilClasses='mx-1' /> before upgrading to HT-Pro or HT-Elite.
+        Please read our <A href='/support/terms-and-conditions' text='Terms & Conditions' utilClasses='mx-1' /> before upgrading to HT-Pro or HT-Elite.
       </div>
       <div className='flex flex-col items-center mb-20'>
         <h1 className='text-3xl tracking-wide mb-10'>
