@@ -45,7 +45,7 @@ export default function InfoFooter() {
           </h1>
           <div className='flex flex-col items-start gap-2 text-sm xs:text-base'>
             <A href='/pricing' text='HT-pro' />
-            <A href='/support/contact' text='Contact' />
+            <A href='/support/contact' text='Support' />
           </div>
         </div>
       </div>
