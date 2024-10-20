@@ -6,7 +6,7 @@ export default function ContactRoot() {
   return (
     <InfoLayout>
       <div className='py-5 px-10'>
-        <SupportNavbar />
+        <SupportNavbar page='contact' />
         <div className='max-w-[800px] mx-auto'>
           <h1 className='text-2xl text-neutral-500 mb-5'>
             Contact

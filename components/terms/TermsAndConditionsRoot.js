@@ -5,7 +5,7 @@ export default function TermsAndConditionsRoot() {
   return (
     <InfoLayout>
       <div className='py-5 px-10'>
-        <SupportNavbar />
+        <SupportNavbar page='terms and conditions' />
         <div className='max-w-[800px] mx-auto'>
           <h1 className='text-2xl text-neutral-500'>
             Terms & Conditions
