@@ -7,6 +7,7 @@ import Button from '../_ui/Button'
 import { getMilitaryRank, rankScoresSorted } from '@/lib/stats'
 import RankBanner from '../overview/RankBanner'
 import { withSeparators } from '@/lib/display'
+import A from '../_ui/A'
 
 export default function SupportRoot() {
   const [viewHotkeyInfo, setViewHotkeyInfo] = useState(false)
@@ -24,6 +25,40 @@ export default function SupportRoot() {
       }
 
       <div className='p-10'>
+        <div className='max-w-[800px] mx-auto mb-32'>
+          <h1 className='text-2xl text-neutral-500 mb-5'>
+            Contact
+          </h1>
+          <div className='mb-3'>
+            We are an early stage company, and as such we value your feedback very highly. Feel free to get in touch with
+            any questions, feedback, or comments you have. You can email us directly at the given email address, or
+            you may also join our communities on YouTube, X, and Discord.
+          </div>
+          <div className='flex gap-1 mb-4'>
+            <A
+              href='mailto:info@holdem-trainer.com'
+              text='info@holdem-trainer.com'
+              utilClasses='text-neutral-400 hover:text-neutral-500'
+            />
+          </div>
+          <div className='flex gap-2'>
+            <A
+              href='/'
+              icon='youtube'
+              utilClasses='text-lg text-neutral-400 hover:text-neutral-500'
+            />
+            <A
+              href='/'
+              icon='twitter-x'
+              utilClasses='text-lg text-neutral-400 hover:text-neutral-500'
+            />
+            <A
+              href='/'
+              icon='discord'
+              utilClasses='text-lg text-neutral-400 hover:text-neutral-500'
+            />
+          </div>
+        </div>
         <div className='max-w-[800px] mx-auto mb-32'>
           <h1 className='text-2xl text-neutral-500 mb-5'>
             FAQ
@@ -59,7 +94,7 @@ export default function SupportRoot() {
               to the HT-Pro tier, which gives you the freedom to manage up to 100 ranges. If you desire still more, the HT-Elite
               tier offers unlimited access. Both the Pro and Elite tiers also allow you train more than four ranges at once in a single
               training session, and they give you full access to duplicate curated ranges from all Hold'em Academy articles.
-              You can learn more about the HT-Pro and HT-Elite tiers <Link href='/pricing' className='text-neutral-500 hover:text-neutral-500'>here</Link>.
+              You can learn more about the HT-Pro and HT-Elite tiers <Link href='/pricing' className='text-neutral-400 hover:text-neutral-500'>here</Link>.
             </SupportFaqItem>
 
             <SupportFaqItem question="I am new to poker, is Hold'em Trainer for me?">
