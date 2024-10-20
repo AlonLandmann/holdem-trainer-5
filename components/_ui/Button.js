@@ -71,7 +71,7 @@ export default function Button({
       disabled={disabled || (useQueue && loadingQueue)}
       className={`
         relative
-        ${(icon && text) ? 'flex items-center gap-3' : ''}
+        ${(icon && text) ? 'inline-flex items-center gap-3' : ''}
         ${themes[theme].container}
         ${utilClasses}
         ${disabled ? 'opacity-50' : ''}

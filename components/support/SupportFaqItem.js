@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-export default function SupportFaqItem({ question, answer }) {
+export default function SupportFaqItem({ question, children }) {
   const [answerInView, setAnswerInView] = useState(true)
 
   return (
@@ -19,7 +19,7 @@ export default function SupportFaqItem({ question, answer }) {
       </div>
       {answerInView &&
         <div className='px-4 leading-6 text-neutral-300'>
-          {answer}
+          {children}
         </div>
       }
     </div>
