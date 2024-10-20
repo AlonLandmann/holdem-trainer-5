@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 export default function SupportFaqItem({ question, children }) {
-  const [answerInView, setAnswerInView] = useState(true)
+  const [answerInView, setAnswerInView] = useState(false)
 
   return (
     <div>

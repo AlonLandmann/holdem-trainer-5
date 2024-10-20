@@ -45,7 +45,7 @@ export default function InfoFooter() {
           </h1>
           <div className='flex flex-col items-start gap-2 text-sm xs:text-base'>
             <A href='/pricing' text='HT-pro' />
-            <A href='/support' text='Support' />
+            <A href='/support/contact' text='Contact' />
           </div>
         </div>
       </div>
@@ -57,9 +57,9 @@ export default function InfoFooter() {
           © 2024 - A. Landmann
         </div>
         <div className='flex gap-3 flex-col xs:flex-row'>
-          <A href='/support' text='FAQ' />
-          <A href='/support' text='Privacy Policy' />
-          <A href='/support' text='Terms & Conditions' />
+          <A href='/support/faq' text='FAQ' />
+          <A href='/support/terms-and-conditions' text='Terms & Conditions' />
+          <A href='/support/privacy-policy' text='Privacy Policy' />
         </div>
       </div>
     </div>
