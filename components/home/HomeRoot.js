@@ -4,13 +4,16 @@ import Hero from './Hero'
 import UsageData from './UsageData'
 import Steps from './Steps'
 
-export default function HomeRoot({ ranges, usageInfo }) {
+export default function HomeRoot({ ranges, initialIndex, usageInfo }) {
   return (
     <InfoLayout>
       <Hero />
-      <Steps range={ranges[0]} />
+      <Steps range={ranges[initialIndex]} />
       <UsageData usageInfo={usageInfo} />
-      <Demo ranges={ranges} />
+      <Demo
+        ranges={ranges}
+        initialIndex={initialIndex}
+      />
     </InfoLayout>
   )
 }

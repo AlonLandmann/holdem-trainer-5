@@ -9,8 +9,8 @@ import { rng } from '@/lib/rounding'
 import History from '../trainer/History'
 import Legend from '../editor/Legend'
 
-export default function Demo({ ranges }) {
-  const [range, setRange] = useState(ranges[8])
+export default function Demo({ ranges, initialIndex }) {
+  const [range, setRange] = useState(ranges[initialIndex])
   const [spot, setSpot] = useState(range.spot)
   const [holeCards, setHoleCards] = useState('AdKc')
   const [randomNumber, setRandomNumber] = useState(80)
