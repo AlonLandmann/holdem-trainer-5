@@ -6,7 +6,7 @@ export default function UsageData({ usageInfo }) {
   const V2_RANGES_MANAGED = 9299
 
   return (
-    <section className='flex justify-center py-32 px-20 gap-52 border-t'>
+    <section className='flex justify-center py-32 px-20 gap-52 border-t bg-neutral-800 bg-opacity-10 border-b'>
       <UsageDataItem
         icon='people'
         number={V2_USERS + usageInfo.nrUsers}
