@@ -2,9 +2,11 @@ import { useState } from 'react'
 import Button from '../_ui/Button'
 import Matrix from '../editor/Matrix'
 import Table from '../trainer/Table'
+import { sample } from 'lodash'
 
-export default function Hero({ range }) {
+export default function Hero({ ranges }) {
   const [hovered, setHovered] = useState([])
+  const [range, setRange] = useState(ranges[12])
   
   return (
     <section className='flex flex-wrap justify-center gap-10 p-10'>
