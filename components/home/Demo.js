@@ -81,7 +81,10 @@ export default function Demo({ ranges }) {
 
   return (
     <section className=''>
-      <div className='py-5 flex flex-wrap justify-center items-center gap-10'>
+      <h1 className='pt-14 pb-5 text-center text-2xl'>
+        Try it now.
+      </h1>
+      <div className='pt-10 pb-28 flex flex-wrap justify-center items-center gap-10'>
         <div className='flex flex-col justify-around gap-5 items-center'>
           <h1 className='text-xl'>
             {range.name}
