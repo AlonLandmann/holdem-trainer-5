@@ -3,10 +3,13 @@ import HomeRoot from '@/components/home/HomeRoot'
 import prisma from '@/lib/prisma'
 import { toClientFormat } from '@/lib/ranges'
 
-export default function HomePage({ ranges }) {
+export default function HomePage({ ranges, usageInfo }) {
   return (
     <Page title="Hold'em Trainer">
-      <HomeRoot ranges={JSON.parse(ranges)} />
+      <HomeRoot
+        ranges={JSON.parse(ranges)}
+        usageInfo={JSON.parse(usageInfo)}
+      />
     </Page>
   )
 }
@@ -22,5 +25,18 @@ export async function getServerSideProps() {
     }
   })
 
-  return { props: { ranges: JSON.stringify(ranges.map(r => toClientFormat(r))) } }
+  const nrUsers = await prisma.user.count({})
+  const nrRanges = await prisma.range.count({})
+  const nrCombos = await prisma.trainingUnit.aggregate({
+    _sum: {
+      total: true,
+    },
+  })
+
+  return {
+    props: {
+      ranges: JSON.stringify(ranges.map(r => toClientFormat(r))),
+      usageInfo: JSON.stringify({ nrUsers, nrRanges, nrCombos: nrCombos._sum.total })
+    }
+  }
 }

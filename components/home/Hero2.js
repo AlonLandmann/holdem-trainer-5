@@ -16,7 +16,7 @@ export default function Hero2() {
           objectFit='cover'
         />
       </div>
-      <div className='max-w-[80%] flex flex-col items-center text-start z-20'>
+      <div className='max-w-[80%] flex flex-col items-center text-center z-20'>
         <h1 className='mb-5 m-w-[500px] text-3xl font-medium text-neutral-50 md:text-4xl'>
           Refine your game
         </h1>
