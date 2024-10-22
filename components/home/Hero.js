@@ -129,7 +129,7 @@ export default function Hero({ ranges }) {
         </div>
         <Matrix
           range={range}
-          selected={[]}
+          selected={[holeCards]}
           setSelected={() => { }}
           hovered={hovered}
           setHovered={setHovered}
