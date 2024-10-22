@@ -3,8 +3,7 @@ import { frequencyColor, strategyColor } from '@/lib/colors'
 import { isNull } from 'lodash'
 import MatrixHeaderCell from './MatrixHeaderCell'
 
-export default function Matrix({ range, selected, setSelected, hovered, setHovered, optionHover }) {
-  const cellWidth = 15
+export default function Matrix({ range, selected, setSelected, hovered, setHovered, optionHover, cellWidth = 15 }) {
   const blockWidth = 4 * cellWidth
   const matrixWidth = 13 * blockWidth + 12 + 1
   const headlineWidth = 38 + 2
