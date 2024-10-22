@@ -10,7 +10,7 @@ import { rng } from '@/lib/rounding'
 import History from '../trainer/History'
 
 export default function Hero({ ranges }) {
-  const [range, setRange] = useState(ranges[12])
+  const [range, setRange] = useState(ranges[8])
   const [spot, setSpot] = useState(range.spot)
   const [holeCards, setHoleCards] = useState('AdKc')
   const [randomNumber, setRandomNumber] = useState(80)
@@ -81,15 +81,13 @@ export default function Hero({ ranges }) {
 
   return (
     <section className=''>
-      <div className='py-2 px-8 flex justify-between items-center gap-5 border-b'>
-        <div>
-          <h1 className='mb-1 text-xl font-medium text-neutral-50 md:text-2xl'>
-            Refine your game
-          </h1>
-          {/* <h3 className='text-neutral-500 text-sm md:text-base'>
-            Create your own custom poker ranges and train them on Hold'em Trainer.
-          </h3> */}
-        </div>
+      <div className='py-2 pl-5 pr-3 flex justify-between items-center gap-5 border-b'>
+        <h1 className='mb-1 text-xl font-medium text-neutral-50 md:text-2xl'>
+          Refine your game
+        </h1>
+        <h3 className='text-neutral-500 text-sm md:text-base'>
+          Create your own custom poker ranges and train them on Hold'em Trainer.
+        </h3>
         <div className='flex gap-3'>
           <Button
             theme='nice'
