@@ -13,7 +13,7 @@ export default function Steps({ range }) {
             1. Define your strategy
           </h1>
           <p className='leading-8 text-lg text-neutral-300 mb-5'>
-            In our editor you will be able to define ranges such as the one presented here (Under-The-Gun open).
+            In our editor you will be able to define ranges such as the one presented here ({range.name}).
             Each cell in the matrix corresponds to a particular combo of hole cards.
             Each larger grid cell contains combos with cards of the same value, and each smaller cell specifies the exact suits.
           </p>
