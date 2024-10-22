@@ -10,7 +10,7 @@ import { rng } from '@/lib/rounding'
 import History from '../trainer/History'
 
 export default function Hero({ ranges }) {
-  const [range, setRange] = useState(ranges[8])
+  const [range, setRange] = useState(ranges[0])
   const [spot, setSpot] = useState(range.spot)
   const [holeCards, setHoleCards] = useState('AdKc')
   const [randomNumber, setRandomNumber] = useState(80)

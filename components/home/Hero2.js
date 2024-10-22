@@ -23,7 +23,7 @@ export default function Hero2() {
         <h3 className='mb-7 max-w-[500px] text-neutral-300 text-sm md:text-base'>
           Create your own custom poker ranges and train them on Hold'em Trainer for free.
         </h3>
-        <div className='flex gap-5'>
+        <div className='flex gap-3'>
           <Button
             theme='nice'
             utilClasses='rounded-sm py-3 px-4 bg-opacity-80'
@@ -32,7 +32,7 @@ export default function Hero2() {
           />
           <Button
             theme='secondary'
-            utilClasses='rounded-sm py-3 px-4 bg-opacity-100 bg-neutral-900'
+            utilClasses='rounded-sm py-3 px-4 bg-opacity-80 bg-neutral-900'
             text='Watch user guide'
             onClick={() => { window.open('https://www.youtube.com/watch?v=z6PkfQihrUc', '_blank') }}
           />
