@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import Matrix from '../editor/Matrix'
-import Legend from '../editor/Legend'
 import { isEqual, sample } from 'lodash'
 import { sampleHoleCards } from '@/lib/cards'
 import Table from '../trainer/Table'
@@ -8,6 +7,7 @@ import RandomNumber from '../trainer/RandomNumber'
 import AnswerButtons from '../trainer/AnswerButtons'
 import History from '../trainer/History'
 import { rng } from '@/lib/rounding'
+import DemoLegend from './DemoLegend'
 
 export default function Steps({ ranges, initialIndex }) {
   const [hovered, setHovered] = useState([])
@@ -109,7 +109,7 @@ export default function Steps({ ranges, initialIndex }) {
             optionHover={null}
             cellWidth={11}
           />
-          <Legend
+          <DemoLegend
             range={range}
             setHovered={setHovered}
             setSelected={() => { }}

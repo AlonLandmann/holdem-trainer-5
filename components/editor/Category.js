@@ -20,9 +20,7 @@ export default function Category({ range, comboArray, name, fraction, strategy, 
   }
 
   return (
-    <div
-      className='flex items-center gap-[3px]'
-    >
+    <div className='flex items-center gap-[3px]'>
       <Button
         theme='secondary'
         utilClasses='h-[30px] w-[30px] p-0 flex justify-center items-center'
