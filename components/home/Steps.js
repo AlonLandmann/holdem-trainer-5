@@ -82,7 +82,7 @@ export default function Steps({ ranges, initialIndex }) {
   return (
     <section className='border-b py-32 px-20'>
       <div className='flex flex-wrap justify-center gap-28 mb-36'>
-        <div className='max-w-[500px]'>
+        <div className='max-w-[500px] text-neutral-300'>
           <h1 className='pt-28 text-4xl mb-8 text-neutral-500'>
             1. Define your strategy
           </h1>
@@ -117,7 +117,7 @@ export default function Steps({ ranges, initialIndex }) {
         </div>
       </div>
       <div className='flex flex-wrap justify-center gap-28'>
-        <div className='max-w-[500px]'>
+        <div className='max-w-[500px] text-neutral-300'>
           <h1 className='pt-28 text-4xl mb-8 text-neutral-500'>
             2. Train it
           </h1>
@@ -132,7 +132,7 @@ export default function Steps({ ranges, initialIndex }) {
             If the strategy for a specific combo is mixed (e.g. 50% fold and 50% call),
             use the random number generator above the answer buttons
             to reach a decision. In the given example, any number from 0.1 to 50.0 would indicate a fold,
-            and any number for 50.1 to 100.0 would indicate a call.
+            and any number from 50.1 to 100.0 would indicate a call.
           </p>
           <p className='leading-8 text-lg text-neutral-300'>
             After after each correct answer the demo will provide you with a new range to try out.
