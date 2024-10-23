@@ -12,7 +12,7 @@ export default function DemoLegendItem({ range, comboArray, strategy, setHovered
       onMouseLeave={() => { setHovered([]) }}
     >
       <div
-        className='w-[15px] h-[15px]'
+        className='w-[15px] h-[15px] rounded-sm'
         style={{ background: strategyColor(range, strategy) }}
       >
 
