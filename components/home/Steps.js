@@ -99,7 +99,7 @@ export default function Steps({ ranges, initialIndex }) {
             Hover over the items in the legend below the matrix to get a clear view of what we would like to do with each combo in the range.
           </p>
         </div>
-        <div className='flex flex-col justify-around gap-5'>
+        <div className='flex flex-col justify-around items-center gap-5'>
           <Matrix
             range={range}
             selected={[]}
@@ -117,7 +117,6 @@ export default function Steps({ ranges, initialIndex }) {
         </div>
       </div>
       <div className='flex flex-wrap justify-center gap-28'>
-
         <div className='max-w-[500px]'>
           <h1 className='pt-28 text-4xl mb-8 text-neutral-500'>
             2. Train it
