@@ -8,11 +8,12 @@ export default function HomeRoot({ ranges, initialIndex, usageInfo }) {
   return (
     <InfoLayout>
       <Hero />
-      <Steps range={ranges[initialIndex]} />
-      <UsageData usageInfo={usageInfo} />
-      <Demo
+      <Steps
         ranges={ranges}
         initialIndex={initialIndex}
+      />
+      <UsageData
+        usageInfo={usageInfo}
       />
     </InfoLayout>
   )
