@@ -1,5 +1,4 @@
 import InfoLayout from '@/components/_layout/InfoLayout'
-import Demo from './Demo'
 import Hero from './Hero'
 import UsageData from './UsageData'
 import Steps from './Steps'

@@ -33,7 +33,7 @@ export default function Hero() {
           <Button
             theme='secondary'
             utilClasses='rounded-sm py-3 px-4 bg-opacity-80 bg-neutral-900'
-            text='Watch user guide'
+            text='Watch our guide'
             onClick={() => { window.open('https://www.youtube.com/watch?v=z6PkfQihrUc', '_blank') }}
           />
         </div>
