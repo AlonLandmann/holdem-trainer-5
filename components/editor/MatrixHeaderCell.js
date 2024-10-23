@@ -24,16 +24,16 @@ export default function MatrixHeaderCell({ value, position, setHovered, blockWid
           : { width: `${suitArrayWidth}px` }
         }
       >
-        <div className='text-[10px]'>
+        <div style={{ fontSize: `${Math.max(8, Math.round(blockWidth / 60 * 10))}px` }}>
           <i className='bi bi-suit-spade-fill'></i>
         </div>
-        <div className='text-[9px]'>
+        <div style={{ fontSize: `${Math.max(7, Math.round(blockWidth / 60 * 9))}px` }}>
           <i className='bi bi-suit-heart-fill'></i>
         </div>
-        <div className='text-[10px]'>
+        <div style={{ fontSize: `${Math.max(8, Math.round(blockWidth / 60 * 10))}px` }}>
           <i className='bi bi-suit-diamond-fill'></i>
         </div>
-        <div className='text-[10px]'>
+        <div style={{ fontSize: `${Math.max(8, Math.round(blockWidth / 60 * 10))}px` }}>
           <i className='bi bi-suit-club-fill'></i>
         </div>
       </div>
