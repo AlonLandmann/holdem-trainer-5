@@ -2,7 +2,7 @@ import Page from '@/components/_layout/Page'
 import HomeRoot from '@/components/home/HomeRoot'
 import prisma from '@/lib/prisma'
 import { toClientFormat } from '@/lib/ranges'
-import { includes, random } from 'lodash'
+import { random } from 'lodash'
 
 export default function HomePage({ ranges, initialIndex, usageInfo, articles }) {
   return (
@@ -43,7 +43,9 @@ export async function getServerSideProps() {
       isPublished: true,
     },
     select: {
+      id: true,
       createdAt: true,
+      updatedAt: true,
       author: {
         select: {
           username: true,
@@ -59,6 +61,7 @@ export async function getServerSideProps() {
     orderBy: {
       id: 'asc'
     },
+    skip: 1,
     take: 3,
   })
 
