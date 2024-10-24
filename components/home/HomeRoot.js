@@ -4,8 +4,9 @@ import UsageData from './UsageData'
 import Steps from './Steps'
 import Highlights from './Highlights'
 import Contact from './Contact'
+import AcademyBanner from './AcademyBanner'
 
-export default function HomeRoot({ ranges, initialIndex, usageInfo }) {
+export default function HomeRoot({ ranges, initialIndex, usageInfo, articles }) {
   return (
     <InfoLayout>
       <Hero />
@@ -17,6 +18,9 @@ export default function HomeRoot({ ranges, initialIndex, usageInfo }) {
         usageInfo={usageInfo}
       />
       <Highlights />
+      <AcademyBanner
+        articles={articles}
+      />
       <Contact />
     </InfoLayout>
   )
