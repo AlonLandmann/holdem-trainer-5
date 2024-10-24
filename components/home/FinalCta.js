@@ -12,7 +12,7 @@ export default function FinalCta() {
       <Button
         theme='nice'
         utilClasses='py-3 px-4'
-        text="Create a free account"
+        text="Create free account"
         onClick={() => { window.open('/academy', '_blank') }}
       />
     </section>
