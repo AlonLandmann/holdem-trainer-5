@@ -3,6 +3,7 @@ import Hero from './Hero'
 import UsageData from './UsageData'
 import Steps from './Steps'
 import Highlights from './Highlights'
+import Contact from './Contact'
 
 export default function HomeRoot({ ranges, initialIndex, usageInfo }) {
   return (
@@ -16,6 +17,7 @@ export default function HomeRoot({ ranges, initialIndex, usageInfo }) {
         usageInfo={usageInfo}
       />
       <Highlights />
+      <Contact />
     </InfoLayout>
   )
 }
