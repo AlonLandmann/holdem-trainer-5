@@ -27,7 +27,7 @@ export default function Hero() {
           <Button
             theme='nice'
             utilClasses='rounded-sm py-3 px-4 bg-opacity-80'
-            text='Create an account'
+            text='Create a free account'
             onClick={() => { window.location = '/auth/signup' }}
           />
           <Button
