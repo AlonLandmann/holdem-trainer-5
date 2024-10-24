@@ -15,7 +15,7 @@ export default function ArticleBannerDemo({ article }) {
       className='flex flex-col cursor-pointer transition hover:bg-[#242424] border rounded overflow-hidden w-72'
       onClick={() => { window.open(`/academy/${article.slug}`, '_blank') }}
     >
-      <div className='relative overflow-hidden min-h-56 w-72 sepia rounded-[3px]'>
+      <div className='relative overflow-hidden min-h-56 w-72 sepia'>
         <Image
           src={article.imageUrl}
           alt='Article Image'
