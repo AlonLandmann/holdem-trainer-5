@@ -20,10 +20,10 @@ export default function HomeRoot({ ranges, initialIndex, usageInfo, articles }) 
         usageInfo={usageInfo}
       />
       <Highlights />
+      <Contact />
       <AcademyBanner
         articles={articles}
       />
-      <Contact />
       <FinalCta />
       <div className='fixed bottom-4 right-4'>
         <Button

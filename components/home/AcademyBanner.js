@@ -3,7 +3,7 @@ import ArticleBannerDemo from './ArticleBannerDemo'
 
 export default function AcademyBanner({ articles }) {
   return (
-    <section className='flex flex-col items-center py-32 px-20 bg-neutral-800 bg-opacity-10 border-t border-b'>
+    <section className='flex flex-col items-center py-32 px-20'>
       <i className='bi bi-book text-7xl text-neutral-600 mb-8'></i>
       <h1 className='text-4xl mb-4'>
         Hold'em Academy

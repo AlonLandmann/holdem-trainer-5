@@ -2,7 +2,7 @@ import A from '../_ui/A'
 
 export default function Contact() {
   return (
-    <section className='flex flex-col items-center py-32 px-20'>
+    <section className='flex flex-col items-center py-32 px-20 bg-neutral-800 bg-opacity-10 border-t border-b'>
       <h1 className='text-4xl mb-2'>
         Reach out
       </h1>
