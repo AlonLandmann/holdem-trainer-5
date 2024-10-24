@@ -22,7 +22,7 @@ export default function Highlights() {
             onClick={() => { window.open('/auth/signup', '_blank') }}
           />
         </div>
-        <div className='justify-self-center'>
+        <div className='justify-self-center self-center'>
           <Image
             src='/postflop.png'
             width={500}
@@ -30,7 +30,7 @@ export default function Highlights() {
             alt='postflop range'
           />
         </div>
-        <div className='justify-self-center'>
+        <div className='justify-self-center self-center'>
           <Image
             src='/all-at-once-full.png'
             width={500}
@@ -74,7 +74,7 @@ export default function Highlights() {
             onClick={() => { window.open('/auth/signup', '_blank') }}
           />
         </div>
-        <div className='justify-self-center'>
+        <div className='justify-self-center self-center'>
           <Image
             src='/categories.png'
             width={350}
@@ -82,10 +82,10 @@ export default function Highlights() {
             alt='categories'
           />
         </div>
-        <div className='justify-self-center'>
+        <div className='justify-self-center self-center'>
           <Image
             src='/slider.png'
-            width={450}
+            width={400}
             height={500}
             alt='brush'
           />
