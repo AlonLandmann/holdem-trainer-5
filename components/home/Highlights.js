@@ -4,9 +4,6 @@ import Button from '../_ui/Button'
 export default function Highlights() {
   return (
     <section className='border-b py-32 px-20 flex flex-col items-center'>
-      <h1>
-
-      </h1>
       <div className='grid grid-cols-2 gap-x-36 gap-y-28'>
         <div className='py-16 max-w-[500px]'>
           <h2 className='text-2xl text-neutral-500 mb-6'>
