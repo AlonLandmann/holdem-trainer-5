@@ -22,18 +22,20 @@ export default function Highlights() {
             onClick={() => { window.open('/auth/signup', '_blank') }}
           />
         </div>
-        <div>
+        <div className='justify-self-center'>
           <Image
             src='/postflop.png'
             width={500}
             height={500}
+            alt='postflop range'
           />
         </div>
-        <div>
+        <div className='justify-self-center'>
           <Image
             src='/all-at-once-full.png'
             width={500}
             height={500}
+            alt='detailed combos'
           />
         </div>
         <div className='py-16 max-w-[500px]'>
@@ -72,18 +74,20 @@ export default function Highlights() {
             onClick={() => { window.open('/auth/signup', '_blank') }}
           />
         </div>
-        <div className='mx-auto'>
+        <div className='justify-self-center'>
           <Image
             src='/categories.png'
             width={350}
             height={500}
+            alt='categories'
           />
         </div>
-        <div>
+        <div className='justify-self-center'>
           <Image
             src='/slider.png'
             width={450}
             height={500}
+            alt='brush'
           />
         </div>
         <div className='py-16 max-w-[500px]'>
