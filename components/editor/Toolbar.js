@@ -3,7 +3,7 @@ import { useUser } from '@/hooks/useUser'
 import handleManagerRequest from '@/lib/managerRequests'
 import { isEqual } from 'lodash'
 import { useRouter } from 'next/router'
-import { useEffect, useMemo, useState } from 'react'
+import { useState } from 'react'
 import toast from 'react-hot-toast'
 
 export default function Toolbar({ allRanges, range, setRange, past, setPast, future, setFuture, error, setViewHotkeyInfo, settings }) {
