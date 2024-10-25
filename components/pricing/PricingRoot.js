@@ -28,7 +28,7 @@ export default function PricingRoot() {
         </OfferCard>
         <OfferCard
           title='HT-Pro'
-          price={2.99}
+          price={7.99}
           btnTheme='nice'
           btnText='upgrade now'
           btnDisabled={false}
@@ -40,7 +40,7 @@ export default function PricingRoot() {
         </OfferCard>
         <OfferCard
           title='HT-Elite'
-          price={3.99}
+          price={9.99}
           btnTheme='nice'
           btnText='upgrade now'
           btnDisabled={false}

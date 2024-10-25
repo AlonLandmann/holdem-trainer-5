@@ -27,8 +27,8 @@ export default function TermsAndConditionsRoot() {
             <p>To access certain features of the Service, you must create an account. You are responsible for maintaining the confidentiality of your account and for all activities that occur under your account.</p>
             <p>Our Service offers subscription plans:</p>
             <ul>
-              <li className='ml-1'>- Pro Plan: $2.99 per month</li>
-              <li className='ml-1'>- Elite Plan: $3.99 per month</li>
+              <li className='ml-1'>- Pro Plan: $7.99 per month</li>
+              <li className='ml-1'>- Elite Plan: $9.99 per month</li>
             </ul>
             <p>All subscriptions are billed on a monthly basis. You can cancel your subscription at any time from your account settings. However, refunds for partial months will not be issued.</p>
           </div>
