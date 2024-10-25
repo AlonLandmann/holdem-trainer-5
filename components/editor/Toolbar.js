@@ -3,19 +3,23 @@ import { useUser } from '@/hooks/useUser'
 import handleManagerRequest from '@/lib/managerRequests'
 import { isEqual } from 'lodash'
 import { useRouter } from 'next/router'
-import { useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import toast from 'react-hot-toast'
 
 export default function Toolbar({ allRanges, range, setRange, past, setPast, future, setFuture, error, setViewHotkeyInfo, settings }) {
   const router = useRouter()
   const [user, setUser] = useUser()
-  const referenceRange = useMemo(() => range, [range.id])
+  const [referenceRange, setReferenceRange] = useState(range)
 
   function handleRangeChange(event) {
-    setRange(allRanges.find(r => String(r.id) === event.target.value))
-    router.push(`/app/editor/${event.target.value}`, undefined, { shallow: true })
-    setPast([])
-    setFuture([])
+    if (isEqual(range, referenceRange) || confirm('You have unsaved changes, which will be lost if you start training. Do you want to proceed anyway?')) {
+      const newRange = allRanges.find(r => String(r.id) === event.target.value)
+      setRange(newRange)
+      setReferenceRange(newRange)
+      router.push(`/app/editor/${event.target.value}`, undefined, { shallow: true })
+      setPast([])
+      setFuture([])
+    }
   }
 
   function handleUndo() {
@@ -48,6 +52,8 @@ export default function Toolbar({ allRanges, range, setRange, past, setPast, fut
     }
 
     await handleManagerRequest('/api/ranges/edit', 'PUT', setUser, range)
+
+    setReferenceRange(range)
 
     // STILL NOT SURE WHY range.successors IS SOMETIMES UNDEFINED HERE
 
