@@ -45,7 +45,7 @@ export async function getServerSideProps(context) {
     skip: Math.max(0, random(nrOtherArticles - 3)),
     select: {
       id: true,
-      updatedAt: true,
+      publishedAt: true,
       author: {
         select: {
           username: true

@@ -18,6 +18,7 @@ export default async function handler(req, res) {
               }
             },
             isPublished: updatedArticle.isPublished,
+            publishedAt: updatedArticle.publishedAt,
             imageUrl: updatedArticle.imageUrl,
             readTime: updatedArticle.readTime,
             level: updatedArticle.level,

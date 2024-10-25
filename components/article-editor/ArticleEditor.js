@@ -105,6 +105,15 @@ export default function ArticleEditor({ copy, setCopy, authors }) {
         <option value='0'>Unpublished</option>
       </select>
       <label className={labelStyle}>
+        Date
+      </label>
+      <Input
+        name='publishedAt'
+        type='text'
+        value={copy.publishedAt}
+        onChange={e => { handleChange(e, value => value) }}
+      />
+      <label className={labelStyle}>
         Image URL
       </label>
       <Input
@@ -119,7 +128,7 @@ export default function ArticleEditor({ copy, setCopy, authors }) {
       <textarea
         name='content'
         className='resize-none'
-        rows={21}
+        rows={19}
         spellCheck={false}
         value={copy.content}
         onChange={e => { handleChange(e, value => value) }}

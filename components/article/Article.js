@@ -39,7 +39,7 @@ export default function Article({ article, suggestions }) {
             {article.author.username}
           </div>
           <div>
-            {article.updatedAt.slice(0, 10)}
+            {article.publishedAt}
           </div>
         </div>
         {validateUrl(article.imageUrl) &&

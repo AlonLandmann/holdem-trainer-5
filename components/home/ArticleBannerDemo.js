@@ -39,7 +39,7 @@ export default function ArticleBannerDemo({ article }) {
             <span>{displayText}</span>
           </div>
           <div className='ml-auto'>
-            {article.updatedAt.slice(0, 10)}
+            {article.publishedAt}
           </div>
         </div>
       </div>
