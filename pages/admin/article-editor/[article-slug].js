@@ -3,13 +3,12 @@ import ArticleEditorRoot from '@/components/article-editor/ArticleEditorRoot'
 import prisma from '@/lib/prisma'
 import { random } from 'lodash'
 
-export default function ArticleEditorPage({ article, suggestions, authors }) {
+export default function ArticleEditorPage({ article, suggestions }) {
   return (
     <Page title='Article Editor'>
       <ArticleEditorRoot
         article={JSON.parse(article)}
         suggestions={JSON.parse(suggestions)}
-        authors={authors}
       />
     </Page>
   )
@@ -21,7 +20,6 @@ export async function getServerSideProps(context) {
       slug: context.query['article-slug']
     },
     include: {
-      author: true,
       ranges: true,
     }
   })
@@ -46,12 +44,7 @@ export async function getServerSideProps(context) {
     skip: Math.max(0, random(nrOtherArticles - 3)),
     select: {
       id: true,
-      updatedAt: true,
-      author: {
-        select: {
-          username: true
-        }
-      },
+      publishedAt: true,
       imageUrl: true,
       readTime: true,
       level: true,
@@ -61,21 +54,10 @@ export async function getServerSideProps(context) {
     },
   })
 
-  const authors = await prisma.user.findMany({
-    where: {
-      role: 'admin'
-    },
-    select: {
-      id: true,
-      username: true,
-    }
-  })
-
   return {
     props: {
       article: JSON.stringify(article),
       suggestions: JSON.stringify(suggestions),
-      authors,
     }
   }
 }

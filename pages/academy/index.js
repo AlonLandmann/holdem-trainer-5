@@ -15,9 +15,6 @@ export async function getServerSideProps() {
     where: {
       isPublished: true,
     },
-    include: {
-      author: true,
-    },
     orderBy: {
       id: 'asc'
     }

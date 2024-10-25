@@ -43,9 +43,6 @@ export default function ArticleBanner({ article }) {
             {article.readTime}
           </div>
           <div className='ml-auto'>
-            {article.author.username}
-          </div>
-          <div>
             {article.publishedAt}
           </div>
         </div>

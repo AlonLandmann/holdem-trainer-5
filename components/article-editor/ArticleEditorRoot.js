@@ -3,7 +3,7 @@ import ArticleEditor from '@/components/article-editor/ArticleEditor'
 import { useState } from 'react'
 import { useUser } from '@/hooks/useUser'
 
-export default function ArticleEditorRoot({ article, suggestions, authors }) {
+export default function ArticleEditorRoot({ article, suggestions }) {
   const [user, setUser] = useUser()
   const [copy, setCopy] = useState(article)
 
@@ -12,7 +12,6 @@ export default function ArticleEditorRoot({ article, suggestions, authors }) {
       <ArticleEditor
         copy={copy}
         setCopy={setCopy}
-        authors={authors}
       />
       <div className='bg-neutral-900'>
         <Article

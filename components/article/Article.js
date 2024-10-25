@@ -17,7 +17,7 @@ export default function Article({ article, suggestions }) {
   return (
     <div className='w-full max-w-[640px] mx-auto px-5 py-12 fle flex-col gap-5'>
       <section className='flex flex-col gap-5'>
-        <h1 className='text-3xl capitalize'>
+        <h1 className='text-3xl'>
           {article.title}
         </h1>
         <p className='pb-5 border-b text-neutral-500'>
@@ -36,9 +36,6 @@ export default function Article({ article, suggestions }) {
             {article.readTime}
           </div>
           <div className='ml-auto'>
-            {article.author.username}
-          </div>
-          <div>
             {article.publishedAt}
           </div>
         </div>

@@ -4,7 +4,7 @@ import { produce } from 'immer'
 import { kebabCase } from 'lodash'
 import toast from 'react-hot-toast'
 
-export default function ArticleEditor({ copy, setCopy, authors }) {
+export default function ArticleEditor({ copy, setCopy }) {
   const labelStyle = 'self-start mt-[10px] text-neutral-400'
 
   function handleChange(event, modifier) {
@@ -78,21 +78,6 @@ export default function ArticleEditor({ copy, setCopy, authors }) {
         onChange={e => { handleChange(e, value => Number(value)) }}
       />
       <label className={labelStyle}>
-        Author
-      </label>
-      <select
-        name='authorId'
-        className='appearance-none'
-        value={copy.authorId}
-        onChange={e => { handleChange(e, value => Number(value)) }}
-      >
-        {authors.map(author => (
-          <option key={'author' + author.id} value={String(author.id)}>
-            {author.username}
-          </option>
-        ))}
-      </select>
-      <label className={labelStyle}>
         Status
       </label>
       <select
@@ -128,7 +113,7 @@ export default function ArticleEditor({ copy, setCopy, authors }) {
       <textarea
         name='content'
         className='resize-none'
-        rows={19}
+        rows={21}
         spellCheck={false}
         value={copy.content}
         onChange={e => { handleChange(e, value => value) }}

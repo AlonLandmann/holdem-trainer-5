@@ -20,7 +20,6 @@ export async function getServerSideProps(context) {
       slug: context.query['article-slug']
     },
     include: {
-      author: true,
       ranges: true,
     }
   })
@@ -46,11 +45,6 @@ export async function getServerSideProps(context) {
     select: {
       id: true,
       publishedAt: true,
-      author: {
-        select: {
-          username: true
-        }
-      },
       imageUrl: true,
       readTime: true,
       level: true,

@@ -44,13 +44,7 @@ export async function getServerSideProps() {
     },
     select: {
       id: true,
-      createdAt: true,
-      updatedAt: true,
-      author: {
-        select: {
-          username: true,
-        }
-      },
+      publishedAt: true,
       imageUrl: true,
       readTime: true,
       level: true,

@@ -12,11 +12,6 @@ export default async function handler(req, res) {
             id: updatedArticle.id
           },
           data: {
-            author: {
-              connect: {
-                id: updatedArticle.authorId
-              }
-            },
             isPublished: updatedArticle.isPublished,
             publishedAt: updatedArticle.publishedAt,
             imageUrl: updatedArticle.imageUrl,
