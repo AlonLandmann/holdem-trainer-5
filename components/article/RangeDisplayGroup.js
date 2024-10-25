@@ -1,8 +1,12 @@
 import RangeDisplayCard from '@/components/article/RangeDisplayCard'
 
+// 418 + 418 + 40 = 916
+// 916 - 640 = 276
+// 276 / 2 = 138
+
 export default function RangeDisplayGroup({ rangeIds }) {
   return (
-    <div className='min-w-[1000px] grid grid-cols-2 items-center gap-10'>
+    <div className='min-w-[916px] -translate-x-[138px] flex flex-wrap justify-center items-center gap-10 py-5'>
       {rangeIds.map(rangeId => (
         <RangeDisplayCard
           key={rangeId}
