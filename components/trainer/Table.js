@@ -4,6 +4,8 @@ import TableChips from '@/components/trainer/TableChips'
 import TableDealerButton from '@/components/trainer/TableDealerButton'
 import TableSeat from '@/components/trainer/TableSeat'
 
+// the red we used before: #c43333
+
 export default function Table({ spot, holeCards, heroPosition, flash }) {
   return (
     <div className='relative h-[510px] w-[710px] flex justify-center items-center'>
@@ -20,7 +22,7 @@ export default function Table({ spot, holeCards, heroPosition, flash }) {
         h-[350px] w-[640px] border rounded-[175px] flex
         justify-center items-center bg-[#181818]
         ${flash === 'correct' ? 'border-[#66c24a]' : ''}
-        ${flash === 'incorrect' ? 'border-[#c43333]' : ''}
+        ${flash === 'incorrect' ? 'border-neutral-6001' : ''}
       `}>
         <TableBoard spot={spot} />
         <div className={`
