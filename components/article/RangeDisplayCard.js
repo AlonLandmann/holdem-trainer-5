@@ -21,11 +21,7 @@ export default function RangeDisplayCard({ rangeId }) {
     })()
   }, [rangeId])
 
-  async function handleCopy() {
-
-  }
-
-  async function handleTrain() {
+  async function handleDuplicate() {
 
   }
 
@@ -36,23 +32,15 @@ export default function RangeDisplayCard({ rangeId }) {
       </h1>
       <RangeHistory range={range} />
       <MatrixDisplay range={range} />
-      <div className='w-[418px] flex items-start justify-between gap-5'>
+      <div className='w-[418px] flex items-start justify-between gap-16'>
         <RangeLegend range={range} />
         <div className='flex items-center gap-1 py-1'>
           <Button
-            theme='secondary'
-            utilClasses='py-3 px-4 rounded-none'
+            theme='nice'
+            utilClasses='py-3 px-4 rounded-sm'
             icon='copy'
-            text='Copy'
-            onClick={handleCopy}
-            useQueue
-          />
-          <Button
-            theme='primary'
-            utilClasses='py-3 px-4 rounded-none'
-            icon='crosshair'
-            text='Train Now'
-            onClick={handleTrain}
+            text='Duplicate'
+            onClick={handleDuplicate}
             useQueue
           />
         </div>

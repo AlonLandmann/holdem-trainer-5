@@ -1,6 +1,6 @@
 import Highlight from '@/components/article/Highlight'
 import List from '@/components/article/List'
-import RangeDisplayCard from '@/components/article/RangeDisplayCard'
+import RangeDisplayGroup from './RangeDisplayGroup'
 import Table from '@/components/article/Table'
 import 'katex/dist/katex.min.css'
 import { InlineMath, BlockMath } from 'react-katex'
@@ -176,7 +176,10 @@ export default function TeX({ tex }) {
 
   function pushRange() {
     parsed.push(
-      <RangeDisplayCard rangeId={Number(main)} />
+      <RangeDisplayGroup
+        key={uuid()}
+        rangeIds={main.split(',')}
+      />
     )
 
     main = ''
