@@ -68,6 +68,11 @@ export default function FaqRoot() {
               services will try to get you to play perfectly from the start, which can often be overwhelming. With Hold'em Trainer,
               you can approach your understanding the game methodically, and at your own pace.
             </SupportFaqItem>
+            <SupportFaqItem question="What games and blind structures are supported by Hold'em Trainer?">
+              Currently, Hold'em Trainer only supports 6-max cash-game structures with 0.5 bb - 1 bb blinds.
+              We are working on making more games and structures available in the near future.
+              Follow us on our social media channels for updates on new features.
+            </SupportFaqItem>
             <SupportFaqItem question='Setting up ranges seems difficult and time consuming, is there a faster way?'>
               First, make sure you are using the
               <Button
