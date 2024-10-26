@@ -7,12 +7,18 @@ export default function OfferCard({
   btnTheme,
   btnText,
   btnDisabled,
+  popular = false,
 }) {
   const fullNr = Math.floor(price).toFixed(0)
   const cents = Math.floor(100 * (price - Math.floor(price)))
 
   return (
-    <div className='py-5 px-10 w-[320px] border rounded flex flex-col'>
+    <div className='relative py-5 px-10 w-[320px] border rounded flex flex-col overflow-hidden'>
+      {popular &&
+        <div className='absolute top-4 -left-9 pb-[2px] -rotate-45 px-10 rounded-sm bg-[#914343] text-[#deb1b1]'>
+          popular
+        </div>
+      }
       <div className='py-4 pb-8 flex justify-center items-center text-neutral-400 text-lg'>
         {title}
       </div>

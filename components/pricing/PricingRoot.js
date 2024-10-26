@@ -32,6 +32,7 @@ export default function PricingRoot() {
           btnTheme='nice'
           btnText='upgrade now'
           btnDisabled={false}
+          popular
         >
           <div>Manage <span className='text-neutral-200'>up to 100</span> custom ranges</div>
           <div><span className='text-neutral-200'>Unlimited</span> parallel training</div>
