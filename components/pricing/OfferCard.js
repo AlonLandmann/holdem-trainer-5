@@ -54,10 +54,10 @@ export default function OfferCard({
       <div className='py-8 mb-10 flex flex-col gap-6 text-neutral-500'>
         {children}
       </div>
-      <form className='mt-auto' action='/api/stripe/checkout-sessions' method='POST'>
+      <form className='mt-auto' action={`/api/stripe/${title}`} method='POST'>
         <Button
           theme={btnTheme}
-          utilClasses='py-3 px-4'
+          utilClasses='py-3 px-4 w-full'
           text={btnText}
           disabled={btnDisabled}
           type='submit'
