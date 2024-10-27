@@ -19,7 +19,8 @@ export default async function handler(req, res) {
           mode: 'subscription',
           success_url: `${req.headers.origin}/pricing?success=true`,
           cancel_url: `${req.headers.origin}/pricing?canceled=true`,
-        });
+        })
+
         res.redirect(303, session.url);
 
       default:
