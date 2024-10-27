@@ -101,7 +101,7 @@ export default function SettingsMain({ user, setUser }) {
             <Button
               theme='link'
               utilClasses='underline'
-              text={user.membership === 'HT-Basic' ? 'upgrade' : 'change'}
+              text={user.membership === 'basic' ? 'upgrade' : 'change'}
               onClick={() => { window.open('/pricing', '_blank') }}
             />
           </Setting>
