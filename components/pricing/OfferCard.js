@@ -1,4 +1,7 @@
 import Button from '../_ui/Button'
+import { loadStripe } from '@stripe/stripe-js'
+
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
 
 export default function OfferCard({
   title,
@@ -51,12 +54,15 @@ export default function OfferCard({
       <div className='py-8 mb-10 flex flex-col gap-6 text-neutral-500'>
         {children}
       </div>
-      <Button
-        theme={btnTheme}
-        utilClasses='mt-auto py-3 px-4'
-        text={btnText}
-        disabled={btnDisabled}
-      />
+      <form className='mt-auto' action='/api/stripe/checkout-sessions' method='POST'>
+        <Button
+          theme={btnTheme}
+          utilClasses='py-3 px-4'
+          text={btnText}
+          disabled={btnDisabled}
+          type='submit'
+        />
+      </form>
     </div>
   )
 }
