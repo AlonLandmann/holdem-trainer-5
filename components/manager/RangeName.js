@@ -3,6 +3,7 @@ import Input from '@/components/_ui/Input'
 import { useUser } from '@/hooks/useUser'
 import handleManagerRequest from '@/lib/managerRequests'
 import { useEffect, useState } from 'react'
+import toast from 'react-hot-toast'
 
 export default function RangeName({ range, renaming, setRenaming }) {
   const [user, setUser] = useUser()
@@ -15,9 +16,13 @@ export default function RangeName({ range, renaming, setRenaming }) {
   }, [range])
 
   async function handleRename() {
-    await handleManagerRequest(`/api/ranges/rename?rangeId=${range.id}`, 'PATCH', setUser, {
-      name: renameValue
-    })
+    if (renameValue.length < 2 || renameValue.length > 50) {
+      toast.error('Range Names should be between 2 and 50 characters long.')
+    } else {
+      await handleManagerRequest(`/api/ranges/rename?rangeId=${range.id}`, 'PATCH', setUser, {
+        name: renameValue
+      })
+    }
   }
 
   return (
@@ -28,7 +33,7 @@ export default function RangeName({ range, renaming, setRenaming }) {
       >
         {!renaming &&
           <>
-            <h1 className='text-lg'>
+            <h1 className='text-lg truncate'>
               {range.name}
             </h1>
             <Button
