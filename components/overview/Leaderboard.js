@@ -36,7 +36,7 @@ export default function Leaderboard({ user }) {
             <div className='font-mono min-w-6 text-neutral-500 text-right'>
               {i + 1}.
             </div>
-            <div className='text-neutral-300'>
+            <div className='text-neutral-300 truncate'>
               {rank.username ? rank.username : `User ${rank.email.split('@')[0]}`}
             </div>
             <div className='font-mono min-w-48 text-right ml-auto'>
