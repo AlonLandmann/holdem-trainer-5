@@ -1,14 +1,27 @@
 import Button from '@/components/_ui/Button'
 import { useUser } from '@/hooks/useUser'
 import handleManagerRequest from '@/lib/managerRequests'
+import toast from 'react-hot-toast'
+import Confirm from '../_ui/Confirm'
 
 export default function RangeUiButtons({ range, folderLength }) {
   const [user, setUser] = useUser()
 
-  async function handleDelete() {
-    if (confirm(`Are you sure you want to delete the range '${range.name}'? This action cannot be undone.`)) {
-      await handleManagerRequest(`/api/ranges/delete?rangeId=${range.id}&rangeIndex=${range.index}&folderId=${range.folderId}`, 'DELETE', setUser)
-    }
+  function handleDelete() {
+    toast.dismiss()
+    const toastId = toast.custom(
+      <Confirm
+        prompt={`Are you sure you want to delete the range '${range.name}'? This action cannot be undone.`}
+        onCancel={async () => toast.remove(toastId) }
+        onConfirm={async () => {
+          await handleManagerRequest(`/api/ranges/delete?rangeId=${range.id}&rangeIndex=${range.index}&folderId=${range.folderId}`, 'DELETE', setUser)
+          toast.remove(toastId)
+        }}
+      />,
+      {
+        duration: Infinity,
+      }
+    )
   }
 
   async function handleDuplicate() {
@@ -49,7 +62,6 @@ export default function RangeUiButtons({ range, folderLength }) {
         theme='tertiary'
         icon='trash3'
         onClick={handleDelete}
-        useQueue
       />
       <Button
         theme='tertiary'
