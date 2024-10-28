@@ -2,14 +2,12 @@ import Page from '@/components/_layout/Page'
 import HomeRoot from '@/components/home/HomeRoot'
 import prisma from '@/lib/prisma'
 import { toClientFormat } from '@/lib/ranges'
-import { random } from 'lodash'
 
 export default function HomePage({ ranges, initialIndex, usageInfo, articles }) {
   return (
     <Page title="Hold'em Trainer">
       <HomeRoot
         ranges={JSON.parse(ranges)}
-        initialIndex={initialIndex}
         usageInfo={JSON.parse(usageInfo)}
         articles={JSON.parse(articles)}
       />
@@ -27,8 +25,6 @@ export async function getServerSideProps() {
       }
     }
   })
-
-  const initialIndex = random(ranges.length - 1)
 
   const nrUsers = await prisma.user.count({})
   const nrRanges = await prisma.range.count({})
@@ -62,7 +58,6 @@ export async function getServerSideProps() {
   return {
     props: {
       ranges: JSON.stringify(ranges.map(r => toClientFormat(r))),
-      initialIndex,
       usageInfo: JSON.stringify({ nrUsers, nrRanges, nrCombos: nrCombos._sum.total }),
       articles: JSON.stringify(articles)
     }

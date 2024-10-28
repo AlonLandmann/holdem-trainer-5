@@ -9,12 +9,12 @@ import History from '../trainer/History'
 import { rng } from '@/lib/rounding'
 import DemoLegend from './DemoLegend'
 
-export default function Steps({ ranges, initialIndex }) {
+export default function Steps({ ranges }) {
   const [hovered, setHovered] = useState([])
-  const [range, setRange] = useState(ranges[initialIndex])
+  const [range, setRange] = useState(ranges[8])
   const [spot, setSpot] = useState(range.spot)
-  const [holeCards, setHoleCards] = useState('AdKc')
-  const [randomNumber, setRandomNumber] = useState(80)
+  const [holeCards, setHoleCards] = useState('AdKd')
+  const [randomNumber, setRandomNumber] = useState(77.3)
   const [flash, setFlash] = useState(null)
   const [timer, setTimer] = useState(null)
 
@@ -69,14 +69,23 @@ export default function Steps({ ranges, initialIndex }) {
   function handleCheckAnswer(option) {
     if (isCorrect(option)) {
       activateFlash('correct')
-      const newRange = sample(ranges)
-      setRange(newRange)
-      setSpot(newRange.spot)
-      setHoleCards(sampleHoleCards(newRange))
+      // const newRange = sample(ranges)
+      // setRange(newRange)
+      // setSpot(newRange.spot)
+      setHoleCards(sampleHoleCards(range))
       setRandomNumber(rng())
     } else {
       activateFlash('incorrect')
     }
+  }
+
+  // handle range change
+  function handleRangeChange(event) {
+    const newRange = ranges.filter(rCandidate => rCandidate.id === Number(event.target.value))[0]
+    setRange(newRange)
+    setSpot(newRange.spot)
+    setHoleCards(sampleHoleCards(newRange))
+    setRandomNumber(rng())
   }
 
   return (
@@ -86,8 +95,20 @@ export default function Steps({ ranges, initialIndex }) {
           <h1 className='pt-28 text-4xl mb-8 text-neutral-500'>
             1. Define your strategy
           </h1>
+          <select
+            name='range'
+            className='appearance-none min-w-44 mb-5'
+            value={String(range.id)}
+            onChange={handleRangeChange}
+          >
+            {ranges.map(r => (
+              <option key={'select-range' + r.id} value={String(r.id)}>
+                {r.name}
+              </option>
+            ))}
+          </select>
           <p className='leading-8 text-lg text-neutral-300 mb-5'>
-            In our editor you will be able to define ranges such as the one presented here ({range.name}).
+            In our editor you will be able to define ranges such as the one presented here. Feel free to select another example from the drop down menu.
             Each cell in the matrix corresponds to a particular combo of hole cards.
             Each larger grid cell contains combos with cards of the same value, and each smaller cell specifies the exact suits.
           </p>
@@ -99,7 +120,7 @@ export default function Steps({ ranges, initialIndex }) {
             Hover over the items in the legend below the matrix to get a clear view of what we would like to do with each combo in the range.
           </p>
         </div>
-        <div className='flex flex-col justify-around items-center gap-5'>
+        <div className='flex flex-col justify-around items-start gap-5'>
           <Matrix
             range={range}
             selected={[]}

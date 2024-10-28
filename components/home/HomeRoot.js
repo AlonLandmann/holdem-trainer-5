@@ -8,13 +8,12 @@ import AcademyBanner from './AcademyBanner'
 import FinalCta from './FinalCta'
 import Button from '../_ui/Button'
 
-export default function HomeRoot({ ranges, initialIndex, usageInfo, articles }) {
+export default function HomeRoot({ ranges, usageInfo, articles }) {
   return (
     <InfoLayout isHome>
       <Hero />
       <Steps
         ranges={ranges}
-        initialIndex={initialIndex}
       />
       <UsageData
         usageInfo={usageInfo}
