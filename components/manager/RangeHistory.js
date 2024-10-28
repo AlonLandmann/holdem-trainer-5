@@ -1,6 +1,6 @@
 export default function RangeHistory({ range }) {
   return (
-    <div className='text-neutral-600 mb-auto flex gap-2 z-40'>
+    <div className='text-neutral-600 mb-auto flex gap-2 z-40 max-w-[418px] truncate'>
       {range.history.map((action, i) => (
         <div key={'action' + i}>
           {action.cards
