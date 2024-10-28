@@ -4,7 +4,7 @@ import toast from 'react-hot-toast'
 import A from '../_ui/A'
 import Button from '../_ui/Button'
 
-export default function InfoNavbar() {
+export default function InfoNavbar({ isHome = false }) {
   const [user, setUser, isLoading] = useUser()
   const [ddInView, setDdInView] = useState(false)
 
@@ -45,11 +45,13 @@ export default function InfoNavbar() {
       {!isLoading &&
         <div className='flex items-center px-3'>
           <div className='hidden md:flex gap-8 mr-7'>
-            <A
-              text={user ? 'My Ranges' : 'Demo'}
-              href='/app/manager'
-              utilClasses=' transition text-sm font-medium'
-            />
+            {user &&
+              <A
+                text={'My Ranges'}
+                href='/app/manager'
+                utilClasses=' transition text-sm font-medium'
+              />
+            }
             <A
               text='Academy'
               href='/academy'
@@ -70,12 +72,20 @@ export default function InfoNavbar() {
                 onClick={() => { setDdInView(prev => !prev) }}
               />
             }
-            {!user &&
+            {!user && !isHome &&
               <Button
                 theme='nice'
                 utilClasses='py-3 px-4'
                 text='Log in'
                 onClick={() => { window.location = '/auth/login' }}
+              />
+            }
+            {!user && isHome &&
+              <Button
+                theme='nice'
+                utilClasses='py-3 px-4'
+                text='Create free account'
+                onClick={() => { window.location = '/auth/signup' }}
               />
             }
             {user &&
@@ -94,11 +104,13 @@ export default function InfoNavbar() {
           fixed w-full top-14 right-0 flex flex-col
           bg-neutral-900 border-b ${user ? '' : 'md:border-hidden'}
         `}>
-          <A
-            text={user ? 'My Ranges' : 'Demo'}
-            href='/app/manager'
-            utilClasses=' p-5 text-start md:hidden'
-          />
+          {user &&
+            <A
+              text='My Ranges'
+              href='/app/manager'
+              utilClasses=' p-5 text-start md:hidden'
+            />
+          }
           <A
             text='Academy'
             href='/academy'

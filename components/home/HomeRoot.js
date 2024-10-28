@@ -10,7 +10,7 @@ import Button from '../_ui/Button'
 
 export default function HomeRoot({ ranges, initialIndex, usageInfo, articles }) {
   return (
-    <InfoLayout>
+    <InfoLayout isHome>
       <Hero />
       <Steps
         ranges={ranges}
