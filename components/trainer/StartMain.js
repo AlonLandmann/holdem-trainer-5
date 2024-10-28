@@ -41,7 +41,7 @@ export default function StartMain({ user, selected, setSelected }) {
                   isSelected={selected.includes(range.id)}
                   onClick={() => { toggleRange(range.id) }}
                 />
-                <div className='text-neutral-300 text-sm'>
+                <div className='text-neutral-300 text-sm truncate'>
                   {range.name}
                 </div>
               </div>

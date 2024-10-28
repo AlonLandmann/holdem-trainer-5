@@ -122,7 +122,7 @@ export default function Toolbar({ allRanges, range, setRange, past, setPast, fut
     <div className='border-b px-3 flex gap-4 h-[49px]'>
       <select
         name='range'
-        className='appearance-none mr-auto self-center py-2 px-3 bg-neutral-800 text-neutral-300 border-none focus:border-none'
+        className='appearance-none mr-auto self-center py-2 px-3 bg-neutral-800 text-neutral-300 border-none focus:border-none max-w-60'
         value={String(range.id)}
         onChange={handleRangeChange}
       >
