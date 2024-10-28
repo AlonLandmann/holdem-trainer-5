@@ -12,7 +12,7 @@ export default async function handler(req, res) {
         const session = await stripe.checkout.sessions.create({
           line_items: [
             {
-              price: PRODUCTS[req.query.product],
+              price: PRODUCTS[req.query.productName],
               quantity: 1,
             }
           ],

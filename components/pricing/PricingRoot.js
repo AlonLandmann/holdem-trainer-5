@@ -21,6 +21,7 @@ export default function PricingRoot() {
           </div>
           <div className='px-5 flex justify-center gap-6 mb-8'>
             <OfferCard
+              user={user}
               title='HT-Basic'
               price={0}
               btnTheme='nice'
@@ -38,12 +39,18 @@ export default function PricingRoot() {
               <div>Duplicate ranges directly from introductory articles</div>
             </OfferCard>
             <OfferCard
+              user={user}
               title='HT-Pro'
               price={7.99}
               popular
               btnTheme='nice'
-              btnText='upgrade now'
-              btnDisabled={false}
+              btnText={(!user || user.membership === 'basic')
+                ? 'upgrade now'
+                : user.membership == 'pro'
+                  ? 'active'
+                  : 'change plan'
+              }
+              btnDisabled={user && user.membership === 'pro'}
             >
               <div>Manage up to 100 custom ranges</div>
               <div>Unlimited parallel training</div>
@@ -51,11 +58,15 @@ export default function PricingRoot() {
               <div>Cancel at any time</div>
             </OfferCard>
             <OfferCard
+              user={user}
               title='HT-Elite'
               price={9.99}
               btnTheme='nice'
-              btnText='upgrade now'
-              btnDisabled={false}
+              btnText={(!user || user.membership !== 'elite')
+                ? 'upgrade now'
+                : 'active'
+              }
+              btnDisabled={user && user.membership === 'elite'}
             >
               <div>Unlimited range management</div>
               <div>Unlimited parallel training</div>

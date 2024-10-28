@@ -4,6 +4,7 @@ import { loadStripe } from '@stripe/stripe-js'
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
 
 export default function OfferCard({
+  user,
   title,
   price,
   children,
@@ -54,7 +55,7 @@ export default function OfferCard({
       <div className='py-8 mb-10 flex flex-col gap-6 text-neutral-500'>
         {children}
       </div>
-      <form className='mt-auto' action={`/api/stripe/${title}`} method='POST'>
+      <form className='mt-auto' action={`/api/stripe/checkout?productName=${title}`} method='POST'>
         <Button
           theme={btnTheme}
           utilClasses='py-3 px-4 w-full'
