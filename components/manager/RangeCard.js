@@ -5,9 +5,11 @@ import RangeLegend from '@/components/manager/RangeLegend'
 import RangeName from '@/components/manager/RangeName'
 import RangeUiButtons from '@/components/manager/RangeUiButtons'
 import { useLoadingQueue } from '@/hooks/useLoadingQueue'
+import { useState } from 'react'
 
 export default function RangeCard({ range, selectedRanges, setSelectedRanges, folderLength }) {
   const [loadingQueue, setLoadingQueue] = useLoadingQueue()
+  const [renaming, setRenaming] = useState(false)
 
   async function handleSelect() {
     setSelectedRanges(prev => {
@@ -33,10 +35,14 @@ export default function RangeCard({ range, selectedRanges, setSelectedRanges, fo
   return (
     <div
       className='relative bg-neutral-900 p-2 rounded'
-      draggable
+      draggable={!renaming}
       onDragStart={handleDragStart}
     >
-      <RangeName range={range} />
+      <RangeName
+        range={range}
+        renaming={renaming}
+        setRenaming={setRenaming}
+      />
       <RangeHistory range={range} />
       <div className='flex gap-1'>
         <MatrixDisplay range={range} />

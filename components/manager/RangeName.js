@@ -4,10 +4,9 @@ import { useUser } from '@/hooks/useUser'
 import handleManagerRequest from '@/lib/managerRequests'
 import { useEffect, useState } from 'react'
 
-export default function RangeName({ range }) {
+export default function RangeName({ range, renaming, setRenaming }) {
   const [user, setUser] = useUser()
   const [renameInView, setRenameInView] = useState(false)
-  const [renaming, setRenaming] = useState(false)
   const [renameValue, setRenameValue] = useState(range.name)
 
   useEffect(() => {
