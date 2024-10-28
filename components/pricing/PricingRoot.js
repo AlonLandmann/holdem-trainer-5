@@ -3,9 +3,23 @@ import OfferCard from './OfferCard'
 import PricingFaqItem from './PricingFaqItem'
 import A from '../_ui/A'
 import { useUser } from '@/hooks/useUser'
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
+import toast from 'react-hot-toast'
 
 export default function PricingRoot() {
+  const router = useRouter()
   const [user, setUser, isLoading] = useUser()
+  
+  useEffect(() => {
+    if (router.query.success) {
+      toast.success(`Successfully subscribed to ${router.query.productName}.`)
+    }
+
+    if (router.query.canceled) {
+      toast.error('Order canceled.')
+    }
+  }, [router.isReady])
 
   return (
     <InfoLayout>

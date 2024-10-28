@@ -1,4 +1,6 @@
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
+import Stripe from 'stripe'
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 
 const PRODUCTS = {
   'HT-Pro': 'price_1PO8mbLidVQLu7tO3heUSxkT',
@@ -17,7 +19,7 @@ export default async function handler(req, res) {
             }
           ],
           mode: 'subscription',
-          success_url: `${req.headers.origin}/pricing?success=true`,
+          success_url: `${req.headers.origin}/pricing?success=true&productName=${req.query.productName}`,
           cancel_url: `${req.headers.origin}/pricing?canceled=true`,
         })
 
