@@ -12,7 +12,7 @@ export default function Confirm({
       <p className='text-neutral-200'>
         {prompt}
       </p>
-      <div className='flex gap-3 self-end'>
+      <div className='flex gap-2 self-end'>
         <Button
           theme='nice'
           utilClasses='py-3 px-4'
@@ -21,7 +21,7 @@ export default function Confirm({
           useQueue
         />
         <Button
-          theme='nice'
+          theme='secondary'
           utilClasses='py-3 px-4'
           text={cancelText}
           onClick={onCancel}

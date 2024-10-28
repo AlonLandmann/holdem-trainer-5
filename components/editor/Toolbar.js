@@ -5,6 +5,7 @@ import { isEqual } from 'lodash'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
+import Confirm from '../_ui/Confirm'
 
 export default function Toolbar({ allRanges, range, setRange, past, setPast, future, setFuture, error, setViewHotkeyInfo, settings }) {
   const router = useRouter()
@@ -12,13 +13,33 @@ export default function Toolbar({ allRanges, range, setRange, past, setPast, fut
   const [referenceRange, setReferenceRange] = useState(range)
 
   function handleRangeChange(event) {
-    if (isEqual(range, referenceRange) || confirm('You have unsaved changes, which will be lost if you start training. Do you want to proceed anyway?')) {
+    function executeRangeChange() {
       const newRange = allRanges.find(r => String(r.id) === event.target.value)
       setRange(newRange)
       setReferenceRange(newRange)
       router.push(`/app/editor/${event.target.value}`, undefined, { shallow: true })
       setPast([])
       setFuture([])
+    }
+
+    if (isEqual(range, referenceRange)) {
+      executeRangeChange()
+    } else {
+      toast.dismiss()
+
+      const toastId = toast.custom(
+        <Confirm
+          prompt='You have unsaved changes, which will be lost if you start training. Do you want to proceed anyway?'
+          onCancel={async () => toast.remove(toastId)}
+          onConfirm={async () => {
+            executeRangeChange()
+            toast.remove(toastId)
+          }}
+        />,
+        {
+          duration: Infinity,
+        }
+      )
     }
   }
 
@@ -57,18 +78,37 @@ export default function Toolbar({ allRanges, range, setRange, past, setPast, fut
 
     // STILL NOT SURE WHY range.successors IS SOMETIMES UNDEFINED HERE
 
-    if (
-      range.successors &&
-      range.successors.length > 0 &&
-      (
-        settings.afterPredecessorEdit === 'always' ||
-        (
-          settings.afterPredecessorEdit === 'ask' &&
-          confirm(`The following ranges are linked as successors to this range. Refreshing the links might be necessary. Would you like to open these ranges in new tabs now? ${JSON.stringify(range.successors.map(r => r.name))}`)
-        )
-      )
-    ) {
+    function openSuccessors() {
       range.successors.forEach(r => { window.open(`/app/editor/${r.id}`, '_blank') })
+    }
+
+    if (range.successors && range.successors.length > 0) {
+      if (settings.afterPredecessorEdit === 'always') {
+        openSuccessors()
+      } else if (settings.afterPredecessorEdit === 'ask') {
+        toast.dismiss()
+
+        const toastId = toast.custom(
+          <Confirm
+            prompt={`
+              The following ranges are linked as successors to this range.
+              ${range.successors.map(r => r.name).join(', ')}
+              You might want to refresh their links to update the relevant frequencies.
+              Would you like to open these ranges in new tabs now?
+            `}
+            cancelText='No'
+            onCancel={async () => toast.remove(toastId)}
+            confirmText='Yes'
+            onConfirm={async () => {
+              openSuccessors()
+              toast.remove(toastId)
+            }}
+          />,
+          {
+            duration: Infinity,
+          }
+        )
+      }
     }
   }
 

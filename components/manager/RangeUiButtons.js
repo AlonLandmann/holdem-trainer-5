@@ -9,6 +9,7 @@ export default function RangeUiButtons({ range, folderLength }) {
 
   function handleDelete() {
     toast.dismiss()
+    
     const toastId = toast.custom(
       <Confirm
         prompt={`Are you sure you want to delete the range '${range.name}'? This action cannot be undone.`}
