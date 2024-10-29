@@ -39,7 +39,7 @@ export default function SettingsMain({ user, setUser }) {
   }
 
   return (
-    <div className='grow overflow-hidden'>
+    <div className='grow overflow-x-hidden'>
       <SettingsToolbar
         user={user}
         setUser={setUser}

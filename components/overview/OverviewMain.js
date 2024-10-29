@@ -5,7 +5,7 @@ import TrainingHistory from '@/components/overview/TrainingHistory'
 
 export default function OverviewMain({ user }) {
   return (
-    <div className='grow bg-neutral-900 p-7 max-h-screen overflow-y-auto flex flex-col items-center'>
+    <div className='grow bg-neutral-900 p-7 max-h-screen overflow-y-auto flex flex-col items-center overflow-x-hidden'>
       <TopLine user={user} />
       <OverallStats user={user} />
       <TrainingHistory user={user} />

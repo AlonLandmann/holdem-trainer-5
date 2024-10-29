@@ -19,12 +19,12 @@ export default function Leaderboard({ user }) {
   }, [])
 
   return (!leaderboard || !(userRank >= 0)) ? null : (
-    <div className='flex flex-col items-center' style={{ maxWidth: 'calc(100vw - 56px)' }}>
+    <div className='flex flex-col items-center'>
       <h1 className='text-lg text-center mb-2 text-neutral-500'>
         Leaderboard
       </h1>
       <div className='h-[1px] w-56 xs:w-full bg-neutral-800 self-center mb-4'></div>
-      <div className='flex flex-col gap-1' style={{ maxWidth: 'calc(100vw - 56px)' }}>
+      <div className='flex flex-col gap-1' style={{ maxWidth: 'calc(100vw - 102px)' }}>
         {leaderboard.map((rank, i) => (
           <div
             key={'rank' + i}
