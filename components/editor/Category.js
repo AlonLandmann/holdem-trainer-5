@@ -36,7 +36,7 @@ export default function Category({ range, comboArray, name, fraction, strategy, 
       <div className='grow h-[34px] py-[2px] flex items-center gap-[2px]'
         onMouseEnter={handleSetHovered}
         onMouseLeave={handleClearHovered}>
-        <div className='min-w-16 sm:min-w-24 pl-[6px] pr-[3px]'>
+        <div className='min-w-16 sm:min-w-24 pl-[6px] pr-[3px] text-nowrap'>
           {name != '--use-strategy--' ? name :
             <div
               className='w-[15px] h-[15px] rounded-sm'
