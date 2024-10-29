@@ -71,7 +71,7 @@ export default function LoginRoot() {
               onClick={handleEmailLogin}
               useQueue
             />
-            <div className='text-sm text-neutral-500 px-2 flex gap-1 mt-1 mb-2'>
+            <div className='text-sm text-neutral-500 px-2 flex flex-wrap justify-center gap-1 mt-1 mb-2'>
               Forgot your password? <A href='/auth/reset' text='Click here' /> to reset it.
             </div>
           </div>
@@ -89,7 +89,7 @@ export default function LoginRoot() {
               onClick={() => { window.location = googleAuthUrl }}
             />
           </div>
-          <div className='text-sm text-neutral-500 px-2 flex gap-1'>
+          <div className='text-sm text-neutral-500 px-2 flex flex-wrap justify-center gap-1'>
             New to Hold'em Trainer? <A href='/auth/signup' text='Sign up' /> instead.
           </div>
         </form>

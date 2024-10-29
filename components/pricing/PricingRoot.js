@@ -90,17 +90,13 @@ export default function PricingRoot() {
             </OfferCard>
           </div>
           <div className='mb-24 lg:mb-28 flex flex-wrap justify-center text-xs text-neutral-500'>
-            <span className='text-nowrap'>
-              Please read our
-            </span>
+            Please read our
             <A
               href='/support/terms-and-conditions'
               text='Terms & Conditions'
               utilClasses='mx-1 text-nowrap'
             />
-            <span className='text-nowrap'>
-              before upgrading to HT-Pro or HT-Elite.
-            </span>
+            before upgrading to HT-Pro or HT-Elite.
           </div>
           <div className='flex flex-col items-center mb-20'>
             <h1 className='text-3xl tracking-wide mb-10'>

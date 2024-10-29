@@ -169,7 +169,7 @@ export default function ResetRoot() {
             }
           </div>
           {!reset &&
-            <div className='text-sm text-neutral-500 px-2 flex gap-1 mt-3'>
+            <div className='text-sm text-neutral-500 px-2 flex flex-wrap justify-center gap-1 mt-3'>
               Remember your password? <A href='/auth/login' text='Log in' /> instead.
             </div>
           }

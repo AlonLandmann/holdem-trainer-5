@@ -87,7 +87,7 @@ export default function SignupRoot() {
               onClick={() => { window.location = googleAuthUrl }}
             />
           </div>
-          <div className='text-sm text-neutral-500 px-2 flex gap-1'>
+          <div className='text-sm text-neutral-500 px-2 flex flex-wrap justify-center gap-1'>
             Already have an account? <A href='/auth/login' text='Log in' /> instead.
           </div>
         </form>
