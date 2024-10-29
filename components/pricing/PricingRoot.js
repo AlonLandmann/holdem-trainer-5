@@ -10,7 +10,7 @@ import toast from 'react-hot-toast'
 export default function PricingRoot() {
   const router = useRouter()
   const [user, setUser, isLoading] = useUser()
-  
+
   useEffect(() => {
     if (router.query.success) {
       toast.success(`Successfully subscribed to ${router.query.productName}.`)
@@ -24,16 +24,16 @@ export default function PricingRoot() {
   return (
     <InfoLayout>
       {!isLoading &&
-        <>
-          <div className='px-5 flex flex-col gap-3 items-center py-14'>
-            <h1 className='text-5xl'>
+        <div className='p-7 xs:p-10'>
+          <div className='flex flex-col gap-3 items-center  pt-4 pb-8'>
+            <h1 className='text-4xl xs:text-5xl'>
               <span className='font-decorative'>HT</span> - Pro
             </h1>
-            <h3 className='text-lg text-neutral-500'>
+            <h3 className='xs:text-lg text-neutral-500 text-center'>
               Unlock the full potential of Hold'em Trainer
             </h3>
           </div>
-          <div className='px-5 flex justify-center gap-6 mb-8'>
+          <div className='flex flex-col lg:flex-row items-center lg:items-stretch justify-center gap-6 mb-8'>
             <OfferCard
               user={user}
               title='HT-Basic'
@@ -89,8 +89,18 @@ export default function PricingRoot() {
               <div>Cancel at any time</div>
             </OfferCard>
           </div>
-          <div className='px-5 mb-28 flex justify-center text-xs text-neutral-500'>
-            Please read our <A href='/support/terms-and-conditions' text='Terms & Conditions' utilClasses='mx-1' /> before upgrading to HT-Pro or HT-Elite.
+          <div className='mb-24 lg:mb-28 flex flex-wrap justify-center text-xs text-neutral-500'>
+            <span className='text-nowrap'>
+              Please read our
+            </span>
+            <A
+              href='/support/terms-and-conditions'
+              text='Terms & Conditions'
+              utilClasses='mx-1 text-nowrap'
+            />
+            <span className='text-nowrap'>
+              before upgrading to HT-Pro or HT-Elite.
+            </span>
           </div>
           <div className='flex flex-col items-center mb-20'>
             <h1 className='text-3xl tracking-wide mb-10'>
@@ -144,7 +154,7 @@ export default function PricingRoot() {
               />
             </div>
           </div>
-        </>
+        </div>
       }
     </InfoLayout>
   )

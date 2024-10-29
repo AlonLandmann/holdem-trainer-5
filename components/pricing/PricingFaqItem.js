@@ -1,10 +1,10 @@
 import { useState } from 'react'
 
 export default function PricingFaqItem({ question, answer }) {
-  const [answerInView, setAnswerInView] = useState(true)
+  const [answerInView, setAnswerInView] = useState(false)
 
   return (
-    <div className='w-[720px]'>
+    <div className='max-w-[640px]'>
       <div
         className='flex mb-2 gap-2 text-lg text-neutral-500 cursor-pointer transition hover:text-neutral-400'
         onClick={() => { setAnswerInView(prev => !prev) }}
