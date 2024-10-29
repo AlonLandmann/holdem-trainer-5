@@ -6,6 +6,7 @@ import { useUser } from '@/hooks/useUser'
 import { selectedForTraining } from '@/lib/display'
 import handleManagerRequest from '@/lib/managerRequests'
 import { useEffect, useState } from 'react'
+import toast from 'react-hot-toast'
 
 export default function FolderContent({ selectedFolder }) {
   const [user, setUser] = useUser()
@@ -24,9 +25,13 @@ export default function FolderContent({ selectedFolder }) {
   }
 
   async function handleRenameFolder() {
-    await handleManagerRequest(`/api/folders/rename?folderId=${selectedFolder.id}`, 'PATCH', setUser, {
-      name: renameValue
-    })
+    if (renameValue.length < 2 || renameValue.length > 30) {
+      toast.error('Folder names should be between 2 and 30 characters long.')
+    } else {
+      await handleManagerRequest(`/api/folders/rename?folderId=${selectedFolder.id}`, 'PATCH', setUser, {
+        name: renameValue
+      })
+    }
   }
 
   async function handleTrainSelected() {

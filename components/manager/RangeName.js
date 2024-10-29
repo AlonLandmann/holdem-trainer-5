@@ -17,7 +17,7 @@ export default function RangeName({ range, renaming, setRenaming }) {
 
   async function handleRename() {
     if (renameValue.length < 2 || renameValue.length > 50) {
-      toast.error('Range Names should be between 2 and 50 characters long.')
+      toast.error('Range names should be between 2 and 50 characters long.')
     } else {
       await handleManagerRequest(`/api/ranges/rename?rangeId=${range.id}`, 'PATCH', setUser, {
         name: renameValue

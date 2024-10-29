@@ -92,7 +92,7 @@ export default function SidebarFolder({
       {loading &&
         <LoadingDots />
       }
-      <span className={`${isSelected ? 'text-neutral-200' : ''} ${loading ? 'opacity-0' : ''}`}>
+      <span className={`${isSelected ? 'text-neutral-200' : ''} ${loading ? 'opacity-0' : ''} truncate`}>
         {folder.name}
       </span>
       <span className={`font-mono ${loading ? 'opacity-0' : ''}`}>
