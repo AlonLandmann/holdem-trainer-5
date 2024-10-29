@@ -6,8 +6,9 @@ import Matrix from '@/components/editor/Matrix'
 import Predecessor from '@/components/editor/Predecessor'
 import Stacks from '@/components/editor/Stacks'
 import Toolbar from '@/components/editor/Toolbar'
+import useWindowDimensions from '@/hooks/useWindowDimensions'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function EditorMain({ user, setViewHotkeyInfo }) {
   const router = useRouter()
@@ -20,6 +21,72 @@ export default function EditorMain({ user, setViewHotkeyInfo }) {
   const [past, setPast] = useState([])
   const [future, setFuture] = useState([])
   const [error, setError] = useState(false)
+  const [windowWidth, windowHeight] = useWindowDimensions()
+  const [layoutColumns, setLayoutColumns] = useState(1)
+  const [cellWidth, setCellWidth] = useState(8)
+
+  useEffect(() => {
+    if (windowWidth) {
+      if (windowWidth < 595) {
+        setLayoutColumns(1)
+        setCellWidth(8)
+      } else if (windowWidth < 647) {
+        setLayoutColumns(1)
+        setCellWidth(9)
+      } else if (windowWidth < 699) {
+        setLayoutColumns(1)
+        setCellWidth(10)
+      } else if (windowWidth < 757) {
+        setLayoutColumns(1)
+        setCellWidth(11)
+      } else if (windowWidth < 809) {
+        setLayoutColumns(1)
+        setCellWidth(12)
+      } else if (windowWidth < 861) {
+        setLayoutColumns(1)
+        setCellWidth(13)
+      } else if (windowWidth < 915) {
+        setLayoutColumns(1)
+        setCellWidth(14)
+      } else if (windowWidth < 967) {
+        setLayoutColumns(2)
+        setCellWidth(8)
+      } else if (windowWidth < 1019) {
+        setLayoutColumns(2)
+        setCellWidth(9)
+      } else if (windowWidth < 1071) {
+        setLayoutColumns(2)
+        setCellWidth(10)
+      } else if (windowWidth < 1129) {
+        setLayoutColumns(2)
+        setCellWidth(11)
+      } else if (windowWidth < 1181) {
+        setLayoutColumns(2)
+        setCellWidth(12)
+      } else if (windowWidth < 1233) {
+        setLayoutColumns(2)
+        setCellWidth(13)
+      } else if (windowWidth < 1391) {
+        setLayoutColumns(2)
+        setCellWidth(14)
+      } else if (windowWidth < 1443) {
+        setLayoutColumns(3)
+        setCellWidth(10)
+      } else if (windowWidth < 1501) {
+        setLayoutColumns(3)
+        setCellWidth(11)
+      } else if (windowWidth < 1553) {
+        setLayoutColumns(3)
+        setCellWidth(12)
+      } else if (windowWidth < 1605) {
+        setLayoutColumns(3)
+        setCellWidth(13)
+      } else {
+        setLayoutColumns(3)
+        setCellWidth(14)
+      }
+    }
+  }, [windowWidth])
 
   function setRangeWithUndo(newRange) {
     setPast((prev) => [...prev, range].slice(-50))
@@ -43,7 +110,7 @@ export default function EditorMain({ user, setViewHotkeyInfo }) {
       />
       <div className='flex p-3 gap-3'>
         <div
-          className='flex flex-col gap-3 overflow-y-auto no-scrollbar'
+          className={`flex flex-col ${layoutColumns === 1 ? 'items-start' : '' } gap-3 overflow-y-auto no-scrollbar`}
           style={{ maxHeight: 'calc(100vh - 49px - 24px)' }}
         >
           <Stacks
@@ -68,30 +135,60 @@ export default function EditorMain({ user, setViewHotkeyInfo }) {
             setOptionHover={setOptionHover}
             settings={user.settings}
           />
+          {layoutColumns <= 2 &&
+            <>
+              <Categories
+                range={range}
+                setSelected={setSelected}
+                setHovered={setHovered}
+              />
+              <Legend
+                range={range}
+                setSelected={setSelected}
+                setHovered={setHovered}
+              />
+            </>
+          }
+          {layoutColumns === 1 &&
+            <Matrix
+              range={range}
+              selected={selected}
+              setSelected={setSelected}
+              hovered={hovered}
+              setHovered={setHovered}
+              optionHover={optionHover}
+              cellWidth={cellWidth}
+            />
+          }
         </div>
-        <Matrix
-          range={range}
-          selected={selected}
-          setSelected={setSelected}
-          hovered={hovered}
-          setHovered={setHovered}
-          optionHover={optionHover}
-        />
-        <div
-          className='flex flex-col gap-3 overflow-y-auto no-scrollbar'
-          style={{ maxHeight: 'calc(100vh - 49px - 24px)' }}
-        >
-          <Categories
+        {layoutColumns >= 2 &&
+          <Matrix
             range={range}
+            selected={selected}
             setSelected={setSelected}
+            hovered={hovered}
             setHovered={setHovered}
+            optionHover={optionHover}
+            cellWidth={cellWidth}
           />
-          <Legend
-            range={range}
-            setSelected={setSelected}
-            setHovered={setHovered}
-          />
-        </div>
+        }
+        {layoutColumns === 3 &&
+          <div
+            className='flex flex-col gap-3 overflow-y-auto no-scrollbar'
+            style={{ maxHeight: 'calc(100vh - 49px - 24px)' }}
+          >
+            <Categories
+              range={range}
+              setSelected={setSelected}
+              setHovered={setHovered}
+            />
+            <Legend
+              range={range}
+              setSelected={setSelected}
+              setHovered={setHovered}
+            />
+          </div>
+        }
       </div>
     </div>
   )
