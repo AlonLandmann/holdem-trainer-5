@@ -12,10 +12,10 @@ export default function ArticleBanner({ article }) {
 
   return (
     <div
-      className='flex cursor-pointer transition hover:bg-[#242424] border rounded overflow-hidden'
+      className='flex flex-col sm:flex-row cursor-pointer transition hover:bg-[#242424] border rounded overflow-hidden max-w-72 sm:max-w-full'
       onClick={() => { window.location = `/academy/${article.slug}` }}
     >
-      <div className='relative overflow-hidden min-h-56 min-w-56 sepia rounded-[3px]'>
+      <div className='relative overflow-hidden min-h-56 min-w-56 sepia sm:rounded-[3px]'>
         <Image
           src={article.imageUrl}
           alt='Article Image'
@@ -27,7 +27,7 @@ export default function ArticleBanner({ article }) {
         <h2 className='text-xl capitalize'>
           {article.title}
         </h2>
-        <p className='text-neutral-500 text-sm'>
+        <p className='text-neutral-500 text-sm mb-5'>
           {article.abstract}
         </p>
         <div className='mt-auto flex items-center gap-4 text-neutral-500 text-sm'>
@@ -38,7 +38,7 @@ export default function ArticleBanner({ article }) {
             <i className={`bi bi-suit-${suit}-fill`}></i>
             <span>{displayText}</span>
           </div>
-          <div className='flex items-baseline gap-[6px]'>
+          <div className='hidden sm:flex items-baseline gap-[6px]'>
             <i className='bi bi-clock-history'></i>
             {article.readTime}
           </div>
