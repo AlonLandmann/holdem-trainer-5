@@ -39,14 +39,14 @@ export default function SettingsMain({ user, setUser }) {
   }
 
   return (
-    <div className='grow'>
+    <div className='grow overflow-hidden'>
       <SettingsToolbar
         user={user}
         setUser={setUser}
         username={username}
         settings={settings}
       />
-      <div className='p-5 flex flex-col gap-5'>
+      <div className='p-7 flex flex-col gap-5'>
         <SettingsGroup title='Account'>
           <Setting label='Email'>
             <div>
@@ -80,7 +80,7 @@ export default function SettingsMain({ user, setUser }) {
           </Setting>
           <Setting label='Username'>
             <Input
-              utilClasses='py-[10px] px-[15px]'
+              utilClasses='py-[10px] px-[15px] min-w-0'
               style={{ lineHeight: '20px' }}
               value={username}
               onChange={handleChangeUsername}
