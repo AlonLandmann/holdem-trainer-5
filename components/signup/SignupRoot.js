@@ -13,7 +13,7 @@ export default function SignupRoot() {
 
   async function handleEmailSignup(event) {
     event.preventDefault()
-    
+
     if (!validateEmail(email)) {
       return toast.error('Make sure to provide a valid email address.')
     }
@@ -39,57 +39,59 @@ export default function SignupRoot() {
 
   return (
     <AuthLayout>
-      <form className='max-w-96 pt-12 pb-7 px-11 border rounded flex flex-col items-center'>
-        <h1 className='font-decorative text-5xl text-neutral-700 mb-9'>
-          HT
-        </h1>
-        <h3 className='font-medium text-2xl mb-7'>
-          Hello
-        </h3>
-        <p className='text-neutral-500 mb-4'>
-          Sign up with your email
-        </p>
-        <div className='flex flex-col gap-3 w-full pb-5'>
-          <Input
-            name='email'
-            type='email'
-            placeholder='Email'
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-          />
-          <Input
-            name='password'
-            type='password'
-            placeholder='Password'
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-          />
-          <Button
-            utilClasses='w-full rounded-sm py-3 px-4'
-            text='Sign Up'
-            type='submit'
-            onClick={handleEmailSignup}
-            useQueue
-          />
-        </div>
-        <div className='flex items-center self-stretch gap-2 px-2'>
-          <div className='flex-grow bg-neutral-600 h-[1px]'></div>
-          <div className='text-xs text-neutral-400 tracking-wider'>
-            OR
+      <div className='p-4 overflow-hidden'>
+        <form className='max-w-96 pt-12 pb-7 px-11 border rounded flex flex-col items-center'>
+          <h1 className='font-decorative text-5xl text-neutral-700 mb-9'>
+            HT
+          </h1>
+          <h3 className='font-medium text-2xl mb-7'>
+            Hello
+          </h3>
+          <p className='text-neutral-500 mb-4'>
+            Sign up with your email
+          </p>
+          <div className='flex flex-col gap-3 w-full pb-5'>
+            <Input
+              name='email'
+              type='email'
+              placeholder='Email'
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+            />
+            <Input
+              name='password'
+              type='password'
+              placeholder='Password'
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+            />
+            <Button
+              utilClasses='w-full rounded-sm py-3 px-4'
+              text='Sign Up'
+              type='submit'
+              onClick={handleEmailSignup}
+              useQueue
+            />
           </div>
-          <div className='flex-grow bg-neutral-600 h-[1px]'></div>
-        </div>
-        <div className='pt-5 pb-8 self-stretch'>
-          <Button
-            utilClasses='w-full rounded-sm py-3 px-4'
-            text='Google'
-            onClick={() => { window.location = googleAuthUrl }}
-          />
-        </div>
-        <div className='text-sm text-neutral-500 px-2 flex gap-1'>
-          Already have an account? <A href='/auth/login' text='Log in' /> instead.
-        </div>
-      </form>
+          <div className='flex items-center self-stretch gap-2 px-2'>
+            <div className='flex-grow bg-neutral-600 h-[1px]'></div>
+            <div className='text-xs text-neutral-400 tracking-wider'>
+              OR
+            </div>
+            <div className='flex-grow bg-neutral-600 h-[1px]'></div>
+          </div>
+          <div className='pt-5 pb-8 self-stretch'>
+            <Button
+              utilClasses='w-full rounded-sm py-3 px-4'
+              text='Google'
+              onClick={() => { window.location = googleAuthUrl }}
+            />
+          </div>
+          <div className='text-sm text-neutral-500 px-2 flex gap-1'>
+            Already have an account? <A href='/auth/login' text='Log in' /> instead.
+          </div>
+        </form>
+      </div>
     </AuthLayout>
   )
 }
