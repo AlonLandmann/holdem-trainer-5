@@ -35,7 +35,7 @@ export default function RankBanner({ rank, withName = false }) {
         <i className={`bi bi-suit-${suit.toLowerCase()}-fill`}></i>
       </div>
       {withName &&
-        <div className='text-lg text-neutral-500'>
+        <div className='text-lg text-neutral-500 truncate'>
           {rank}
         </div>
       }

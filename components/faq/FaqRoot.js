@@ -21,9 +21,9 @@ export default function FaqRoot() {
           setViewHotkeyInfo={setViewHotkeyInfo}
         />
       }
-      <div className='py-5 px-10'>
+      <div className='p-7 xs:p-10'>
         <SupportNavbar page='faq' />
-        <div className='max-w-[800px] mx-auto'>
+        <div className='max-w-[640px] mx-auto'>
           <h1 className='text-2xl text-neutral-500 mb-5'>
             FAQ
           </h1>
@@ -122,10 +122,10 @@ export default function FaqRoot() {
               <SupportFaqItem question='How does the ranking system work?'>
                 Based on your total training score you are promoted through the following ranks. Your rank will be visible
                 on your player profile as well as on the global leaderboards.
-                <div className='flex flex-col gap-2 p-3 w-fit my-4'>
+                <div className='flex flex-col gap-8 xs:gap-4 xs:p-3 w-fit my-4'>
                   {rankScoresSorted.map(score => (
-                    <div key={'score' + score} className='grid grid-cols-2 gap-3 items-center'>
-                      <div className='text-center'>
+                    <div key={'score' + score} className='flex flex-col xs:flex-row gap-2 xs:gap-6'>
+                      <div className='xs:text-right w-24'>
                         {withSeparators(score)}
                       </div>
                       <RankBanner

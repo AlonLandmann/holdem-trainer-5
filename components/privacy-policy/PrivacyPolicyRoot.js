@@ -4,9 +4,9 @@ import SupportNavbar from '../_layout/SupportNavbar'
 export default function PrivacyPolicyRoot() {
   return (
     <InfoLayout>
-      <div className='py-5 px-10'>
+      <div className='p-7 xs:p-10'>
         <SupportNavbar page='privacy policy' />
-        <div className='max-w-[800px] mx-auto'>
+        <div className='max-w-[640px] mx-auto'>
           <h1 className='text-2xl text-neutral-500'>
             Privacy Policy
           </h1>
@@ -76,7 +76,7 @@ export default function PrivacyPolicyRoot() {
             <h2 className='text-neutral-500'>9. Changes to This Privacy Policy</h2>
             <p>We may update this Privacy Policy from time to time. When we do, we will notify you by updating the "Last Updated" date at the top of this page. Continued use of the Service after changes to this policy constitutes your acceptance of the updated Privacy Policy.</p>
           </div>
-          <div className='mb-5 leading-6'>
+          <div className='leading-6'>
             <h2 className='text-neutral-500'>10. Contact Us</h2>
             <p>If you have any questions or concerns about this Privacy Policy, please contact us at info@holdem-trainer.com.</p>
           </div>

@@ -16,7 +16,7 @@ export default function EditorHotkeys({ user, setUser, setViewHotkeyInfo }) {
   }
 
   return (
-    <div className='fixed z-50 w-full h-screen bg-[#000000dd] flex justify-center items-center'>
+    <div className='fixed z-50 w-full h-screen bg-[#000000dd] flex justify-center items-center p-5'>
       <div className='bg-neutral-950 rounded border'>
         <div className='flex items-center border-b pt-5 pb-4 px-6'>
           <h1 className='text-neutral-400 font-medium mr-auto'>
@@ -42,7 +42,7 @@ export default function EditorHotkeys({ user, setUser, setViewHotkeyInfo }) {
             To select and deselected a specific combo, simply click on it.
             To facilitate speedy selections, you can use the following hotkeys while clicking on combos.
           </p>
-          <div className='grid gap-1' style={{ gridTemplateColumns: '2fr 5fr' }} >
+          <div className='grid gap-y-1 gap-x-4' style={{ gridTemplateColumns: '2fr 5fr' }} >
             <div>-</div>
             <div>select / deselect a single combo</div>
             <div>{isMacOS ? 'Command' : 'Ctrl'} </div>

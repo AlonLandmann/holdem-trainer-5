@@ -4,8 +4,8 @@ export default function InfoFooter() {
   return (
     <div className='border-t flex flex-col'>
       <div className={`
-        py-5 px-8 grid grid-cols-1 gap-5 gap-y-8
-        xs:py-10 xs:px-12 xs:grid-cols-2
+        p-7 grid grid-cols-1 gap-5 gap-y-8
+        xs:p-10 xs:grid-cols-2
         lg:grid-cols-4 lg:gap-y-5
       `}>
         <div className='flex flex-col'>
@@ -50,8 +50,8 @@ export default function InfoFooter() {
         </div>
       </div>
       <div className={`
-        py-5 px-8 self-start flex flex-col gap-4 text-xs
-        xs:self-center xs:flex-row xs:py-4 xs:px-12
+        py-5 px-7 self-start flex flex-col gap-4 text-xs
+        xs:self-center xs:flex-row xs:py-4 xs:px-10
       `}>
         <div className='text-neutral-400'>
           © 2024 - A. Landmann

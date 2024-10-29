@@ -4,9 +4,9 @@ import SupportNavbar from '../_layout/SupportNavbar'
 export default function TermsAndConditionsRoot() {
   return (
     <InfoLayout>
-      <div className='py-5 px-10'>
+      <div className='p-7 xs:p-10'>
         <SupportNavbar page='terms and conditions' />
-        <div className='max-w-[800px] mx-auto'>
+        <div className='max-w-[640px] mx-auto'>
           <h1 className='text-2xl text-neutral-500'>
             Terms & Conditions
           </h1>
