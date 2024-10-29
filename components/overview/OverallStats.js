@@ -9,7 +9,7 @@ export default function OverallStats({ user }) {
   const trainingComplexity = correct ? (score / correct).toFixed(2) : '-'
 
   return (
-    <div className='flex flex-col items-center gap-5 mb-10'>
+    <div className='flex flex-col items-center gap-8 xs:gap-5 mb-10'>
       <OverallStat
         icon='ui-checks'
         number={user.nrRanges}

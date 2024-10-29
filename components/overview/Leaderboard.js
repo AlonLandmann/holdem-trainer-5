@@ -19,12 +19,12 @@ export default function Leaderboard({ user }) {
   }, [])
 
   return (!leaderboard || !(userRank >= 0)) ? null : (
-    <div>
+    <div className='flex flex-col items-center' style={{ maxWidth: 'calc(100vw - 56px)' }}>
       <h1 className='text-lg text-center mb-2 text-neutral-500'>
         Leaderboard
       </h1>
-      <div className='h-[1px] w-[500px] bg-neutral-800 self-center mb-4'></div>
-      <div className='flex flex-col gap-1'>
+      <div className='h-[1px] w-56 xs:w-full bg-neutral-800 self-center mb-4'></div>
+      <div className='flex flex-col gap-1' style={{ maxWidth: 'calc(100vw - 56px)' }}>
         {leaderboard.map((rank, i) => (
           <div
             key={'rank' + i}
@@ -36,10 +36,10 @@ export default function Leaderboard({ user }) {
             <div className='font-mono min-w-6 text-neutral-500 text-right'>
               {i + 1}.
             </div>
-            <div className='text-neutral-300 truncate'>
+            <div className='text-neutral-300 truncate pr-2'>
               {rank.username ? rank.username : `User ${rank.email.split('@')[0]}`}
             </div>
-            <div className='font-mono min-w-48 text-right ml-auto'>
+            <div className='font-mono text-right ml-auto'>
               {rank.totalScore.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
             </div>
             <div className={`

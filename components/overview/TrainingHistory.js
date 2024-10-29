@@ -60,7 +60,6 @@ export default function TrainingHistory({ user }) {
     return `${year}-${month}-${day}`
   }
 
-
   function percentageHeight(num) {
     return `${(100 * num / dailyMax).toFixed(0)}%`
   }
@@ -89,7 +88,7 @@ export default function TrainingHistory({ user }) {
     <div className='mb-16 self-stretch flex justify-center'>
       <div className='pl-20 pt-12 max-w-full'>
         <div className='relative'>
-          <div className='justify-center overflow-x-auto min-w-[500px]' ref={containerRef}>
+          <div className='justify-center overflow-x-auto min-w-[80px]' ref={containerRef}>
             <div className='flex gap-[2px] items-end h-[200px]'>
               {span.map(day => (
                 <div
@@ -106,7 +105,7 @@ export default function TrainingHistory({ user }) {
                 <label
                   key={month.name}
                   className={`py-1 text-neutral-500 text-center ${i ? 'border-l pl-[2px]' : ''}`}
-                  style={{ width: `${10 * month.days}px` }}
+                  style={{ minWidth: `${10 * month.days}px` }}
                 >
                   {month.name}
                 </label>
@@ -132,7 +131,6 @@ export default function TrainingHistory({ user }) {
             </div>
           ))}
         </div>
-
       </div>
     </div>
   )
