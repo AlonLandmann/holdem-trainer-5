@@ -5,7 +5,7 @@ import { produce } from 'immer'
 import { useState } from 'react'
 
 export default function Categories({ range, setSelected, setHovered }) {
-  const [detailsInView, setDetailsInView] = useState({ '1pr': false, 'HC': false })
+  const [detailsInView, setDetailsInView] = useState({ '1 Pair': false, 'High Card': false })
   const categories = (range.spot.street === 'preflop') ? categorizePreflop(range) : categorize(range)
   const total = categories.allStrats.reduce((acc, curr) => (acc + curr), 0)
 
@@ -78,7 +78,7 @@ export default function Categories({ range, setSelected, setHovered }) {
                     setSelected={setSelected}
                     setHovered={setHovered}
                   />
-                  {['1pr', 'HC'].includes(strength) &&
+                  {['1 Pair', 'High Card'].includes(strength) &&
                     <Button
                       theme='tertiary'
                       icon={detailsInView[strength] ? 'chevron-down' : 'chevron-left'}
