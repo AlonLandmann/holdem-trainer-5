@@ -6,7 +6,7 @@ import RangeDisplayCard from '@/components/article/RangeDisplayCard'
 
 export default function RangeDisplayGroup({ rangeIds }) {
   return (
-    <div className='min-w-[916px] -translate-x-[138px] flex flex-wrap justify-center items-center gap-10 py-5'>
+    <div className='flex flex-wrap justify-center items-center gap-10 py-5'>
       {rangeIds.map(rangeId => (
         <RangeDisplayCard
           key={rangeId}

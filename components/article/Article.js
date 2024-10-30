@@ -15,7 +15,7 @@ export default function Article({ article, suggestions }) {
   const { color, background, suit, displayText } = difficultyInfo[article.level - 1]
 
   return (
-    <div className='w-full max-w-[640px] mx-auto px-5 py-12 fle flex-col gap-5'>
+    <div className='w-full max-w-[640px] mx-auto px-7 py-12 fle flex-col gap-5'>
       <section className='flex flex-col gap-5'>
         <h1 className='text-3xl'>
           {article.title}
