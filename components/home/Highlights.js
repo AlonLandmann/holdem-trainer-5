@@ -3,9 +3,9 @@ import Button from '../_ui/Button'
 
 export default function Highlights() {
   return (
-    <section className='py-32 px-20 flex flex-col items-center'>
-      <div className='grid grid-cols-2 gap-x-36 gap-y-28'>
-        <div className='py-16 max-w-[500px]'>
+    <section className='py-20 xl:py-32 px-12 xl:px-20 flex flex-col items-center'>
+      <div className='grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-x-36 lg:gap-y-28'>
+        <div className='md:py-16 max-w-[500px]'>
           <h2 className='text-2xl text-neutral-500 mb-6'>
             Preflop & Postflop
           </h2>
@@ -30,7 +30,7 @@ export default function Highlights() {
             alt='postflop range'
           />
         </div>
-        <div className='justify-self-center self-center'>
+        <div className='justify-self-center self-center row-start-4 md:row-start-2'>
           <Image
             src='/all-at-once-full.png'
             width={500}
@@ -38,7 +38,7 @@ export default function Highlights() {
             alt='detailed combos'
           />
         </div>
-        <div className='py-16 max-w-[500px]'>
+        <div className='md:py-16 max-w-[500px]'>
           <h2 className='text-2xl text-neutral-500 mb-6'>
             All Combos in one View
           </h2>
@@ -58,7 +58,7 @@ export default function Highlights() {
             onClick={() => { window.open('/auth/signup', '_blank') }}
           />
         </div>
-        <div className='py-16 max-w-[500px]'>
+        <div className='md:py-16 max-w-[500px]'>
           <h2 className='text-2xl text-neutral-500 mb-6'>
             Detailed Categories
           </h2>
@@ -82,7 +82,7 @@ export default function Highlights() {
             alt='categories'
           />
         </div>
-        <div className='justify-self-center self-center'>
+        <div className='justify-self-center self-center row-start-8 md:row-start-4'>
           <Image
             src='/slider.png'
             width={400}
@@ -90,7 +90,7 @@ export default function Highlights() {
             alt='brush'
           />
         </div>
-        <div className='py-16 max-w-[500px]'>
+        <div className='md:py-16 max-w-[500px]'>
           <h2 className='text-2xl text-neutral-500 mb-6'>
             Full control for every level
           </h2>
