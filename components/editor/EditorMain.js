@@ -95,7 +95,7 @@ export default function EditorMain({ user, setViewHotkeyInfo }) {
   }
 
   return !range ? null : (
-    <div className='grow'>
+    <div className='grow overflow-x-auto'>
       <Toolbar
         allRanges={allRanges}
         range={range}
@@ -108,10 +108,10 @@ export default function EditorMain({ user, setViewHotkeyInfo }) {
         setViewHotkeyInfo={setViewHotkeyInfo}
         settings={user.settings}
       />
-      <div className='flex p-3 gap-3'>
+      <div className={`flex p-3 gap-3 ${layoutColumns === 1 ? 'flex-col-reverse' : ''}`}>
         <div
-          className={`flex flex-col ${layoutColumns === 1 ? 'items-start' : '' } gap-3 overflow-y-auto no-scrollbar`}
-          style={{ maxHeight: 'calc(100vh - 49px - 24px)' }}
+          className={`flex flex-col ${layoutColumns === 1 ? 'items-stretch w-[360px]' : 'overflow-y-auto no-scrollbar' } gap-3`}
+          style={{ maxHeight: layoutColumns >= 2 ? 'calc(100vh - 49px - 24px)' : 'none' }}
         >
           <Stacks
             range={range}
@@ -149,7 +149,7 @@ export default function EditorMain({ user, setViewHotkeyInfo }) {
               />
             </>
           }
-          {layoutColumns === 1 &&
+          {false &&
             <Matrix
               range={range}
               selected={selected}
@@ -161,7 +161,7 @@ export default function EditorMain({ user, setViewHotkeyInfo }) {
             />
           }
         </div>
-        {layoutColumns >= 2 &&
+        {true &&
           <Matrix
             range={range}
             selected={selected}
