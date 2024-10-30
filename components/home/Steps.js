@@ -89,10 +89,10 @@ export default function Steps({ ranges }) {
   }
 
   return (
-    <section className='border-b py-32 px-20'>
-      <div className='flex flex-wrap justify-center gap-28 mb-36'>
+    <section className='border-b py-20 xl:py-32 px-12 xl:px-20 flex flex-col gap-28'>
+      <div className='flex flex-col items-center 2xl:flex-row 2xl:items-start justify-center gap-28'>
         <div className='max-w-[500px] text-neutral-300'>
-          <h1 className='pt-28 text-4xl mb-8 text-neutral-500'>
+          <h1 className='text-4xl mb-8 text-neutral-500'>
             1. Define your strategy
           </h1>
           <select
@@ -137,9 +137,9 @@ export default function Steps({ ranges }) {
           />
         </div>
       </div>
-      <div className='flex flex-wrap justify-center gap-28'>
+      <div className='flex flex-col items-center 2xl:flex-row 2xl:items-start justify-center gap-28'>
         <div className='max-w-[500px] text-neutral-300'>
-          <h1 className='pt-28 text-4xl mb-8 text-neutral-500'>
+          <h1 className='text-4xl mb-8 text-neutral-500'>
             2. Train it
           </h1>
           <p className='leading-8 text-lg text-neutral-300 mb-5'>
