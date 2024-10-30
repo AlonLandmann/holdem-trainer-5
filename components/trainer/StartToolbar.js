@@ -12,11 +12,11 @@ export default function StartToolbar({ setPage, selected, nrCombos, setNrCombos 
 
   return (
     <div className='border-b h-[49px] flex items-center px-3'>
-      <h1 className='text-neutral-500 mr-auto'>
+      <h1 className='hidden xs:inline-block text-neutral-500 mr-auto'>
         Trainer
       </h1>
-      <span className='text-sm text-neutral-500 mr-4'>
-        {selected.length} ranges selected
+      <span className='hidden sm:inline-block text-sm text-neutral-500 ml-4 mr-4 truncate'>
+        {selected.length ? selected.length : 'no'} ranges selected
       </span>
       <select
         name='nrCombos'

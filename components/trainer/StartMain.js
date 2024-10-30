@@ -25,11 +25,14 @@ export default function StartMain({ user, selected, setSelected }) {
   }
 
   return (
-    <div className='p-3 grid grid-cols-4 gap-x-10 gap-y-9'>
+    <div
+      className='p-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-5 md:gap-7 xl:gap-9 overflow-y-auto'
+      style={{ maxHeight: 'calc(100vh - 49px)' }}
+    >
       {user.folders.map(folder => (
         <div key={'folder' + folder.id}>
           <h3
-            className='text-neutral-400 bg-neutral-800 py-2 px-3 rounded-sm mb-1 bg-opacity-40 transition hover:bg-opacity-70 cursor-pointer select-none'
+            className='text-neutral-400 bg-neutral-800 py-2 px-3 rounded-sm mb-1 bg-opacity-40 transition hover:bg-opacity-70 cursor-pointer select-none truncate'
             onClick={() => { toggleFolder(folder) }}
           >
             {folder.name}

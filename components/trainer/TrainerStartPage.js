@@ -3,7 +3,7 @@ import StartMain from './StartMain'
 
 export default function TrainerStartPage({ user, setPage, selected, setSelected, nrCombos, setNrCombos }) {
   return (
-    <div className='grow'>
+    <div className='grow overflow-x-hidden'>
       <StartToolbar
         selected={selected}
         setPage={setPage}
