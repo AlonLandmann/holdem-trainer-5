@@ -12,7 +12,7 @@ export default async function handler(req, res) {
             email
           },
           data: {
-            hash: sha256(password)
+            hash: sha256(password + process.env.PASSWORD_SALT)
           }
         })
 

@@ -38,7 +38,7 @@ export default async function handler(req, res) {
           data: {
             email,
             username: userNameCandidate,
-            hash: sha256(password),
+            hash: sha256(password + process.env.PASSWORD_SALT),
             session: { create: {} },
             settings: { create: {} },
           },

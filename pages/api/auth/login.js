@@ -17,7 +17,7 @@ export default async function handler(req, res) {
           return res.status(200).json({ success: false, message: 'This email is linked to a google account, please sign in using google.' })
         }
 
-        if (sha256(password) !== user.hash) {
+        if (sha256(password + process.env.PASSWORD_SALT) !== user.hash) {
           return res.status(200).json({ success: false, message: 'The password is incorrect.' })
         }
 
