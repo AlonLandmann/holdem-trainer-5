@@ -23,6 +23,10 @@ export default function TrainerRoot() {
   }, [router.isReady])
 
   useEffect(() => {
+    if (!isLoading && !user) {
+      window.location = '/auth/login'
+    }
+
     if (!isLoading && user) {
       setNrCombos(user.settings.defaultSessionLength)
     }

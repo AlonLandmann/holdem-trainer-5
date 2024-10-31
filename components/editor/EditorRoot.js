@@ -6,15 +6,22 @@ import EditorHotkeys from './EditorHotkeys'
 import { useEffect, useState } from 'react'
 
 export default function EditorRoot() {
-  const [user, setUser] = useUser()
-  const [viewHotkeyInfo, setViewHotkeyInfo] = useState(null)
-
+  const [user, setUser, isLoading] = useUser()
+  
+  useEffect(() => {
+    if (!isLoading && !user) {
+      window.location = '/auth/login'
+    }
+  }, [isLoading])
+  
   useEffect(() => {
     if (user && user.hasRanges) {
       setViewHotkeyInfo(!user.settings.hotkeyInfoDismissed)
     }
   }, [user])
-
+  
+  const [viewHotkeyInfo, setViewHotkeyInfo] = useState(null)
+  
   return (
     <AppLayout>
       {user && !user.hasRanges &&
