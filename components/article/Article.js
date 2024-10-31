@@ -42,10 +42,10 @@ export default function Article({ article, suggestions }) {
         {validateUrl(article.imageUrl) &&
           <div className='relative overflow-hidden w-full aspect-[1.6] sepia mb-6'>
             <Image
+              className='object-cover'
               src={article.imageUrl}
               alt='Article Image'
               fill
-              objectFit='cover'
             />
           </div>
         }

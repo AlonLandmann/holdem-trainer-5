@@ -9,11 +9,11 @@ export default function Hero() {
     >
       <div className='absolute top-0 left-0 z-10 h-full w-full bg-neutral-900 opacity-15'>
         <Image
+          className='object-cover'
           src='/hero.jpg'
           alt='poker-image'
           priority
           fill
-          objectFit='cover'
         />
       </div>
       <div className='flex flex-col items-start xs:items-center xs:text-center z-20'>

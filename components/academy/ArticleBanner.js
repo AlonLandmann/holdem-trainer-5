@@ -17,10 +17,10 @@ export default function ArticleBanner({ article }) {
     >
       <div className='relative overflow-hidden min-h-56 min-w-56 sepia sm:rounded-[3px]'>
         <Image
+          className='object-cover'
           src={article.imageUrl}
           alt='Article Image'
           fill
-          objectFit='cover'
         />
       </div>
       <div className='grow flex flex-col gap-3 py-4 pl-5 pr-6'>
