@@ -20,21 +20,29 @@ export async function getServerSideProps() {
     where: {
       folder: {
         is: {
-          userId: 2
+          userId: Number(process.env.SAMPLE_USER_ID),
         }
       }
     }
   })
 
-  console.log('TEST')
+  console.log(`RANGE FETCH LENGTH: ${ranges.length}`)
 
   const nrUsers = await prisma.user.count({})
+
+  console.log(`NR_USERS FETCH: ${nrUsers}`)
+
   const nrRanges = await prisma.range.count({})
+
+  console.log(`NR_RANGES FETCH: ${nrUsers}`)
+
   const nrCombos = await prisma.trainingUnit.aggregate({
     _sum: {
       total: true,
     },
   })
+
+  console.log(`NR_COMBOS FETCH: ${nrCombos}`)
 
   const articles = await prisma.article.findMany({
     where: {
@@ -56,6 +64,8 @@ export async function getServerSideProps() {
     skip: 1,
     take: 3,
   })
+
+  console.log(`NR_ARTICLES FETCH LENGTH: ${articles.length}`)
 
   return {
     props: {
