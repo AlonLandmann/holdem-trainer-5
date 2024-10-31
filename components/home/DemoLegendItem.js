@@ -17,11 +17,11 @@ export default function DemoLegendItem({ range, comboArray, strategy, setHovered
       >
 
       </div>
-      <div className='flex text-neutral-300 text-sm'>
+      <div className='flex flex-col xs:flex-row text-neutral-300 text-sm'>
         {range.options.map((option, i) => (
           <div
             key={'option' + i}
-            className={`flex gap-4 justify-between ${i === 0 ? 'border-l min-w-[145px]' : 'min-w-32' } px-3 border-r`}
+            className={`flex gap-4 justify-between ${i === 0 ? 'xs:border-l min-w-[145px]' : 'min-w-32' } px-3 border-l border-r`}
           >
             <div>
               {capitalize(option.type)}{option.size ? ` ${option.size}` : ''}

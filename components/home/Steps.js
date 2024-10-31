@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import Matrix from '../editor/Matrix'
-import { isEqual, sample } from 'lodash'
+import { clamp, isEqual } from 'lodash'
 import { sampleHoleCards } from '@/lib/cards'
 import Table from '../trainer/Table'
 import RandomNumber from '../trainer/RandomNumber'
@@ -96,8 +96,8 @@ export default function Steps({ ranges }) {
   }
 
   return (
-    <section className='border-b py-20 xl:py-32 px-12 xl:px-20 flex flex-col gap-28'>
-      <div className='flex flex-col items-center 2xl:flex-row 2xl:items-start justify-center gap-28'>
+    <section className='border-b py-20 xl:py-32 px-12 xl:px-20 flex flex-col gap-28 overflow-x-hidden'>
+      <div className='flex flex-col items-center 2xl:flex-row 2xl:items-start justify-center gap-20 xl:gap-28'>
         <div className='max-w-[500px] text-neutral-300'>
           <h1 className='text-4xl mb-8 text-neutral-500'>
             1. Define your strategy
@@ -127,7 +127,7 @@ export default function Steps({ ranges }) {
             Hover over the items in the legend below the matrix to get a clear view of what we would like to do with each combo in the range.
           </p>
         </div>
-        <div className='flex flex-col justify-around items-start gap-5'>
+        <div className='flex flex-col justify-around items-center gap-5'>
           <Matrix
             range={range}
             selected={[]}
@@ -135,7 +135,7 @@ export default function Steps({ ranges }) {
             hovered={hovered}
             setHovered={setHovered}
             optionHover={null}
-            cellWidth={11}
+            cellWidth={clamp(Math.floor((availableWidth - 53) / 52), 5, 11)}
           />
           <DemoLegend
             range={range}

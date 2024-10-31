@@ -5,7 +5,7 @@ import TableDealerButton from '@/components/trainer/TableDealerButton'
 import TableSeat from '@/components/trainer/TableSeat'
 import { clamp } from 'lodash'
 
-const MIN_WIDTH = 400
+const MIN_WIDTH = 280
 const MAX_WIDTH = 710
 const hToW = 710 / 510
 const wToH = 510 / 710

@@ -1,6 +1,6 @@
 import { includingValue } from '@/lib/cards'
 
-export default function MatrixHeaderCell({ value, position, setHovered, blockWidth, headlineWidth, suitArrayWidth }) {  
+export default function MatrixHeaderCell({ value, position, setHovered, blockWidth, headlineWidth, suitArrayWidth }) {
   return (
     <div
       className={`flex border-r border-b ${position === 'top' ? 'flex-col border-t' : 'border-l'}`}
@@ -14,29 +14,31 @@ export default function MatrixHeaderCell({ value, position, setHovered, blockWid
       <div className='grow flex justify-center items-center text-sm text-neutral-400'>
         {value}
       </div>
-      <div
-        className={`
+      {blockWidth >= 28 &&
+        <div
+          className={`
           grid ${position === 'top' ? 'grid-cols-4' : 'grid-rows-4'}
           justify-items-center items-center text-neutral-800 leading-none
         `}
-        style={position === 'top'
-          ? { height: `${suitArrayWidth}px` }
-          : { width: `${suitArrayWidth}px` }
-        }
-      >
-        <div style={{ fontSize: `${Math.max(8, Math.round(blockWidth / 60 * 10))}px` }}>
-          <i className='bi bi-suit-spade-fill'></i>
+          style={position === 'top'
+            ? { height: `${suitArrayWidth}px` }
+            : { width: `${suitArrayWidth}px` }
+          }
+        >
+          <div style={{ fontSize: `${Math.max(8, Math.round(blockWidth / 60 * 10))}px` }}>
+            <i className='bi bi-suit-spade-fill'></i>
+          </div>
+          <div style={{ fontSize: `${Math.max(7, Math.round(blockWidth / 60 * 9))}px` }}>
+            <i className='bi bi-suit-heart-fill'></i>
+          </div>
+          <div style={{ fontSize: `${Math.max(8, Math.round(blockWidth / 60 * 10))}px` }}>
+            <i className='bi bi-suit-diamond-fill'></i>
+          </div>
+          <div style={{ fontSize: `${Math.max(8, Math.round(blockWidth / 60 * 10))}px` }}>
+            <i className='bi bi-suit-club-fill'></i>
+          </div>
         </div>
-        <div style={{ fontSize: `${Math.max(7, Math.round(blockWidth / 60 * 9))}px` }}>
-          <i className='bi bi-suit-heart-fill'></i>
-        </div>
-        <div style={{ fontSize: `${Math.max(8, Math.round(blockWidth / 60 * 10))}px` }}>
-          <i className='bi bi-suit-diamond-fill'></i>
-        </div>
-        <div style={{ fontSize: `${Math.max(8, Math.round(blockWidth / 60 * 10))}px` }}>
-          <i className='bi bi-suit-club-fill'></i>
-        </div>
-      </div>
-    </div>
+      }
+    </div >
   )
 }

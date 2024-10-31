@@ -6,7 +6,7 @@ import MatrixHeaderCell from './MatrixHeaderCell'
 export default function Matrix({ range, selected, setSelected, hovered, setHovered, optionHover, cellWidth = 15 }) {
   const blockWidth = 4 * cellWidth
   const matrixWidth = 13 * blockWidth + 12 + 1
-  const headlineWidth = cellWidth >= 12 ? 40 : 34
+  const headlineWidth = cellWidth >= 12 ? 40 : cellWidth >= 8 ? 34 : 22
   const suitArrayWidth = 14
 
   const maxFrequency = Math.max(...range.matrix.map(c => (
