@@ -127,7 +127,7 @@ export default function TrainerSessionPage({ user, setPage, selected, nrCombos, 
   }
 
   return (
-    <div className='grow'>
+    <div className='grow overflow-x-hidden'>
       <SessionToolbar
         setPage={setPage}
         count={count}

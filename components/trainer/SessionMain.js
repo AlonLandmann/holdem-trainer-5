@@ -20,7 +20,7 @@ export default function SessionMain({
   return (
     <div className='grow overflow-y-auto' style={{ height: 'calc(100vh - 49px)' }}>
       <div className='p-7 flex flex-col gap-7 justify-around items-center'>
-        <h1 className='text-xl'>
+        <h1 className='text-xl text-center'>
           {range.name}
         </h1>
         <History
