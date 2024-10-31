@@ -1,10 +1,7 @@
 import Page from '@/components/_layout/Page'
-import HomeRoot from '@/components/home/HomeRoot'
-import prisma from '@/lib/prisma'
-import { toClientFormat } from '@/lib/ranges'
 import Link from 'next/link'
 
-export default function HomePage({ ranges, usageInfo, articles }) {
+export default function HomePage() {
   return (
     <Page title="Hold'em Trainer">
       <div className='bg-neutral-900 min-h-screen flex justify-center items-center'>
