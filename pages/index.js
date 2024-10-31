@@ -26,6 +26,8 @@ export async function getServerSideProps() {
     }
   })
 
+  console.log('TEST')
+
   const nrUsers = await prisma.user.count({})
   const nrRanges = await prisma.range.count({})
   const nrCombos = await prisma.trainingUnit.aggregate({
