@@ -3,7 +3,7 @@ import HomeRoot from '@/components/home/HomeRoot'
 import prisma from '@/lib/prisma'
 import { toClientFormat } from '@/lib/ranges'
 
-export default function HomePage({ ranges, initialIndex, usageInfo, articles }) {
+export default function HomePage({ ranges, usageInfo, articles }) {
   return (
     <Page title="Hold'em Trainer">
       <HomeRoot
@@ -20,7 +20,7 @@ export async function getServerSideProps() {
     where: {
       folder: {
         is: {
-          userId: Number(process.env.SAMPLE_USER_ID)
+          userId: 2
         }
       }
     }
