@@ -8,11 +8,13 @@ export default async function handler(req, res) {
       case 'GET':
         const { sessionId } = req.cookies
 
+        console.log(sessionId)
+
         const user = await prisma.user.findFirst({
           where: {
             session: {
               is: {
-                token: sessionId
+                token: sessionId ? sessionId : null
               }
             }
           },
@@ -45,6 +47,8 @@ export default async function handler(req, res) {
             }
           }
         })
+
+        console.log(Boolean(user))
 
         if (!user) {
           return res.status(200).json({ success: false })
