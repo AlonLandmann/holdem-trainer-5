@@ -3,9 +3,9 @@ import ArticleBannerDemo from './ArticleBannerDemo'
 
 export default function AcademyBanner({ articles }) {
   return (
-    <section className='flex flex-col items-center py-32 px-20'>
+    <section className='flex flex-col items-center py-20 xl:py-32 px-12 xl:px-20'>
       <i className='bi bi-book text-7xl text-neutral-600 mb-8'></i>
-      <h1 className='text-4xl mb-4'>
+      <h1 className='text-4xl mb-4 text-center'>
         Hold'em Academy
       </h1>
       <h2 className='text-lg text-neutral-500 mb-8 max-w-[500px] text-center'>
@@ -17,7 +17,7 @@ export default function AcademyBanner({ articles }) {
         text="Visit Hold'em Academy"
         onClick={() => { window.open('/academy',  '_blank') }}
       />
-      <div className='flex gap-5'>
+      <div className='flex flex-col lg:flex-row gap-8'>
         {articles.map(article => (
           <ArticleBannerDemo
             key={'article' + article.id}
