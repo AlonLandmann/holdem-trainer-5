@@ -18,9 +18,6 @@ export async function getServerSideProps(context) {
   const article = await prisma.article.findUnique({
     where: {
       slug: context.query['article-slug']
-    },
-    include: {
-      ranges: true,
     }
   })
 
