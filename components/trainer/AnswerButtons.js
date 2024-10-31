@@ -3,7 +3,7 @@ import { capitalize } from 'lodash'
 
 export default function AnswerButtons({ range, handleCheckAnswer }) {
   return (
-    <div className='max-w-[640px] flex justify-center flex-wrap gap-[10px]'>
+    <div className='max-w-[680px] flex justify-center flex-wrap gap-[10px]'>
       {range.options.map((option, i) => (
         <Button
           key={'option' + i}

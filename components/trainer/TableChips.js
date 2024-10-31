@@ -1,4 +1,6 @@
-export default function TableChips({ spot, seat, heroPosition }) {
+import { scaleTableElement } from '@/lib/scaling'
+
+export default function TableChips({ spot, seat, heroPosition, tableWidth }) {
   const p = (seat - heroPosition + 6) % 6
 
   const layout = [
@@ -13,7 +15,10 @@ export default function TableChips({ spot, seat, heroPosition }) {
   return spot.committedAtRound[seat] === 0 ? null : (
     <div
       className='absolute h-[30px] w-[30px] flex justify-center items-center gap-2 text-neutral-500 text-sm'
-      style={layout[p]}
+      style={{
+        ...(layout[p]),
+        fontSize: scaleTableElement(15, tableWidth, 0.5, 10),
+      }}
     >
       <i className='bi bi-database'></i>
       <div>{spot.committedAtRound[seat]}</div>

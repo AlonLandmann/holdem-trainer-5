@@ -1,29 +1,37 @@
 import Card from '@/components/trainer/Card'
+import { scaleTableElement } from '@/lib/scaling'
 import { positions } from '@/lib/spots'
 
-export default function TableSeat({ spot, seat, heroPosition, combo }) {
+export default function TableSeat({ spot, seat, heroPosition, combo, tableWidth }) {
   const p = (heroPosition + seat) % 6
 
+  const h = scaleTableElement(45, tableWidth, 2, 0)
+  const v1 = scaleTableElement(60, tableWidth, 2, 0)
+  const v2 = scaleTableElement(15, tableWidth, 3.2, 0)
+
   const layout = [
-    { left: '50%', transform: 'translateX(-50%)', bottom: '15px' },
-    { left: '45px', bottom: '60px' },
-    { left: '45px', top: '60px' },
-    { left: '50%', transform: 'translateX(-50%)', top: '15px' },
-    { right: '45px', top: '60px' },
-    { right: '45px', bottom: '60px' }
+    { left: '50%', transform: 'translateX(-50%)', bottom: v2 },
+    { left: h, bottom: v1 },
+    { left: h, top: v1 },
+    { left: '50%', transform: 'translateX(-50%)', top: v2 },
+    { right: h, top: v1 },
+    { right: h, bottom: v1 }
   ]
 
   return (
     <div
-      className='absolute h-[90px] w-[80px] flex flex-col items-center gap-[1px] text-sm z-10'
-      style={layout[seat]}
+      className='absolute flex flex-col items-center gap-[1px] z-10'
+      style={{
+        ...(layout[seat]),
+        fontSize: scaleTableElement(14, tableWidth, 0.5, 10)
+      }}
     >
       <div className='text-neutral-500'>
         {positions[p]}
       </div>
-      <div className={`h-[50px] w-[80px] flex justify-center gap-[2px] ${spot.hasFolded[p] ? 'opacity-10' : ''}`}>
-        <Card card={combo ? combo.slice(0, 2) : null} />
-        <Card card={combo ? combo.slice(2, 4) : null} />
+      <div className={`flex justify-center gap-[2px] ${spot.hasFolded[p] ? 'opacity-10' : ''}`}>
+        <Card card={combo ? combo.slice(0, 2) : null} tableWidth={tableWidth} />
+        <Card card={combo ? combo.slice(2, 4) : null} tableWidth={tableWidth} />
       </div>
       <div className='text-neutral-500 truncate'>
         {spot.stacksAtRound[p] - spot.committedAtRound[p]}
