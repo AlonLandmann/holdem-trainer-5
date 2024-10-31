@@ -15,13 +15,12 @@ export default function ArticleBannerDemo({ article }) {
       className='flex flex-col cursor-pointer transition hover:bg-[#242424] border rounded overflow-hidden max-w-72'
       onClick={() => { window.open(`/academy/${article.slug}`, '_blank') }}
     >
-      <div className='relative overflow-hidden  sepia'>
+      <div className='relative overflow-hidden sepia min-h-[200px]'>
         <Image
           className='object-cover'
           src={article.imageUrl}
           alt='Article Image'
-          width={288}
-          height={224}
+          fill
         />
       </div>
       <div className='grow flex flex-col gap-3 py-4 pl-5 pr-6'>
