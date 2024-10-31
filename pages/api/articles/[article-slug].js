@@ -6,6 +6,11 @@ export default async function handler(req, res) {
     switch (req.method) {
       case 'PUT':
         const updatedArticle = req.body
+        const { secret } = req.query
+
+        if (secret !== '136f8eb61c1c78fca') {
+          return res.status(400).json({ success: false, message: 'Unauthorized request.' })
+        }
 
         await prisma.article.update({
           where: {

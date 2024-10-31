@@ -14,7 +14,7 @@ export default function ArticleEditor({ copy, setCopy }) {
   }
 
   async function handleSave() {
-    const res = await fetch(`/api/articles/${copy.id}`, {
+    const res = await fetch(`/api/articles/${copy.id}?secret=136f8eb61c1c78fca`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(copy)
