@@ -14,10 +14,14 @@ export default function SessionMain({
   handleCheckAnswer,
 }) {
   const [width, height] = useWindowDimensions()
-  const availableWidth = width - 112 
-  const availableHeight = height - 357 - (range.options.length > 5 ? 66 : 0)
+  const availableWidth = width - 112
+  const nrAnswerButtons = range.options.length
+  const buttonsPerRow = Math.min(5, Math.floor((availableWidth - 128) / 138) + 1)
+  const nrAnswerButtonRows = Math.ceil(nrAnswerButtons / buttonsPerRow)
+  const availableHeight = height - 357 - (nrAnswerButtonRows > 1 ? ((nrAnswerButtonRows - 1) * 66) : 0)
+  console.log(nrAnswerButtonRows)
 
-  return (
+  return !width ? null : (
     <div className='grow overflow-y-auto' style={{ height: 'calc(100vh - 49px)' }}>
       <div className='p-7 flex flex-col gap-7 justify-around items-center'>
         <h1 className='text-xl text-center'>
