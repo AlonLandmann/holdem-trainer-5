@@ -12,7 +12,7 @@ export default async function handler(req, res) {
           where: {
             session: {
               is: {
-                token: sessionId ? sessionId : null
+                token: sessionId || null
               }
             }
           }

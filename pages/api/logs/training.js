@@ -21,7 +21,7 @@ export default async function handler(req, res) {
           where: {
             rangeId: rangeId ? rangeId : null,
             trainingSession: {
-              id: sessionId ? sessionId : null
+              id: sessionId || null
             }
           }
         })
