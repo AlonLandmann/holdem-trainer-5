@@ -8,6 +8,8 @@ import AnswerButtons from '../trainer/AnswerButtons'
 import History from '../trainer/History'
 import { rng } from '@/lib/rounding'
 import DemoLegend from './DemoLegend'
+import useWindowDimensions from '@/hooks/useWindowDimensions'
+import { answerButtonsHeight } from '@/lib/scaling'
 
 export default function Steps({ ranges }) {
   const [hovered, setHovered] = useState([])
@@ -17,6 +19,11 @@ export default function Steps({ ranges }) {
   const [randomNumber, setRandomNumber] = useState(77.3)
   const [flash, setFlash] = useState(null)
   const [timer, setTimer] = useState(null)
+
+  // responsive design
+  const [width, height] = useWindowDimensions()
+  const availableWidth = width - (width >= 1280 ? 256 : 160)
+  const availableHeight = height - 196 - (width >= 1280 ? 80 : 60) - answerButtonsHeight(range.options.length, availableWidth)
 
   // hotkeys
   useEffect(() => {
@@ -159,7 +166,7 @@ export default function Steps({ ranges }) {
             After after each correct answer the demo will provide you with a new range to try out.
           </p>
         </div>
-        <div className='flex flex-col justify-around gap-5 items-center'>
+        <div className='flex flex-col justify-around gap-7 items-center'>
           <History
             range={range}
             spot={spot}
@@ -170,6 +177,8 @@ export default function Steps({ ranges }) {
             holeCards={holeCards}
             heroPosition={range.spot.p}
             flash={flash}
+            availableWidth={availableWidth}
+            availableHeight={availableHeight}
           />
           <RandomNumber
             randomNumber={randomNumber}

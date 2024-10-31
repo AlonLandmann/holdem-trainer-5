@@ -3,6 +3,7 @@ import AnswerButtons from './AnswerButtons'
 import History from './History'
 import RandomNumber from './RandomNumber'
 import Table from './Table'
+import { answerButtonsHeight } from '@/lib/scaling'
 
 export default function SessionMain({
   range,
@@ -15,11 +16,7 @@ export default function SessionMain({
 }) {
   const [width, height] = useWindowDimensions()
   const availableWidth = width - 112
-  const nrAnswerButtons = range.options.length
-  const buttonsPerRow = Math.min(5, Math.floor((availableWidth - 128) / 138) + 1)
-  const nrAnswerButtonRows = Math.ceil(nrAnswerButtons / buttonsPerRow)
-  const availableHeight = height - 357 - (nrAnswerButtonRows > 1 ? ((nrAnswerButtonRows - 1) * 66) : 0)
-  console.log(nrAnswerButtonRows)
+  const availableHeight = height - 301 - answerButtonsHeight(range.options.length, availableWidth)
 
   return !width ? null : (
     <div className='grow overflow-y-auto' style={{ height: 'calc(100vh - 49px)' }}>
