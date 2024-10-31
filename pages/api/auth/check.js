@@ -14,11 +14,11 @@ export default async function handler(req, res) {
       case 'GET':
         const { sessionId } = req.cookies
         
-        const user = await prisma.user.findFirst({
+        const user = !sessionId ? null : await prisma.user.findFirst({
           where: {
             session: {
               is: {
-                token: sessionId || null
+                token: sessionId
               }
             }
           },
