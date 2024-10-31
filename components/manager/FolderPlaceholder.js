@@ -21,7 +21,7 @@ export default function FolderPlaceholder({ selectedFolder }) {
       <h1 className='text-xl font-medium mb-2'>
         No ranges yet
       </h1>
-      <p className='text-neutral-500 mb-7'>
+      <p className='text-neutral-500 mb-7 text-center'>
         You can add new ranges or delete this folder.
       </p>
       <div className='flex gap-2'>

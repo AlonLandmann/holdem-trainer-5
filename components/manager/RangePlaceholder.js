@@ -17,7 +17,7 @@ export default function RangePlaceholder() {
       <h1 className='text-xl font-medium mb-2'>
         No ranges yet
       </h1>
-      <p className='text-neutral-500 mb-7'>
+      <p className='text-neutral-500 mb-7 text-center'>
         Click on the button to add your first range.
       </p>
       <Button

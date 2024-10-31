@@ -23,7 +23,7 @@ export default function Hero() {
         <h3 className='mb-7 max-w-[480px] text-neutral-300 md:text-lg'>
           Create your own custom poker ranges and train them on Hold'em Trainer.
         </h3>
-        <div className='flex flex-col xs:flex-row gap-3'>
+        <div className='flex flex-col xs:flex-row gap-2'>
           <Button
             theme='nice'
             utilClasses='rounded-sm py-3 px-4 bg-opacity-80'
