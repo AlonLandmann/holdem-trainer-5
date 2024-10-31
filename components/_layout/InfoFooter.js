@@ -1,6 +1,9 @@
+import { useUser } from '@/hooks/useUser'
 import A from '../_ui/A'
 
 export default function InfoFooter() {
+  const [user, setUser] = useUser()
+
   return (
     <div className='border-t flex flex-col'>
       <div className={`
@@ -21,22 +24,13 @@ export default function InfoFooter() {
         </div>
         <div>
           <h1 className='mb-3 text-xl font-medium text-neutral-600'>
-            App
+            Features
           </h1>
           <div className='flex flex-col items-start gap-2 text-sm xs:text-base'>
             <A href='/app/manager' text='Manager' />
             <A href='/app/editor/dummyId' text='Editor' />
             <A href='/app/trainer' text='Trainer' />
-          </div>
-        </div>
-        <div>
-          <h1 className='mb-3 text-xl font-medium text-neutral-600'>
-            Learn
-          </h1>
-          <div className='flex flex-col items-start gap-2 text-sm xs:text-base'>
-            <A href='/academy' text='Principles' />
-            <A href='/academy' text='Preflop' />
-            <A href='/academy' text='Postflop' />
+            <A href='/academy' text='Academy' />
           </div>
         </div>
         <div>
@@ -44,8 +38,28 @@ export default function InfoFooter() {
             Info
           </h1>
           <div className='flex flex-col items-start gap-2 text-sm xs:text-base'>
-            <A href='/pricing' text='HT-pro' />
-            <A href='/support/contact' text='Support' />
+            <A href='/pricing' text='HT-Pro' />
+            <A href='/support/contact' text='Contact' />
+            <A href='/support/faq' text='FAQ' utilClasses='tracking-wider' />
+          </div>
+        </div>
+        <div>
+          <h1 className='mb-3 text-xl font-medium text-neutral-600'>
+            Account
+          </h1>
+          <div className='flex flex-col items-start gap-2 text-sm xs:text-base'>
+            {user &&
+              <A href='/app/overview' text='Overview' />
+            }
+            {user &&
+              <A href='/app/settings' text='Settings' />
+            }
+            {!user &&
+              <A href='/auth/login' text='Login' />
+            }
+            {!user &&
+              <A href='/auth/signup' text='Signup' />
+            }
           </div>
         </div>
       </div>
