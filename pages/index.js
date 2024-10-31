@@ -20,7 +20,7 @@ export async function getServerSideProps() {
     where: {
       folder: {
         is: {
-          userId: 73
+          userId: Number(process.env.SAMPLE_USER_ID)
         }
       }
     }
