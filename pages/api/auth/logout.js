@@ -10,7 +10,7 @@ export default async function handler(req, res) {
         if (sessionId) {
           await prisma.session.deleteMany({
             where: {
-              token: sessionId
+              token: sessionId ? sessionId : null
             }
           })
         }

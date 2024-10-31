@@ -6,8 +6,8 @@ export default async function handler(req, res) {
     const folderId = Number(req.query.folderId)
     
     const searchFilter = folderId
-      ? { id: folderId }
-      : { name: 'New Folder', userId: user.id }
+      ? { id: (folderId ? folderId : null) }
+      : { name: 'New Folder', userId: (user.id ? user.id : null) }
 
     let folder = await prisma.folder.findFirst({
       where: searchFilter,

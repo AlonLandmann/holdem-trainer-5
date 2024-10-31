@@ -19,9 +19,9 @@ export default async function handler(req, res) {
 
         let trainingUnit = await prisma.trainingUnit.findFirst({
           where: {
-            rangeId,
+            rangeId: rangeId ? rangeId : null,
             trainingSession: {
-              id: sessionId
+              id: sessionId ? sessionId : null
             }
           }
         })
