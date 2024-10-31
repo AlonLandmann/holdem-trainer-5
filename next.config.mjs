@@ -3,7 +3,4 @@ export default {
   images: {
     domains: ['images.unsplash.com']
   },
-  api: {
-    responseLimit: '20mb',
-  },
 }

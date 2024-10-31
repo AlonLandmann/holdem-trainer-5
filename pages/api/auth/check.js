@@ -2,6 +2,12 @@ import prisma from '@/lib/prisma'
 import { toClientFormat } from '@/lib/ranges'
 import { produce } from 'immer'
 
+export const config = {
+  api: {
+    responseLimit: false,
+  },
+}
+
 export default async function handler(req, res) {
   try {
     switch (req.method) {
