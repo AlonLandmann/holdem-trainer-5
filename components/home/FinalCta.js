@@ -6,7 +6,7 @@ export default function FinalCta() {
       <div className='font-decorative text-[100px] text-neutral-700'>
         HT
       </div>
-      <h1 className='text-4xl mb-12 text-center'>
+      <h1 className='text-2xl xs:text-3xl sm:text-4xl mb-12 text-center'>
         Sign up for free!
       </h1>
       <Button

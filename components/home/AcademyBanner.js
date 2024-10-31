@@ -5,7 +5,7 @@ export default function AcademyBanner({ articles }) {
   return (
     <section className='flex flex-col items-center py-20 xl:py-32 px-12 xl:px-20'>
       <i className='bi bi-book text-7xl text-neutral-600 mb-8'></i>
-      <h1 className='text-4xl mb-4 text-center'>
+      <h1 className='text-2xl xs:text-3xl sm:text-4xl mb-4 text-center'>
         Hold'em Academy
       </h1>
       <h2 className='text-lg text-neutral-500 mb-8 max-w-[500px] text-center'>
