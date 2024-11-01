@@ -1,7 +1,10 @@
 import Image from 'next/image'
 import Button from '../_ui/Button'
+import { usePlausible } from 'next-plausible'
 
 export default function Highlights() {
+  const plausible = usePlausible()
+
   return (
     <section className='py-20 xl:py-32 px-12 xl:px-20 flex flex-col items-center'>
       <div className='grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-x-36 lg:gap-y-28'>
@@ -19,7 +22,10 @@ export default function Highlights() {
             theme='secondary'
             utilClasses='py-3 px-4'
             text='Build your own ranges'
-            onClick={() => { window.open('/auth/signup', '_blank') }}
+            onClick={() => {
+              plausible('buildYourOwnRangesCtaClicked')
+              window.open('/auth/signup', '_blank')
+            }}
           />
         </div>
         <div className='justify-self-center self-center'>
@@ -55,7 +61,10 @@ export default function Highlights() {
             theme='secondary'
             utilClasses='py-3 px-4'
             text='Try it now'
-            onClick={() => { window.open('/auth/signup', '_blank') }}
+            onClick={() => {
+              plausible('tryAllCombosInOneCtaClicked')
+              window.open('/auth/signup', '_blank')
+            }}
           />
         </div>
         <div className='md:py-16 max-w-[500px]'>
@@ -71,7 +80,10 @@ export default function Highlights() {
             theme='secondary'
             utilClasses='py-3 px-4'
             text='Try the editor'
-            onClick={() => { window.open('/auth/signup', '_blank') }}
+            onClick={() => {
+              plausible('tryEditorCtaClicked')
+              window.open('/auth/signup', '_blank')
+            }}
           />
         </div>
         <div className='justify-self-center self-center'>
@@ -103,7 +115,10 @@ export default function Highlights() {
             theme='secondary'
             utilClasses='py-3 px-4'
             text='Get started'
-            onClick={() => { window.open('/auth/signup', '_blank') }}
+            onClick={() => {
+              plausible('getStartedBrushCtaClicked')
+              window.open('/auth/signup', '_blank')
+            }}
           />
         </div>
         {/* <div>
@@ -126,7 +141,7 @@ export default function Highlights() {
             theme='secondary'
             utilClasses='py-3 px-4'
             text='Build your game now'
-            onClick={() => { window.open('/auth/signup', '_blank') }}
+            onClick={() => { <add plausible call here> window.open('/auth/signup', '_blank') }}
           />
         </div> */}
       </div>

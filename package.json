@@ -20,6 +20,7 @@
     "immer": "^10.1.1",
     "lodash": "^4.17.21",
     "next": "^14.2.16",
+    "next-plausible": "^3.12.2",
     "nodemailer": "^6.9.14",
     "react": "^18",
     "react-dom": "^18",

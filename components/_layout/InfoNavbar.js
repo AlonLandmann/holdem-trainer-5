@@ -3,21 +3,12 @@ import { useState } from 'react'
 import toast from 'react-hot-toast'
 import A from '../_ui/A'
 import Button from '../_ui/Button'
+import { usePlausible } from 'next-plausible'
 
 export default function InfoNavbar({ isHome = false }) {
   const [user, setUser, isLoading] = useUser()
   const [ddInView, setDdInView] = useState(false)
-
-  async function handleResend() {
-    const res = await fetch('/api/auth/resend', { method: 'POST', credentials: 'include' })
-    const json = await res.json()
-
-    if (json.success) {
-      toast.success('New verification link sent.')
-    } else {
-      toast.error(json.message || 'An unexpected error occurred.')
-    }
-  }
+  const plausible = usePlausible()
 
   async function handleLogout() {
     const res = await fetch('/api/auth/logout', { method: 'POST', credentials: 'include' })
@@ -85,7 +76,10 @@ export default function InfoNavbar({ isHome = false }) {
                 theme='nice'
                 utilClasses='py-3 px-4'
                 text='Create free account'
-                onClick={() => { window.location = '/auth/signup' }}
+                onClick={() => {
+                  plausible('navbarCreateAccountCtaClicked')
+                  window.location = '/auth/signup'
+                }}
               />
             }
             {user &&
