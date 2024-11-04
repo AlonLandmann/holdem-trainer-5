@@ -11,6 +11,7 @@ const hToW = 710 / 510
 const wToH = 510 / 710
 
 // the red we used before: #c43333
+// the gray used was neutral-600
 
 export default function Table({ spot, holeCards, heroPosition, flash, availableWidth, availableHeight }) {
   const width = clamp(Math.min(availableWidth, hToW * availableHeight), MIN_WIDTH, MAX_WIDTH)
@@ -32,7 +33,7 @@ export default function Table({ spot, holeCards, heroPosition, flash, availableW
         className={`
           border flex justify-center items-center bg-[#181818]
           ${flash === 'correct' ? 'border-[#66c24a]' : ''}
-          ${flash === 'incorrect' ? 'border-neutral-6001' : ''}
+          ${flash === 'incorrect' ? 'border-[#c43333]' : ''}
         `}
         style={{
           width: 0.901 * width,
