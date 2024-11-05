@@ -34,7 +34,7 @@ export default function Hero() {
             theme='secondary'
             utilClasses='rounded-sm py-3 px-4 bg-opacity-80 bg-neutral-900'
             text='Watch our guide'
-            onClick={() => { window.open('https://www.youtube.com/watch?v=z6PkfQihrUc', '_blank') }}
+            onClick={() => { window.open('https://www.youtube.com/watch?v=idgX7AKXh8c', '_blank') }}
           />
         </div>
       </div>
