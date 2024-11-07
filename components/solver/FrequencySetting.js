@@ -1,14 +1,16 @@
 import { useState } from 'react'
 import FrequencyMatrix from './FrequencyMatrix'
 import { positions } from '@/lib/spots'
+import FrequencySlider from './FrequencySlider'
+import FrequencyBrush from './FrequencyBrush'
 
 export default function FrequencySetting({ player, board, frequencies, setFrequencies }) {
   const [selected, setSelected] = useState([])
   const [hovered, setHovered] = useState([])
 
   return (
-    <div>
-      <h1 className='px-2 mb-3'>
+    <div className='flex flex-col gap-3'>
+      <h1 className='px-2'>
         {positions[player]} Frequencies
       </h1>
       <FrequencyMatrix
@@ -19,6 +21,13 @@ export default function FrequencySetting({ player, board, frequencies, setFreque
         hovered={hovered}
         setHovered={setHovered}
         cellWidth={9}
+      />
+      <FrequencyBrush
+        player={player}
+        board={board}
+        selected={selected}
+        setSelected={setSelected}
+        setFrequencies={setFrequencies}
       />
     </div>
   )
