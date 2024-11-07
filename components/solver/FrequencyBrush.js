@@ -1,12 +1,8 @@
 import Button from '@/components/_ui/Button'
 import Input from '@/components/_ui/Input'
-import BrushOption from '@/components/editor/BrushOption'
-import BrushSlider from '@/components/editor/BrushSlider'
 import { combos, isValid } from '@/lib/cards'
-import { evenSplit } from '@/lib/rounding'
 import { produce } from 'immer'
-import { useEffect, useState } from 'react'
-import toast from 'react-hot-toast'
+import { useState } from 'react'
 import FrequencySlider from './FrequencySlider'
 
 export default function FrequencyBrush({ player, board, selected, setSelected, setFrequencies }) {
@@ -28,23 +24,19 @@ export default function FrequencyBrush({ player, board, selected, setSelected, s
 
   return (
     <div className='border rounded py-3 px-4 flex flex-col text-neutral-300'>
-      <h1 className='pb-1 text-neutral-400'>
-        Brush
-      </h1>
-      <div className='pl-1 flex flex-col gap-[6px]'>
-        <div className='flex gap-2'>
+      <div className='flex items-center gap-14'>
           <div>
             Frequency
           </div>
           <Input
             theme='editor'
+            utilClasses='grow'
             type='number'
             min={0}
             max={1000}
             value={frequency}
             onChange={(e) => { setFrequency(e.target.value) }}
           />
-        </div>
       </div>
       <FrequencySlider
         frequency={frequency}

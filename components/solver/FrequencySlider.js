@@ -50,12 +50,8 @@ export default function FrequencySlider({ frequency, setFrequency }) {
           style={{ left: `calc(${frequency / 10}% - 3px)` }}
           onMouseDown={handleMouseDown}
         />
-        {/* {(range.options.length == frequencies.length) && frequencies.map((_, i) => (
-          <div
-            key={'track' + i}
-            style={{ background: optionColor(range.options[i], range.spot) }}
-          />
-        ))} */}
+        <div className='bg-neutral-500'></div>
+        <div className='bg-neutral-700'></div>
       </div>
     </div>
   )

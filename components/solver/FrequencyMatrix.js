@@ -27,6 +27,11 @@ export default function FrequencyMatrix({ frequencies, board, selected, setSelec
     const isSelected = selected.includes(combo)
     const isHovered = hovered.length === 0 || hovered.includes(combo)
 
+    if (!isTopRight) {
+      return {
+        background: '#181818'
+      }
+    }
     return {
       background: frequencyColor(frequency / maxFrequency),
       opacity: isHovered ? 1 : 0.05,
