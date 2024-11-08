@@ -23,8 +23,6 @@ export default function FrequencyMatrix({ frequencies, board, street, selected, 
     const combo = isTopRight ? c1 + c2 : c2 + c1
     const frequency = frequencies[combos.indexOf(combo)]
 
-    if (frequency === 0) return { background: '#181818' }
-
     const isSelected = selected.includes(combo)
     const isHovered = hovered.length === 0 || hovered.includes(combo)
 

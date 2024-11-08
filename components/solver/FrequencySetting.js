@@ -9,9 +9,9 @@ export default function FrequencySetting({ player, board, street, frequencies, s
 
   return (
     <div className='flex flex-col'>
-      <h1 className='px-2 text-neutral-300 text-center mb-2'>
+      <h3 className='mb-2 text-neutral-400 bg-neutral-800 py-2 px-3 rounded-sm bg-opacity-40'>
         {positions[player]}
-      </h1>
+      </h3>
       <FrequencyMatrix
         frequencies={frequencies[player]}
         board={board}
