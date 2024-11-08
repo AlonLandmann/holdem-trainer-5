@@ -49,14 +49,28 @@ export default function SolverMain() {
             <option value='5'>BTN</option>
           </select>
           <div className='flex gap-1'>
-            {Array(6).fill('').map((_, i) => (
+            {hasFolded.map((folded, i) => (
               <select
+                key={'folded' + i}
                 className='w-14 appearance-none'
-                value={hasFolded[i] ? 'F' : 'A'}
+                value={folded ? 'F' : 'A'}
                 onChange={e => { setHasFolded(produce(draft => { draft[i] = e.target.value == 'F' })) }}
               >
                 <option value='A'>A</option>
                 <option value='F'>F</option>
+              </select>
+            ))}
+          </div>
+          <div className='flex gap-1'>
+            {hasActed.map((acted, i) => (
+              <select
+                key={'acted' + i}
+                className='w-14 appearance-none'
+                value={acted ? 'A' : '-'}
+                onChange={e => { setHasActed(produce(draft => { draft[i] = e.target.value == 'A' })) }}
+              >
+                <option value='A'>A</option>
+                <option value='-'>-</option>
               </select>
             ))}
           </div>
