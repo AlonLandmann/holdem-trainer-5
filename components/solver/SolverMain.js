@@ -19,8 +19,8 @@ export default function SolverMain() {
 
   return (
     <div className='grow overflow-x-auto'>
-      <div className='p-2 flex flex-col gap-6'>
-        <div className='flex gap-2'>
+      <div className='p-2 flex flex-col'>
+        <div className='flex gap-2 mb-4'>
           <select
             className='w-32 appearance-none'
             value={street}
@@ -75,14 +75,14 @@ export default function SolverMain() {
             ))}
           </div>
         </div>
-        <div className='flex gap-4'>
+        <div className='flex gap-4 mb-7'>
           <div>
-            <div className='mb-1 text-neutral-500 px-2'>
-              big blind
+            <div className='mb-1 text-neutral-500 px-2 text-center'>
+              bb
             </div>
             <Input
               theme='editor'
-              utilClasses='w-32'
+              utilClasses='w-14 spinner-less text-center'
               type='number'
               min={1}
               step={1}
@@ -91,18 +91,75 @@ export default function SolverMain() {
             />
           </div>
           <div>
-            <div className='mb-1 text-neutral-500 px-2'>
-              min-raise
+            <div className='mb-1 text-neutral-500 px-2 text-center'>
+              mr
             </div>
             <Input
               theme='editor'
-              utilClasses='w-32'
+              utilClasses='w-14 spinner-less text-center'
               type='number'
               min={1}
               step={1}
               value={minRaise}
               onChange={(e) => { setMinRaise(e.target.value) }}
             />
+          </div>
+          <div>
+            <div className='mb-1 text-neutral-500 px-2 text-center'>
+              stacks
+            </div>
+            <div className='flex gap-1'>
+              {stacks.map((stack, i) => (
+                <Input
+                  key={'stack' + i}
+                  theme='editor'
+                  utilClasses='w-14 spinner-less text-center'
+                  type='number'
+                  min={1}
+                  step={1}
+                  value={stack}
+                  onChange={(e) => { setStacks(produce(draft => { draft[i] = e.target.value })) }}
+                />
+              ))}
+            </div>
+          </div>
+          <div>
+            <div className='mb-1 text-neutral-500 px-2 text-center'>
+              committed
+            </div>
+            <div className='flex gap-1'>
+              {committed.map((comm, i) => (
+                <Input
+                  key={'committed' + i}
+                  theme='editor'
+                  utilClasses='w-14 spinner-less text-center'
+                  type='number'
+                  min={1}
+                  step={1}
+                  value={comm}
+                  onChange={(e) => { setCommitted(produce(draft => { draft[i] = e.target.value })) }}
+                />
+              ))}
+            </div>
+          </div>
+          <div>
+            <div className='mb-1 text-neutral-500 px-2 text-center'>
+              pot shares
+            </div>
+            <div className='flex gap-1'>
+              {mainPotShares.map((share, i) => (
+                <Input
+                  key={'share' + i}
+                  theme='editor'
+                  utilClasses='w-14 spinner-less text-center'
+                  type='number'
+                  min={1}
+                  step={1}
+                  value={share}
+                  onChange={(e) => { setMainPotShares(produce(draft => { draft[i] = e.target.value })) }}
+                />
+              ))}
+            </div>
           </div>
         </div>
         <div className='flex flex-wrap gap-10'>
