@@ -7,7 +7,7 @@ import { produce } from 'immer'
 export default function SolverMain() {
   const [street, setStreet] = useState(3)
   const [board, setBoard] = useState(['As', 'Qs', 'Jd', '5h', '8d'])
-  const [frequencies, setFrequencies] = useState(Array(6).fill(Array(1326).fill(1000)))
+  const [frequencies, setFrequencies] = useState(Array(6).fill(Array(1326).fill(0)))
   const [player, setPlayer] = useState(0)
   const [bigBlind, setBigBlind] = useState(2)
   const [minRaise, setMinRaise] = useState(2)
@@ -20,7 +20,7 @@ export default function SolverMain() {
   return (
     <div className='grow overflow-x-auto'>
       <div className='p-2 flex flex-col'>
-        <div className='flex gap-2 mb-4'>
+        <div className='flex flex-wrap gap-2 mb-4'>
           <select
             className='w-32 appearance-none'
             value={street}
@@ -75,7 +75,7 @@ export default function SolverMain() {
             ))}
           </div>
         </div>
-        <div className='flex gap-4 mb-7'>
+        <div className='flex flex-wrap gap-4 mb-7'>
           <div>
             <div className='mb-1 text-neutral-500 px-2 text-center'>
               bb

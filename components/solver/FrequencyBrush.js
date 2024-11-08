@@ -18,6 +18,8 @@ export default function FrequencyBrush({ player, board, selected, setSelected, s
         }
       }
     }))
+
+    setSelected([])
   }
 
   return (
