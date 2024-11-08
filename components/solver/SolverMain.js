@@ -24,7 +24,7 @@ export default function SolverMain() {
   const [hasActed, setHasActed] = useState([false, false, false, false, false, false])
   const [stacks, setStacks] = useState([2, 2, 4, 4, 4, 4])
   const [committed, setCommitted] = useState([0, 0, 0, 0, 0, 0])
-  const [mainPotShares, setMainPotShares] = useState([0, 0, 0, 0, 0, 0])
+  const [mainPotShares, setMainPotShares] = useState([2, 2, 0, 0, 0, 0])
 
   async function runSolver() {
     const cBoard = board.map(card => cIntFromCard(card));
