@@ -32,7 +32,7 @@ export default function FrequencyMatrix({ frequencies, board, street, selected, 
       }
     }
     return {
-      background: frequencyColor(maxFrequency === 0 ? 1 : frequency / maxFrequency),
+      background: frequencyColor(maxFrequency === 0 ? 0 : frequency / maxFrequency),
       opacity: isHovered ? 1 : 0.05,
       borderTop: isSelected ? `${cellWidth}px solid #ff000044` : 'none'
     }
