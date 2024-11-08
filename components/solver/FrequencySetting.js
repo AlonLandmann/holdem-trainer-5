@@ -8,9 +8,9 @@ export default function FrequencySetting({ player, board, street, frequencies, s
   const [hovered, setHovered] = useState([])
 
   return (
-    <div className='flex flex-col gap-3'>
-      <h1 className='px-2'>
-        {positions[player]} Frequencies
+    <div className='flex flex-col'>
+      <h1 className='px-2 text-neutral-300 text-center mb-2'>
+        {positions[player]}
       </h1>
       <FrequencyMatrix
         frequencies={frequencies[player]}

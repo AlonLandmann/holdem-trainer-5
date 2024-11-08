@@ -73,7 +73,7 @@ export default function FrequencyMatrix({ frequencies, board, street, selected, 
 
   return (
     <div
-      className='grid'
+      className='grid mb-3'
       style={{
         width: `${matrixWidth + headlineWidth}px`,
         height: `${matrixWidth + headlineWidth}px`,

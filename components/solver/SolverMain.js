@@ -165,7 +165,7 @@ export default function SolverMain() {
         <div className='flex flex-wrap gap-10'>
           {hasFolded.map((folded, i) => !folded && (
             <FrequencySetting
-              index={'player-setting' + i}
+              key={'player-setting' + i}
               player={i}
               street={street}
               board={board}
