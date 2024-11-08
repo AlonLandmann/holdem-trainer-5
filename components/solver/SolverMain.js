@@ -22,7 +22,7 @@ export default function SolverMain() {
   const [minRaise, setMinRaise] = useState(2)
   const [hasFolded, setHasFolded] = useState([false, false, true, true, true, true])
   const [hasActed, setHasActed] = useState([false, false, false, false, false, false])
-  const [stacks, setStacks] = useState([3, 3, 4, 4, 4, 4])
+  const [stacks, setStacks] = useState([2, 2, 4, 4, 4, 4])
   const [committed, setCommitted] = useState([0, 0, 0, 0, 0, 0])
   const [mainPotShares, setMainPotShares] = useState([0, 0, 0, 0, 0, 0])
 
