@@ -53,7 +53,6 @@ export default function SolverMain() {
           board: cBoard,
           nrCombosPerPlayer,
           frequencies: cFrequencies,
-          totalComboCounter,
           player,
           bigBlind,
           minRaise,
