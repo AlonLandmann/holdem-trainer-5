@@ -1,10 +1,9 @@
 import { useState } from 'react'
 import FrequencyMatrix from './FrequencyMatrix'
 import { positions } from '@/lib/spots'
-import FrequencySlider from './FrequencySlider'
 import FrequencyBrush from './FrequencyBrush'
 
-export default function FrequencySetting({ player, board, frequencies, setFrequencies }) {
+export default function FrequencySetting({ player, board, street, frequencies, setFrequencies }) {
   const [selected, setSelected] = useState([])
   const [hovered, setHovered] = useState([])
 
@@ -16,6 +15,7 @@ export default function FrequencySetting({ player, board, frequencies, setFreque
       <FrequencyMatrix
         frequencies={frequencies[player]}
         board={board}
+        street={street}
         selected={selected}
         setSelected={setSelected}
         hovered={hovered}

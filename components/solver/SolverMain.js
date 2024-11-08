@@ -18,8 +18,19 @@ export default function SolverMain() {
   return (
     <div className='grow overflow-x-auto'>
       <div className='p-2 flex flex-col gap-8'>
-        <div>
+        <div className='flex gap-2'>
+          <select
+            className='w-32 appearance-none'
+            value={street}
+            onChange={e => { setStreet(Number(e.target.value)) }}
+          >
+            <option value='0'>Pre-Flop</option>
+            <option value='1'>Flop</option>
+            <option value='2'>Turn</option>
+            <option value='3'>River</option>
+          </select>
           <BoardSetting
+            street={street}
             board={board}
             setBoard={setBoard}
           />
@@ -29,6 +40,7 @@ export default function SolverMain() {
             <FrequencySetting
               index={'player-setting' + i}
               player={i}
+              street={street}
               board={board}
               frequencies={frequencies}
               setFrequencies={setFrequencies}

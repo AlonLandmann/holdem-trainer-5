@@ -2,21 +2,22 @@ import { combos, numFromSuit, numFromValue, sameValue, suits, values } from '@/l
 import { frequencyColor } from '@/lib/colors'
 import MatrixHeaderCell from '../editor/MatrixHeaderCell'
 
-export default function FrequencyMatrix({ frequencies, board, selected, setSelected, hovered, setHovered, cellWidth = 15 }) {
+export default function FrequencyMatrix({ frequencies, board, street, selected, setSelected, hovered, setHovered, cellWidth = 15 }) {
   const blockWidth = 4 * cellWidth
   const matrixWidth = 13 * blockWidth + 12 + 1
   const headlineWidth = cellWidth >= 12 ? 40 : cellWidth >= 8 ? 34 : 22
   const suitArrayWidth = 14
 
   const maxFrequency = Math.max(...frequencies);
+  const n = street > 0 ? street + 2 : 0
 
   function cellStyle(v1, v2, s1, s2) {
     const c1 = v1 + s1
     const c2 = v2 + s2
 
     if (c1 === c2) return { background: '#181818' }
-    if (board.includes(c1)) return { background: '#121212' }
-    if (board.includes(c2)) return { background: '#121212' }
+    if (board.slice(0, n).includes(c1)) return { background: '#121212' }
+    if (board.slice(0, n).includes(c2)) return { background: '#121212' }
 
     const isTopRight = numFromValue(v1) > numFromValue(v2) || (numFromValue(v1) === numFromValue(v2) && numFromSuit(s1) > numFromSuit(s2))
     const combo = isTopRight ? c1 + c2 : c2 + c1
@@ -44,8 +45,8 @@ export default function FrequencyMatrix({ frequencies, board, selected, setSelec
     const c2 = v2 + s2
 
     if (c1 === c2) return null
-    if (board.includes(c1)) return null
-    if (board.includes(c2)) return null
+    if (board.slice(0, n).includes(c1)) return null
+    if (board.slice(0, n).includes(c2)) return null
 
     const isTopRight = numFromValue(v1) > numFromValue(v2) || (numFromValue(v1) === numFromValue(v2) && numFromSuit(s1) > numFromSuit(s2))
     const combo = isTopRight ? c1 + c2 : c2 + c1
