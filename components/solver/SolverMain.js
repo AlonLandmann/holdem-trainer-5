@@ -3,6 +3,7 @@ import FrequencySetting from './FrequencySetting'
 import BoardSetting from './BoardSetting'
 import Input from '../_ui/Input'
 import { produce } from 'immer'
+import Button from '../_ui/Button'
 
 export default function SolverMain() {
   const [street, setStreet] = useState(3)
@@ -16,6 +17,30 @@ export default function SolverMain() {
   const [stacks, setStacks] = useState([3, 3, 4, 4, 4, 4])
   const [committed, setCommitted] = useState([0, 0, 0, 0, 0, 0])
   const [mainPotShares, setMainPotShares] = useState([0, 0, 0, 0, 0, 0])
+
+  async function runSolver() {
+    try {
+      await fetch('http://localhost:8000', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          street,
+          board,
+          frequencies,
+          player,
+          bigBlind,
+          minRaise,
+          hasFolded,
+          hasActed,
+          stacks,
+          committed,
+          mainPotShares,
+        })
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <div className='grow overflow-x-auto'>
@@ -74,6 +99,13 @@ export default function SolverMain() {
               </select>
             ))}
           </div>
+          <Button
+            theme='nice'
+            utilClasses='py-3 px-4 ml-auto'
+            text='run solver'
+            onClick={runSolver}
+            useQueue
+          />
         </div>
         <div className='flex flex-wrap gap-4 mb-7'>
           <div>
@@ -162,7 +194,7 @@ export default function SolverMain() {
             </div>
           </div>
         </div>
-        <div className='flex flex-wrap gap-10'>
+        <div className='flex flex-wrap gap-10 mb-7'>
           {hasFolded.map((folded, i) => !folded && (
             <FrequencySetting
               key={'player-setting' + i}
