@@ -15,7 +15,7 @@ function cIntFromCard(card) {
 
 export default function SolverMain() {
   const [street, setStreet] = useState(3)
-  const [board, setBoard] = useState(['As', 'Qs', 'Jd', '5h', '8d'])
+  const [board, setBoard] = useState(['Qs', '7d', '2s', '6d', '3d'])
   const [frequencies, setFrequencies] = useState(Array(6).fill(Array(1326).fill(0)))
   const [player, setPlayer] = useState(0)
   const [bigBlind, setBigBlind] = useState(2)
