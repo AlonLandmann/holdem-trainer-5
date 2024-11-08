@@ -2,6 +2,7 @@ import { useState } from 'react'
 import FrequencySetting from './FrequencySetting'
 import BoardSetting from './BoardSetting'
 import Input from '../_ui/Input'
+import { produce } from 'immer'
 
 export default function SolverMain() {
   const [street, setStreet] = useState(3)
@@ -35,15 +36,39 @@ export default function SolverMain() {
             board={board}
             setBoard={setBoard}
           />
+          <select
+            className='w-32 appearance-none'
+            value={player}
+            onChange={e => { setPlayer(Number(e.target.value)) }}
+          >
+            <option value='0'>SB</option>
+            <option value='1'>BB</option>
+            <option value='2'>UTG</option>
+            <option value='3'>HJ</option>
+            <option value='4'>CO</option>
+            <option value='5'>BTN</option>
+          </select>
+          <div className='flex gap-1'>
+            {Array(6).fill('').map((_, i) => (
+              <select
+                className='w-14 appearance-none'
+                value={hasFolded[i] ? 'F' : 'A'}
+                onChange={e => { setHasFolded(produce(draft => { draft[i] = e.target.value == 'F' })) }}
+              >
+                <option value='A'>A</option>
+                <option value='F'>F</option>
+              </select>
+            ))}
+          </div>
         </div>
         <div className='flex gap-4'>
           <div>
             <div className='mb-1 text-neutral-500 px-2'>
-              Big Blind
+              big blind
             </div>
             <Input
               theme='editor'
-              utilClasses='w-28'
+              utilClasses='w-32'
               type='number'
               min={1}
               step={1}
@@ -53,11 +78,11 @@ export default function SolverMain() {
           </div>
           <div>
             <div className='mb-1 text-neutral-500 px-2'>
-              Min Raise
+              min-raise
             </div>
             <Input
               theme='editor'
-              utilClasses='w-28'
+              utilClasses='w-32'
               type='number'
               min={1}
               step={1}
@@ -67,7 +92,7 @@ export default function SolverMain() {
           </div>
         </div>
         <div className='flex flex-wrap gap-10'>
-          {Array(6).fill('').map((_, i) => (
+          {hasFolded.map((folded, i) => !folded && (
             <FrequencySetting
               index={'player-setting' + i}
               player={i}
