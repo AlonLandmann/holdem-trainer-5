@@ -4,6 +4,14 @@ import BoardSetting from './BoardSetting'
 import Input from '../_ui/Input'
 import { produce } from 'immer'
 import Button from '../_ui/Button'
+import { combos } from '@/lib/cards'
+
+function cIntFromCard(card) {
+  const values = ['2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A']
+  const suits = ['c', 'd', 'h', 's']
+
+  return values.indexOf(card[0]) * 4 + suits.indexOf(card[1])
+}
 
 export default function SolverMain() {
   const [street, setStreet] = useState(3)
@@ -19,14 +27,33 @@ export default function SolverMain() {
   const [mainPotShares, setMainPotShares] = useState([0, 0, 0, 0, 0, 0])
 
   async function runSolver() {
+    const cBoard = board.map(card => cIntFromCard(card));
+    const nrCombosPerPlayer = Array(6).fill(0);
+    const cFrequencies = [];
+
+    let totalComboCounter = 0;
+    for (let i = 0; i < 6; i++) {
+      for (let j = 0; j < 1326; j++) {
+        if (frequencies[i][j] > 0) {
+          cFrequencies[3 * totalComboCounter + 0] = cIntFromCard(combos[j].slice(0, 2))
+          cFrequencies[3 * totalComboCounter + 1] = cIntFromCard(combos[j].slice(2, 4))
+          cFrequencies[3 * totalComboCounter + 2] = frequencies[i][j];
+          nrCombosPerPlayer[i] += 1;
+          totalComboCounter += 1;
+        }
+      }
+    }
+
     try {
       await fetch('http://localhost:8000', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           street,
-          board,
-          frequencies,
+          board: cBoard,
+          nrCombosPerPlayer,
+          frequencies: cFrequencies,
+          totalComboCounter,
           player,
           bigBlind,
           minRaise,
