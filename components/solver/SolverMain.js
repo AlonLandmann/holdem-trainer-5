@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import FrequencySetting from './FrequencySetting'
 import BoardSetting from './BoardSetting'
+import Input from '../_ui/Input'
 
 export default function SolverMain() {
   const [street, setStreet] = useState(3)
@@ -17,7 +18,7 @@ export default function SolverMain() {
 
   return (
     <div className='grow overflow-x-auto'>
-      <div className='p-2 flex flex-col gap-8'>
+      <div className='p-2 flex flex-col gap-6'>
         <div className='flex gap-2'>
           <select
             className='w-32 appearance-none'
@@ -34,6 +35,36 @@ export default function SolverMain() {
             board={board}
             setBoard={setBoard}
           />
+        </div>
+        <div className='flex gap-4'>
+          <div>
+            <div className='mb-1 text-neutral-500 px-2'>
+              Big Blind
+            </div>
+            <Input
+              theme='editor'
+              utilClasses='w-28'
+              type='number'
+              min={1}
+              step={1}
+              value={bigBlind}
+              onChange={(e) => { setBigBlind(e.target.value) }}
+            />
+          </div>
+          <div>
+            <div className='mb-1 text-neutral-500 px-2'>
+              Min Raise
+            </div>
+            <Input
+              theme='editor'
+              utilClasses='w-28'
+              type='number'
+              min={1}
+              step={1}
+              value={minRaise}
+              onChange={(e) => { setMinRaise(e.target.value) }}
+            />
+          </div>
         </div>
         <div className='flex flex-wrap gap-10'>
           {Array(6).fill('').map((_, i) => (
