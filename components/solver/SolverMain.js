@@ -1,10 +1,11 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import FrequencySetting from './FrequencySetting'
 import BoardSetting from './BoardSetting'
 import Input from '../_ui/Input'
 import { produce } from 'immer'
 import Button from '../_ui/Button'
 import { combos } from '@/lib/cards'
+import toast from 'react-hot-toast'
 
 function cIntFromCard(card) {
   const values = ['2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A']
@@ -26,6 +27,18 @@ export default function SolverMain() {
   const [committed, setCommitted] = useState([0, 0, 0, 0, 0, 0])
   const [mainPotShares, setMainPotShares] = useState([2, 2, 0, 0, 0, 0])
 
+  // temporarily add pre-selection of combos
+  useEffect(() => {
+    setFrequencies(produce(draft => {
+      draft[0][0] = 500;
+      draft[0][198] = 500;
+      draft[0][423] = 500;
+      draft[1][0] = 500;
+      draft[1][198] = 500;
+      draft[1][423] = 500;
+    }))
+  }, [])
+
   async function runSolver() {
     const cBoard = board.map(card => cIntFromCard(card));
     const nrCombosPerPlayer = Array(6).fill(0);
@@ -45,9 +58,11 @@ export default function SolverMain() {
     }
 
     try {
-      await fetch('http://localhost:8000', {
+      const res = await fetch('http://localhost:8000', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
+        mode: 'cors',  // Enable CORS for this request
+        credentials: 'same-origin',  // If you have cookies or authorization, adjust accordingly
         body: JSON.stringify({
           street,
           board: cBoard,
@@ -63,6 +78,14 @@ export default function SolverMain() {
           mainPotShares,
         })
       })
+
+      toast.success('Response arrived!')
+
+      const json = await res.json()
+      
+      toast.success('Json arrived, too!')
+
+      console.log(json)
     } catch (error) {
       console.log(error)
     }
