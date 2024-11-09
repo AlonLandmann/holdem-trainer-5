@@ -1,8 +1,8 @@
 import { combos, numFromSuit, numFromValue, suits, values } from '@/lib/cards'
 import MatrixHeaderCell from '../editor/MatrixHeaderCell'
-import { outputColor } from '@/lib/colors'
+import { frequencyColor, outputColor } from '@/lib/colors'
 
-export default function OutputMatrix({ actions, toCallNumbers, strategies, street, board, cellWidth = 15 }) {
+export default function OutputMatrix({ frequencies, actions, toCall, potBeforeCall, strategies, street, board, cellWidth = 15 }) {
   const blockWidth = 4 * cellWidth
   const matrixWidth = 13 * blockWidth + 12 + 1
   const headlineWidth = cellWidth >= 12 ? 40 : cellWidth >= 8 ? 34 : 22
@@ -23,11 +23,16 @@ export default function OutputMatrix({ actions, toCallNumbers, strategies, stree
 
     if (!isTopRight) {
       return {
-        // background: '#181818'
+        background: '#181818'
+      }
+    }
+    if (frequencies[combos.indexOf(combo)] === 0) {
+      return {
+        background: frequencyColor(0)
       }
     }
     return {
-      background: outputColor(actions, toCallNumbers, strategies[combos.indexOf(combo)]),
+      background: outputColor(actions, toCall, potBeforeCall, strategies[combos.indexOf(combo)]),
     }
   }
 
