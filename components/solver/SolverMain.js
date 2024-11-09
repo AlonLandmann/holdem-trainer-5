@@ -6,6 +6,7 @@ import { produce } from 'immer'
 import Button from '../_ui/Button'
 import { combos } from '@/lib/cards'
 import PlayerOutput from './PlayerOutput'
+import toast from 'react-hot-toast'
 
 const values = ['2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A']
 const suits = ['c', 'd', 'h', 's']
@@ -72,6 +73,7 @@ export default function SolverMain() {
     }
 
     try {
+      toast.success('Request sent! Please wait.')
       const res = await fetch('http://localhost:8000', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -96,7 +98,8 @@ export default function SolverMain() {
       const json = await res.json()
 
       if (json) {
-        console.log(json)
+        toast.success('Output is ready.')
+        // console.log(json)
         setOutput(() => {
           const result = [{}, {}, {}, {}, {}, {}];
 
