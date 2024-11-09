@@ -5,16 +5,27 @@ import Input from '../_ui/Input'
 import { produce } from 'immer'
 import Button from '../_ui/Button'
 import { combos } from '@/lib/cards'
-import toast from 'react-hot-toast'
+import PlayerOutput from './PlayerOutput'
+
+const values = ['2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A']
+const suits = ['c', 'd', 'h', 's']
 
 function cIntFromCard(card) {
-  const values = ['2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A']
-  const suits = ['c', 'd', 'h', 's']
-
   return values.indexOf(card[0]) * 4 + suits.indexOf(card[1])
 }
 
+function comboIndexFromCIntCards(c1, c2) {
+  const higherCard = Math.max(c1, c2);
+  const lowerCard = Math.min(c1, c2);
+  const v1 = values[Math.floor(higherCard / 4)];
+  const s1 = suits[higherCard % 4];
+  const v2 = values[Math.floor(lowerCard / 4)];
+  const s2 = suits[lowerCard % 4];
+  return combos.indexOf(v1 + s1 + v2 + s2);
+}
+
 export default function SolverMain() {
+  // input
   const [street, setStreet] = useState(3)
   const [board, setBoard] = useState(['Qs', '7d', '2s', '6d', '3d'])
   const [frequencies, setFrequencies] = useState(Array(6).fill(Array(1326).fill(0)))
@@ -26,6 +37,9 @@ export default function SolverMain() {
   const [stacks, setStacks] = useState([2, 2, 4, 4, 4, 4])
   const [committed, setCommitted] = useState([0, 0, 0, 0, 0, 0])
   const [mainPotShares, setMainPotShares] = useState([2, 2, 0, 0, 0, 0])
+
+  // output
+  const [output, setOutput] = useState(null)
 
   // temporarily add pre-selection of combos
   useEffect(() => {
@@ -79,13 +93,34 @@ export default function SolverMain() {
         })
       })
 
-      toast.success('Response arrived!')
-
       const json = await res.json()
-      
-      toast.success('Json arrived, too!')
 
-      console.log(json)
+      if (json) {
+        console.log(json)
+        setOutput(() => {
+          const result = [{}, {}, {}, {}, {}, {}];
+
+          for (let i = 0; i < json.length; i++) {
+            const player = json[i].player
+            const key = '!' + json[i].key.slice(0, -2).join('_')
+            const strategy = json[i].strategy;
+            const card1 = json[i].key[json[i].key.length - 2];
+            const card2 = json[i].key[json[i].key.length - 1];
+
+            if (!Object.keys(result[player]).includes(key)) {
+              result[player][key] = {
+                actions: strategy.map(item => item.action),
+                toCallNumbers: strategy.map(item => item.toCall),
+                strategies: Array(1326).fill(Array(strategy.length).fill(0))
+              }
+            }
+
+            result[player][key].strategies[comboIndexFromCIntCards(card1, card2)] = strategy.map(item => item.frequency)
+          }
+
+          return result
+        })
+      }
     } catch (error) {
       console.log(error)
     }
@@ -255,6 +290,19 @@ export default function SolverMain() {
             />
           ))}
         </div>
+        {output &&
+          <div className='flex flex-wrap gap-10'>
+            {hasFolded.map((folded, i) => !folded && (
+              <PlayerOutput
+                key={'player-output' + i}
+                player={i}
+                street={street}
+                board={board}
+                output={output[i]}
+              />
+            ))}
+          </div>
+        }
       </div>
     </div>
   )
