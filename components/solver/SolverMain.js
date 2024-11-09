@@ -26,7 +26,7 @@ function comboIndexFromCIntCards(c1, c2) {
 }
 
 export default function SolverMain() {
-  // input
+  // main input
   const [street, setStreet] = useState(3)
   const [board, setBoard] = useState(['Qs', '7d', '2s', '6d', '3d'])
   const [frequencies, setFrequencies] = useState(Array(6).fill(Array(1326).fill(0)))
@@ -38,6 +38,9 @@ export default function SolverMain() {
   const [stacks, setStacks] = useState([2, 2, 4, 4, 4, 4])
   const [committed, setCommitted] = useState([0, 0, 0, 0, 0, 0])
   const [mainPotShares, setMainPotShares] = useState([2, 2, 0, 0, 0, 0])
+
+  // parameters
+  const [nrIterations, setNrIterations] = useState(1000000)
 
   // output
   const [output, setOutput] = useState(null)
@@ -92,6 +95,7 @@ export default function SolverMain() {
           stacks,
           committed,
           mainPotShares,
+          nrIterations,
         })
       })
 
@@ -189,9 +193,20 @@ export default function SolverMain() {
               </select>
             ))}
           </div>
+          <Input
+            theme='editor'
+            utilClasses='ml-auto'
+            type='number'
+            min={1000}
+            step={1}
+            max={360000000}
+            placeholder='1,000 - 360,000,000'
+            value={nrIterations}
+            onChange={(e) => { setNrIterations(Number(e.target.value)) }}
+          />
           <Button
             theme='nice'
-            utilClasses='py-3 px-4 ml-auto'
+            utilClasses='py-3 px-4'
             text='run solver'
             onClick={runSolver}
             useQueue
