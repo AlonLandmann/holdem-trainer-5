@@ -228,7 +228,7 @@ export default function SolverMain() {
               min={1}
               step={1}
               value={bigBlind}
-              onChange={(e) => { setBigBlind(e.target.value) }}
+              onChange={(e) => { setBigBlind(Number(e.target.value)) }}
             />
           </div>
           <div>
@@ -242,7 +242,7 @@ export default function SolverMain() {
               min={1}
               step={1}
               value={minRaise}
-              onChange={(e) => { setMinRaise(e.target.value) }}
+              onChange={(e) => { setMinRaise(Number(e.target.value)) }}
             />
           </div>
           <div>
@@ -259,7 +259,7 @@ export default function SolverMain() {
                   min={1}
                   step={1}
                   value={stack}
-                  onChange={(e) => { setStacks(produce(draft => { draft[i] = e.target.value })) }}
+                  onChange={(e) => { setStacks(produce(draft => { draft[i] = Number(e.target.value) })) }}
                 />
               ))}
             </div>
@@ -278,7 +278,7 @@ export default function SolverMain() {
                   min={1}
                   step={1}
                   value={comm}
-                  onChange={(e) => { setCommitted(produce(draft => { draft[i] = e.target.value })) }}
+                  onChange={(e) => { setCommitted(produce(draft => { draft[i] = Number(e.target.value) })) }}
                 />
               ))}
             </div>
@@ -297,7 +297,7 @@ export default function SolverMain() {
                   min={1}
                   step={1}
                   value={share}
-                  onChange={(e) => { setMainPotShares(produce(draft => { draft[i] = e.target.value })) }}
+                  onChange={(e) => { setMainPotShares(produce(draft => { draft[i] = Number(e.target.value) })) }}
                 />
               ))}
             </div>
