@@ -7,6 +7,7 @@ import Button from '../_ui/Button'
 import { combos } from '@/lib/cards'
 import PlayerOutput from './PlayerOutput'
 import toast from 'react-hot-toast'
+import Card from '../trainer/Card'
 
 const values = ['2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A']
 const suits = ['c', 'd', 'h', 's']
@@ -56,6 +57,9 @@ export default function SolverMain() {
       draft[1][423] = 500;
     }))
   }, [])
+
+  // auxiliary variable
+  const n = street > 0 ? street + 2 : 0
 
   async function runSolver() {
     const cBoard = board.map(card => cIntFromCard(card));
@@ -311,6 +315,13 @@ export default function SolverMain() {
             />
           ))}
         </div>
+        {(output && street > 0) &&
+          <div className='flex gap-1 mb-4'>
+            {Array(n).fill('').map((_, i) => (
+              <Card key={'card' + board[i]} card={board[i]} />
+            ))}
+          </div>
+        }
         {output &&
           <div className='flex flex-wrap gap-10'>
             {hasFolded.map((folded, i) => !folded && (
