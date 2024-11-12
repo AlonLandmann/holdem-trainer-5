@@ -15,7 +15,7 @@ export default function Contact() {
         utilClasses='text-xl mb-16'
       />
       <div className='flex flex-col xs:flex-row gap-16 text-6xl'>
-        <A href='https://www.youtube.com/@HoldemTrainer' icon='youtube' />
+        <A href='https://youtu.be/idgX7AKXh8c' icon='youtube' />
         <A href='/' icon='twitter-x' />
         <A href='https://discord.gg/SJ8wxuWVWW' icon='discord' />
       </div>

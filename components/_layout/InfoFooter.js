@@ -17,7 +17,7 @@ export default function InfoFooter() {
             info@holdem-trainer.com
           </div>
           <div className='mt-auto flex gap-4'>
-            <A href='https://www.youtube.com/@HoldemTrainer' icon='youtube' utilClasses='text-xl' />
+            <A href='https://youtu.be/idgX7AKXh8c' icon='youtube' utilClasses='text-xl' />
             <A href='/' icon='twitter-x' utilClasses='text-xl' />
             <A href='https://discord.gg/SJ8wxuWVWW' icon='discord' utilClasses='text-xl' />
           </div>

@@ -60,7 +60,7 @@ export default function Article({ article, suggestions }) {
           theme='tertiary'
           utilClasses='text-base w-[30px] h-[30px]'
           icon='youtube'
-          onClick={() => { window.open('https://www.youtube.com/@HoldemTrainer', '_blank') }}
+          onClick={() => { window.open('https://youtu.be/idgX7AKXh8c', '_blank') }}
         />
         <Button
           theme='tertiary'
