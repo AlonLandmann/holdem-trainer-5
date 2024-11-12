@@ -60,6 +60,7 @@ export default function Article({ article, suggestions }) {
           theme='tertiary'
           utilClasses='text-base w-[30px] h-[30px]'
           icon='youtube'
+          onClick={() => { window.open('https://www.youtube.com/@HoldemTrainer', '_blank') }}
         />
         <Button
           theme='tertiary'
@@ -70,6 +71,7 @@ export default function Article({ article, suggestions }) {
           theme='tertiary'
           utilClasses='text-base w-[30px] h-[30px]'
           icon='discord'
+          onClick={() => { window.open('https://discord.gg/SJ8wxuWVWW', '_blank') }}
         />
       </section>
       <section className='py-5 flex flex-col gap-3'>

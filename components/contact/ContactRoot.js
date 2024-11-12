@@ -25,7 +25,7 @@ export default function ContactRoot() {
           </div>
           <div className='flex gap-3'>
             <A
-              href='/'
+              href='https://www.youtube.com/@HoldemTrainer'
               icon='youtube'
               utilClasses='text-lg text-neutral-400 hover:text-neutral-500'
             />
@@ -35,7 +35,7 @@ export default function ContactRoot() {
               utilClasses='text-lg text-neutral-400 hover:text-neutral-500'
             />
             <A
-              href='/'
+              href='https://discord.gg/SJ8wxuWVWW'
               icon='discord'
               utilClasses='text-lg text-neutral-400 hover:text-neutral-500'
             />
