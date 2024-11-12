@@ -18,7 +18,7 @@ export default function FinalCta() {
         text='Create free account'
         onClick={() => {
           plausible('finalCreateAccountCtaClicked')
-          window.open('/academy', '_blank')
+          window.location = '/auth/signup'
         }}
       />
     </section>
