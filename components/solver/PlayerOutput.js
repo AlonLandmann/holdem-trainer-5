@@ -2,9 +2,8 @@ import { useState } from 'react'
 import OutputMatrix from './OutputMatrix'
 import { positions } from '@/lib/spots'
 import { combos } from '@/lib/cards'
-import StrategyPreview from '../editor/StrategyPreview'
 
-export default function PlayerOutput({ player, frequencies, street, board, output }) {
+export default function PlayerOutput({ player, frequencies, board, output }) {
   const [key, setKey] = useState(Object.keys(output)[0])
 
   const legendItems = []
@@ -43,7 +42,7 @@ export default function PlayerOutput({ player, frequencies, street, board, outpu
         toCall={output[key].toCall}
         potBeforeCall={output[key].potBeforeCall}
         strategies={output[key].strategies}
-        street={street}
+        street={output[key].street}
         board={board}
         cellWidth={9}
       />

@@ -117,6 +117,7 @@ export default function SolverMain() {
             const strategy = json[i].strategy;
             const toCall = json[i].toCall;
             const potBeforeCall = json[i].potBeforeCall;
+            const street = json[i].street;
             const card1 = json[i].key[json[i].key.length - 2];
             const card2 = json[i].key[json[i].key.length - 1];
 
@@ -125,6 +126,7 @@ export default function SolverMain() {
                 actions: strategy.map(item => item.action),
                 toCall,
                 potBeforeCall,
+                street,
                 strategies: Array(1326).fill(Array(strategy.length).fill(0))
               }
             }
@@ -329,7 +331,6 @@ export default function SolverMain() {
                 key={'player-output' + i}
                 player={i}
                 frequencies={frequencies}
-                street={street}
                 board={board}
                 output={output[i]}
               />
