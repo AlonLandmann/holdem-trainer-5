@@ -16,6 +16,10 @@ function cIntFromCard(card) {
   return values.indexOf(card[0]) * 4 + suits.indexOf(card[1])
 }
 
+function cardFromCInt(int) {
+  return values[Math.floor(int / 4)] + suits[int % 4];
+}
+
 function comboIndexFromCIntCards(c1, c2) {
   const higherCard = Math.max(c1, c2);
   const lowerCard = Math.min(c1, c2);
@@ -24,6 +28,27 @@ function comboIndexFromCIntCards(c1, c2) {
   const v2 = values[Math.floor(lowerCard / 4)];
   const s2 = suits[lowerCard % 4];
   return combos.indexOf(v1 + s1 + v2 + s2);
+}
+
+function getNrBoardCardsRevealed(startingStreet, infoSetStreet) {
+  if (startingStreet == 0) {
+    if (infoSetStreet == 0) return 0;
+    if (infoSetStreet == 1) return 3;
+    if (infoSetStreet == 2) return 4;
+    if (infoSetStreet == 3) return 5;
+  }
+  if (startingStreet == 1) {
+    if (infoSetStreet == 1) return 0;
+    if (infoSetStreet == 2) return 1;
+    if (infoSetStreet == 3) return 2;
+  }
+  if (startingStreet == 2) {
+    if (infoSetStreet == 2) return 0;
+    if (infoSetStreet == 3) return 1;
+  }
+  if (startingStreet == 3) {
+    if (infoSetStreet == 3) return 0;
+  }
 }
 
 export default function SolverMain() {
@@ -62,6 +87,7 @@ export default function SolverMain() {
   const n = street > 0 ? street + 2 : 0
 
   async function runSolver() {
+    const keepStreetForLater = street;
     const cBoard = board.map(card => cIntFromCard(card));
     const nrCombosPerPlayer = Array(6).fill(0);
     const cFrequencies = [];
@@ -106,27 +132,29 @@ export default function SolverMain() {
       const json = await res.json()
 
       if (json) {
+        console.log(json);
         toast.success('Output is ready.')
-        // console.log(json)
         setOutput(() => {
           const result = [{}, {}, {}, {}, {}, {}];
 
           for (let i = 0; i < json.length; i++) {
             const player = json[i].player
-            const key = '!' + json[i].key.slice(0, -2).join('_')
+            const infoSetStreet = json[i].street;
+            const nrBoardCardsRevealed = getNrBoardCardsRevealed(keepStreetForLater, infoSetStreet);
+            const key = '!' + json[i].key.slice(0, -(2 + nrBoardCardsRevealed)).join('_') + '?' + (nrBoardCardsRevealed > 0 ? json[i].key.slice(-nrBoardCardsRevealed).join('_') : '')
             const strategy = json[i].strategy;
             const toCall = json[i].toCall;
             const potBeforeCall = json[i].potBeforeCall;
-            const street = json[i].street;
-            const card1 = json[i].key[json[i].key.length - 2];
-            const card2 = json[i].key[json[i].key.length - 1];
+            const card1 = json[i].key[json[i].key.length - nrBoardCardsRevealed - 2];
+            const card2 = json[i].key[json[i].key.length - nrBoardCardsRevealed - 1];
 
             if (!Object.keys(result[player]).includes(key)) {
               result[player][key] = {
                 actions: strategy.map(item => item.action),
                 toCall,
                 potBeforeCall,
-                street,
+                street: infoSetStreet,
+                board: board.slice(0, 5 - nrBoardCardsRevealed).concat(nrBoardCardsRevealed > 0 ? json[i].key.slice(-nrBoardCardsRevealed).map(int => cardFromCInt(int)): []),
                 strategies: Array(1326).fill(Array(strategy.length).fill(0))
               }
             }
@@ -331,7 +359,6 @@ export default function SolverMain() {
                 key={'player-output' + i}
                 player={i}
                 frequencies={frequencies}
-                board={board}
                 output={output[i]}
               />
             ))}

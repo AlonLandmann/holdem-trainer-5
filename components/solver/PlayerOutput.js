@@ -3,7 +3,7 @@ import OutputMatrix from './OutputMatrix'
 import { positions } from '@/lib/spots'
 import { combos } from '@/lib/cards'
 
-export default function PlayerOutput({ player, frequencies, board, output }) {
+export default function PlayerOutput({ player, frequencies, output }) {
   const [key, setKey] = useState(Object.keys(output)[0])
 
   const legendItems = []
@@ -43,7 +43,7 @@ export default function PlayerOutput({ player, frequencies, board, output }) {
         potBeforeCall={output[key].potBeforeCall}
         strategies={output[key].strategies}
         street={output[key].street}
-        board={board}
+        board={output[key].board}
         cellWidth={9}
       />
       <div className='text-sm text-neutral-500'>
