@@ -66,6 +66,7 @@ export default function Article({ article, suggestions }) {
           theme='tertiary'
           utilClasses='text-base w-[30px] h-[30px]'
           icon='twitter-x'
+          onClick={() => { window.open('https://x.com/holdemtrainer', '_blank') }}
         />
         <Button
           theme='tertiary'

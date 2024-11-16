@@ -30,7 +30,7 @@ export default function ContactRoot() {
               utilClasses='text-lg text-neutral-400 hover:text-neutral-500'
             />
             <A
-              href='/'
+              href='https://x.com/holdemtrainer'
               icon='twitter-x'
               utilClasses='text-lg text-neutral-400 hover:text-neutral-500'
             />
