@@ -9,7 +9,7 @@ export default function AppNavbarItem({ icon, text, href, onClick, extendedView 
 
   function handleClick() {
     if (href) {
-      window.location = href
+      router.push(href)
     } else if (onClick) {
       onClick()
     }
