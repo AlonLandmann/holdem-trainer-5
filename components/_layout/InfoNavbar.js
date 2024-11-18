@@ -1,12 +1,14 @@
-import { useUser } from '@/hooks/useUser'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
 import A from '../_ui/A'
 import Button from '../_ui/Button'
 import { usePlausible } from 'next-plausible'
+import { useUserData } from '@/hooks/useUserData'
+import { useRouter } from 'next/router'
 
 export default function InfoNavbar({ isHome = false }) {
-  const [user, setUser, isLoading] = useUser()
+  const [user, loaded] = useUserData()
+  const router = useRouter()
   const [ddInView, setDdInView] = useState(false)
   const plausible = usePlausible()
 
@@ -33,10 +35,10 @@ export default function InfoNavbar({ isHome = false }) {
           Hold'em Trainer
         </h1>
       </div>
-      {!isLoading &&
+      {loaded.info &&
         <div className='flex items-center px-3'>
           <div className='hidden md:flex gap-8 mr-7'>
-            {user &&
+            {user.info &&
               <A
                 text={'My Ranges'}
                 href='/app/manager'
@@ -49,13 +51,13 @@ export default function InfoNavbar({ isHome = false }) {
               utilClasses=' transition text-sm font-medium'
             />
             <A
-              text={user ? 'HT - Pro' : 'Pricing'}
+              text={user.info ? 'HT - Pro' : 'Pricing'}
               href='/pricing'
               utilClasses=' transition text-sm font-medium'
             />
           </div>
           <div className='flex gap-4'>
-            {!user &&
+            {!user.info &&
               <Button
                 theme='link'
                 utilClasses='md:hidden'
@@ -63,30 +65,30 @@ export default function InfoNavbar({ isHome = false }) {
                 onClick={() => { setDdInView(prev => !prev) }}
               />
             }
-            {!user && !isHome &&
+            {!user.info && !isHome &&
               <Button
                 theme='nice'
                 utilClasses='py-3 px-4'
                 text='Log in'
-                onClick={() => { window.location = '/auth/login' }}
+                onClick={() => { router.push('/auth/login') }}
               />
             }
-            {!user && isHome &&
+            {!user.info && isHome &&
               <Button
                 theme='nice'
                 utilClasses='py-3 px-4'
                 text='Create free account'
                 onClick={() => {
-                  plausible('navbarCreateAccountCtaClicked')
-                  window.location = '/auth/signup'
+                  plausible('navbarCreateAccountCtaClicked');
+                  router.push('/auth/signup');
                 }}
               />
             }
-            {user &&
+            {user.info &&
               <Button
                 theme='nice'
                 utilClasses='w-10 h-10 capitalize'
-                text={user.username.slice(0, 2)}
+                text={user.info.username.slice(0, 2)}
                 onClick={() => { setDdInView(prev => !prev) }}
               />
             }
@@ -96,9 +98,9 @@ export default function InfoNavbar({ isHome = false }) {
       {ddInView &&
         <div className={`
           fixed w-full top-14 right-0 flex flex-col
-          bg-neutral-900 border-b ${user ? '' : 'md:border-hidden'}
+          bg-neutral-900 border-b ${user.info ? '' : 'md:border-hidden'}
         `}>
-          {user &&
+          {user.info &&
             <A
               text='My Ranges'
               href='/app/manager'
@@ -111,11 +113,11 @@ export default function InfoNavbar({ isHome = false }) {
             utilClasses=' p-5 text-start md:hidden'
           />
           <A
-            text={user ? 'HT - Pro' : 'Pricing'}
+            text={user.info ? 'HT - Pro' : 'Pricing'}
             href='/pricing'
             utilClasses=' p-5 text-start md:hidden'
           />
-          {user &&
+          {user.info &&
             <Button
               theme='link'
               text='Log out'

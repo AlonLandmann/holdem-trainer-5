@@ -3,8 +3,10 @@ import { useUser } from '@/hooks/useUser'
 import handleManagerRequest from '@/lib/managerRequests'
 import toast from 'react-hot-toast'
 import Confirm from '../_ui/Confirm'
+import { useRouter } from 'next/router'
 
 export default function RangeUiButtons({ range, folderLength }) {
+  const router = useRouter()
   const [user, setUser] = useUser()
 
   function handleDelete() {
@@ -56,7 +58,7 @@ export default function RangeUiButtons({ range, folderLength }) {
       <Button
         theme='tertiary'
         icon='pen'
-        onClick={() => { window.location = `/app/editor/${range.id}` }}
+        onClick={() => { router.push(`/app/editor/${range.id}`) }}
         useQueue
       />
       <Button

@@ -17,7 +17,7 @@ export default function AppNavbar() {
     const json = await res.json()
 
     if (json.success) {
-      window.location = '/auth/login'
+      window.location = '/'
     } else {
       toast.error(json.message || 'An unexpected error occurred.')
     }

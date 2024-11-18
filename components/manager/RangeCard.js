@@ -5,9 +5,11 @@ import RangeLegend from '@/components/manager/RangeLegend'
 import RangeName from '@/components/manager/RangeName'
 import RangeUiButtons from '@/components/manager/RangeUiButtons'
 import { useLoadingQueue } from '@/hooks/useLoadingQueue'
+import { useRouter } from 'next/router'
 import { useState } from 'react'
 
 export default function RangeCard({ range, selectedRanges, setSelectedRanges, folderLength }) {
+  const router = useRouter()
   const [loadingQueue, setLoadingQueue] = useLoadingQueue()
   const [renaming, setRenaming] = useState(false)
 
@@ -67,7 +69,7 @@ export default function RangeCard({ range, selectedRanges, setSelectedRanges, fo
             utilClasses='py-3 px-4 rounded-sm font-normal'
             icon='crosshair'
             text='Train Now'
-            onClick={() => { window.location = `/app/trainer?ids=${JSON.stringify([range.id])}` }}
+            onClick={() => { router.push(`/app/trainer?ids=${JSON.stringify([range.id])}`) }}
           />
         </div>
       </div>

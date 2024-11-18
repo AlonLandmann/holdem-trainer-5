@@ -114,7 +114,7 @@ export default function Toolbar({ allRanges, range, setRange, past, setPast, fut
 
   function handleTrain() {
     if (isEqual(range, referenceRange) || confirm('You have unsaved changes, which will be lost if you start training. Do you want to proceed anyway?')) {
-      window.location = `/app/trainer?ids=${JSON.stringify([range.id])}`
+      router.push(`/app/trainer?ids=${JSON.stringify([range.id])}`);
     }
   }
 

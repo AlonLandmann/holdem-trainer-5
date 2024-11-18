@@ -11,10 +11,10 @@ import DemoLegend from './DemoLegend'
 import useWindowDimensions from '@/hooks/useWindowDimensions'
 import { answerButtonsHeight } from '@/lib/scaling'
 
-export default function Steps({ ranges }) {
+export default function Steps({ initialRange }) {
   const [hovered, setHovered] = useState([])
-  const [range, setRange] = useState(ranges[8])
-  const [spot, setSpot] = useState(range.spot)
+  const [range, setRange] = useState(initialRange)
+  const [spot, setSpot] = useState(initialRange.spot)
   const [holeCards, setHoleCards] = useState('AdKd')
   const [randomNumber, setRandomNumber] = useState(77.3)
   const [flash, setFlash] = useState(null)
@@ -88,7 +88,7 @@ export default function Steps({ ranges }) {
 
   // handle range change
   function handleRangeChange(event) {
-    const newRange = ranges.filter(rCandidate => rCandidate.id === Number(event.target.value))[0]
+    const newRange = [range].filter(rCandidate => rCandidate.id === Number(event.target.value))[0]
     setRange(newRange)
     setSpot(newRange.spot)
     setHoleCards(sampleHoleCards(newRange))
@@ -108,7 +108,7 @@ export default function Steps({ ranges }) {
             value={String(range.id)}
             onChange={handleRangeChange}
           >
-            {ranges.map(r => (
+            {[range].map(r => (
               <option key={'select-range' + r.id} value={String(r.id)}>
                 {r.name}
               </option>

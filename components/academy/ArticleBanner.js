@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 
 const difficultyInfo = [
   { color: '#96dea9', background: '#3a6e48', suit: 'club', displayText: 'Beginner' },
@@ -8,12 +9,13 @@ const difficultyInfo = [
 ]
 
 export default function ArticleBanner({ article }) {
+  const router = useRouter()
   const { color, background, suit, displayText } = difficultyInfo[article.level - 1]
 
   return (
     <div
       className='flex flex-col sm:flex-row cursor-pointer transition hover:bg-[#242424] border rounded overflow-hidden max-w-72 sm:max-w-full'
-      onClick={() => { window.location = `/academy/${article.slug}` }}
+      onClick={() => { router.push(`/academy/${article.slug}`) }}
     >
       <div className='relative overflow-hidden min-h-56 min-w-56 sepia sm:rounded-[3px]'>
         <Image

@@ -1,7 +1,9 @@
 import { usePlausible } from 'next-plausible'
 import Button from '../_ui/Button'
+import { useRouter } from 'next/router'
 
 export default function FinalCta() {
+  const router = useRouter()
   const plausible = usePlausible()
 
   return (
@@ -18,7 +20,7 @@ export default function FinalCta() {
         text='Create free account'
         onClick={() => {
           plausible('finalCreateAccountCtaClicked')
-          window.location = '/auth/signup'
+          router.push('/auth/signup')
         }}
       />
     </section>

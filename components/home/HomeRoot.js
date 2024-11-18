@@ -8,21 +8,21 @@ import AcademyBanner from './AcademyBanner'
 import FinalCta from './FinalCta'
 import Button from '../_ui/Button'
 
-export default function HomeRoot({ ranges, usageInfo, articles }) {
+export default function HomeRoot({ range }) {
   return (
     <InfoLayout isHome>
       <Hero />
       <Steps
-        ranges={ranges}
+        initialRange={range}
       />
-      <UsageData
-        usageInfo={usageInfo}
-      />
+      {/* <UsageData
+        // usageInfo={usageInfo}
+      /> */}
       <Highlights />
       <Contact />
-      <AcademyBanner
+      {/* <AcademyBanner
         articles={articles}
-      />
+      /> */}
       <FinalCta />
       <div className='fixed bottom-4 right-4'>
         <Button

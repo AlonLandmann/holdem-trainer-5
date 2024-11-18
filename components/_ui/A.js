@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 export default function A({
   href = '/',
   icon,
@@ -5,7 +7,7 @@ export default function A({
   utilClasses,
 }) {
   return (
-    <a
+    <Link
       className='block text-neutral-300 hover:text-neutral-400'
       href={href}
     >
@@ -21,6 +23,6 @@ export default function A({
           </span>
         }
       </div>
-    </a>
+    </Link>
   )
 }

@@ -5,8 +5,10 @@ import Input from '../_ui/Input'
 import A from '../_ui/A'
 import toast from 'react-hot-toast'
 import { validateEmail, validatePassword } from '@/lib/validate'
+import { useRouter } from 'next/router'
 
 export default function ResetRoot() {
+  const router = useRouter()
   const [instructions, setInstructions] = useState('Enter your email below.')
   const [email, setEmail] = useState('')
   const [codeSent, setCodeSent] = useState(false)
@@ -164,7 +166,7 @@ export default function ResetRoot() {
               <Button
                 utilClasses='w-full rounded-sm py-3 px-4 mt-8'
                 text='Log in'
-                onClick={() => { window.location = '/auth/login' }}
+                onClick={() => { router.push('/auth/login') }}
               />
             }
           </div>

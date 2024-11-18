@@ -1,7 +1,10 @@
 import Image from 'next/image'
 import Button from '../_ui/Button'
+import { useRouter } from 'next/router'
 
 export default function Hero() {
+  const router = useRouter()
+
   return (
     <div
       className='relative p-7 flex justify-center items-center border-b'
@@ -28,7 +31,7 @@ export default function Hero() {
             theme='nice'
             utilClasses='rounded-sm py-3 px-4 bg-opacity-80'
             text='Create free account'
-            onClick={() => { window.location = '/auth/signup' }}
+            onClick={() => { router.push('/auth/signup') }}
           />
           <Button
             theme='secondary'
