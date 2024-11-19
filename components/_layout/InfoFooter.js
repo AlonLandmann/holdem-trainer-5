@@ -30,7 +30,7 @@ export default function InfoFooter() {
             <A href='/app/manager' text='Manager' />
             <A href='/app/editor/dummyId' text='Editor' />
             <A href='/app/trainer' text='Trainer' />
-            <A href='/academy' text='Academy' />
+            {/* <A href='/academy' text='Academy' /> */}
           </div>
         </div>
         <div>
@@ -38,7 +38,7 @@ export default function InfoFooter() {
             Info
           </h1>
           <div className='flex flex-col items-start gap-2 text-sm xs:text-base'>
-            <A href='/pricing' text='HT-Pro' />
+            {/* <A href='/pricing' text='HT-Pro' /> */}
             <A href='/support/contact' text='Contact' />
             <A href='/support/faq' text='FAQ' utilClasses='tracking-wider' />
           </div>
