@@ -42,6 +42,8 @@ export function UserDataProvider({ children }) {
   });
 
   const [loaded, setLoaded] = useState({
+    initialComplete: false,
+    lazyComplete: false,
     info: false,
     settings: false,
     folders: false,
@@ -80,6 +82,7 @@ export function UserDataProvider({ children }) {
         }));
 
         setLoaded(produce(draft => {
+          draft.initialComplete = true;
           draft.info = true;
 
           if (withSettings) {
@@ -93,6 +96,10 @@ export function UserDataProvider({ children }) {
 
         console.log(`Initial load ${withSettings ? 'with settings ' : ''}${withFolders ? 'with folders ' : ''}done.`);
       } else {
+        setLoaded(produce(draft => {
+          draft.initialComplete = true
+        }));
+
         console.log(json.message);
       }
     } catch (error) {
@@ -208,6 +215,8 @@ export function UserDataProvider({ children }) {
     } catch (error) {
       console.log(error);
     }
+
+    setLoaded(produce(draft => { draft.lazyComplete = true }));
   }
 
   useEffect(() => {

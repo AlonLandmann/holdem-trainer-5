@@ -47,20 +47,22 @@ export default function InfoFooter() {
           <h1 className='mb-3 text-xl font-medium text-neutral-600'>
             Account
           </h1>
-          <div className='flex flex-col items-start gap-2 text-sm xs:text-base'>
-            {loaded.info &&
-              <A href='/app/overview' text='Overview' />
-            }
-            {loaded.info &&
-              <A href='/app/settings' text='Settings' />
-            }
-            {!loaded.info &&
-              <A href='/auth/login' text='Login' />
-            }
-            {!loaded.info &&
-              <A href='/auth/signup' text='Signup' />
-            }
-          </div>
+          {loaded.initialComplete &&
+            <div className='flex flex-col items-start gap-2 text-sm xs:text-base'>
+              {user.info &&
+                <A href='/app/overview' text='Overview' />
+              }
+              {user &&
+                <A href='/app/settings' text='Settings' />
+              }
+              {!user.info &&
+                <A href='/auth/login' text='Login' />
+              }
+              {!user.info &&
+                <A href='/auth/signup' text='Signup' />
+              }
+            </div>
+          }
         </div>
       </div>
       <div className={`
