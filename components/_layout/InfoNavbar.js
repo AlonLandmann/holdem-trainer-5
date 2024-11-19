@@ -35,17 +35,16 @@ export default function InfoNavbar({ isHome = false }) {
           Hold'em Trainer
         </h1>
       </div>
-      {loaded.info &&
-        <div className='flex items-center px-3'>
-          <div className='hidden md:flex gap-8 mr-7'>
-            {user.info &&
-              <A
-                text={'My Ranges'}
-                href='/app/manager'
-                utilClasses=' transition text-sm font-medium'
-              />
-            }
-            {/* <A
+      <div className='flex items-center px-3'>
+        <div className='hidden md:flex gap-8 mr-7'>
+          {user.info &&
+            <A
+              text={'My Ranges'}
+              href='/app/manager'
+              utilClasses=' transition text-sm font-medium'
+            />
+          }
+          {/* <A
               text='Academy'
               href='/academy'
               utilClasses=' transition text-sm font-medium'
@@ -55,46 +54,45 @@ export default function InfoNavbar({ isHome = false }) {
               href='/pricing'
               utilClasses=' transition text-sm font-medium'
             /> */}
-          </div>
-          <div className='flex gap-4'>
-            {!user.info &&
-              <Button
-                theme='link'
-                utilClasses='md:hidden'
-                icon='three-dots-vertical'
-                onClick={() => { setDdInView(prev => !prev) }}
-              />
-            }
-            {!user.info && !isHome &&
-              <Button
-                theme='nice'
-                utilClasses='py-3 px-4'
-                text='Log in'
-                onClick={() => { router.push('/auth/login') }}
-              />
-            }
-            {!user.info && isHome &&
-              <Button
-                theme='nice'
-                utilClasses='py-3 px-4'
-                text='Create free account'
-                onClick={() => {
-                  plausible('navbarCreateAccountCtaClicked');
-                  router.push('/auth/signup');
-                }}
-              />
-            }
-            {user.info &&
-              <Button
-                theme='nice'
-                utilClasses='w-10 h-10 capitalize'
-                text={user.info.username.slice(0, 2)}
-                onClick={() => { setDdInView(prev => !prev) }}
-              />
-            }
-          </div>
         </div>
-      }
+        <div className='flex gap-4'>
+          {!user.info &&
+            <Button
+              theme='link'
+              utilClasses='md:hidden'
+              icon='three-dots-vertical'
+              onClick={() => { setDdInView(prev => !prev) }}
+            />
+          }
+          {!user.info && !isHome &&
+            <Button
+              theme='nice'
+              utilClasses='py-3 px-4'
+              text='Log in'
+              onClick={() => { router.push('/auth/login') }}
+            />
+          }
+          {!user.info && isHome &&
+            <Button
+              theme='nice'
+              utilClasses='py-3 px-4'
+              text='Create free account'
+              onClick={() => {
+                plausible('navbarCreateAccountCtaClicked');
+                router.push('/auth/signup');
+              }}
+            />
+          }
+          {user.info &&
+            <Button
+              theme='nice'
+              utilClasses='w-10 h-10 capitalize'
+              text={user.info.username.slice(0, 2)}
+              onClick={() => { setDdInView(prev => !prev) }}
+            />
+          }
+        </div>
+      </div>
       {ddInView &&
         <div className={`
           fixed w-full top-14 right-0 flex flex-col
