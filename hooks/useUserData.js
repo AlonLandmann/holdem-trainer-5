@@ -30,7 +30,6 @@ function getFirstRange(folders, routerParam) {
 
 export function UserDataProvider({ children }) {
   const router = useRouter();
-  const [initialLoadDone, setInitialLoadDone] = useState(false);
   
   const [user, setUser] = useState({
     info: null,
@@ -246,13 +245,12 @@ export function UserDataProvider({ children }) {
       }
 
       await initialLoad(withSettings, withFolders);
-      setInitialLoadDone(true);
     })();
   }, [router.isReady]);
 
   useEffect(() => {
     (async () => {
-      if (initialLoadDone && user.info) {
+      if (loaded.initialComplete && user.info) {
         const pathElements = router.pathname.slice(1).split('/');
         let lazyLoadOrder = ['folders', 'allRanges', 'trainingTotals', 'trainingHistory', 'settings'];
 
@@ -277,7 +275,7 @@ export function UserDataProvider({ children }) {
         await lazyLoad(lazyLoadOrder);
       }
     })();
-  }, [initialLoadDone])
+  }, [loaded.initialComplete])
 
   return (
     <UserDataContext.Provider value={[user, loaded]}>
