@@ -28,6 +28,10 @@ export default async function handler(req, res) {
                 },
               },
             },
+            orderBy: [
+              { folder: { index: 'asc' } },
+              { index: 'asc' },
+            ],
           });
         } else if (rangeIds) {
           ranges = await prisma.range.findMany({
