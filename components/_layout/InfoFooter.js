@@ -1,8 +1,8 @@
-import { useUser } from '@/hooks/useUser'
 import A from '../_ui/A'
+import { useUserData } from '@/hooks/useUserData'
 
 export default function InfoFooter() {
-  const [user, setUser] = useUser()
+  const [user, loaded] = useUserData();
 
   return (
     <div className='border-t flex flex-col'>
@@ -48,16 +48,16 @@ export default function InfoFooter() {
             Account
           </h1>
           <div className='flex flex-col items-start gap-2 text-sm xs:text-base'>
-            {user &&
+            {loaded.info &&
               <A href='/app/overview' text='Overview' />
             }
-            {user &&
+            {loaded.info &&
               <A href='/app/settings' text='Settings' />
             }
-            {!user &&
+            {!loaded.info &&
               <A href='/auth/login' text='Login' />
             }
-            {!user &&
+            {!loaded.info &&
               <A href='/auth/signup' text='Signup' />
             }
           </div>

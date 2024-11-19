@@ -2,13 +2,13 @@ import Button from '@/components/_ui/Button'
 import MatrixDisplay from '@/components/manager/MatrixDisplay'
 import RangeHistory from '@/components/manager/RangeHistory'
 import RangeLegend from '@/components/manager/RangeLegend'
-import { useUser } from '@/hooks/useUser'
+import { useUserData } from '@/hooks/useUserData'
 import useWindowDimensions from '@/hooks/useWindowDimensions'
 import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 
 export default function RangeDisplayCard({ rangeId }) {
-  const [user, setUser] = useUser()
+  const [user, loaded] = useUserData()
   const [range, setRange] = useState(null)
   const [cellWidth, setCellWidth] = useState(8)
   const [width, height] = useWindowDimensions()
@@ -41,7 +41,7 @@ export default function RangeDisplayCard({ rangeId }) {
   }, [rangeId])
 
   async function handleDuplicate() {
-    if (!user) {
+    if (!loaded.info) {
       window.location = '/auth/login'
     } else if (range) {
       const res = await fetch('/api/ranges/duplicate-from-article', {
