@@ -12,12 +12,8 @@ export default function HomeRoot({ range }) {
   return (
     <InfoLayout isHome>
       <Hero />
-      <Steps
-        initialRange={range}
-      />
-      {/* <UsageData
-        // usageInfo={usageInfo}
-      /> */}
+      <Steps initialRange={range} />
+      <UsageData />
       <Highlights />
       <Contact />
       {/* <AcademyBanner
