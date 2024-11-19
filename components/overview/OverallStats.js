@@ -1,23 +1,38 @@
 import OverallStat from '@/components/overview/OverallStat'
-import { totalCombos, totalCorrect, totalScore } from '@/lib/stats'
+import { useUserData } from '@/hooks/useUserData'
 
-export default function OverallStats({ user }) {
-  const combos = totalCombos(user.trainingSessions)
-  const correct = totalCorrect(user.trainingSessions)
-  const accuracy = combos ? (correct / combos).toFixed(2) : '-'
-  const score = totalScore(user.trainingSessions)
-  const trainingComplexity = correct ? (score / correct).toFixed(2) : '-'
+export default function OverallStats() {
+  const [user, loaded] = useUserData();
 
-  return (
+  let total, correct, accuracy, score, trainingComplexity, nrRanges;
+
+  if (loaded.trainingTotals) {
+    total = user.trainingTotals.total;
+    correct = user.trainingTotals.correct;
+    accuracy = total > 0 ? (correct / total).toFixed(2) : '-';
+    score = user.trainingTotals.score;
+    trainingComplexity = correct > 0 ? (score / correct).toFixed(2) : '-'
+  }
+
+  if (loaded.folders) {
+    nrRanges = 0;
+    user.folders.forEach(folder => {
+      folder.ranges.forEach(range => {
+        nrRanges++;
+      });
+    });
+  }
+
+  return !loaded.trainingTotals ? null : (
     <div className='flex flex-col items-center gap-8 xs:gap-5 mb-10'>
       <OverallStat
         icon='ui-checks'
-        number={user.nrRanges}
+        number={nrRanges ? nrRanges : '-'}
         label='nr of ranges'
       />
       <OverallStat
         icon='crosshair'
-        number={combos}
+        number={total}
         label='combos trained'
       />
       <OverallStat

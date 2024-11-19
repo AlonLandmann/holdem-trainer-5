@@ -1,42 +1,28 @@
-import { useEffect, useRef, useState } from 'react'
+import { useUserData } from '@/hooks/useUserData'
+import { useEffect, useRef } from 'react'
 
-export default function TrainingHistory({ user }) {
-  const [trainingHistory, setTrainingHistory] = useState(null)
+export default function TrainingHistory() {
+  const [user, loaded] = useUserData();
   const containerRef = useRef(null)
-
-  useEffect(() => {
-    (async () => {
-      const res = await fetch(`/api/logs/training-history?userId=${user.id}`)
-      const json = await res.json()
-
-      if (json.success) {
-        setTrainingHistory(json.trainingHistory.map(o => ({
-          ...o,
-          date: formatDate(o.date),
-        })))
-      }
-    })()
-  }, [])
 
   useEffect(() => {
     if (containerRef.current) {
       containerRef.current.scrollLeft = containerRef.current.scrollWidth
     }
-  }, [trainingHistory])
+  }, [loaded.trainingHistory])
 
   const today = new Date()
   const startCandidate1 = new Date(today.getFullYear(), today.getMonth() - 3, 1)
-  const startCandidate2 = (trainingHistory && trainingHistory[0]) ? new Date(trainingHistory[0].date) : today
+  const startCandidate2 = (user.trainingHistory && user.trainingHistory[0]) ? new Date(user.trainingHistory[0].date) : today
   const start = startCandidate1.getTime() > startCandidate2.getTime() ? startCandidate1 : startCandidate2
   const end = today
   const diffInDays = (end - start) / 1000 / 3600 / 24
   const span = []
-  const dailyMax = trainingHistory && trainingHistory.reduce((acc, curr) => Math.max(acc, curr.total), 0)
+  const dailyMax = user.trainingHistory && user.trainingHistory.reduce((acc, curr) => Math.max(acc, curr.total), 0)
   const monthNames = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
   const months = []
 
-
-  if (trainingHistory) {
+  if (user.trainingHistory) {
     for (let i = 0; i < diffInDays; i++) {
       const dt = new Date(start.getFullYear(), start.getMonth(), start.getDate() + i)
       span.push(formatDate((dt)))
@@ -65,9 +51,9 @@ export default function TrainingHistory({ user }) {
   }
 
   function getNum(day) {
-    for (let i = 0; i < trainingHistory.length; i++) {
-      if (trainingHistory[i].date === day) {
-        return trainingHistory[i].total
+    for (let i = 0; i < user.trainingHistory.length; i++) {
+      if (user.trainingHistory[i].date === day) {
+        return user.trainingHistory[i].total
       }
     }
   }
@@ -84,11 +70,11 @@ export default function TrainingHistory({ user }) {
     return Math.floor(dailyMax / scale) * scale
   }
 
-  return (!trainingHistory || !trainingHistory.length) ? null : (
+  return (!user.trainingHistory || !user.trainingHistory.length) ? null : (
     <div className='mb-16 self-stretch flex justify-center'>
       <div className='pl-20 pt-12 max-w-full'>
         <div className='relative'>
-          <div className='justify-center overflow-x-auto min-w-[80px]' ref={containerRef}>
+          <div className='justify-center overflow-x-auto min-w-[80px] no-scrollbar' ref={containerRef}>
             <div className='flex gap-[2px] items-end h-[200px]'>
               {span.map(day => (
                 <div

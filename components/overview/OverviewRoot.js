@@ -1,21 +1,21 @@
 import OverviewMain from '@/components/overview/OverviewMain'
-import { useUser } from '@/hooks/useUser'
 import AppLayout from '../_layout/AppLayout'
 import { useEffect } from 'react'
+import { useUserData } from '@/hooks/useUserData'
 
 export default function OverviewRoot() {
-  const [user, setUser, isLoading] = useUser()
+  const [user, loaded] = useUserData();
   
   useEffect(() => {
-    if (!isLoading && !user) {
-      window.location = '/auth/login'
+    if (loaded.initialComplete && !user.info) {
+      window.location = '/auth/login';
     }
-  }, [isLoading])
+  }, [loaded.initialComplete]);
 
   return (
     <AppLayout>
-      {user &&
-        <OverviewMain user={user} />
+      {user.info &&
+        <OverviewMain />
       }
     </AppLayout>
   )

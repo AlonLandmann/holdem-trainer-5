@@ -29,7 +29,7 @@ export default async function handler(req, res) {
         }
 
         const formattedHistory = trainingHistory.map(item => ({
-          ...item,
+          date: item.date.toISOString().slice(0, 10),
           total: Number(item.total),
           correct: Number(item.correct),
           score: Number(item.score),
