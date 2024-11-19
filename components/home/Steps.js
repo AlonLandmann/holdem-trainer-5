@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import Matrix from '../editor/Matrix'
-import { clamp, isEqual } from 'lodash'
+import { clamp, isEqual, sample } from 'lodash'
 import { sampleHoleCards } from '@/lib/cards'
 import Table from '../trainer/Table'
 import RandomNumber from '../trainer/RandomNumber'
@@ -13,6 +13,7 @@ import { answerButtonsHeight } from '@/lib/scaling'
 
 export default function Steps({ initialRange }) {
   const [hovered, setHovered] = useState([])
+  const [ranges, setRanges] = useState([initialRange])
   const [range, setRange] = useState(initialRange)
   const [spot, setSpot] = useState(initialRange.spot)
   const [holeCards, setHoleCards] = useState('AdKd')
@@ -24,6 +25,20 @@ export default function Steps({ initialRange }) {
   const [width, height] = useWindowDimensions()
   const availableWidth = width - (width >= 1280 ? 256 : 160)
   const availableHeight = height - 196 - (width >= 1280 ? 80 : 60) - answerButtonsHeight(range.options.length, availableWidth)
+
+  // load the rest of the ranges
+  useEffect(() => {
+    (async () => {
+      const res = await fetch(`/api/user/ranges?all=true&userId=${process.env.NEXT_PUBLIC_SAMPLE_USER_ID}`);
+      const json = await res.json();
+
+      if (json.success) {
+        setRanges(json.ranges);
+      } else {
+        console.log(json.message);
+      }
+    })();
+  }, []);
 
   // hotkeys
   useEffect(() => {
@@ -76,9 +91,9 @@ export default function Steps({ initialRange }) {
   function handleCheckAnswer(option) {
     if (isCorrect(option)) {
       activateFlash('correct')
-      // const newRange = sample(ranges)
-      // setRange(newRange)
-      // setSpot(newRange.spot)
+      const newRange = sample(ranges)
+      setRange(newRange)
+      setSpot(newRange.spot)
       setHoleCards(sampleHoleCards(range))
       setRandomNumber(rng())
     } else {
@@ -88,7 +103,7 @@ export default function Steps({ initialRange }) {
 
   // handle range change
   function handleRangeChange(event) {
-    const newRange = [range].filter(rCandidate => rCandidate.id === Number(event.target.value))[0]
+    const newRange = ranges.filter(rCandidate => rCandidate.id === Number(event.target.value))[0]
     setRange(newRange)
     setSpot(newRange.spot)
     setHoleCards(sampleHoleCards(newRange))
@@ -108,7 +123,7 @@ export default function Steps({ initialRange }) {
             value={String(range.id)}
             onChange={handleRangeChange}
           >
-            {[range].map(r => (
+            {ranges.map(r => (
               <option key={'select-range' + r.id} value={String(r.id)}>
                 {r.name}
               </option>

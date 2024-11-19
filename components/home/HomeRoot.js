@@ -23,7 +23,7 @@ export default function HomeRoot({ range }) {
       {/* <AcademyBanner
         articles={articles}
       /> */}
-      <FinalCta />
+      {/* <FinalCta /> */}
       <div className='fixed bottom-4 right-4'>
         <Button
           theme='secondary'
