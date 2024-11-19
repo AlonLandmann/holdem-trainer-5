@@ -16,15 +16,11 @@ export default function HomePage({ range, usageInfo, articles }) {
 }
 
 export async function getServerSideProps() {
-  const range = await prisma.range.findFirst({
+  const range = await prisma.range.findUnique({
     where: {
-      folder: {
-        is: {
-          userId: Number(process.env.SAMPLE_USER_ID),
-        }
-      }
-    }
-  })
+      id: Number(process.env.INITIAL_SAMPLE_RANGE_ID),
+    },
+  });
 
   // const nrUsers = await prisma.user.count({})
   // const nrRanges = await prisma.range.count({})
