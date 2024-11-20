@@ -56,7 +56,7 @@ export default function InfoNavbar({ isHome = false }) {
             /> */}
         </div>
         <div className='flex gap-4'>
-          {!user.info &&
+          {!user.info && !isHome &&
             <Button
               theme='link'
               utilClasses='md:hidden'
