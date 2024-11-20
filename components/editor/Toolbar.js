@@ -65,52 +65,78 @@ export default function Toolbar({ allRanges, range, setRange, past, setPast, fut
 
   async function handleSaveChanges() {
     if (error) {
-      return null
+      return;
     }
 
     if (!range.spot.options) {
-      return toast.error('The current history does not imply a player choice.')
+      toast.error('Ranges can only be saved at a node where a player is making a decision.');
+      return;
     }
 
-    await handleManagerRequest('/api/ranges/edit', 'PUT', setUser, range)
+    const res = await fetch('/api/editor/save-changes', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify(range),
+    });
 
-    setReferenceRange(range)
+    const json = await res.json();
 
-    // STILL NOT SURE WHY range.successors IS SOMETIMES UNDEFINED HERE
-
-    function openSuccessors() {
-      range.successors.forEach(r => { window.open(`/app/editor/${r.id}`, '_blank') })
-    }
-
-    if (range.successors && range.successors.length > 0) {
-      if (settings.afterPredecessorEdit === 'always') {
-        openSuccessors()
-      } else if (settings.afterPredecessorEdit === 'ask') {
-        toast.dismiss()
-
-        const toastId = toast.custom(
-          <Confirm
-            prompt={`
-              The following ranges are linked as successors to this range.
-              ${range.successors.map(r => r.name).join(', ')}
-              You might want to refresh their links to update the relevant frequencies.
-              Would you like to open these ranges in new tabs now?
-            `}
-            cancelText='No'
-            onCancel={async () => toast.remove(toastId)}
-            confirmText='Yes'
-            onConfirm={async () => {
-              openSuccessors()
-              toast.remove(toastId)
-            }}
-          />,
-          {
-            duration: Infinity,
-          }
-        )
-      }
+    if (json.success) {
+      window.location.reload();
+    } else {
+      toast.error(json.message || 'An unexpected error occurred.');
     }
   }
+
+  // async function handleSaveChangesDeprecated() {
+  //   if (error) {
+  //     return null
+  //   }
+
+  //   if (!range.spot.options) {
+  //     return toast.error('The current history does not imply a player choice.')
+  //   }
+
+  //   await handleManagerRequest('/api/ranges/edit', 'PUT', setUser, range)
+
+  //   setReferenceRange(range)
+
+  //   // STILL NOT SURE WHY range.successors IS SOMETIMES UNDEFINED HERE
+
+  //   function openSuccessors() {
+  //     range.successors.forEach(r => { window.open(`/app/editor/${r.id}`, '_blank') })
+  //   }
+
+  //   if (range.successors && range.successors.length > 0) {
+  //     if (settings.afterPredecessorEdit === 'always') {
+  //       openSuccessors()
+  //     } else if (settings.afterPredecessorEdit === 'ask') {
+  //       toast.dismiss()
+
+  //       const toastId = toast.custom(
+  //         <Confirm
+  //           prompt={`
+  //             The following ranges are linked as successors to this range.
+  //             ${range.successors.map(r => r.name).join(', ')}
+  //             You might want to refresh their links to update the relevant frequencies.
+  //             Would you like to open these ranges in new tabs now?
+  //           `}
+  //           cancelText='No'
+  //           onCancel={async () => toast.remove(toastId)}
+  //           confirmText='Yes'
+  //           onConfirm={async () => {
+  //             openSuccessors()
+  //             toast.remove(toastId)
+  //           }}
+  //         />,
+  //         {
+  //           duration: Infinity,
+  //         }
+  //       )
+  //     }
+  //   }
+  // }
 
   function handleTrain() {
     if (isEqual(range, referenceRange) || confirm('You have unsaved changes, which will be lost if you start training. Do you want to proceed anyway?')) {
