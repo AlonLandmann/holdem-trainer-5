@@ -39,12 +39,19 @@ export default function FolderContent({ selectedFolder }) {
   }
 
   async function handleRenameFolder() {
-    if (renameValue.length < 2 || renameValue.length > 30) {
-      toast.error('Folder names should be between 2 and 30 characters long.')
+    const res = await fetch(`/api/manager/rename-folder?folderId=${selectedFolder.id}`, {
+      method: 'PATCH',
+      headers: { 'Content-type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify({ name: renameValue }),
+    });
+
+    const json = await res.json();
+
+    if (json.success) {
+      window.location.reload();
     } else {
-      await handleManagerRequest(`/api/folders/rename?folderId=${selectedFolder.id}`, 'PATCH', setUser, {
-        name: renameValue
-      })
+      toast.error(json.message || 'An unexpected error occurred.');
     }
   }
 
