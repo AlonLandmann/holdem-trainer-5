@@ -23,7 +23,19 @@ export default function FolderContent({ selectedFolder }) {
   }, [selectedFolder])
 
   async function handleAddRange() {
-    await handleManagerRequest(`/api/ranges/add?folderId=${selectedFolder.id}`, 'POST', setUser)
+    const res = await fetch(`/api/manager/add-range?folderId=${selectedFolder.id}`, {
+      method: 'POST',
+      headers: { 'Content-type': 'application/json' },
+      credentials: 'include',
+    });
+
+    const json = await res.json();
+
+    if (json.success) {
+      window.location.reload();
+    } else {
+      toast.error(json.message || 'An unexpected error occurred.');
+    }
   }
 
   async function handleRenameFolder() {
