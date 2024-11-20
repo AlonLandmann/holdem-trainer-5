@@ -9,21 +9,22 @@ generator client {
 }
 
 model User {
-  id                Int               @id @default(autoincrement())
-  createdAt         DateTime          @default(now())
-  email             String            @unique
-  username          String            @unique
-  hash              String?
-  googleId          String?           @unique
-  isVerified        Boolean           @default(false)
-  verificationToken String?           @unique @default(uuid())
-  passwordResetCode String?
-  role              String            @default("user")
-  membership        String            @default("basic")
-  session           Session?
-  settings          Settings?
-  folders           Folder[]
-  trainingSessions  TrainingSession[]
+  id                 Int               @id @default(autoincrement())
+  createdAt          DateTime          @default(now())
+  email              String            @unique
+  username           String            @unique
+  hash               String?
+  googleId           String?           @unique
+  isVerified         Boolean           @default(false)
+  verificationToken  String?           @unique @default(uuid())
+  passwordResetCode  String?
+  role               String            @default("user")
+  membership         String            @default("basic")
+  sampleRangesLinked Boolean           @default(false)
+  session            Session?
+  settings           Settings?
+  folders            Folder[]
+  trainingSessions   TrainingSession[]
 }
 
 model Session {
