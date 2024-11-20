@@ -28,7 +28,20 @@ export default function RangeUiButtons({ range, folderLength }) {
   }
 
   async function handleDuplicate() {
-    await handleManagerRequest('/api/ranges/duplicate', 'POST', setUser, range)
+    const res = await fetch('/api/manager/duplicate-range', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify(range),
+    });
+
+    const json = await res.json();
+
+    if (json.success) {
+      window.location.reload();
+    } else {
+      toast.error(json.message || 'An unexpected error occurred.');
+    }
   }
 
   async function handleSortUp() {
@@ -36,11 +49,7 @@ export default function RangeUiButtons({ range, folderLength }) {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',
-      body: JSON.stringify({
-        origin: range.index,
-        originId: range.id,
-        target: range.index - 1,
-      }),
+      body: JSON.stringify({ origin: range.index, originId: range.id, target: range.index - 1 }),
     });
 
     const json = await res.json();
@@ -57,11 +66,7 @@ export default function RangeUiButtons({ range, folderLength }) {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       credentials: 'include',
-      body: JSON.stringify({
-        origin: range.index,
-        originId: range.id,
-        target: range.index + 2,
-      }),
+      body: JSON.stringify({ origin: range.index, originId: range.id, target: range.index + 2 }),
     });
 
     const json = await res.json();

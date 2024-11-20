@@ -2,6 +2,8 @@ import apiRoute from '@/lib/apiRoute';
 import prisma from '@/lib/prisma';
 import { defaultMatrixBuffer } from '@/lib/ranges';
 
+// FIX still not completely secure
+
 export default apiRoute('POST', async (req, res) => {
   const sessionId = req.cookies.sessionId;
   const folderId = Number(req.query.folderId);
@@ -26,8 +28,6 @@ export default apiRoute('POST', async (req, res) => {
   if (!user) {
     return res.status(400).json({ success: false, message: 'User not found.' });
   }
-
-  // FIX still not completely secure
 
   let folder = await prisma.folder.findFirst({
     where: folderId
