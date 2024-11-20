@@ -23,7 +23,7 @@ function getFirstRange(folders, routerParam) {
       }
     }
   } else if (routerParam) {
-    return [routerParam];
+    return [Number(routerParam)];
   }
   return [];
 }
