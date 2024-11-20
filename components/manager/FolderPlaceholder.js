@@ -1,16 +1,37 @@
-import Button from '@/components/_ui/Button'
-import { useUser } from '@/hooks/useUser'
-import handleManagerRequest from '@/lib/managerRequests'
+import Button from '@/components/_ui/Button';
+import toast from 'react-hot-toast';
 
 export default function FolderPlaceholder({ selectedFolder }) {
-  const [user, setUser] = useUser()
-
   async function handleAddRange() {
-    await handleManagerRequest(`/api/ranges/add?folderId=${selectedFolder.id}`, 'POST', setUser)
+    const res = await fetch(`/api/manager/add-range?folderId=${selectedFolder.id}`, {
+      method: 'POST',
+      headers: { 'Content-type': 'application/json' },
+      credentials: 'include',
+    });
+
+    const json = await res.json();
+
+    if (json.success) {
+      window.location.reload();
+    } else {
+      toast.error(json.message || 'An unexpected error occurred.');
+    }
   }
 
   async function handleDeleteFolder() {
-    await handleManagerRequest(`/api/folders/delete?folderId=${selectedFolder.id}&folderIndex=${selectedFolder.index}`, 'DELETE', setUser)
+    const res = await fetch(`/api/manager/delete-folder?folderId=${selectedFolder.id}&folderIndex=${selectedFolder.index}`, {
+      method: 'DELETE',
+      headers: { 'Content-type': 'application/json' },
+      credentials: 'include',
+    });
+
+    const json = await res.json();
+
+    if (json.success) {
+      window.location.reload();
+    } else {
+      toast.error(json.message || 'An unexpected error occurred.');
+    }
   }
 
   return (

@@ -1,12 +1,21 @@
-import Button from '@/components/_ui/Button'
-import { useUser } from '@/hooks/useUser'
-import handleManagerRequest from '@/lib/managerRequests'
+import Button from '@/components/_ui/Button';
+import toast from 'react-hot-toast';
 
 export default function RangePlaceholder() {
-  const [user, setUser] = useUser()
-
   async function handleAddRange() {
-    await handleManagerRequest('/api/ranges/add', 'POST', setUser)
+    const res = await fetch('/api/manager/add-range', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+    });
+
+    const json = await res.json();
+
+    if (json.success) {
+      window.location.reload();
+    } else {
+      toast.error(json.message || 'An unexpected error occurred.');
+    }
   }
 
   return (
