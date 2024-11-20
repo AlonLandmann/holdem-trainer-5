@@ -30,7 +30,7 @@ export default function LoginRoot() {
     const json = await res.json()
 
     if (json.success) {
-      window.location = '/app/overview'
+      window.location = '/app/manager'
     } else {
       return toast.error(json.message || 'An unexpected error occurred.')
     }
