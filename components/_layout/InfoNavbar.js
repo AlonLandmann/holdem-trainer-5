@@ -73,15 +73,26 @@ export default function InfoNavbar({ isHome = false }) {
             />
           }
           {!user.info && isHome &&
-            <Button
-              theme='nice'
-              utilClasses='py-3 px-4'
-              text='Create free account'
-              onClick={() => {
-                plausible('navbarCreateAccountCtaClicked');
-                router.push('/auth/signup');
-              }}
-            />
+            <div className='flex items-center gap-2'>
+              <Button
+                theme='secondary'
+                utilClasses='py-3 px-4'
+                text='Log in'
+                onClick={() => {
+                  plausible('navbarLoginCtaClicked');
+                  router.push('/auth/login');
+                }}
+              />
+              <Button
+                theme='nice'
+                utilClasses='py-3 px-4'
+                text='Create free account'
+                onClick={() => {
+                  plausible('navbarCreateAccountCtaClicked');
+                  router.push('/auth/signup');
+                }}
+              />
+            </div>
           }
           {user.info &&
             <Button
