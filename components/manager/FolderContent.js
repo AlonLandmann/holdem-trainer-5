@@ -2,16 +2,13 @@ import Button from '@/components/_ui/Button'
 import Input from '@/components/_ui/Input'
 import FolderPlaceholder from '@/components/manager/FolderPlaceholder'
 import RangeCard from '@/components/manager/RangeCard'
-import { useUser } from '@/hooks/useUser'
 import { selectedForTraining } from '@/lib/display'
-import handleManagerRequest from '@/lib/managerRequests'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 
 export default function FolderContent({ selectedFolder }) {
   const router = useRouter()
-  const [user, setUser] = useUser()
   const [renameInView, setRenameInView] = useState(false)
   const [renaming, setRenaming] = useState(false)
   const [renameValue, setRenameValue] = useState(selectedFolder.name)

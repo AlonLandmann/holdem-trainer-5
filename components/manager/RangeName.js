@@ -1,12 +1,9 @@
 import Button from '@/components/_ui/Button'
 import Input from '@/components/_ui/Input'
-import { useUser } from '@/hooks/useUser'
-import handleManagerRequest from '@/lib/managerRequests'
 import { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
 
 export default function RangeName({ range, renaming, setRenaming }) {
-  const [user, setUser] = useUser()
   const [renameInView, setRenameInView] = useState(false)
   const [renameValue, setRenameValue] = useState(range.name)
 
@@ -16,12 +13,19 @@ export default function RangeName({ range, renaming, setRenaming }) {
   }, [range])
 
   async function handleRename() {
-    if (renameValue.length < 2 || renameValue.length > 50) {
-      toast.error('Range names should be between 2 and 50 characters long.')
+    const res = await fetch(`/api/manager/rename-range?rangeId=${range.id}`, {
+      method: 'PATCH',
+      headers: { 'Content-type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify({ name: renameValue }),
+    });
+
+    const json = await res.json();
+
+    if (json.success) {
+      window.location.reload();
     } else {
-      await handleManagerRequest(`/api/ranges/rename?rangeId=${range.id}`, 'PATCH', setUser, {
-        name: renameValue
-      })
+      toast.error(json.message || 'An unexpected error occurred.');
     }
   }
 
