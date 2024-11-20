@@ -11,11 +11,11 @@ export default function RangeUiButtons({ range, folderLength }) {
 
   function handleDelete() {
     toast.dismiss()
-    
+
     const toastId = toast.custom(
       <Confirm
         prompt={`Are you sure you want to delete the range '${range.name}'? This action cannot be undone.`}
-        onCancel={async () => toast.remove(toastId) }
+        onCancel={async () => toast.remove(toastId)}
         onConfirm={async () => {
           await handleManagerRequest(`/api/ranges/delete?rangeId=${range.id}&rangeIndex=${range.index}&folderId=${range.folderId}`, 'DELETE', setUser)
           toast.remove(toastId)
@@ -32,19 +32,45 @@ export default function RangeUiButtons({ range, folderLength }) {
   }
 
   async function handleSortUp() {
-    await handleManagerRequest('/api/ranges/move-within', 'PATCH', setUser, {
-      origin: range.index,
-      originId: range.id,
-      target: range.index - 1,
-    })
+    const res = await fetch('/api/manager/move-range-within', {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify({
+        origin: range.index,
+        originId: range.id,
+        target: range.index - 1,
+      }),
+    });
+
+    const json = await res.json();
+
+    if (json.success) {
+      window.location.reload();
+    } else {
+      toast.error(json.message || 'An unexpected error occurred.');
+    }
   }
 
   async function handleSortDown() {
-    await handleManagerRequest('/api/ranges/move-within', 'PATCH', setUser, {
-      origin: range.index,
-      originId: range.id,
-      target: range.index + 2,
-    })
+    const res = await fetch('/api/manager/move-range-within', {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify({
+        origin: range.index,
+        originId: range.id,
+        target: range.index + 2,
+      }),
+    });
+
+    const json = await res.json();
+
+    if (json.success) {
+      window.location.reload();
+    } else {
+      toast.error(json.message || 'An unexpected error occurred.');
+    }
   }
 
   return (

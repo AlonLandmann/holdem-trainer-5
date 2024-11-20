@@ -27,6 +27,8 @@ export default apiRoute('POST', async (req, res) => {
     return res.status(400).json({ success: false, message: 'User not found.' });
   }
 
+  // FIX still not completely secure
+
   let folder = await prisma.folder.findFirst({
     where: folderId
       ? { id: folderId }

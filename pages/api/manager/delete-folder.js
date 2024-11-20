@@ -24,7 +24,7 @@ export default apiRoute('DELETE', async (req, res) => {
     return res.status(400).json({ success: false, message: 'User not found.' });
   }
 
-  // <--- for ultimate security: make sure the user has the authority to delete the folder with this id.
+  // FIX for ultimate security: make sure the user has the authority to delete the folder with this id.
 
   await prisma.$transaction([
     prisma.folder.delete({
