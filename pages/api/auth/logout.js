@@ -1,4 +1,3 @@
-import { removeSessionCookie } from '@/lib/cookies'
 import prisma from '@/lib/prisma'
 
 export default async function handler(req, res) {
@@ -15,7 +14,8 @@ export default async function handler(req, res) {
           })
         }
 
-        removeSessionCookie(res)
+        res.setHeader("Set-Cookie", "sessionId=; Path=/; Max-Age=0; HttpOnly; Secure; SameSite=Lax");
+
         return res.status(200).json({ success: true })
 
       default:

@@ -1,4 +1,3 @@
-import { setSessionCookie } from '@/lib/cookies'
 import { getGoogleUserInfo } from '@/lib/google'
 import prisma from '@/lib/prisma'
 import sampleFolders from '../../../prisma/sample-ranges.json'
@@ -48,7 +47,7 @@ export default async function handler(req, res) {
             },
           });
 
-          setSessionCookie(res, newSession.token);
+          res.setHeader("Set-Cookie", `sessionId=${newSession.token}; Path=/; Max-Age=${30 * 24 * 60 * 60}; HttpOnly; Secure; SameSite=Lax`);
         }
 
         if (!foundByIdUser) {
@@ -81,7 +80,7 @@ export default async function handler(req, res) {
             }
           });
 
-          setSessionCookie(res, newUser.session.token);
+          res.setHeader("Set-Cookie", `sessionId=${newUser.session.token}; Path=/; Max-Age=${30 * 24 * 60 * 60}; HttpOnly; Secure; SameSite=Lax`);
         }
 
         return res.redirect('/app/overview')

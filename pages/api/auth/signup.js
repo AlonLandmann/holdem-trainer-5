@@ -1,4 +1,3 @@
-import { setSessionCookie } from '@/lib/cookies'
 import { sendVerificationLink } from '@/lib/email'
 import prisma from '@/lib/prisma'
 import { generateUsername } from '@/lib/usernames'
@@ -71,7 +70,7 @@ export default async function handler(req, res) {
           }
         });
 
-        setSessionCookie(res, newUser.session.token)
+        res.setHeader("Set-Cookie", `sessionId=${newUser.session.token}; Path=/; Max-Age=${30 * 24 * 60 * 60}; HttpOnly; Secure; SameSite=Lax`);
         sendVerificationLink(newUser.email, newUser.verificationToken)
 
         return res.status(200).json({ success: true })

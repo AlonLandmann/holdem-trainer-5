@@ -1,4 +1,3 @@
-import { setSessionCookie } from '@/lib/cookies'
 import prisma from '@/lib/prisma'
 import sha256 from 'sha256'
 
@@ -37,7 +36,8 @@ export default async function handler(req, res) {
           }
         })
 
-        setSessionCookie(res, newSession.token)
+        res.setHeader("Set-Cookie", `sessionId=${newSession.token}; Path=/; Max-Age=${30 * 24 * 60 * 60}; HttpOnly; Secure; SameSite=Lax`);
+        
         return res.status(200).json({ success: true })
 
       default:
