@@ -28,14 +28,10 @@ export default async function handler(req, res) {
       case 'POST':
         const { email, password } = req.body
 
-        console.time('Check email used');
         if (await prisma.user.findUnique({ where: { email } })) {
           return res.status(200).json({ success: false, message: 'User already exists.' })
         }
-        console.timeEnd('Check email used');
 
-
-        console.time('Create unique username');
         let userNameCandidate = generateUsername()
 
         const conflictingUsers = await prisma.user.findMany({
@@ -54,9 +50,7 @@ export default async function handler(req, res) {
         if (conflictingEndings.length) {
           userNameCandidate = `${userNameCandidate} ${String(last(conflictingEndings) + 1)}`
         }
-        console.timeEnd('Create unique username');
 
-        console.time('Create user');
         const newUser = await prisma.user.create({
           data: {
             email,
@@ -76,12 +70,9 @@ export default async function handler(req, res) {
             }
           }
         });
-        console.timeEnd('Create user');
 
-        console.time('Finish');
         setSessionCookie(res, newUser.session.token)
         sendVerificationLink(newUser.email, newUser.verificationToken)
-        console.timeEnd('Finish');
 
         return res.status(200).json({ success: true })
 
