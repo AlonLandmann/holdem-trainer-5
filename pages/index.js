@@ -3,13 +3,10 @@ import HomeRoot from '@/components/home/HomeRoot'
 import prisma from '@/lib/prisma'
 import { toClientFormat } from '@/lib/ranges'
 
-export default function HomePage({ range, articles }) {
+export default function HomePage({ range }) {
   return (
     <Page title="Hold'em Trainer">
-      <HomeRoot
-        range={JSON.parse(range)}
-        // articles={JSON.parse(articles)}
-      />
+      <HomeRoot range={JSON.parse(range)} />
     </Page>
   )
 }
@@ -21,31 +18,9 @@ export async function getServerSideProps() {
     },
   });
 
-  // const articles = await prisma.article.findMany({
-  //   where: {
-  //     isPublished: true,
-  //   },
-  //   select: {
-  //     id: true,
-  //     publishedAt: true,
-  //     imageUrl: true,
-  //     readTime: true,
-  //     level: true,
-  //     title: true,
-  //     slug: true,
-  //     abstract: true,
-  //   },
-  //   orderBy: {
-  //     id: 'asc'
-  //   },
-  //   skip: 1,
-  //   take: 3,
-  // })
-
   return {
     props: {
       range: JSON.stringify(toClientFormat(range)),
-      // articles: JSON.stringify(articles)
     }
   }
 }

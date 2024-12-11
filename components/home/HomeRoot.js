@@ -4,7 +4,6 @@ import UsageData from './UsageData'
 import Steps from './Steps'
 import Highlights from './Highlights'
 import Contact from './Contact'
-import AcademyBanner from './AcademyBanner'
 import FinalCta from './FinalCta'
 import Button from '../_ui/Button'
 
@@ -16,9 +15,6 @@ export default function HomeRoot({ range }) {
       <UsageData />
       <Highlights />
       <Contact />
-      {/* <AcademyBanner
-        articles={articles}
-      /> */}
       {/* <FinalCta /> */}
       <div className='fixed bottom-4 right-4'>
         <Button

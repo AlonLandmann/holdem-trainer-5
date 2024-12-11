@@ -59,9 +59,9 @@ export default function FaqRoot() {
             </SupportFaqItem> */}
             <SupportFaqItem question="I am new to poker, is Hold'em Trainer for me?">
               Certainly. Hold'em Trainer is for anyone who aspires to learn more and become better at this great game.
-              If you are new to the game it might benefit you to read some of the beginner articles at the Hold'em Academy.
+              {/* If you are new to the game it might benefit you to read some of the beginner articles at the Hold'em Academy.
               Some of these articles contain curated ranges that you may duplicate to start training the most common situations that
-              arise in poker. You can also check out our YouTube channel, as well as our X and Discord communities for additional
+              arise in poker. */} You can {/* also */} check out our YouTube channel, as well as our X and Discord communities for {/* additional */}
               resources and support. Of course, there is also plenty of other content out there from other creators.
               You can use Hold'em Trainer to try and internalize and solidify the things you learn. The great thing is that it gives
               you full flexibility of designing your ranges. This means you can build simple ranges to start with, whereas some other
@@ -84,7 +84,7 @@ export default function FaqRoot() {
               />
               that are available for building ranges quickly.
               Second, make sure you utilize the + and - buttons available in the hand categories panel of the editor to quickly select and filter out related combos.
-              Finally, there are many curated ranges available in Hold'em Academy articles that you can duplicate and adjust as you desire.
+              {/* Finally, there are many curated ranges available in Hold'em Academy articles that you can duplicate and adjust as you desire. */}
             </SupportFaqItem>
             <SupportFaqItem question='What is the purpose of linking ranges via the predecessor relation?'>
               The main purpose of linking ranges is to make sure that you only train the hole cards that you will actually hold in any given scenario.
