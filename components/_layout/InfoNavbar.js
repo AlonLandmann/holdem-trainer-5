@@ -44,16 +44,6 @@ export default function InfoNavbar({ isHome = false }) {
               utilClasses=' transition text-sm font-medium'
             />
           }
-          {/* <A
-              text='Academy'
-              href='/academy'
-              utilClasses=' transition text-sm font-medium'
-            />
-            <A
-              text={user.info ? 'HT - Pro' : 'Pricing'}
-              href='/pricing'
-              utilClasses=' transition text-sm font-medium'
-            /> */}
         </div>
         <div className='flex gap-4'>
           {!user.info && !isHome &&
@@ -116,16 +106,6 @@ export default function InfoNavbar({ isHome = false }) {
               utilClasses=' p-5 text-start md:hidden'
             />
           }
-          {/* <A
-            text='Academy'
-            href='/academy'
-            utilClasses=' p-5 text-start md:hidden'
-          />
-          <A
-            text={user.info ? 'HT - Pro' : 'Pricing'}
-            href='/pricing'
-            utilClasses=' p-5 text-start md:hidden'
-          /> */}
           {user.info &&
             <Button
               theme='link'

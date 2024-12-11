@@ -62,16 +62,10 @@ export default function Sidebar({ selectedFolder, setSelectedFolder }) {
           </div>
         ))}
       </div>
-      <div className='border-t mt-auto p-3 flex justify-between items-center'>
-        <span className='text-neutral-600'>
+      <div className='border-t mt-auto p-3 flex items-center'>
+        <span className='text-neutral-600 mr-auto'>
           {user.nrRanges} ranges
         </span>
-        {/* <Button
-          theme='tertiary'
-          utilClasses='text-neutral-500 hover:text-neutral-300'
-          icon='arrow-up-right'
-          onClick={() => window.open('/pricing', '_blank')}
-        /> */}
       </div>
     </div>
   )

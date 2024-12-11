@@ -49,14 +49,14 @@ export default function FaqRoot() {
               Afterwords, you can move on to conquer new areas of the game, but it might be useful to come back to the older ranges
               once in a while to keep them fresh.
             </SupportFaqItem>
-            <SupportFaqItem question='When might it be useful to upgrade to a paid subscription?'>
+            {/* <SupportFaqItem question='When might it be useful to upgrade to a paid subscription?'>
               Hold'em Trainer is free for anyone to use and try out. Our HT-Basic tier let's you manage up to 20 ranges freely.
               However, if you are enjoying the process and would like to train more areas of your game, you can consider upgrading
               to the HT-Pro tier, which gives you the freedom to manage up to 100 ranges. If you desire still more, the HT-Elite
               tier offers unlimited access. Both the Pro and Elite tiers also allow you train more than four ranges at once in a single
               training session, and they give you full access to duplicate curated ranges from all Hold'em Academy articles.
               You can learn more about the HT-Pro and HT-Elite tiers <Link href='/pricing' className='text-neutral-400 hover:text-neutral-500'>here</Link>.
-            </SupportFaqItem>
+            </SupportFaqItem> */}
             <SupportFaqItem question="I am new to poker, is Hold'em Trainer for me?">
               Certainly. Hold'em Trainer is for anyone who aspires to learn more and become better at this great game.
               If you are new to the game it might benefit you to read some of the beginner articles at the Hold'em Academy.

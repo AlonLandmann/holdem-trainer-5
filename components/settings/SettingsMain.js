@@ -94,17 +94,6 @@ export default function SettingsMain({ user, setUser }) {
               onClick={() => { window.open('/auth/reset', '_blank') }}
             />
           </Setting>
-          <Setting label='Membership'>
-            <div>
-              {user.membership}
-            </div>
-            <Button
-              theme='link'
-              utilClasses='underline'
-              text={user.membership === 'basic' ? 'upgrade' : 'change'}
-              onClick={() => { window.open('/pricing', '_blank') }}
-            />
-          </Setting>
           <Setting label='Account'>
             <div className='text-neutral-500'>
               To delete your account email info@holdem-trainer.com directly.
