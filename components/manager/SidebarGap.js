@@ -1,8 +1,8 @@
 import { useLoadingQueue } from '@/hooks/useLoadingQueue'
 import { useUser } from '@/hooks/useUser'
-import handleManagerRequest from '@/lib/managerRequests'
 import { useState } from 'react'
 import LoadingDots from '../_ui/LoadingDots'
+import toast from 'react-hot-toast'
 
 export default function SidebarGap({ index, target, setTarget }) {
   const [user, setUser] = useUser()
@@ -30,11 +30,19 @@ export default function SidebarGap({ index, target, setTarget }) {
           setLoading(true)
           setLoadingQueue(true)
 
-          await handleManagerRequest('/api/folders/move', 'PATCH', setUser, {
-            origin: data.origin,
-            originId: data.originId,
-            target
-          })
+          const res = await fetch("/api/manager/move-folder", {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ origin: data.origin, originId: data.originId, target: target }),
+          });
+
+          const json = await res.json();
+
+          if (json.success) {
+            window.location.reload();
+          } else {
+            toast.error(json.message || "An unexpected error occurred");
+          }
 
           setLoading(false)
           setLoadingQueue(false)

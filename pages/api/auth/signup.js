@@ -1,9 +1,11 @@
-import { sendVerificationLink } from '@/lib/email'
-import prisma from '@/lib/prisma'
-import { generateUsername } from '@/lib/usernames'
-import { last } from 'lodash'
-import sha256 from 'sha256'
-import sampleFolders from '../../../prisma/sample-ranges.json'
+import { sendVerificationLink } from "@/lib/email";
+import prisma from "@/lib/prisma";
+import { generateUsername } from "@/lib/usernames";
+import { validateEmail, validatePassword } from "@/lib/validate";
+import sampleFolders from "@/prisma/sample-ranges.json";
+import messages from "@/lib/messages";
+import sha256 from "sha256";
+import { v4 } from "uuid";
 
 const folderCreateArray = sampleFolders.map(folder => ({
   index: folder.index,
@@ -17,69 +19,100 @@ const folderCreateArray = sampleFolders.map(folder => ({
       options: range.options,
       matrix: Buffer.from(range.matrix),
       complexity: range.complexity,
-    }))
-  }
+    })),
+  },
 }));
 
 export default async function handler(req, res) {
-  try {
-    switch (req.method) {
-      case 'POST':
-        const { email, password } = req.body
-
-        if (await prisma.user.findUnique({ where: { email } })) {
-          return res.status(200).json({ success: false, message: 'User already exists.' })
-        }
-
-        let userNameCandidate = generateUsername()
-
-        const conflictingUsers = await prisma.user.findMany({
-          where: {
-            username: {
-              startsWith: userNameCandidate
-            }
-          },
-          select: {
-            username: true
-          }
-        })
-
-        const conflictingEndings = conflictingUsers.map(u => Number(u.username.slice(userNameCandidate.length)))
-        
-        if (conflictingEndings.length) {
-          userNameCandidate = `${userNameCandidate} ${String(last(conflictingEndings) + 1)}`
-        }
-
-        const newUser = await prisma.user.create({
-          data: {
-            email,
-            username: userNameCandidate,
-            hash: sha256(password + process.env.PASSWORD_SALT),
-            session: { create: {} },
-            settings: { create: {} },
-            folders: { create: folderCreateArray },
-          },
-          select: {
-            email: true,
-            verificationToken: true,
-            session: {
-              select: {
-                token: true,
-              }
-            }
-          }
-        });
-
-        res.setHeader("Set-Cookie", `sessionId=${newUser.session.token}; Path=/; Max-Age=${30 * 24 * 60 * 60}; HttpOnly; Secure; SameSite=Lax`);
-        sendVerificationLink(newUser.email, newUser.verificationToken)
-
-        return res.status(200).json({ success: true })
-
-      default:
-        res.status(400).json({ success: false, message: 'Invalid request.' })
-    }
-  } catch (error) {
-    console.log(error)
-    res.status(500).json({ success: false, message: 'Internal server error.' })
+  if (req.method !== "POST") {
+    return res.status(405).json({ success: false, message: messages.invalidRequestMethod });
   }
-}
+
+  if (!req.body.email || !req.body.password) {
+    return res.status(400).json({ success: false, message: messages.missingFormData });
+  }
+
+  if (!validateEmail(req.body.email)) {
+    return res.status(422).json({ success: false, message: "Email validation failed." });
+  }
+
+  if (!validatePassword(req.body.password)) {
+    return res.status(422).json({ success: false, message: "Password validation failed." });
+  }
+
+  let existingUser;
+
+  try {
+    existingUser = await prisma.user.findUnique({
+      where: {
+        email: req.body.email,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ success: false, message: messages.internalServerError });
+  }
+
+  if (existingUser) {
+    return res.status(409).json({ success: false, message: "A user with this email address already exists. Try to log in instead." });
+  }
+
+  let userNameCandidate = generateUsername();
+  let conflictingUsers;
+  let conflictingEndings;
+
+  try {
+    conflictingUsers = await prisma.user.findMany({
+      where: {
+        username: {
+          startsWith: userNameCandidate,
+        },
+      },
+      select: {
+        username: true,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ success: false, message: messages.internalServerError });
+  }
+
+  conflictingEndings = conflictingUsers.map(u => Number(u.username.slice(userNameCandidate.length)));
+
+  if (conflictingEndings.length > 0) {
+    userNameCandidate = `${userNameCandidate} ${String(conflictingEndings[conflictingEndings.length - 1] + 1)}`;
+  }
+
+  let newUser;
+
+  try {
+    newUser = await prisma.user.create({
+      data: {
+        email: req.body.email,
+        username: userNameCandidate,
+        hash: sha256(req.body.password + process.env.PASSWORD_SALT),
+        sessionCookie: v4(),
+        settings: {
+          create: {},
+        },
+        folders: {
+          create: folderCreateArray,
+        },
+      },
+      select: {
+        email: true,
+        verificationToken: true,
+        sessionCookie: true,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ success: false, message: messages.internalServerError });
+  }
+
+  res.setHeader("Set-Cookie", `holdemTrainerSessionId=${newUser.sessionCookie}; Path=/; Max-Age=2592000; HttpOnly; Secure; SameSite=Lax`);
+
+  sendVerificationLink(newUser.email, newUser.verificationToken);
+
+  return res.status(201).json({ success: true });
+};

@@ -2,7 +2,7 @@ import prisma from "@/lib/prisma";
 import messages from "@/lib/messages";
 
 export default async function handler(req, res) {
-  if (req.method !== "PATCH") {
+  if (req.method !== "POST") {
     return res.status(405).json({ success: false, message: messages.invalidRequestMethod });
   }
 
@@ -19,6 +19,11 @@ export default async function handler(req, res) {
       },
       select: {
         id: true,
+        folders: {
+          select: {
+            id: true,
+          },
+        },
       },
     });
   } catch (error) {
@@ -31,16 +36,16 @@ export default async function handler(req, res) {
   }
 
   try {
-    await prisma.settings.update({
-      where: {
+    await prisma.folder.create({
+      data: {
+        index: user.folders.length,
         userId: user.id,
       },
-      data: req.body,
     });
   } catch (error) {
     console.log(error);
     return res.status(500).json({ success: false, message: messages.internalServerError });
   }
 
-  return res.status(200).json({ success: true });
+  return res.status(201).json({ success: true });
 };

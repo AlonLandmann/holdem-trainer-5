@@ -1,13 +1,10 @@
 import Button from '@/components/_ui/Button'
-import { useUser } from '@/hooks/useUser'
-import handleManagerRequest from '@/lib/managerRequests'
 import toast from 'react-hot-toast'
 import Confirm from '../_ui/Confirm'
 import { useRouter } from 'next/router'
 
 export default function RangeUiButtons({ range, folderLength }) {
   const router = useRouter()
-  const [user, setUser] = useUser()
 
   function handleDelete() {
     toast.dismiss()
@@ -17,8 +14,19 @@ export default function RangeUiButtons({ range, folderLength }) {
         prompt={`Are you sure you want to delete the range '${range.name}'? This action cannot be undone.`}
         onCancel={async () => toast.remove(toastId)}
         onConfirm={async () => {
-          await handleManagerRequest(`/api/ranges/delete?rangeId=${range.id}&rangeIndex=${range.index}&folderId=${range.folderId}`, 'DELETE', setUser)
-          toast.remove(toastId)
+          const res = await fetch(`/api/manager/delete-range?rangeId=${range.id}&rangeIndex=${range.index}&folderId=${range.folderId}`, {
+            method: "DELETE",
+          });
+
+          const json = await res.json();
+
+          if (json.success) {
+            window.location.reload();
+          } else {
+            toast.error(json.message || "An unexpected error occurred.");
+          }
+
+          toast.remove(toastId);
         }}
       />,
       {

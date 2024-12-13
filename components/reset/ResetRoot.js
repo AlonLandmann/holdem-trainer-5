@@ -129,9 +129,18 @@ export default function ResetRoot() {
             {codeSent && !codeEntered &&
               <Button
                 utilClasses='w-full rounded-sm py-3 px-4'
-                text='Send new code'
+                text='Submit'
                 type='submit'
                 onClick={handleCodeSubmission}
+                useQueue
+              />
+            }
+            {codeSent && !codeEntered &&
+              <Button
+                theme='secondary'
+                utilClasses='w-full rounded-sm py-3 px-4'
+                text='Resend code'
+                onClick={handleSendCode}
                 useQueue
               />
             }

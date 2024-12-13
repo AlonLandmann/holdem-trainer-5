@@ -6,7 +6,7 @@ export default function UsageData() {
 
   useEffect(() => {
     (async () => {
-      const res = await fetch('/api/logs/usage-data');
+      const res = await fetch("/api/logs/usage-data");
       const json = await res.json();
 
       if (json.success) {

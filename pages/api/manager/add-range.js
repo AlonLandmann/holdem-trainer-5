@@ -1,62 +1,93 @@
-import apiRoute from '@/lib/apiRoute';
-import prisma from '@/lib/prisma';
-import { defaultMatrixBuffer } from '@/lib/ranges';
+import prisma from "@/lib/prisma";
+import { defaultMatrixBuffer } from "@/lib/ranges";
+import messages from "@/lib/messages";
 
-// FIX still not completely secure
-
-export default apiRoute('POST', async (req, res) => {
-  const sessionId = req.cookies.sessionId;
-  const folderId = Number(req.query.folderId);
-
-  if (!sessionId) {
-    return res.status(400).json({ success: false, message: 'Unauthorized request. You may need to log in again.' });
+export default async function handler(req, res) {
+  if (req.method !== "POST") {
+    return res.status(405).json({ success: false, message: messages.invalidRequestMethod });
   }
 
-  const user = await prisma.user.findFirst({
-    where: {
-      session: {
-        is: {
-          token: sessionId,
-        },
-      },
-    },
-    include: {
-      folders: true,
-    },
-  });
-
-  if (!user) {
-    return res.status(400).json({ success: false, message: 'User not found.' });
+  if (!req.cookies.holdemTrainerSessionId) {
+    return res.status(401).json({ success: false, message: messages.noSessionDetected });
   }
 
-  let folder = await prisma.folder.findFirst({
-    where: folderId
-      ? { id: folderId }
-      : { name: 'New Folder', userId: user.id },
-    include: {
-      ranges: true,
-    },
-  });
+  let user;
 
-  if (!folder) {
-    folder = await prisma.folder.create({
-      data: {
-        index: user.folders.length,
-        userId: user.id,
+  try {
+    user = await prisma.user.findUnique({
+      where: {
+        sessionCookie: req.cookies.holdemTrainerSessionId,
       },
       include: {
-        ranges: true,
+        folders: true,
       },
     });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ success: false, message: messages.internalServerError });
   }
 
-  await prisma.range.create({
-    data: {
-      index: folder.ranges.length,
-      matrix: defaultMatrixBuffer,
-      folderId: folder.id,
-    }
-  });
+  if (!user) {
+    return res.status(401).json({ success: false, message: messages.userNotFound });
+  }
 
-  return res.status(200).json({ success: true, message: 'Range added.' });
-});
+  let folder;
+
+  try {
+    if (req.body.folderId) {
+      folder = await prisma.folder.findUnique({
+        where: {
+          id: Number(req.body.folderId),
+        },
+        include: {
+          ranges: true,
+        },
+      });
+    } else {
+      folder = await prisma.folder.findFirst({
+        where: {
+          name: "New Folder",
+          userId: user.id,
+        },
+        include: {
+          ranges: true,
+        },
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ success: false, message: messages.internalServerError });
+  }
+
+  if (!folder) {
+    try {
+      folder = await prisma.folder.create({
+        data: {
+          index: user.folders.length,
+          userId: user.id,
+        },
+        include: {
+          ranges: true,
+        },
+      });
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json({ success: false, message: messages.internalServerError });
+    }
+  }
+
+  try {
+    await prisma.range.create({
+      data: {
+        index: folder.ranges.length,
+        matrix: defaultMatrixBuffer,
+        folderId: folder.id,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ success: false, message: messages.internalServerError });
+  }
+
+  return res.status(200).json({ success: true, message: "Range added." });
+};

@@ -10,16 +10,18 @@ export default async function handler(req, res) {
     return res.status(401).json({ success: false, message: messages.noSessionDetected });
   }
 
-  if (!req.query.folderId) {
-    return res.status(400).json({ success: false, message: messages.missingQueryData });
-  }
-
-  if (!req.body.renameValue) {
+  if (
+    typeof req.body.rangeId !== "number" ||
+    typeof req.body.rangeIndex !== "number" ||
+    typeof req.body.originFolderId !== "number" ||
+    typeof req.body.targetFolderId !== "number" ||
+    typeof req.body.targetFolderLength !== "number"
+  ) {
     return res.status(400).json({ success: false, message: messages.missingFormData });
   }
 
-  if (req.body.renameValue.length < 2 || req.body.renameValue.length > 30) {
-    return res.status(422).json({ success: false, message: "Folder names should be between 2 and 30 characters long." });
+  if (req.body.targetFolderId === req.body.originFolderId) {
+    return res.status(200).json({ success: true });
   }
 
   let user;
@@ -31,11 +33,6 @@ export default async function handler(req, res) {
       },
       select: {
         id: true,
-        folders: {
-          select: {
-            id: true,
-          },
-        },
       },
     });
   } catch (error) {
@@ -47,20 +44,36 @@ export default async function handler(req, res) {
     return res.status(401).json({ success: false, message: messages.userNotFound });
   }
 
-  if (!(user.folders.map(f => f.id).includes(Number(req.query.folderId)))) {
-    return res.status(401).json({ success: false, message: "Unauthorized." });
-  }
-
   try {
-    await prisma.folder.update({
-      where: {
-        id: Number(req.query.folderId),
-        userId: user.id,
-      },
-      data: {
-        name: req.body.renameValue,
-      },
-    });
+    await prisma.$transaction([
+      prisma.range.update({
+        where: {
+          id: req.body.rangeId,
+          folder: {
+            is: {
+              userId: user.id,
+            },
+          },
+        },
+        data: {
+          index: req.body.targetFolderLength,
+          folderId: req.body.targetFolderId,
+        },
+      }),
+      prisma.range.updateMany({
+        where: {
+          folderId: req.body.originFolderId,
+          index: {
+            gt: req.body.rangeIndex,
+          },
+        },
+        data: {
+          index: {
+            decrement: 1,
+          },
+        },
+      }),
+    ]);
   } catch (error) {
     console.log(error);
     return res.status(500).json({ success: false, message: messages.internalServerError });

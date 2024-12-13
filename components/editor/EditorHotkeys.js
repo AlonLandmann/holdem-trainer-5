@@ -1,17 +1,18 @@
 import { useState } from 'react'
 import Button from '../_ui/Button'
-import handleManagerRequest from '@/lib/managerRequests'
 
 export default function EditorHotkeys({ user, setUser, setViewHotkeyInfo }) {
   const [isMacOS, setIsMacOS] = useState(false)
 
-  function handleDismiss() {
+  async function handleDismiss() {
     setViewHotkeyInfo(false)
 
     if (!user.settings.hotkeyInfoDismissed) {
-      handleManagerRequest('/api/settings/update', 'PATCH', setUser, {
-        hotkeyInfoDismissed: true
-      })
+      await fetch("/api/settings/update", {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ hotkeyInfoDismissed: true }),
+      });
     }
   }
 

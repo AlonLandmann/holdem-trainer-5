@@ -1,60 +1,78 @@
-import apiRoute from '@/lib/apiRoute';
-import prisma from '@/lib/prisma';
+import prisma from "@/lib/prisma";
+import messages from "@/lib/messages";
 
-// FIX not completely secure yet?
+export default async function handler(req, res) {
+  if (req.method !== "PATCH") {
+    return res.status(405).json({ success: false, message: messages.invalidRequestMethod });
+  }
 
-export default apiRoute('PATCH', async (req, res) => {
-  const sessionId = req.cookies.sessionId;
-  const { origin, originId, target } = req.body;
+  if (!req.cookies.holdemTrainerSessionId) {
+    return res.status(401).json({ success: false, message: messages.noSessionDetected });
+  }
 
-  if (target === origin || target === origin + 1) {
+  if (
+    typeof req.body.origin !== "number" ||
+    typeof req.body.originId !== "number" ||
+    typeof req.body.target !== "number"
+  ) {
+    return res.status(400).json({ success: false, message: messages.missingFormData });
+  }
+
+  if (req.body.target === req.body.origin || req.body.target === req.body.origin + 1) {
     return res.status(200).json({ success: true });
   }
 
-  if (!sessionId) {
-    return res.status(400).json({ success: false, message: 'Unauthorized request. You may need to log in again.' });
-  }
+  let user;
 
-  const user = await prisma.user.findFirst({
-    where: {
-      session: {
-        is: {
-          token: sessionId,
-        },
+  try {
+    user = await prisma.user.findUnique({
+      where: {
+        sessionCookie: req.cookies.holdemTrainerSessionId,
       },
-    },
-  });
+      select: {
+        id: true,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ success: false, message: messages.internalServerError });
+  }
 
   if (!user) {
-    return res.status(400).json({ success: false, message: 'User not found.' });
+    return res.status(401).json({ success: false, message: messages.userNotFound });
   }
 
-  await prisma.$transaction([
-    prisma.range.updateMany({
-      where: {
-        folder: {
-          is: {
-            userId: user.id,
+  try {
+    await prisma.$transaction([
+      prisma.range.updateMany({
+        where: {
+          folder: {
+            is: {
+              userId: user.id,
+            },
+          },
+          index: {
+            gt: req.body.target > req.body.origin ? req.body.origin : req.body.target - 1,
+            lt: req.body.target > req.body.origin ? req.body.target : req.body.origin,
           },
         },
-        index: {
-          gt: target > origin ? origin : target - 1,
-          lt: target > origin ? target : origin,
+        data: {
+          index: req.body.target > req.body.origin ? { decrement: 1 } : { increment: 1 },
         },
-      },
-      data: {
-        index: target > origin ? { decrement: 1 } : { increment: 1 },
-      },
-    }),
-    prisma.range.update({
-      where: {
-        id: originId,
-      },
-      data: {
-        index: target > origin ? target - 1 : target,
-      },
-    }),
-  ]);
+      }),
+      prisma.range.update({
+        where: {
+          id: req.body.originId,
+        },
+        data: {
+          index: req.body.target > req.body.origin ? req.body.target - 1 : req.body.target,
+        },
+      }),
+    ]);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ success: false, message: messages.internalServerError });
+  }
 
-  return res.status(200).json({ success: true, message: 'Range moved.' });
-});
+  return res.status(200).json({ success: true });
+};

@@ -1,109 +1,86 @@
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
+    provider  = "postgresql"
+    url       = env("DATABASE_URL")
+    directUrl = env("DIRECT_URL")
 }
 
 generator client {
-  provider = "prisma-client-js"
+    provider = "prisma-client-js"
 }
 
 model User {
-  id                Int               @id @default(autoincrement())
-  createdAt         DateTime          @default(now())
-  email             String            @unique
-  username          String            @unique
-  hash              String?
-  googleId          String?           @unique
-  isVerified        Boolean           @default(false)
-  verificationToken String?           @unique @default(uuid())
-  passwordResetCode String?
-  role              String            @default("user")
-  membership        String            @default("basic")
-  session           Session?
-  settings          Settings?
-  folders           Folder[]
-  trainingSessions  TrainingSession[]
-}
-
-model Session {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  token     String   @unique @default(uuid())
-  user      User     @relation(fields: [userId], references: [id])
-  userId    Int      @unique
+    id                Int               @id @default(autoincrement())
+    createdAt         DateTime          @default(now())
+    email             String            @unique
+    username          String            @unique
+    hash              String?
+    googleId          String?           @unique
+    isVerified        Boolean           @default(false)
+    verificationToken String?           @unique @default(uuid())
+    sessionCookie     String?           @unique
+    passwordResetCode String?
+    role              String            @default("user")
+    membership        String            @default("basic")
+    settings          Settings?
+    folders           Folder[]
+    trainingSessions  TrainingSession[]
 }
 
 model Settings {
-  id                   Int     @id @default(autoincrement())
-  deselectAfterBrush   Boolean @default(true)
-  afterPredecessorEdit String  @default("ask")
-  defaultSessionLength Int     @default(20)
-  hotkeyInfoDismissed  Boolean @default(false)
-  user                 User    @relation(fields: [userId], references: [id])
-  userId               Int     @unique
+    id                   Int     @id @default(autoincrement())
+    deselectAfterBrush   Boolean @default(true)
+    afterPredecessorEdit String  @default("ask")
+    defaultSessionLength Int     @default(20)
+    hotkeyInfoDismissed  Boolean @default(false)
+    user                 User    @relation(fields: [userId], references: [id])
+    userId               Int     @unique
 }
 
 model Folder {
-  id     Int     @id @default(autoincrement())
-  index  Int
-  name   String  @default("New Folder")
-  user   User    @relation(fields: [userId], references: [id])
-  userId Int
-  ranges Range[]
+    id     Int     @id @default(autoincrement())
+    index  Int
+    name   String  @default("New Folder")
+    user   User    @relation(fields: [userId], references: [id])
+    userId Int
+    ranges Range[]
 }
 
 model Range {
-  id            Int            @id @default(autoincrement())
-  index         Int
-  createdAt     DateTime       @default(now())
-  updatedAt     DateTime       @updatedAt
-  name          String         @default("New Range")
-  stacks        Float[]        @default([100, 100, 100, 100, 100, 100])
-  history       String[]       @default([])
-  options       String[]       @default(["fold", "call"])
-  matrix        Bytes
-  complexity    Float          @default(0)
-  folder        Folder         @relation(fields: [folderId], references: [id])
-  folderId      Int
-  successors    Range[]        @relation("Pred-Succ")
-  predecessor   Range?         @relation("Pred-Succ", fields: [predecessorId], references: [id])
-  predecessorId Int?
-  trainingUnits TrainingUnit[]
-}
-
-model Article {
-  id          Int      @id @default(autoincrement())
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  publishedAt String?
-  isPublished Boolean  @default(false)
-  imageUrl    String
-  readTime    Int
-  level       Int
-  title       String
-  slug        String   @unique
-  abstract    String
-  content     String
+    id            Int            @id @default(autoincrement())
+    index         Int
+    createdAt     DateTime       @default(now())
+    updatedAt     DateTime       @updatedAt
+    name          String         @default("New Range")
+    stacks        Float[]        @default([100, 100, 100, 100, 100, 100])
+    history       String[]       @default([])
+    options       String[]       @default(["fold", "call"])
+    matrix        Bytes
+    complexity    Float          @default(0)
+    folder        Folder         @relation(fields: [folderId], references: [id])
+    folderId      Int
+    successors    Range[]        @relation("Pred-Succ")
+    predecessor   Range?         @relation("Pred-Succ", fields: [predecessorId], references: [id])
+    predecessorId Int?
+    trainingUnits TrainingUnit[]
 }
 
 model TrainingSession {
-  id            String         @id
-  createdAt     DateTime       @default(now())
-  updatedAt     DateTime       @updatedAt
-  trainingUnits TrainingUnit[]
-  user          User           @relation(fields: [userId], references: [id])
-  userId        Int
+    id            String         @id
+    createdAt     DateTime       @default(now())
+    updatedAt     DateTime       @updatedAt
+    trainingUnits TrainingUnit[]
+    user          User           @relation(fields: [userId], references: [id])
+    userId        Int
 }
 
 model TrainingUnit {
-  id                Int             @id @default(autoincrement())
-  correct           Int
-  total             Int
-  complexity        Float
-  score             Float
-  trainingSession   TrainingSession @relation(fields: [trainingSessionId], references: [id])
-  trainingSessionId String
-  range             Range?          @relation(fields: [rangeId], references: [id])
-  rangeId           Int?
+    id                Int             @id @default(autoincrement())
+    correct           Int
+    total             Int
+    complexity        Float
+    score             Float
+    trainingSession   TrainingSession @relation(fields: [trainingSessionId], references: [id])
+    trainingSessionId String
+    range             Range?          @relation(fields: [rangeId], references: [id])
+    rangeId           Int?
 }

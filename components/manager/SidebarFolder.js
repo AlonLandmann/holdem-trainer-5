@@ -1,17 +1,9 @@
 import { useLoadingQueue } from '@/hooks/useLoadingQueue'
-import { useUser } from '@/hooks/useUser'
-import handleManagerRequest from '@/lib/managerRequests'
 import { useState } from 'react'
 import LoadingDots from '../_ui/LoadingDots'
+import toast from 'react-hot-toast'
 
-export default function SidebarFolder({
-  folder,
-  isSelected,
-  setSelectedFolder,
-  target,
-  setTarget,
-}) {
-  const [user, setUser] = useUser()
+export default function SidebarFolder({ folder, isSelected, setSelectedFolder, target, setTarget }) {
   const [loadingQueue, setLoadingQueue] = useLoadingQueue()
   const [loading, setLoading] = useState(false)
   const [isDropCandidate, setIsDropCandidate] = useState(false)
@@ -60,13 +52,25 @@ export default function SidebarFolder({
         setLoading(true)
         setLoadingQueue(true)
 
-        await handleManagerRequest('/api/ranges/move-between', 'PATCH', setUser, {
-          rangeId: data.originId,
-          rangeIndex: data.origin,
-          originFolderId: data.originFolderId,
-          targetFolderId: folder.id,
-          targetFolderLength: folder.ranges.length
-        })
+        const res = await fetch("/api/manager/move-range-between", {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            rangeId: data.originId,
+            rangeIndex: data.origin,
+            originFolderId: data.originFolderId,
+            targetFolderId: folder.id,
+            targetFolderLength: folder.ranges.length,
+          }),
+        });
+
+        const json = await res.json();
+
+        if (json.success) {
+          window.location.reload();
+        } else {
+          toast.error(json.message || "An unexpected error occurred");
+        }
 
         setLoading(false)
         setLoadingQueue(false)

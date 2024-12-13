@@ -1,6 +1,6 @@
 {
   "name": "holdem-trainer-5",
-  "version": "3.0.3",
+  "version": "3.0.4",
   "private": true,
   "prisma": {
     "seed": "node prisma/seed.js"
@@ -14,7 +14,6 @@
   },
   "dependencies": {
     "@prisma/client": "^5.18.0",
-    "cookie": "^1.0.2",
     "googleapis": "^143.0.0",
     "immer": "^10.1.1",
     "lodash": "^4.17.21",

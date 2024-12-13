@@ -1,8 +1,8 @@
-import prisma from "@/lib/prisma";
 import messages from "@/lib/messages";
+import prisma from "@/lib/prisma";
 
 export default async function handler(req, res) {
-  if (req.method !== "PATCH") {
+  if (req.method !== "DELETE") {
     return res.status(405).json({ success: false, message: messages.invalidRequestMethod });
   }
 
@@ -10,16 +10,12 @@ export default async function handler(req, res) {
     return res.status(401).json({ success: false, message: messages.noSessionDetected });
   }
 
-  if (!req.query.folderId) {
+  if (
+    !req.query.rangeId ||
+    !req.query.rangeIndex ||
+    !req.query.folderId
+  ) {
     return res.status(400).json({ success: false, message: messages.missingQueryData });
-  }
-
-  if (!req.body.renameValue) {
-    return res.status(400).json({ success: false, message: messages.missingFormData });
-  }
-
-  if (req.body.renameValue.length < 2 || req.body.renameValue.length > 30) {
-    return res.status(422).json({ success: false, message: "Folder names should be between 2 and 30 characters long." });
   }
 
   let user;
@@ -33,7 +29,11 @@ export default async function handler(req, res) {
         id: true,
         folders: {
           select: {
-            id: true,
+            ranges: {
+              select: {
+                id: true,
+              },
+            },
           },
         },
       },
@@ -47,20 +47,44 @@ export default async function handler(req, res) {
     return res.status(401).json({ success: false, message: messages.userNotFound });
   }
 
-  if (!(user.folders.map(f => f.id).includes(Number(req.query.folderId)))) {
+  const allRangeIds = [];
+
+  for (let i = 0; i < user.folders.length; i++) {
+    for (let j = 0; j < user.folders[i].ranges.length; j++) {
+      allRangeIds.push(user.folders[i].ranges[j].id);
+    }
+  }
+
+  if (!allRangeIds.includes(Number(req.query.rangeId))) {
     return res.status(401).json({ success: false, message: "Unauthorized." });
   }
 
   try {
-    await prisma.folder.update({
-      where: {
-        id: Number(req.query.folderId),
-        userId: user.id,
-      },
-      data: {
-        name: req.body.renameValue,
-      },
-    });
+    await prisma.$transaction([
+      prisma.range.delete({
+        where: {
+          id: Number(req.query.rangeId),
+          folder: {
+            is: {
+              userId: user.id,
+            },
+          },
+        },
+      }),
+      prisma.range.updateMany({
+        where: {
+          folderId: Number(req.query.folderId),
+          index: {
+            gt: Number(req.query.rangeIndex)
+          },
+        },
+        data: {
+          index: {
+            decrement: 1,
+          },
+        },
+      }),
+    ]);
   } catch (error) {
     console.log(error);
     return res.status(500).json({ success: false, message: messages.internalServerError });

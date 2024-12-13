@@ -37,10 +37,9 @@ export default function FolderContent({ selectedFolder }) {
 
   async function handleRenameFolder() {
     const res = await fetch(`/api/manager/rename-folder?folderId=${selectedFolder.id}`, {
-      method: 'PATCH',
-      headers: { 'Content-type': 'application/json' },
-      credentials: 'include',
-      body: JSON.stringify({ name: renameValue }),
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ renameValue: renameValue }),
     });
 
     const json = await res.json();
@@ -48,7 +47,7 @@ export default function FolderContent({ selectedFolder }) {
     if (json.success) {
       window.location.reload();
     } else {
-      toast.error(json.message || 'An unexpected error occurred.');
+      toast.error(json.message || "An unexpected error occurred.");
     }
   }
 

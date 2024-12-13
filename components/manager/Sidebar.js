@@ -3,8 +3,8 @@ import SidebarFolder from '@/components/manager/SidebarFolder'
 import SidebarGap from '@/components/manager/SidebarGap'
 import { useLoadingQueue } from '@/hooks/useLoadingQueue'
 import { useUser } from '@/hooks/useUser'
-import handleManagerRequest from '@/lib/managerRequests'
 import { useState } from 'react'
+import toast from 'react-hot-toast'
 
 export default function Sidebar({ selectedFolder, setSelectedFolder }) {
   const [user, setUser] = useUser()
@@ -12,7 +12,14 @@ export default function Sidebar({ selectedFolder, setSelectedFolder }) {
   const [target, setTarget] = useState(null)
 
   async function handleAddFolder() {
-    await handleManagerRequest('/api/folders/add', 'POST', setUser)
+    const res = await fetch("/api/manager/add-folder", { method: "POST" });
+    const json = await res.json();
+
+    if (json.success) {
+      window.location.reload();
+    } else {
+      toast.error(json.message || "An unexpected error occurred.");
+    }
   }
 
   function handleDragLeave(event) {

@@ -1,21 +1,35 @@
 import Button from '@/components/_ui/Button'
-import handleManagerRequest from '@/lib/managerRequests'
 import toast from 'react-hot-toast'
 
 export default function SettingsToolbar({ user, setUser, username, settings }) {
   async function handleSave() {
-    await handleManagerRequest('/api/settings/update', 'PATCH', setUser, settings)
+    let res = await fetch("/api/settings/update", {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(settings),
+    });
 
-    if (username !== user.username) {
-      if (username.length < 2 || username.length > 30) {
-        toast.error('Usernames should be between 2 and 30 characters long.')
-      } else {
-        await handleManagerRequest('/api/auth/change-username', 'PATCH', setUser, {
-          userId: user.id,
-          username
-        })
-      }
+    let json = await res.json();
+
+    if (!json.success) {
+      toast.error(json.message || "An unexpected error occurred.");
     }
+
+    if (username === user.username) {
+      window.location.reload();
+    }
+
+    if (username.length < 2 || username.length > 30) {
+      toast.error("Usernames should be between 2 and 30 characters long.");
+    }
+
+    res = await fetch("/api/auth/change-username", {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username }),
+    });
+
+    window.location.reload();
   }
 
   return (

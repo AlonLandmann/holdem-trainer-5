@@ -36,7 +36,7 @@ export default function Predecessor({ range, setRange }) {
         }
 
         const optionToMatch = JSON.stringify(optionAsAction)
-        const res = await fetch(`/api/ranges/find-predecessors?userId=${user.id}&history=${historyToMatch}&option=${optionToMatch}`)
+        const res = await fetch(`/api/editor/find-predecessors?userId=${user.id}&history=${historyToMatch}&option=${optionToMatch}`)
         const json = await res.json()
 
         if (!json.success) {

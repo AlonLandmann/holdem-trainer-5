@@ -1,6 +1,7 @@
-import { getGoogleUserInfo } from '@/lib/google'
-import prisma from '@/lib/prisma'
-import sampleFolders from '../../../prisma/sample-ranges.json'
+import { getGoogleUserInfo } from "@/lib/google";
+import prisma from "@/lib/prisma";
+import sampleFolders from "@/prisma/sample-ranges.json";
+import { v4 } from "uuid";
 
 const folderCreateArray = sampleFolders.map(folder => ({
   index: folder.index,
@@ -14,82 +15,100 @@ const folderCreateArray = sampleFolders.map(folder => ({
       options: range.options,
       matrix: Buffer.from(range.matrix),
       complexity: range.complexity,
-    }))
-  }
+    })),
+  },
 }));
 
 export default async function handler(req, res) {
-  try {
-    switch (req.method) {
-      case 'GET':
-        const { email, name, id } = await getGoogleUserInfo(req);
-
-        const foundByIdUser = await prisma.user.findUnique({
-          where: {
-            googleId: id,
-          },
-        });
-
-        if (foundByIdUser) {
-          await prisma.session.deleteMany({
-            where: {
-              userId: foundByIdUser.id
-            }
-          })
-
-          const newSession = await prisma.session.create({
-            data: {
-              user: {
-                connect: { 
-                  id: foundByIdUser.id,
-                },
-              },
-            },
-          });
-
-          res.setHeader("Set-Cookie", `sessionId=${newSession.token}; Path=/; Max-Age=${30 * 24 * 60 * 60}; HttpOnly; Secure; SameSite=Lax`);
-        }
-
-        if (!foundByIdUser) {
-          const foundByEmailUser = await prisma.user.findUnique({
-            where: {
-              email,
-            },
-          });
-
-          if (foundByEmailUser) {
-            return res.redirect('/auth/login?googleAuth=fail');
-          }
-
-          const newUser = await prisma.user.create({
-            data: {
-              email,
-              username: name,
-              googleId: id,
-              isVerified: true,
-              session: { create: {} },
-              settings: { create: {} },
-              folders: { create: folderCreateArray },
-            },
-            select: {
-              session: {
-                select: {
-                  token: true,
-                }
-              }
-            }
-          });
-
-          res.setHeader("Set-Cookie", `sessionId=${newUser.session.token}; Path=/; Max-Age=${30 * 24 * 60 * 60}; HttpOnly; Secure; SameSite=Lax`);
-        }
-
-        return res.redirect('/app/overview')
-
-      default:
-        res.redirect('/auth/login?googleAuth=fail')
-    }
-  } catch (error) {
-    console.log(error)
-    res.redirect('/auth/login?googleAuth=fail')
+  if (req.method !== "GET") {
+    return res.redirect("/auth/login?googleAuth=fail");
   }
-}
+
+  let googleUserInfo;
+
+  try {
+    googleUserInfo = await getGoogleUserInfo(req);
+  } catch (error) {
+    console.log(error);
+    return res.redirect("/auth/login?googleAuth=fail");
+  }
+
+  let user;
+
+  try {
+    user = await prisma.user.findUnique({
+      where: {
+        googleId: googleUserInfo.id,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+    return res.redirect("/auth/login?googleAuth=fail");
+  }
+
+  if (user) {
+    try {
+      user = await prisma.user.update({
+        where: {
+          googleId: googleUserInfo.id,
+        },
+        data: {
+          sessionCookie: v4(),
+        },
+        select: {
+          sessionCookie: true,
+        }
+      });
+    } catch (error) {
+      console.log(error);
+      return res.redirect("/auth/login?googleAuth=fail");
+    }
+
+    res.setHeader("Set-Cookie", `holdemTrainerSessionId=${user.sessionCookie}; Path=/; Max-Age=2592000; HttpOnly; Secure; SameSite=Lax`);
+
+    return res.redirect("/app/manager");
+  }
+
+  try {
+    user = await prisma.user.findUnique({
+      where: {
+        email: googleUserInfo.email,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+    return res.redirect("/auth/login?googleAuth=fail");
+  }
+
+  if (user) {
+    return res.redirect("/auth/login?googleAuth=fail");
+  }
+
+  try {
+    user = await prisma.user.create({
+      data: {
+        email: googleUserInfo.email,
+        username: googleUserInfo.name,
+        googleId: googleUserInfo.id,
+        isVerified: true,
+        sessionCookie: v4(),
+        settings: {
+          create: {},
+        },
+        folders: {
+          create: folderCreateArray,
+        },
+      },
+      select: {
+        sessionCookie: true,
+      },
+    })
+  } catch (error) {
+    console.log(error);
+    return res.redirect("/auth/login?googleAuth=fail");
+  }
+
+  res.setHeader("Set-Cookie", `holdemTrainerSessionId=${user.sessionCookie}; Path=/; Max-Age=2592000; HttpOnly; Secure; SameSite=Lax`);
+
+  return res.redirect("/app/manager");
+};

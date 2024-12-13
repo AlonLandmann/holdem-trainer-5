@@ -14,10 +14,9 @@ export default function RangeName({ range, renaming, setRenaming }) {
 
   async function handleRename() {
     const res = await fetch(`/api/manager/rename-range?rangeId=${range.id}`, {
-      method: 'PATCH',
-      headers: { 'Content-type': 'application/json' },
-      credentials: 'include',
-      body: JSON.stringify({ name: renameValue }),
+      method: "PATCH",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify({ renameValue: renameValue }),
     });
 
     const json = await res.json();
@@ -25,7 +24,7 @@ export default function RangeName({ range, renaming, setRenaming }) {
     if (json.success) {
       window.location.reload();
     } else {
-      toast.error(json.message || 'An unexpected error occurred.');
+      toast.error(json.message || "An unexpected error occurred.");
     }
   }
 

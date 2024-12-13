@@ -1,32 +1,53 @@
-import { sendPasswordResetCode } from '@/lib/email'
-import prisma from '@/lib/prisma'
-import { random } from 'lodash'
+import { sendPasswordResetCode } from "@/lib/email";
+import prisma from "@/lib/prisma";
+import messages from "@/lib/messages";
+import { generateSixDigitToken } from "@/lib/tokens";
 
 export default async function handler(req, res) {
-  try {
-    switch (req.method) {
-      case 'POST':
-        const { email } = req.body
-        const randomCode = `${random(9)}${random(9)}${random(9)}${random(9)}${random(9)}${random(9)}`
-        
-        await prisma.user.update({
-          where: {
-            email
-          },
-          data: {
-            passwordResetCode: randomCode
-          }
-        })
-
-        sendPasswordResetCode(email, randomCode)
-
-        return res.status(200).json({ success: true })
-
-      default:
-        res.status(400).json({ success: false, message: 'Invalid request.' })
-    }
-  } catch (error) {
-    console.log(error)
-    res.status(500).json({ success: false, message: 'Internal server error.' })
+  if (req.method !== "POST") {
+    return res.status(405).json({ success: false, message: messages.invalidRequestMethod });
   }
-}
+
+  if (!req.body.email) {
+    return res.status(400).json({ success: false, message: messages.missingFormData });
+  }
+
+  let user;
+
+  try {
+    user = await prisma.user.findUnique({
+      where: {
+        email: req.body.email,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ success: false, message: messages.internalServerError });
+  }
+
+  if (!user) {
+    return res.status(400).json({ success: false, message: messages.userNotFound });
+  }
+
+  try {
+    user = await prisma.user.update({
+      where: {
+        email: req.body.email,
+      },
+      data: {
+        passwordResetCode: generateSixDigitToken(),
+      },
+      select: {
+        email: true,
+        passwordResetCode: true,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ success: false, message: messages.internalServerError });
+  }
+
+  sendPasswordResetCode(user.email, user.passwordResetCode);
+
+  return res.status(200).json({ success: true });
+};

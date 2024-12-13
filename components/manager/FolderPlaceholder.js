@@ -21,7 +21,6 @@ export default function FolderPlaceholder({ selectedFolder }) {
   async function handleDeleteFolder() {
     const res = await fetch(`/api/manager/delete-folder?folderId=${selectedFolder.id}&folderIndex=${selectedFolder.index}`, {
       method: 'DELETE',
-      headers: { 'Content-type': 'application/json' },
       credentials: 'include',
     });
 

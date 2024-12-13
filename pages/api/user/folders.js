@@ -1,42 +1,48 @@
-import prisma from '@/lib/prisma'
+import messages from "@/lib/messages";
+import prisma from "@/lib/prisma";
+
+// NOT SECURED
 
 export default async function handler(req, res) {
-  try {
-    switch (req.method) {
-      case 'GET':
-        const userId = Number(req.query.userId);
+  if (req.method !== "GET") {
+    return res.status(405).json({ success: false, message: messages.invalidRequestMethod });
+  }
 
-        const folders = await prisma.folder.findMany({
-          where: {
-            userId,
-          },
-          include: {
-            ranges: {
-              select: {
-                id: true,
-                index: true,
-                name: true,
-              },
-              orderBy: {
-                index: 'asc',
-              },
-            },
+  if (!req.query.userId) {
+    return res.status(400).json({ success: false, messages: messages.missingQueryData });
+  }
+
+  let folders;
+
+  try {
+    folders = await prisma.folder.findMany({
+      where: {
+        userId: Number(req.query.userId),
+      },
+      include: {
+        ranges: {
+          select: {
+            id: true,
+            index: true,
+            name: true,
           },
           orderBy: {
-            index: 'asc',
+            index: "asc",
           },
-        });
-
-        if (!folders) {
-          return res.status(200).json({ success: false, message: 'Folders not found.' });
-        }
-
-        return res.status(200).json({ success: true, folders });
-      default:
-        return res.status(400).json({ success: false, message: 'Invalid request.' });
-    }
+        },
+      },
+      orderBy: {
+        index: "asc",
+      },
+    });
   } catch (error) {
     console.log(error);
-    return res.status(500).json({ success: false, message: 'Internal server error.' });
+    return res.status(500).json({ success: false, messages: messages.internalServerError });
   }
-}
+
+  if (!folders) {
+    return res.status(500).json({ success: false, message: "Folders not found." });
+  }
+  
+  return res.status(200).json({ success: true, folders: folders });
+};

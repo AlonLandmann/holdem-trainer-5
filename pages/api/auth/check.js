@@ -1,6 +1,7 @@
-import prisma from '@/lib/prisma'
-import { toClientFormat } from '@/lib/ranges'
-import { produce } from 'immer'
+import prisma from "@/lib/prisma";
+import { toClientFormat } from "@/lib/ranges";
+import messages from "@/lib/messages";
+import { produce } from "immer";
 
 export const config = {
   api: {
@@ -8,65 +9,63 @@ export const config = {
   },
 }
 
-export default async function handler(req, res) {
-  try {
-    switch (req.method) {
-      case 'GET':
-        const { sessionId } = req.cookies
-        
-        const user = !sessionId ? null : await prisma.user.findFirst({
-          where: {
-            session: {
-              is: {
-                token: sessionId
-              }
-            }
-          },
-          include: {
-            settings: true,
-            trainingSessions: {
-              include: {
-                trainingUnits: true
-              }
-            },
-            folders: {
-              include: {
-                ranges: {
-                  orderBy: {
-                    index: 'asc'
-                  },
-                  include: {
-                    successors: {
-                      select: {
-                        id: true,
-                        name: true,
-                      }
-                    }
-                  }
-                }
-              },
-              orderBy: {
-                index: 'asc'
-              }
-            }
-          }
-        })
-
-        if (!user) {
-          return res.status(200).json({ success: false })
-        }
-
-        user.folders = user.folders.map(produce(folderDraft => {
-          folderDraft.ranges = folderDraft.ranges.map(r => toClientFormat(r))
-        }))
-
-        return res.status(200).json({ success: true, user })
-
-      default:
-        res.status(400).json({ success: false })
-    }
-  } catch (error) {
-    console.log(error)
-    res.status(500).json({ success: false })
+export default async function hanlder(req, res) {
+  if (req.method !== "GET") {
+    return res.status(405).json({ success: false, message: messages.invalidRequestMethod });
   }
-}
+
+  if (!req.cookies.holdemTrainerSessionId) {
+    return res.status(401).json({ success: false, message: messages.noSessionDetected });
+  }
+
+  let user;
+
+  try {
+    user = await prisma.user.findUnique({
+      where: {
+        sessionCookie: req.cookies.holdemTrainerSessionId,
+      },
+      include: {
+        settings: true,
+        trainingSessions: {
+          include: {
+            trainingUnits: true,
+          },
+        },
+        folders: {
+          include: {
+            ranges: {
+              orderBy: {
+                index: "asc",
+              },
+              include: {
+                successors: {
+                  select: {
+                    id: true,
+                    name: true,
+                  },
+                },
+              },
+            },
+          },
+          orderBy: {
+            index: "asc",
+          },
+        },
+      },
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ success: false, message: messages.internalServerError });
+  }
+
+  if (!user) {
+    return res.status(400).json({ success: false, message: messages.userNotFound });
+  }
+
+  user.folders = user.folders.map(produce(folderDraft => {
+    folderDraft.ranges = folderDraft.ranges.map(r => toClientFormat(r));
+  }));
+
+  return res.status(200).json({ success: true, user: user });
+};

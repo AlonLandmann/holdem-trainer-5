@@ -11,12 +11,12 @@ export default function Leaderboard() {
   useEffect(() => {
     (async () => {
       if (user.info) {
-        const res = await fetch('/api/logs/leaderboard')
-        const json = await res.json()
+        const res = await fetch("/api/logs/leaderboard");
+        const json = await res.json();
 
         if (json.success) {
-          setLeaderboard(json.leaderboard)
-          setUserRank(json.leaderboard.findIndex(u => u.id === user.info.id))
+          setLeaderboard(json.leaderboard);
+          setUserRank(json.leaderboard.findIndex(u => u.id === user.info.id));
         }
       }
     })()
