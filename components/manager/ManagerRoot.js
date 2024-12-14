@@ -1,26 +1,26 @@
-import ManagerMain from '@/components/manager/ManagerMain'
-import RangePlaceholder from '@/components/manager/RangePlaceholder'
-import { useUser } from '@/hooks/useUser'
-import AppLayout from '../_layout/AppLayout'
-import { useEffect } from 'react'
+import ManagerMain from "@/components/manager/ManagerMain";
+import RangePlaceholder from "@/components/manager/RangePlaceholder";
+import AppLayout from "../_layout/AppLayout";
+import { useEffect } from "react";
+import { useUserData } from "@/hooks/useUserData";
 
 export default function ManagerRoot() {
-  const [user, setUser, isLoading] = useUser()
+  const [user, loaded] = useUserData();
   
   useEffect(() => {
-    if (!isLoading && !user) {
-      window.location = '/auth/login'
+    if (loaded.initialComplete && !user.info) {
+      window.location = "/auth/login";
     }
-  }, [isLoading])
+  }, [loaded.initialComplete]);
 
   return (
     <AppLayout>
-      {user && !user.hasRanges &&
+      {loaded.folders && user.folders.length === 0 &&
         <RangePlaceholder />
       }
-      {user && user.hasRanges &&
+      {loaded.folders && user.folders.length > 0 &&
         <ManagerMain user={user} />
       }
     </AppLayout>
-  )
-}
+  );
+};

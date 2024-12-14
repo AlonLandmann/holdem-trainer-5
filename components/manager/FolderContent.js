@@ -1,29 +1,29 @@
-import Button from '@/components/_ui/Button'
-import Input from '@/components/_ui/Input'
-import FolderPlaceholder from '@/components/manager/FolderPlaceholder'
-import RangeCard from '@/components/manager/RangeCard'
-import { selectedForTraining } from '@/lib/display'
-import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
-import toast from 'react-hot-toast'
+import Button from "@/components/_ui/Button";
+import Input from "@/components/_ui/Input";
+import FolderPlaceholder from "@/components/manager/FolderPlaceholder";
+import RangeCard from "@/components/manager/RangeCard";
+import { selectedForTraining } from "@/lib/display";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 export default function FolderContent({ selectedFolder }) {
-  const router = useRouter()
-  const [renameInView, setRenameInView] = useState(false)
-  const [renaming, setRenaming] = useState(false)
-  const [renameValue, setRenameValue] = useState(selectedFolder.name)
-  const [selectedRanges, setSelectedRanges] = useState([])
+  const router = useRouter();
+  const [renameInView, setRenameInView] = useState(false);
+  const [renaming, setRenaming] = useState(false);
+  const [renameValue, setRenameValue] = useState(selectedFolder.name);
+  const [selectedRanges, setSelectedRanges] = useState([]);
 
   useEffect(() => {
-    setRenaming(false)
-    setRenameValue(selectedFolder.name)
-  }, [selectedFolder])
+    setRenaming(false);
+    setRenameValue(selectedFolder.name);
+  }, [selectedFolder]);
 
   async function handleAddRange() {
     const res = await fetch(`/api/manager/add-range?folderId=${selectedFolder.id}`, {
-      method: 'POST',
-      headers: { 'Content-type': 'application/json' },
-      credentials: 'include',
+      method: "POST",
+      headers: { "Content-type": "application/json" },
+      credentials: "include",
     });
 
     const json = await res.json();
@@ -31,7 +31,7 @@ export default function FolderContent({ selectedFolder }) {
     if (json.success) {
       window.location.reload();
     } else {
-      toast.error(json.message || 'An unexpected error occurred.');
+      toast.error(json.message || "An unexpected error occurred.");
     }
   }
 
@@ -52,26 +52,26 @@ export default function FolderContent({ selectedFolder }) {
   }
 
   async function handleTrainSelected() {
-    router.push(`/app/trainer?ids=${JSON.stringify(selectedRanges)}`)
+    router.push(`/app/trainer?ids=${JSON.stringify(selectedRanges)}`);
   }
 
   return (
-    <div className='grow flex flex-col max-h-screen'>
-      <div className='flex justify-between gap-3 border-b p-3'>
+    <div className="grow flex flex-col max-h-screen">
+      <div className="flex justify-between gap-3 border-b p-3">
         <div
-          className='grow flex items-center gap-3'
+          className="grow flex items-center gap-3"
           onMouseEnter={() => setRenameInView(true)}
           onMouseLeave={() => setRenameInView(false)}
         >
           {!renaming &&
             <>
-              <h1 className='text-neutral-500'>
+              <h1 className="text-neutral-500">
                 {selectedFolder.name}
               </h1>
               <Button
-                theme='tertiary'
-                utilClasses={`transition ${renameInView ? 'opacity-100' : 'opacity-0'}`}
-                icon='input-cursor'
+                theme="tertiary"
+                utilClasses={`transition ${renameInView ? "opacity-100" : "opacity-0"}`}
+                icon="input-cursor"
                 onClick={async () => setRenaming(true)}
                 useQueue
               />
@@ -80,21 +80,21 @@ export default function FolderContent({ selectedFolder }) {
           {renaming &&
             <>
               <Input
-                theme='rename'
-                utilClasses='text-neutral-500'
+                theme="rename"
+                utilClasses="text-neutral-500"
                 value={renameValue}
                 onChange={e => setRenameValue(e.target.value)}
               />
               <Button
-                theme='tertiary'
-                utilClasses='text-sm'
-                icon='x-lg'
+                theme="tertiary"
+                utilClasses="text-sm"
+                icon="x-lg"
                 onClick={async () => { setRenaming(false); setRenameValue(selectedFolder.name) }}
                 useQueue
               />
               <Button
-                theme='tertiary'
-                icon='check2'
+                theme="tertiary"
+                icon="check2"
                 onClick={handleRenameFolder}
                 useQueue
               />
@@ -102,9 +102,9 @@ export default function FolderContent({ selectedFolder }) {
           }
         </div>
         <Button
-          theme='tertiary'
-          utilClasses='text-neutral-500 hover:text-neutral-300'
-          icon='plus-lg'
+          theme="tertiary"
+          utilClasses="text-neutral-500 hover:text-neutral-300"
+          icon="plus-lg"
           onClick={handleAddRange}
           useQueue
         />
@@ -115,11 +115,11 @@ export default function FolderContent({ selectedFolder }) {
         />
       }
       {selectedFolder.ranges.length > 0 &&
-        <div className='p-3 h-full overflow-y-auto flex flex-wrap gap-x-4 gap-y-6'>
-          {selectedFolder.ranges.map((range, i) => (
-            <div key={'range' + range.id}>
+        <div className="p-3 h-full overflow-y-auto flex flex-wrap gap-x-4 gap-y-6">
+          {selectedFolder.ranges.map(range => (
+            <div key={"range" + range.id}>
               <RangeCard
-                range={range}
+                rangeMetaData={range}
                 selectedRanges={selectedRanges}
                 setSelectedRanges={setSelectedRanges}
                 folderLength={selectedFolder.ranges.length}
@@ -128,18 +128,18 @@ export default function FolderContent({ selectedFolder }) {
           ))}
         </div>
       }
-      <div className='border-t p-3 text-neutral-600 flex justify-between gap-3'>
-        <div className={selectedRanges.length ? 'text-neutral-300' : ''}>
-          {selectedForTraining(selectedRanges.length)}
+      <div className="border-t p-3 text-neutral-600 flex justify-between gap-3">
+        <div className={selectedRanges.length ? "text-neutral-300" : ""}>
+          {selectedForTraining(selectedRanges.length)} 
         </div>
         <Button
-          theme='tertiary'
-          utilClasses='text-neutral-500 hover:text-neutral-300'
-          icon='crosshair'
+          theme="tertiary"
+          utilClasses="text-neutral-500 hover:text-neutral-300"
+          icon="crosshair"
           onClick={handleTrainSelected}
           useQueue
         />
       </div>
     </div>
-  )
-}
+  );
+};

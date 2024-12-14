@@ -1,34 +1,32 @@
-import { useLoadingQueue } from '@/hooks/useLoadingQueue'
-import { useUser } from '@/hooks/useUser'
-import { useState } from 'react'
-import LoadingDots from '../_ui/LoadingDots'
-import toast from 'react-hot-toast'
+import { useLoadingQueue } from "@/hooks/useLoadingQueue";
+import { useState } from "react";
+import LoadingDots from "../_ui/LoadingDots";
+import toast from "react-hot-toast";
 
 export default function SidebarGap({ index, target, setTarget }) {
-  const [user, setUser] = useUser()
-  const [loadingQueue, setLoadingQueue] = useLoadingQueue()
-  const [loading, setLoading] = useState(false)
+  const [loadingQueue, setLoadingQueue] = useLoadingQueue();
+  const [loading, setLoading] = useState(false);
 
   function handleDragOver(event) {
     if (!loadingQueue) {
-      const data = JSON.parse(event.dataTransfer.getData('text/plain'))
+      const data = JSON.parse(event.dataTransfer.getData("text/plain"));
 
-      if (data.type === 'folder' && !loadingQueue) {
-        event.preventDefault()
+      if (data.type === "folder" && !loadingQueue) {
+        event.preventDefault();
       }
     }
   }
 
   async function handleDrop(event) {
     if (!loadingQueue) {
-      const data = JSON.parse(event.dataTransfer.getData('text/plain'))
+      const data = JSON.parse(event.dataTransfer.getData("text/plain"));
 
-      if (data.type === 'folder') {
+      if (data.type === "folder") {
         if (target === data.origin || target === data.origin + 1) {
-          setTarget(null)
+          setTarget(null);
         } else {
-          setLoading(true)
-          setLoadingQueue(true)
+          setLoading(true);
+          setLoadingQueue(true);
 
           const res = await fetch("/api/manager/move-folder", {
             method: "PATCH",
@@ -44,9 +42,9 @@ export default function SidebarGap({ index, target, setTarget }) {
             toast.error(json.message || "An unexpected error occurred");
           }
 
-          setLoading(false)
-          setLoadingQueue(false)
-          setTarget(null)
+          setLoading(false);
+          setLoadingQueue(false);
+          setTarget(null);
         }
       }
     }
@@ -54,13 +52,13 @@ export default function SidebarGap({ index, target, setTarget }) {
 
   return (
     <div
-      className={`relative ${target === index ? 'h-4 border-b' : ''}`}
+      className={`relative ${target === index ? "h-4 border-b" : ""}`}
       onDragOver={handleDragOver}
       onDrop={handleDrop}
     >
       {loading &&
-        <LoadingDots utilClasses='h-full items-center' />
+        <LoadingDots utilClasses="h-full items-center" />
       }
     </div>
-  )
-}
+  );
+};

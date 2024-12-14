@@ -1,27 +1,14 @@
-import FolderContent from '@/components/manager/FolderContent'
-import Sidebar from '@/components/manager/Sidebar'
-import { useEffect, useState } from 'react'
+import FolderContent from "@/components/manager/FolderContent";
+import Sidebar from "@/components/manager/Sidebar";
+import { useState } from "react";
 
 export default function ManagerMain({ user }) {
-  const [selectedFolder, setSelectedFolder] = useState(
-    user.folders.length ? user.folders[0] : null
-  )
-
-  useEffect(() => {
-    setSelectedFolder(prev => {
-      const sameFolder = user.folders.find(f => f.id === prev.id)
-
-      if (sameFolder) {
-        return sameFolder
-      } else {
-        return user.folders.length ? user.folders[0] : null
-      }
-    })
-  }, [user])
+  const [selectedFolder, setSelectedFolder] = useState(user.folders[0]);
 
   return !selectedFolder ? null : (
-    <div className='bg-neutral-900 grow flex'>
+    <div className="bg-neutral-900 grow flex">
       <Sidebar
+        folders={user.folders}
         selectedFolder={selectedFolder}
         setSelectedFolder={setSelectedFolder}
       />
@@ -29,5 +16,5 @@ export default function ManagerMain({ user }) {
         selectedFolder={selectedFolder}
       />
     </div>
-  )
-}
+  );
+};
