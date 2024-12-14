@@ -1,45 +1,43 @@
-import EditorMain from '@/components/editor/EditorMain'
-import RangePlaceholder from '@/components/manager/RangePlaceholder'
-import { useUser } from '@/hooks/useUser'
-import AppLayout from '../_layout/AppLayout'
-import EditorHotkeys from './EditorHotkeys'
-import { useEffect, useState } from 'react'
+import EditorMain from "@/components/editor/EditorMain";
+import RangePlaceholder from "@/components/manager/RangePlaceholder";
+import AppLayout from "../_layout/AppLayout";
+import EditorHotkeys from "./EditorHotkeys";
+import { useEffect, useState } from "react";
+import { useUserData } from "@/hooks/useUserData";
 
 export default function EditorRoot() {
-  const [user, setUser, isLoading] = useUser()
+  const [user, loaded] = useUserData();
+  const [viewHotkeyInfo, setViewHotkeyInfo] = useState(null);
   
   useEffect(() => {
-    if (!isLoading && !user) {
-      window.location = '/auth/login'
+    if (loaded.initialComplete && !user.info) {
+      window.location = "/auth/login";
     }
-  }, [isLoading])
+  }, [loaded.initialComplete]);
   
   useEffect(() => {
-    if (user && user.hasRanges) {
-      setViewHotkeyInfo(!user.settings.hotkeyInfoDismissed)
+    if (loaded.folders && user.folders.length > 0 && user.settings) {
+      setViewHotkeyInfo(!user.settings.hotkeyInfoDismissed);
     }
-  }, [user])
-  
-  const [viewHotkeyInfo, setViewHotkeyInfo] = useState(null)
+  }, [loaded.folders, loaded.settings]);
   
   return (
     <AppLayout>
-      {user && !user.hasRanges &&
+      {loaded.folders && user.folders.length === 0 &&
         <RangePlaceholder />
       }
-      {user && user.hasRanges &&
+      {loaded.folders && loaded.firstRange && user.folders.length > 0 && user.settings &&
         <EditorMain
           user={user}
           setViewHotkeyInfo={setViewHotkeyInfo}
         />
       }
-      {user && viewHotkeyInfo &&
+      {loaded.folders && viewHotkeyInfo &&
         <EditorHotkeys
-          user={user}
-          setUser={setUser}
+          settings={user.settings}
           setViewHotkeyInfo={setViewHotkeyInfo}
         />
       }
     </AppLayout>
-  )
-}
+  );
+};
