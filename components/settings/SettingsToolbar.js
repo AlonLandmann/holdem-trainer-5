@@ -1,7 +1,7 @@
-import Button from '@/components/_ui/Button'
-import toast from 'react-hot-toast'
+import Button from "@/components/_ui/Button";
+import toast from "react-hot-toast";
 
-export default function SettingsToolbar({ user, setUser, username, settings }) {
+export default function SettingsToolbar({ userInfo, username, settings }) {
   async function handleSave() {
     let res = await fetch("/api/settings/update", {
       method: "PATCH",
@@ -15,7 +15,7 @@ export default function SettingsToolbar({ user, setUser, username, settings }) {
       toast.error(json.message || "An unexpected error occurred.");
     }
 
-    if (username === user.username) {
+    if (username === userInfo.username) {
       window.location.reload();
     }
 
@@ -33,18 +33,18 @@ export default function SettingsToolbar({ user, setUser, username, settings }) {
   }
 
   return (
-    <div className='border-b h-[49px] flex items-center px-3'>
-      <h1 className='text-neutral-500 mr-auto'>
+    <div className="border-b h-[49px] flex items-center px-3">
+      <h1 className="text-neutral-500 mr-auto">
         Settings
       </h1>
       <Button
-        theme='nice'
-        utilClasses='h-[39px] px-3 gap-1 rounded-sm'
-        icon='floppy'
-        text='Save Changes'
+        theme="nice"
+        utilClasses="h-[39px] px-3 gap-1 rounded-sm"
+        icon="floppy"
+        text="Save Changes"
         onClick={handleSave}
         useQueue
       />
     </div>
-  )
-}
+  );
+};

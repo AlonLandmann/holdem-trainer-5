@@ -1,25 +1,25 @@
-import SettingsMain from '@/components/settings/SettingsMain'
-import { useUser } from '@/hooks/useUser'
-import AppLayout from '../_layout/AppLayout'
-import { useEffect } from 'react'
+import SettingsMain from "@/components/settings/SettingsMain";
+import AppLayout from "../_layout/AppLayout";
+import { useEffect } from "react";
+import { useUserData } from "@/hooks/useUserData";
 
 export default function SettingsRoot() {
-  const [user, setUser, isLoading] = useUser()
-  
+  const [user, loaded] = useUserData();
+
   useEffect(() => {
-    if (!isLoading && !user) {
-      window.location = '/auth/login'
+    if (loaded.initialComplete && !user.info) {
+      window.location = "/auth/login";
     }
-  }, [isLoading])
+  }, [loaded.initialComplete]);
 
   return (
     <AppLayout>
-      {user &&
+      {user && user.info && user.settings &&
         <SettingsMain
-          user={user}
-          setUser={setUser}
+          userInfo={user.info}
+          userSettings={user.settings}
         />
       }
     </AppLayout>
-  )
-}
+  );
+};
