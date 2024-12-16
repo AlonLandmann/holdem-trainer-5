@@ -34,10 +34,10 @@ export default async function handler(req, res) {
   let folder;
 
   try {
-    if (req.body.folderId) {
+    if (req.query.folderId) {
       folder = await prisma.folder.findUnique({
         where: {
-          id: Number(req.body.folderId),
+          id: Number(req.query.folderId),
         },
         include: {
           ranges: true,

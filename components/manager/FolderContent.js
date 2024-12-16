@@ -20,12 +20,7 @@ export default function FolderContent({ selectedFolder }) {
   }, [selectedFolder]);
 
   async function handleAddRange() {
-    const res = await fetch(`/api/manager/add-range?folderId=${selectedFolder.id}`, {
-      method: "POST",
-      headers: { "Content-type": "application/json" },
-      credentials: "include",
-    });
-
+    const res = await fetch(`/api/manager/add-range?folderId=${selectedFolder.id}`, { method: "POST" });
     const json = await res.json();
 
     if (json.success) {
