@@ -92,8 +92,6 @@ export function UserDataProvider({ children }) {
             draft.folders = true;
           }
         }));
-
-        console.log(`Initial load ${withSettings ? 'with settings ' : ''}${withFolders ? 'with folders ' : ''}done.`);
       } else {
         setLoaded(produce(draft => {
           draft.initialComplete = true
@@ -114,9 +112,12 @@ export function UserDataProvider({ children }) {
           const json = await res.json();
 
           if (json.success) {
-            setUser(produce(draft => { draft.settings = json.settings }));
-            setLoaded(produce(draft => { draft.settings = true }));
-            console.log('Settings loaded lazily.')
+            setUser(produce(draft => {
+              draft.settings = json.settings;
+            }));
+            setLoaded(produce(draft => {
+              draft.settings = true;
+            }));
           } else {
             console.log(json.message);
           }
@@ -125,9 +126,12 @@ export function UserDataProvider({ children }) {
           const json = await res.json();
 
           if (json.success) {
-            setUser(produce(draft => { draft.folders = json.folders }));
-            setLoaded(produce(draft => { draft.folders = true }));
-            console.log('Folders loaded lazily.')
+            setUser(produce(draft => {
+              draft.folders = json.folders;
+            }));
+            setLoaded(produce(draft => {
+              draft.folders = true;
+            }));
           } else {
             console.log(json.message);
           }
@@ -136,9 +140,12 @@ export function UserDataProvider({ children }) {
           const json = await res.json();
 
           if (json.success) {
-            setUser(produce(draft => { draft.trainingTotals = json.trainingTotals }));
-            setLoaded(produce(draft => { draft.trainingTotals = true }));
-            console.log('Training totals loaded lazily.')
+            setUser(produce(draft => {
+              draft.trainingTotals = json.trainingTotals;
+            }));
+            setLoaded(produce(draft => {
+              draft.trainingTotals = true;
+            }));
           } else {
             console.log(json.message);
           }
@@ -147,9 +154,12 @@ export function UserDataProvider({ children }) {
           const json = await res.json();
 
           if (json.success) {
-            setUser(produce(draft => { draft.trainingHistory = json.trainingHistory }));
-            setLoaded(produce(draft => { draft.trainingHistory = true }));
-            console.log('Training History loaded lazily.')
+            setUser(produce(draft => {
+              draft.trainingHistory = json.trainingHistory;
+            }));
+            setLoaded(produce(draft => {
+              draft.trainingHistory = true;
+            }));
           } else {
             console.log(json.message);
           }
@@ -167,8 +177,9 @@ export function UserDataProvider({ children }) {
                 draft.ranges[String(json.ranges[i].id)] = json.ranges[i];
               }
             }));
-            setLoaded(produce(draft => { draft.firstRange = true }));
-            console.log('First range loaded lazily.');
+            setLoaded(produce(draft => {
+              draft.firstRange = true;
+            }));
           } else {
             console.log(json.message);
           }
@@ -186,8 +197,9 @@ export function UserDataProvider({ children }) {
                 draft.ranges[String(json.ranges[i].id)] = json.ranges[i];
               }
             }));
-            setLoaded(produce(draft => { draft.firstRanges = true }));
-            console.log('First ranges loaded lazily.');
+            setLoaded(produce(draft => {
+              draft.firstRanges = true;
+            }));
           } else {
             console.log(json.message);
           }
@@ -204,8 +216,11 @@ export function UserDataProvider({ children }) {
                 draft.ranges[String(json.ranges[i].id)] = json.ranges[i];
               }
             }))
-            setLoaded(produce(draft => { draft.allRanges = true }));
-            console.log('All ranges loaded lazily');
+            setLoaded(produce(draft => {
+              draft.allRanges = true;
+              draft.firstRanges = true;
+              draft.firstRange = true;
+            }));
           } else {
             console.log(json.message);
           }
