@@ -110,7 +110,7 @@ export default function EditorMain({ user, setViewHotkeyInfo }) {
       />
       <div className={`flex p-3 gap-3 ${layoutColumns === 1 ? "flex-col-reverse" : ""}`}>
         <div
-          className={`flex flex-col ${layoutColumns === 1 ? "items-stretch w-[360px]" : "overflow-y-auto no-scrollbar" } gap-3`}
+          className={`flex flex-col ${layoutColumns === 1 ? "items-stretch w-[360px]" : "overflow-y-auto no-scrollbar"} gap-3`}
           style={{ maxHeight: layoutColumns >= 2 ? "calc(100vh - 49px - 24px)" : "none" }}
         >
           <Stacks
@@ -150,29 +150,16 @@ export default function EditorMain({ user, setViewHotkeyInfo }) {
               />
             </>
           }
-          {false &&
-            <Matrix
-              range={range}
-              selected={selected}
-              setSelected={setSelected}
-              hovered={hovered}
-              setHovered={setHovered}
-              optionHover={optionHover}
-              cellWidth={cellWidth}
-            />
-          }
         </div>
-        {true &&
-          <Matrix
-            range={range}
-            selected={selected}
-            setSelected={setSelected}
-            hovered={hovered}
-            setHovered={setHovered}
-            optionHover={optionHover}
-            cellWidth={cellWidth}
-          />
-        }
+        <Matrix
+          range={range}
+          selected={selected}
+          setSelected={setSelected}
+          hovered={hovered}
+          setHovered={setHovered}
+          optionHover={optionHover}
+          cellWidth={cellWidth}
+        />
         {layoutColumns === 3 &&
           <div
             className="flex flex-col gap-3 overflow-y-auto no-scrollbar"
