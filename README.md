@@ -2,15 +2,15 @@
 
 ## 1 Manage your ranges
 
-![Manager](screenshots/manager.png)
+![Manager](public/screenshots/manager.png)
 
 ## 2 Edit down to the last detail
 
-![Editor-Full](screenshots/editor-full.png)
+![Editor-Full](public/screenshots/editor-full.png)
 
-![Editor-Analysis](screenshots/editor-analysis.png)
+![Editor-Analysis](public/screenshots/editor-analysis.png)
 
 ## 3 Train them until they are second nature
 
-![Trainer](screenshots/trainer.png)
+![Trainer](public/screenshots/trainer.png)
 
