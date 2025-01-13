@@ -30,6 +30,10 @@ function weeksAgo(date) {
 
 function populateUsers(trainingSessions) {
     const users = {};
+    const totals = {
+        byWeeks: Array(104).fill(0),
+        total: 0,
+    };
 
     for (const trainingSession of trainingSessions) {
         if (!(String(trainingSession.userId) in users)) {
@@ -52,15 +56,18 @@ function populateUsers(trainingSessions) {
 
             users[String(trainingSession.userId)].byWeeks[weeksAgo(trainingSession.createdAt)] += trainingUnit.total;
             users[String(trainingSession.userId)].total += trainingUnit.total;
+            totals.byWeeks[weeksAgo(trainingSession.createdAt)] += trainingUnit.total;
+            totals.total += trainingUnit.total;
         }
     }
 
-    return users;
+    return { users, totals };
 }
 
 export default function AdminRoot() {
     const [user, loaded] = useUserData();
     const [users, setUsers] = useState(null);
+    const [totals, setTotals] = useState(null);
 
     useEffect(() => {
         if (loaded.initialComplete && (!user.info || user.info.role !== "admin")) {
@@ -77,14 +84,37 @@ export default function AdminRoot() {
         const json = await res.json();
 
         if (json.success) {
-            setUsers(populateUsers(json.trainingSessions));
+            const { users, totals } = populateUsers(json.trainingSessions);
+            setUsers(users);
+            setTotals(totals);
         } else {
             toast.error(json.message || "An unexpected error occurred.");
         }
     }
 
     return !user.info ? null : (
-        <div className="min-h-screen bg-white text-gray-800 p-4 overflow-x-auto">
+        <div className="min-h-screen bg-neutral-900 text-neutral-200 p-4 overflow-x-auto">
+            {totals &&
+                <div className="flex gap-10 flex-nowrap">
+                    <div className="min-w-52 max-w-52 truncate">
+                        All non-admin users
+                    </div>
+                    <div className="min-w-20 text-right">
+                        {withSeparators(totals.total)}
+                    </div>
+                    <div className="min-w-10 text-right">
+                        {totals.byWeeks[0] || "-"}
+                    </div>
+                    <div className="min-w-10 text-right">
+                        {totals.byWeeks[1] || "-"}
+                    </div>
+                    {totals.byWeeks.slice(2).map((n, i) => (
+                        <div key={"totals-" + i} className="min-w-10 text-right">
+                            {n || "-"}
+                        </div>
+                    ))}
+                </div>
+            }
             {users && Object.keys(users).toReversed().map(userIdStr => (
                 <div key={userIdStr} className="flex gap-10 flex-nowrap">
                     <div className="min-w-52 max-w-52 truncate">
