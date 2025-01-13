@@ -110,7 +110,7 @@ export default function FolderContent({ selectedFolder }) {
         />
       }
       {selectedFolder.ranges.length > 0 &&
-        <div className="p-3 h-full overflow-y-auto flex flex-wrap gap-x-4 gap-y-6">
+        <div className="p-3 h-full overflow-y-auto no-scrollbar flex flex-wrap gap-x-4 gap-y-6">
           {selectedFolder.ranges.map(range => (
             <div key={"range" + range.id}>
               <RangeCard
