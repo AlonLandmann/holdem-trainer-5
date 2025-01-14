@@ -94,7 +94,7 @@ export default function Highlights() {
             alt='categories'
           />
         </div>
-        {/* <div className='justify-self-center self-center row-start-8 md:row-start-4'>
+        <div className='justify-self-center self-center row-start-8 md:row-start-4'>
           <Image
             src='/slider.png'
             width={400}
@@ -120,8 +120,8 @@ export default function Highlights() {
               window.open('/auth/signup', '_blank')
             }}
           />
-        </div> */}
-        <div>
+        </div>
+        {/* <div>
           <Image
             src='/together.png'
             width={450}
@@ -146,7 +146,7 @@ export default function Highlights() {
               window.open('/auth/signup', '_blank');
             }}
           />
-        </div>
+        </div> */}
       </div>
     </section>
   )
