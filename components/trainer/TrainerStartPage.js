@@ -1,9 +1,9 @@
-import StartToolbar from './StartToolbar'
-import StartMain from './StartMain'
+import StartToolbar from "./StartToolbar";
+import StartMain from "./StartMain";
 
 export default function TrainerStartPage({ user, setPage, selected, setSelected, nrCombos, setNrCombos }) {
   return (
-    <div className='grow overflow-x-hidden'>
+    <div className="grow overflow-x-hidden">
       <StartToolbar
         selected={selected}
         setPage={setPage}
@@ -16,5 +16,5 @@ export default function TrainerStartPage({ user, setPage, selected, setSelected,
         setSelected={setSelected}
       />
     </div>
-  )
-}
+  );
+};

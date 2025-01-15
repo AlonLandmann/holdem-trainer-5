@@ -30,7 +30,7 @@ function getFirstRange(folders, routerParam) {
 
 export function UserDataProvider({ children }) {
   const router = useRouter();
-  
+
   const [user, setUser] = useState({
     info: null,
     settings: null,
@@ -233,6 +233,22 @@ export function UserDataProvider({ children }) {
     setLoaded(produce(draft => { draft.lazyComplete = true }));
   }
 
+  async function refreshTrainingTotals() {
+    const res = await fetch(`/api/user/training-totals?userId=${user.info.id}`);
+    const json = await res.json();
+
+    if (json.success) {
+      setUser(produce(draft => {
+        draft.trainingTotals = json.trainingTotals;
+      }));
+      setLoaded(produce(draft => {
+        draft.trainingTotals = true;
+      }));
+    } else {
+      console.log(json.message);
+    }
+  }
+
   useEffect(() => {
     (async () => {
       const pathElements = router.pathname.slice(1).split('/');
@@ -293,7 +309,7 @@ export function UserDataProvider({ children }) {
   }, [loaded.initialComplete])
 
   return (
-    <UserDataContext.Provider value={[user, loaded]}>
+    <UserDataContext.Provider value={[user, loaded, refreshTrainingTotals]}>
       {children}
     </UserDataContext.Provider>
   )
