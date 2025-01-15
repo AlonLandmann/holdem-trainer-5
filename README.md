@@ -15,7 +15,7 @@ Hold'em Trainer lets you create your ranges and strategies on the editor page.
 
 - The __Stacks__, __History__, and __Link__ panels allow you to precisely define the scenario that has occurred in the hand. You can define the initial stack sizes, then the action history that has taken place including the board cards, and finally, you can link up this scenario to a previous action you've made during the hand that might have impacted the cards you are now holding.
 
-    ![Editor-Full](public/screenshots/editor-full.png)
+![Editor-Full](public/screenshots/editor-full.png)
 
 - The __Matrix__ in the middle contains a grid of all possible two-card combinations you could be holding in your hand. The bottom-right cells tell you with what frequency you reach this particular spot with a particular hand and the top-right cells allow you to display the actions you would like to take.
 
