@@ -1,33 +1,36 @@
 # Hold'em Trainer
 
-## Manage your strategies
+## Manage your ranges and strategies
 
-On Hold'em Trainer you can create ranges for any spot that is reachable with in a 6-max cash-game format (other formats will be supported soon).
-You can build an manage these ranges easily in the range manager section of the application.
+On Hold'em Trainer you can create ranges and strategies for any spot that is reachable with in a 6-max cash-game format (other formats will be supported soon). You can build an manage these ranges and strategies easily in the manager section of the application, after you've created a free account.
 
 ![Manager](public/screenshots/manager.png)
 
 ## Edit your strategies down to the last detail
 
-A range in poker is the answer to one of the following two questions.
+A range in poker is the answer to the question: "What are the possible hands I or my opponent are likely to have in a particular scenario?".
+A strategy for a given range answers the question: "What should I be doing with the different hands that I could be having in this scenario?".
 
-1. What are the possible hands I or my opponent are likely to have in any given scenario?
-2. What should I be doing with the different hands I could have in this scenario?
+Hold'em Trainer lets you create your ranges and strategies on the editor page.
 
-Hold'em Trainer lets you manage your strategies by allowing you to define a given scenario first by defining initial stack sizes and then defining the action history including possible board cards.
-It also allows you to link different ranges with overlapping histories together that have overlapping histories, so that previous actions in the same position can follow each other and be taken into account properly.
+- The __Stacks__, __History__, and __Link__ panels allow you to precisely define the scenario that has occurred in the hand. You can define the initial stack sizes, then the action history that has taken place including the board cards, and finally, you can link up this scenario to a previous action you've made during the hand that might have impacted the cards you are now holding.
 
-You can then define the different actions you want to take in this spot with each holding by working with the brush tool.
-The matrix in the middle contains a grid of all possible two-card combinations you could be holding in your hand.
-The bottom-right cells tell you with what frequency you reach this particular spot with a particular hand and the top-right cells allow you to display the actions you would like to take.
-The tool allows you to define mixed strategies as well, meaning that you intend to obt for certain actions some of the time, and for others the other times.
+    ![Editor-Full](public/screenshots/editor-full.png)
 
-The right-hand side panel gives a detailed break-down of the different hand-strengths categories that your range will break into pre- and post-flop.
-Hovering over any hand category or previously applied strategy-brush will highlight all corresponding combos.
+- The __Matrix__ in the middle contains a grid of all possible two-card combinations you could be holding in your hand. The bottom-right cells tell you with what frequency you reach this particular spot with a particular hand and the top-right cells allow you to display the actions you would like to take.
 
-![Editor-Full](public/screenshots/editor-full.png)
+- The __Brush__ tool in the bottom left allows you to define a strategy you would like to pursue with a given group of hands hand. This strategy may be a pure action, like folding, or raising to 10 big blinds, but it may also be a mixed strategy, which means taking different actions with different probabilities. If you think of a game like rock-paper-scissors you can quickly imagine why mixed strategies might play an important role in poker. To choose a certain strategy for a group of combos, select those combos in the matrix, define your strategy in the brush tool, and then click on the apply-brush button.
+
+- The __Categories__ panel on the right-hand side breaks down the different hand combos present in your range into different hand strength categories. This is especially useful for postflop situations, where the hands are divided by strength, but also by the different flush- and straight draws that are possible.
+
+- Finally, the __Legend__ panel gives you access to all your actively applied brushes. You can use this panel to quickly reselect all the combos that are using a particular brush, or simply to view those combos in isolation by hovering over the legend entry.
 
 ## Train them until they are second nature
 
+Hold'em Trainer gives you the ability to practice all your strategies in an efficient manner. You can choose any number of strategies you'd like to practice, and the simulator will provide you with a clean and simple testing environment. This allows you to practice not only many more hands in a particular scenario than you could live, or even online, but also to get a more practical feeling for a strategy that you have only recently studies.
+
+The trainer provides you with a random number generator, that will allow you to decide between the different actions if you have chosen a mixed strategy for a particular combo.
+
 ![Trainer](public/screenshots/trainer.png)
 
+© 2025, Alon Landmann
