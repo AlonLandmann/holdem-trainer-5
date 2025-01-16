@@ -1,71 +1,88 @@
-import prisma from '@/lib/prisma'
+import messages from "@/lib/messages";
+import prisma from "@/lib/prisma";
 
 export default async function handler(req, res) {
-  try {
-    switch (req.method) {
-      case 'POST':
-        const { userId, sessionId, rangeId, correct, complexity } = req.body
+    if (req.method !== "POST") {
+        return res.status(405).json({ success: false, message: messages.invalidRequestMethod });
+    }
 
-        let trainingSession = await prisma.trainingSession.findUnique({ where: { id: sessionId } })
+    if (
+        !req.body ||
+        !req.body.userId ||
+        !req.body.sessionId ||
+        !req.body.rangeId ||
+        typeof req.body.correct !== "boolean" ||
+        typeof req.body.complexity !== "number"
+    ) {
+        return res.status(400).json({ success: false, message: messages.missingFormData });
+    }
+
+    let trainingSession;
+
+    try {
+        trainingSession = await prisma.trainingSession.findUnique({
+            where: {
+                id: req.body.sessionId,
+            },
+        });
 
         if (!trainingSession) {
-          trainingSession = await prisma.trainingSession.create({
-            data: {
-              id: sessionId,
-              user: { connect: { id: userId } }
-            }
-          })
+            trainingSession = await prisma.trainingSession.create({
+                data: {
+                    id: req.body.sessionId,
+                    userId: req.body.userId,
+                }
+            });
         }
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ success: false, message: messages.internalServerError });
+    }
 
-        let trainingUnit = await prisma.trainingUnit.findFirst({
-          where: {
-            rangeId: rangeId ? rangeId : null,
-            trainingSession: {
-              id: sessionId || null
-            }
-          }
-        })
+    let trainingUnit;
+
+    try {
+        trainingUnit = await prisma.trainingUnit.findFirst({
+            where: {
+                rangeId: req.body.rangeId || null,
+                trainingSessionId: req.body.sessionId || null,
+            },
+        });
 
         if (!trainingUnit) {
-          await prisma.trainingUnit.create({
-            data: {
-              rangeId,
-              trainingSessionId: sessionId,
-              correct: Number(correct),
-              total: 1,
-              complexity,
-              score: correct ? complexity : 0
-            },
-          })
+            await prisma.trainingUnit.create({
+                data: {
+                    rangeId: req.body.rangeId,
+                    trainingSessionId: req.body.sessionId,
+                    correct: Number(req.body.correct),
+                    total: 1,
+                    complexity: req.body.complexity,
+                    score: req.body.correct ? req.body.complexity : 0,
+                }
+            });
         } else {
-          await prisma.trainingUnit.updateMany({
-            where: {
-              rangeId,
-              trainingSession: {
-                id: sessionId
-              }
-            },
-            data: {
-              correct: {
-                increment: Number(correct),
-              },
-              total: {
-                increment: 1
-              },
-              score: {
-                increment: correct ? complexity : 0
-              }
-            }
-          })
+            await prisma.trainingUnit.updateMany({
+                where: {
+                    rangeId: req.body.rangeId,
+                    trainingSessionId: req.body.sessionId,
+                },
+                data: {
+                    correct: {
+                        increment: Number(req.body.correct),
+                    },
+                    total: {
+                        increment: 1,
+                    },
+                    score: {
+                        increment: req.body.correct ? req.body.complexity : 0,
+                    },
+                },
+            });
         }
-
-        return res.status(200).json({ success: true })
-
-      default:
-        return res.status(400).json({ success: false, message: 'Invalid request.' })
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ success: false, message: messages.internalServerError });
     }
-  } catch (error) {
-    console.log(error)
-    return res.status(500).json({ success: false, message: 'Internal server error.' })
-  }
-}
+
+    return res.status(200).json({ success: true });
+};

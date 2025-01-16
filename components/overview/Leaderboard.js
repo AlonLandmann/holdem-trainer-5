@@ -41,7 +41,7 @@ export default function Leaderboard() {
               {i + 1}.
             </div>
             <div className='text-neutral-300 truncate pr-2'>
-              {rank.username ? rank.username : `User ${rank.email.split('@')[0]}`}
+              {rank.username ? rank.username : 'no-name'}
             </div>
             <div className='font-mono text-right ml-auto'>
               {rank.totalScore.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
