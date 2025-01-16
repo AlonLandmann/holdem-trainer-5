@@ -7,7 +7,7 @@ export default async function handler(req, res) {
         return res.status(405).json({ success: false, message: messages.invalidRequestMethod });
     }
 
-    if (!req.query.userId) {
+    if (req.query.all === "true" && !req.query.userId) {
         return res.status(400).json({ success: false, messages: messages.missingQueryData });
     }
 
