@@ -1,8 +1,8 @@
 # Hold'em Trainer
 
-## Demo
+[Hold'em Trainer](https://holdem-trainer.com/) is a web application that allows you to build and edit ranges and practice them as you like.
 
-[Hold'em Trainer](https://holdem-trainer.com/) is a web application that allows you to build and edit ranges and practice them as often as you like.
+## Demo
 
 ![Demo](public/readme/demo.gif)
 
