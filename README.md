@@ -6,7 +6,7 @@
 
 ## Traffic
 
-The live traffic is available at <https://plausible.io/holdem-trainer.com>.
+The live traffic data is available at <https://plausible.io/holdem-trainer.com>.
 
 ![Traffic](public/readme/traffic%202025-01-24.png)
 
