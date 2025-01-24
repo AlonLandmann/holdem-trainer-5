@@ -1,10 +1,14 @@
 # Hold'em Trainer
 
+## Demo
+
+![Demo](public/readme/demo.gif)
+
 ## Manage your ranges and strategies
 
 On Hold'em Trainer you can create ranges and strategies for any spot that is reachable within a 6-max cash-game format (other formats will be supported soon). You can build and manage these ranges and strategies easily in the manager section of the application, after you've created a free account.
 
-![Manager](public/screenshots/manager.png)
+![Manager](public/readme/manager.png)
 
 ## Edit your strategies down to the last detail
 
@@ -15,7 +19,7 @@ Hold'em Trainer lets you create your ranges and strategies on the editor page.
 
 - The __Stacks__, __History__, and __Link__ panels allow you to precisely define the scenario that has occurred in the hand. You can define the initial stack sizes, then the action history that has taken place including the board cards, and finally, you can link up this scenario to a previous action you've made during the hand that might have impacted the cards you are now holding.
 
-![Editor-Full](public/screenshots/editor-full.png)
+![Editor-Full](public/readme/editor-full.png)
 
 - The __Matrix__ in the middle contains a grid of all possible two-card combinations you could be holding in your hand. The bottom-right cells tell you with what frequency you reach this particular spot with a particular hand and the top-right cells allow you to display the actions you would like to take.
 
@@ -31,6 +35,6 @@ Hold'em Trainer gives you the ability to practice all your strategies in an effi
 
 The trainer also provides you with a random number generator, that will allow you to decide between the different actions if you have chosen a mixed strategy for a particular combo.
 
-![Trainer](public/screenshots/trainer.png)
+![Trainer](public/readme/trainer.png)
 
 Happy training!
