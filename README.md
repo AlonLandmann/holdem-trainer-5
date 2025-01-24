@@ -38,5 +38,3 @@ Hold'em Trainer gives you the ability to practice all your strategies in an effi
 The trainer also provides you with a random number generator, that will allow you to decide between the different actions if you have chosen a mixed strategy for a particular combo.
 
 ![Trainer](public/readme/trainer.png)
-
-Happy training!
