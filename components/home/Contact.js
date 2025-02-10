@@ -7,7 +7,7 @@ export default function Contact() {
         Reach out
       </h1>
       <h2 className='text-lg text-neutral-500 mb-8 text-center'>
-        We are always pleased to here from you.
+        We are always pleased to hear from you.
       </h2>
       <A
         href='mailto:info@holdem-trainer.com'
